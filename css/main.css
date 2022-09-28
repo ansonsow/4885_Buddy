@@ -1,0 +1,29 @@
+/* Global CSS Variables */
+
+:root {
+    --Accent-Color:;
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    background-attachment:fixed;
+}
+
+@-moz-document url-prefix(){
+    * {
+        scrollbar-width:thin; /* firefox only */
+    }
+}
+
+img, iframe, figure {
+    vertical-align:middle;
+}
+
+blockquote {
+    margin-right:0;
+}
