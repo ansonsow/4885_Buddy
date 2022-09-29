@@ -5,6 +5,10 @@
 }
 :root {
     --Accent-Color:;
+    --Links-Color:#222;
+    --Text-Color:#444;
+
+    --Body-Font:"Inter";
 }
 
 * {
@@ -15,6 +19,8 @@
 
 body {
     background-attachment:fixed;
+    font-family:var(--Body-Font);
+    color:var(--Text-Color);
 }
 
 @-moz-document url-prefix(){
@@ -29,4 +35,15 @@ img, iframe, figure {
 
 blockquote {
     margin-right:0;
+}
+
+a {
+    text-decoration:none;
+    color:var(--Links-Color);
+}
+
+/*-------- TOP BAR --------*/
+.home-topnav .logo {
+    font-family:"Roboto Slab";
+    font-size:18px;
 }

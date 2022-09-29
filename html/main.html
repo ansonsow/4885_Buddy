@@ -4,24 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Buddy - Activity Finder</title>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Inter" rel="stylesheet">
+
+    <!-- icon font: fontawesome -->
+    <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+
+    <link href="/css/main.css" rel="stylesheet">
+    <script src="/js/main.js" defer></script>
 </head>
 <body>
     <header>
         <nav class="home-topnav">
-            <a href="#">logo</a>
-            <input type="text" placeholder="Search..">
+            <a class="logo" href="#">Buddy</a>
+
+            <form class="searchbar" action="/search" method="get">
+                <input type="text" placeholder="Search">
+                <button class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+
             <a href="#">Find Events</a>
             <a href="#">Create Event</a>
             <a href="#">Help</a>
             <a href="#">icon</a>
         </nav>
     </header>
+
     <section class="home-top-section">
-        <h1>Immerse yourself in the aerms of fun!</h1>
+        <h1>Immerse yourself in the arms of fun!</h1>
         <button>Let's find</button>
         <img src="" alt="">
     </section>
+
     <section class="home-bottom-section">
         <h1>This week</h1>
         <img src="" alt="">
@@ -34,11 +52,14 @@
             <button>Performing</button>
             <button>Business</button>
         </div>
+
         <hr>
+
         <div>
             <button>Free</button>
             <button>Online</button>
         </div>
     </section>
+
 </body>
 </html>
