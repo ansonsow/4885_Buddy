@@ -1,5 +1,8 @@
 /* Global CSS Variables */
 
+.topnav {
+  text-decoration: none;  
+}
 :root {
     --Accent-Color:;
 }
