@@ -8,6 +8,16 @@
     --Links-Color:#222;
     --Text-Color:#444;
 
+    --TopBar-Padding:20px;
+
+    --Searchbar-BG:#fff;
+    --Searchbar-Padding:8px 15px;
+    --Searchbar-Text-Color:#222;
+
+    --Searchbar-Icon-Color:#999;
+
+    --Header-BG:#f0f0f0;
+
     --Body-Font:"Inter";
 }
 
@@ -42,8 +52,43 @@ a {
     color:var(--Links-Color);
 }
 
+/*-------- HEADER --------*/
+header {
+    background-color:var(--Header-BG);
+}
+
 /*-------- TOP BAR --------*/
 .home-topnav .logo {
     font-family:"Roboto Slab";
     font-size:18px;
+}
+
+/*-------- SEARCHBAR --------*/
+nav {
+    padding:var(--TopBar-Padding);
+}
+
+.searchbar {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:var(--Searchbar-Padding);
+    outline:none;
+    background:var(--Searchbar-BG);
+    border-radius:20px;
+}
+
+.searchbar input {    
+    border:0px solid transparent;    
+    font-family:var(--Body-Font);
+    color:var(--Searchbar-Text-Color);
+}
+
+.searchbar button {
+    padding:4px;
+    outline:none;
+    line-height:0;
+    border:0px solid transparent;
+    background:transparent;
+    color:var(--Searchbar-Icon-Color);
 }
