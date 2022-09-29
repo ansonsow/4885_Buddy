@@ -1,26 +1,5 @@
 /* Global CSS Variables */
 
-.topnav {
-  text-decoration: none;  
-}
-:root {
-    --Accent-Color:;
-    --Links-Color:#222;
-    --Text-Color:#444;
-
-    --TopBar-Padding:20px;
-
-    --Searchbar-BG:#fff;
-    --Searchbar-Padding:8px 15px;
-    --Searchbar-Text-Color:#222;
-
-    --Searchbar-Icon-Color:#999;
-
-    --Header-BG:#f0f0f0;
-
-    --Body-Font:"Inter";
-}
-
 * {
     margin:0;
     padding:0;
@@ -58,6 +37,10 @@ header {
 }
 
 /*-------- TOP BAR --------*/
+.home-topnav {
+
+}
+
 .home-topnav .logo {
     font-family:"Roboto Slab";
     font-size:18px;
