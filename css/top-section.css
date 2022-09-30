@@ -11,15 +11,15 @@
     font-size: 3.5rem;
     font-weight: 900; 
     position: absolute;
-    top: 30%;
+    top: 28%;
     left: 15%;
     z-index: 1;
 }
 
 .top-container button{
     font-family: var(--Body-Font);
-    font-size: 1.2rem;
-    padding: 1% 4% ;
+    font-size: 1.5rem;
+    padding: 1% 6% ;
     position: absolute;
     left: 15%;
     bottom: 20%;
