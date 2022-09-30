@@ -3,13 +3,15 @@
     margin: 0;
 }
 
-.home-carousel{
-    width:70%;
-    margin:0px auto;
+.home-bottom-section > h1{
+    margin: 50px;
+    text-align: center;
+    font-size: 3rem;
 }
 
-.slick-slide{
-    margin:10px;
+.home-carousel{
+    width:60%;
+    margin:0px auto;
 }
 
 .slick-slide img{
@@ -23,4 +25,14 @@
 
 .slick-next:before {
     color: grey !important;
+}
+
+@media (max-width: 600px) {
+    .slick-slide img{
+        height: 200px;
+        width:100%;
+    }
+    .home-bottom-section > h1{
+        font-size: 1.5rem;
+    }
 }
