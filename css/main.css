@@ -1,5 +1,3 @@
-/* Global CSS Variables */
-
 * {
     margin:0;
     padding:0;
@@ -29,49 +27,4 @@ blockquote {
 a {
     text-decoration:none;
     color:var(--Links-Color);
-}
-
-/*-------- HEADER --------*/
-header {
-    background-color:var(--Header-BG);
-}
-
-/*-------- TOP BAR --------*/
-.home-topnav {
-
-}
-
-.home-topnav .logo {
-    font-family:"Roboto Slab";
-    font-size:18px;
-}
-
-/*-------- SEARCHBAR --------*/
-nav {
-    padding:var(--TopBar-Padding);
-}
-
-.searchbar {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:var(--Searchbar-Padding);
-    outline:none;
-    background:var(--Searchbar-BG);
-    border-radius:20px;
-}
-
-.searchbar input {    
-    border:0px solid transparent;    
-    font-family:var(--Body-Font);
-    color:var(--Searchbar-Text-Color);
-}
-
-.searchbar button {
-    padding:4px;
-    outline:none;
-    line-height:0;
-    border:0px solid transparent;
-    background:transparent;
-    color:var(--Searchbar-Icon-Color);
 }
