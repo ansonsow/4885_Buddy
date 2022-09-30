@@ -1,0 +1,39 @@
+/*-------- TOP BAR --------*/
+nav {
+    padding:var(--TopBar-Padding);
+}
+
+.home-topnav {
+
+}
+
+.home-topnav .logo {
+    font-family:"Roboto Slab";
+    font-size:18px;
+}
+
+/*-------- SEARCHBAR --------*/
+.searchbar {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:var(--Searchbar-Padding);
+    outline:none;
+    background:var(--Searchbar-BG);
+    border-radius:20px;
+}
+
+.searchbar input {    
+    border:0px solid transparent;    
+    font-family:var(--Body-Font);
+    color:var(--Searchbar-Text-Color);
+}
+
+.searchbar button {
+    padding:4px;
+    outline:none;
+    line-height:0;
+    border:0px solid transparent;
+    background:transparent;
+    color:var(--Searchbar-Icon-Color);
+}
