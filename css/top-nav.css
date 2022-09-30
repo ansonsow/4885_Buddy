@@ -1,13 +1,19 @@
+/* css styles for the top bar */
+:root {
+    --Searchbar-Spacing:25px;
+    --TopBar-Links-Spacing:15px;
+}
+
 /*-------- TOP BAR --------*/
-nav {
+nav.home-topnav {
+    display:flex;
+    align-items:center;
+    width:100%;
     padding:var(--TopBar-Padding);
 }
 
-.home-topnav {
-
-}
-
-.home-topnav .logo {
+nav.home-topnav .logo {
+    display:block;
     font-family:"Roboto Slab";
     font-size:18px;
 }
@@ -17,13 +23,16 @@ nav {
     display:flex;
     align-items:center;
     justify-content:space-between;
+    flex:1;
+
+    margin:0 var(--Searchbar-Spacing);
     padding:var(--Searchbar-Padding);
-    outline:none;
     background:var(--Searchbar-BG);
     border-radius:20px;
 }
 
-.searchbar input {    
+.searchbar input {
+    outline:none;
     border:0px solid transparent;    
     font-family:var(--Body-Font);
     color:var(--Searchbar-Text-Color);
@@ -36,4 +45,9 @@ nav {
     border:0px solid transparent;
     background:transparent;
     color:var(--Searchbar-Icon-Color);
+}
+
+/*-------- TOP RIGHT LINKS --------*/
+nav.home-topnav a + a {
+    margin-left:var(--TopBar-Links-Spacing);
 }
