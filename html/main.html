@@ -12,17 +12,18 @@
     <!-- icon font: fontawesome -->
     <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
 
+    <!-- slick css-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" rel="stylesheet">
+
     <link href="/css/variables.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/top-nav.css" rel="stylesheet">
     <link href="/css/home-carousel.css" rel="stylesheet">
     <link href="/css/home-categories.css" rel="stylesheet">
-    <!-- slick -->
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-
-
+    
+    
     <script src="/js/main.js" defer></script>
 </head>
 <body>
@@ -55,10 +56,10 @@
 
         <div class="home-carousel">
             <!-- carousel content here -->
-            <div><img src="images/placeholder_img_A.png" alt=""></div>
-            <div><img src="images/placeholder_img_B.png" alt=""></div>
-            <div><img src="images/placeholder_img_A.png" alt=""></div>
-            <div><img src="images/placeholder_img_B.png" alt=""></div>
+            <div><img src="../images/placeholder_img_A.png" alt=""></div>
+            <div><img src="../images/placeholder_img_B.png" alt=""></div>
+            <div><img src="../images/placeholder_img_A.png" alt=""></div>
+            <div><img src="../images/placeholder_img_B.png" alt=""></div>
         </div>
 
         <div class="home-categories">
@@ -78,19 +79,17 @@
         </div>
     </section>
 
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="slick/slick.min.js"></script>
+     <!-- slick cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script> 
 
+    <!-- slick js - move to js file later -->
     <script type="text/javascript">
         $(document).ready(function(){
-          $('.home-carousel').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            arrows: true
-          });
+            $('.home-carousel').slick({
+                slidesToShow: 1,
+                dots:true
+            });
         });
       </script>
 

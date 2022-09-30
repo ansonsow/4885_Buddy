@@ -3,6 +3,24 @@
     margin: 0;
 }
 
-.home-carousel {
-    max-width: 70%;
+.home-carousel{
+    width:70%;
+    margin:0px auto;
+}
+
+.slick-slide{
+    margin:10px;
+}
+
+.slick-slide img{
+    height: 400px;
+    width:100%;
+}
+
+.slick-prev:before {
+    color: gray !important;
+}
+
+.slick-next:before {
+    color: grey !important;
 }
