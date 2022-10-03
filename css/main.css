@@ -28,3 +28,256 @@ a {
     text-decoration:none;
     color:var(--Links-Color);
 }
+
+
+/* --------------- Nav Section -------------- */
+
+
+
+/* --------------- Top Section -------------- */
+
+.home-top-section{
+    background-color: var(--Header-BG);
+    height: 80vh;
+    padding-top: 60px;
+    position: relative;
+}
+
+.top-container h1{
+    width: 27%;
+    font-family: var(--Body-Font);
+    font-size: 3.5rem;
+    font-weight: 900; 
+    position: absolute;
+    top: 28%;
+    left: 15%;
+    z-index: 1;
+}
+
+.top-container button{
+    font-family: var(--Body-Font);
+    font-size: 1.5rem;
+    padding: 1% 6% ;
+    position: absolute;
+    left: 15%;
+    bottom: 20%;
+    border: 3px dashed;
+    border-radius: 3rem;
+    z-index: 1;
+}
+
+.top-container img{
+    width: 110vh;
+    height: 60vh;
+    position: absolute;
+    right:15%
+}
+
+@media (max-width: 600px) {
+    .home-top-section{
+        height: 50vh;
+    }
+    .top-container h1{
+        width: 25%;
+        font-size: 1.5rem;
+        top: 25%;
+    }
+    .top-container button{
+        font-size: 0.6rem;
+        padding: 1% 4% ;
+        bottom: 30%;
+        border: 2px dashed;
+    }
+    .top-container img{
+        width: 45vh;
+        height: 30vh;
+        right: 10%
+    }
+}    
+
+
+/* ------------ Carousel Section ----------- */
+
+.home-middle-section h1{
+    margin: 50px;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.home-carousel{
+    width:60%;
+    margin:0px auto;
+}
+
+.slick-slide img{
+    height: 400px;
+    width:100%;
+}
+
+.slick-prev:before {
+    color: #bababa !important;
+}
+
+.slick-next:before {
+    color: #bababa !important;
+}
+
+@media (max-width: 600px) {
+    .slick-slide img{
+        height: 200px;
+        width:100%;
+    }
+    .home-middle-section h1{
+        font-size: 1.5rem;
+    }
+}
+
+/* ----------- Categories Section ---------- */
+
+.home-categories{
+    margin: 7% 7% 3% 7%;
+    padding: 40px auto ;
+    text-align: center;
+}
+
+.home-categories button{
+    margin: 20px 30px;
+    padding: 20px;
+    width: 20%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 3rem;
+    background-color: #fff;
+}
+
+.home-bottom-section hr{
+    margin: 20px auto;
+    width: 60%;
+    border-top: 1px dashed #000;
+}
+
+.free-online button{
+    background-color: #e0e0e0;
+    border: none;
+}
+
+
+@media (max-width: 600px) {
+    .home-categories{
+        margin: 15% 10%;
+        padding: 20px auto ;
+    }
+    .home-categories button{
+        margin: 10px;
+        padding: 10px 20px;
+        width: 35%;
+        font-size: 0.7rem;
+    }
+    .free-online button{
+        background-color: #e0e0e0;
+        border: none;
+    }
+}
+
+/* ------------- Footer Section ------------ */
+.home-footer{
+    background-color: var(--Header-BG);
+}
+/* left column */
+.home-footer-content{
+    padding: 4% 3% 3% 10%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.home-footer-logo .logo{
+    font-family:"Roboto Slab";
+    font-size: 2rem;
+    color:#949494;
+}
+
+.home-footer-logo h2{
+    margin: 2% 0 9% 0;
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+
+.home-footer-logo p{
+    font-size: 1.2rem;
+}
+
+.home-footer-logo i{
+    margin:2% 2% 0 0;
+}
+
+/* middle column */
+.home-footer-about{
+    margin: 10% 0 0 15%;
+}
+
+.home-footer-about h2{
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.home-footer-about p{
+    margin-top: 4%;
+    font-size: 1rem;
+}
+
+/* right colunm */
+.home-footer-contact{
+    margin: 10% 0 0 37%
+}
+.home-footer-contact p{
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 5%;
+}
+
+/* copy right */
+.home-footer hr{
+    width: 90%;
+    margin: auto;
+}
+.copy-right{
+    margin: auto;
+    padding: 2%;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .home-footer-logo p{
+        font-size: 1rem;
+    }
+
+    .home-footer-logo h2{
+        font-size: 0.7rem;
+    }
+
+    .home-footer-about p{
+        margin-top: 5%;
+        font-size: 0.2rem;
+    }
+
+    .home-footer-about p{
+        margin-top: 4%;
+        font-size: 1rem;
+    }
+
+    .home-footer-about h2{
+        font-size: 1rem;
+    }
+    
+    .home-footer-about p{
+        font-size: 0.7rem;
+    }
+
+    .home-footer-contact{
+        margin: 10% 0 0 10%
+    }
+    .home-footer-contact p{
+        font-size: 1rem;
+        font-weight: 900;
+    }
+}
