@@ -12,19 +12,24 @@
     <!-- icon font: fontawesome -->
     <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
 
-    <!-- slick css-->
+    <!-- slick carousel [css] -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" rel="stylesheet">
 
+    <!-- slick carousel [js] -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js" defer></script> 
+
     <link href="/css/variables.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/header.css" rel="stylesheet">
     <link href="/css/top-nav.css" rel="stylesheet">
-    
+    <link href="/css/footer.css" rel="stylesheet">
     
     <script src="/js/main.js" defer></script>
 </head>
+
 <body>
+    <!------ TOP BAR ------>
     <header>
         <nav class="home-topnav">
             <a class="logo" href="#">Buddy</a>
@@ -46,6 +51,7 @@
         </nav>
     </header>
 
+    <!------ HERO SECTION ------>
     <main>
         <section class="home-top-section">
             <div class="top-container">
@@ -84,6 +90,7 @@
         </section>
     </main>
 
+    <!------ FOOTER ------>
     <footer>
         <div class="home-footer">
             <div class="home-footer-content">
@@ -108,23 +115,5 @@
             <p class="copy-right">&copy; 2022 Finder Masters</p>
         </div>
     </footer>
-
-
-
-     <!-- slick cdn -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script> 
-     
-    <!-- slick js - move to js file later -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.home-carousel').slick({
-                slidesToShow: 1,
-                dots:true
-            });
-        });
-      </script>
-
-
 </body>
 </html>

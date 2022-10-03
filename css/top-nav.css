@@ -1,4 +1,8 @@
 /*-------- TOP BAR --------*/
+header {
+    background-color:var(--Header-BG);
+}
+
 nav.home-topnav {
     display:flex;
     align-items:center;
