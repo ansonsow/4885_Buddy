@@ -1,9 +1,3 @@
-/* css styles for the top bar */
-:root {
-    --Searchbar-Spacing:25px;
-    --TopBar-Links-Spacing:15px;
-}
-
 /*-------- TOP BAR --------*/
 nav.home-topnav {
     display:flex;
@@ -48,6 +42,14 @@ nav.home-topnav .logo {
 }
 
 /*-------- TOP RIGHT LINKS --------*/
+nav.home-topnav {
+    font-size:var(--TopBar-Links-Size);
+}
+
 nav.home-topnav a + a {
     margin-left:var(--TopBar-Links-Spacing);
+}
+
+.account-icon i {
+    font-size:calc(var(--TopBar-Links-Size) * 1.5);
 }

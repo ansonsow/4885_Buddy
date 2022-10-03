@@ -1,19 +1,26 @@
 /* Global CSS Variables */
 
 :root {
-    --Accent-Color:;
-    --Links-Color:#222;
+    /*------ GENERAL ------*/
+    --Body-Font:"Inter";
     --Text-Color:#444;
+    --Accent-Color:#222; /* change later */
+    --Links-Color:#222;
 
+    /*------ TOP BAR ------*/
     --TopBar-Padding:20px;
 
+    /*------ SEARCHBAR ------*/
     --Searchbar-BG:#fff;
     --Searchbar-Padding:8px 15px;
     --Searchbar-Text-Color:#222;
-
     --Searchbar-Icon-Color:#999;
+    --Searchbar-Spacing:25px; /* left & right gap */
 
-    --Header-BG:#f0f0f0;
+    /*------ TOP RIGHT LINKS ------*/
+    --TopBar-Links-Size:15px;
+    --TopBar-Links-Spacing:15px;
 
-    --Body-Font:"Inter";
+    /*------ HEADER ------*/
+    --Header-BG:#f0f0f0;    
 }
