@@ -33,39 +33,51 @@ a {
 
 .home-top-section{
     background-color: var(--Header-BG);
-    height: 80vh;
-    padding-top: 60px;
-    position: relative;
+    height: var(--Header-Height);
 }
 
-.top-container h1{
-    width: 27%;
+.top-container {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+}
+
+.hero-text {
+    position:relative;
+}
+
+.hero-text h1 {
+    margin:0;
     font-family: var(--Body-Font);
-    font-size: 3.5rem;
-    font-weight: 900; 
-    position: absolute;
-    top: 28%;
-    left: 15%;
+    font-size: var(--Hero-Title-Size);
+    font-weight:700; /* temporary, for Inter only */
+    white-space:pre-line;
     z-index: 1;
 }
 
-.top-container button{
+.hero-text .cta {
+    display:block;
+    margin-top:var(--Hero-CTA-Top-Gap);
+}
+
+.hero-text .cta a {
+    display:inline-block;
     font-family: var(--Body-Font);
-    font-size: 1.5rem;
-    padding: 1% 6% ;
-    position: absolute;
-    left: 15%;
-    bottom: 20%;
-    border: 3px dashed;
+    font-size: var(--Hero-CTA-Size);
+    padding: var(--Hero-CTA-Padding);
+    background: var(--Hero-CTA-BG);
+    border: 2px dashed var(--Hero-CTA-Border);
     border-radius: 3rem;
-    z-index: 1;
 }
 
-.top-container img{
-    width: 110vh;
-    height: 60vh;
-    position: absolute;
-    right:15%
+.hero-text + .hero-img {
+    margin-left:var(--Hero-Image-Left-Margin);
+}
+
+.hero-img {
+    width: var(--Hero-Image-Width);
+    height: var(--Hero-Image-Height);
 }
 
 @media (max-width: 600px) {
@@ -73,23 +85,15 @@ a {
         height: 50vh;
     }
 
-    .top-container h1{
-        width: 25%;
+    .hero-text h1{
+        max-width:35vw;
         font-size: 1.5rem;
-        top: 25%;
+        white-space:normal;
     }
 
-    .top-container button{
-        font-size: 0.6rem;
-        padding: 1% 4% ;
-        bottom: 30%;
-        border: 2px dashed;
-    }
-
-    .top-container img{
-        width: 45vh;
-        height: 30vh;
-        right: 10%
+    .hero-text .cta a {
+        font-size:1rem;
+        padding:0.7rem 2.2rem;
     }
 }    
 
