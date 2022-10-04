@@ -50,8 +50,8 @@ function writeUserData(userName, name, email,badge) {
   });
 }
 
-writeUserData("testUser1","test","test@test.com","1")
-writeUserData("testUser2","test2","test2@test.com","1,2")
+// writeUserData("testUser1","test","test@test.com","1")
+// writeUserData("testUser2","test2","test2@test.com","1,2")
 
 
 const getTimeEpoch = () => {
@@ -96,5 +96,5 @@ function writeBadgeData(bId,image,name,point){
   })
 };
 
-writeBadgeData(1,"badge.com","badge1",1)
-writeBadgeData(2,"badge2.com","badge2",2)
+// writeBadgeData(1,"badge.com","badge1",1)
+// writeBadgeData(2,"badge2.com","badge2",2)
