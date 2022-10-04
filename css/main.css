@@ -149,6 +149,9 @@ a {
 }
 
 .categories-grid a {
+    display:flex;
+    align-items:center;
+    justify-content:center;
     padding: 20px;    
     font-size: 1.5rem;
     font-weight: 500;
