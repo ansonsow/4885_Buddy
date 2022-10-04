@@ -4,16 +4,45 @@ header {
 }
 
 nav.home-topnav {
-    display:flex;
+    display:grid;
+    grid-template-columns:0fr 1fr auto;
     align-items:center;
-    width:100%;
     padding:var(--TopBar-Padding);
 }
 
+@media (max-width: 600px) {
+    nav.home-topnav {
+        grid-template-columns:var(--Top-Hamburger-Size) auto var(--Top-Hamburger-Size);
+    }
+}
+
+/*-------- HAMBURGER MENU --------*/
+.top-hamburger {
+    line-height:100%;
+}
+
+.top-hamburger i {
+    font-size:var(--Top-Hamburger-Size);
+}
+
+@media (min-width: 600px) {
+    .top-hamburger {
+        display:none;
+    }
+}
+
+/*-------- TOP BAR LOGO --------*/
 nav.home-topnav .logo {
     display:block;
     font-family:"Roboto Slab";
-    font-size:18px;
+    font-size:1.8rem;
+}
+
+@media (max-width: 600px) {
+    .home-topnav .logo {
+        flex:1;
+        text-align:center;
+    }
 }
 
 /*-------- SEARCHBAR --------*/
@@ -25,15 +54,20 @@ nav.home-topnav .logo {
 
     margin:0 var(--Searchbar-Spacing);
     padding:var(--Searchbar-Padding);
-    background:var(--Searchbar-BG);
-    border-radius:20px;
+    border-radius:var(--Searchbar-Roundness);
 }
 
 .searchbar input {
+    width:100%;
     outline:none;
     border:0px solid transparent;    
     font-family:var(--Body-Font);
     color:var(--Searchbar-Text-Color);
+}
+
+.searchbar, .searchbar input {
+    background:var(--Searchbar-BG);
+    font-size:var(--Searchbar-Font-Size);
 }
 
 .searchbar button {
@@ -42,18 +76,52 @@ nav.home-topnav .logo {
     line-height:0;
     border:0px solid transparent;
     background:transparent;
-    color:var(--Searchbar-Icon-Color);
+}
+
+.searchbar button i {
+    font-size:var(--Searchbar-Font-Size);
+    color:var(--Searchbar-Icon-Color-A);
+}
+
+@media (max-width: 600px) {
+    .searchbar {
+        padding-right:0;
+        flex:none;
+        margin:0;
+        padding:0;
+    }
+
+    .searchbar, .searchbar input {
+        background:transparent;
+    }
+
+    .searchbar input {
+        visibility:collapse;
+        width:0!important;
+    }
+
+    .searchbar button i {
+        color:var(--Searchbar-Icon-Color-B);
+    }
 }
 
 /*-------- TOP RIGHT LINKS --------*/
-nav.home-topnav {
-    font-size:var(--TopBar-Links-Size);
+.top-navlinks {
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-nav.home-topnav a + a {
+.top-navlinks a + a {
     margin-left:var(--TopBar-Links-Spacing);
 }
 
 .account-icon i {
     font-size:calc(var(--TopBar-Links-Size) * 1.5);
+}
+
+@media (max-width: 600px) {
+    .top-navlinks {
+        display:none;
+    }
 }

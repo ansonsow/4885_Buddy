@@ -32,6 +32,10 @@
     <!------ TOP BAR ------>
     <header>
         <nav class="home-topnav">
+            <a class="top-hamburger" href="#">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+
             <a class="logo" href="#">Buddy</a>
 
             <form class="searchbar" action="/search" method="get">
@@ -41,18 +45,21 @@
                 </button>
             </form>
 
-            <a href="#">Find Events</a>
-            <a href="#">Create Event</a>
-            <a href="#">Help</a>
+            <div class="top-navlinks">
+                <a href="#">Find Events</a>
+                <a href="#">Create Event</a>
+                <a href="#">Help</a>
 
-            <a class="account-icon" href="#""">
-                <i class="fa-regular fa-circle-user"></i>
-            </a>
+                <a class="account-icon" href="#">
+                    <i class="fa-regular fa-circle-user"></i>
+                </a>
+            </div>
         </nav>
     </header>
 
-    <!------ HERO SECTION ------>
+    <!------ MAIN ------>
     <main>
+        <!------ HERO SECTION ------>
         <section class="home-top-section">
             <div class="top-container">
                 <h1>Immerse yourself in the arms of fun!</h1>
@@ -61,6 +68,7 @@
             </div>
         </section>
     
+        <!------ SLIDESHOW / CAROUSEL ------>
         <section class="home-middle-section">
             <h1>This week</h1>
     
@@ -73,18 +81,24 @@
             </div>
         </section>
 
+        <!------ CATEGORIES ------>
         <section class="home-bottom-section">  
             <div class="home-categories">
-                <button><a href="#">Food&Drinks</a></button>
-                <button><a href="#">Travel</a></button>
-                <button><a href="#">Sports</a></button>
-                <button><a href="#">Music</a></button>
-                <button><a href="#">Performing</a></button>
-                <button><a href="#">Business</a></button>
+
+                <div class="categories-grid">
+                    <a href="#">Food & Drinks</a>
+                    <a href="#">Travel</a>
+                    <a href="#">Sports</a>
+                    <a href="#">Music</a>
+                    <a href="#">Performing</a>
+                    <a href="#">Business</a>
+                </div>                
+
                 <hr>
-                <div class="free-online">
-                    <button><a href="#">Free</a></button>
-                    <button><a href="#">Online</a></button>
+
+                <div class="categories-grid free-online">
+                    <a href="#">Free</a>
+                    <a href="#">Online</a>
                 </div>
             </div>
         </section>

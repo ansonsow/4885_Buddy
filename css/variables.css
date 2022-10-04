@@ -9,18 +9,28 @@
 
     /*------ TOP BAR ------*/
     --TopBar-Padding:20px;
+    --Top-Hamburger-Size:1.4rem;
 
     /*------ SEARCHBAR ------*/
     --Searchbar-BG:#fff;
-    --Searchbar-Padding:8px 15px;
+    --Searchbar-Padding:0.8rem 1rem;
+    --Searchbar-Font-Size:1rem;
     --Searchbar-Text-Color:#222;
-    --Searchbar-Icon-Color:#999;
+    --Searchbar-Icon-Color-A:#999;
+    --Searchbar-Icon-Color-B:#444;
+    --Searchbar-Roundness:2rem;
     --Searchbar-Spacing:25px; /* left & right gap */
 
     /*------ TOP RIGHT LINKS ------*/
-    --TopBar-Links-Size:15px;
-    --TopBar-Links-Spacing:15px;
+    --TopBar-Links-Size:1rem;
+    --TopBar-Links-Spacing:5vmin;
 
     /*------ HEADER ------*/
-    --Header-BG:#f0f0f0;    
+    --Header-BG:#f0f0f0;
+
+    /*------ HOME CATEGORIES ------*/
+    --Category-Links-BG:#fff;
+    --Category-Links-Border:#444;
+
+    --Category-Buttons-BG:#f0f0f0;
 }
