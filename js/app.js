@@ -36,21 +36,22 @@ const dbref = ref(db);
 
 // temporary test events/id: 1664847154304
 
-get(child(dbref, "events/1664847154304/description")) // edit this line
+get(child(dbref, "events/1664847154304/description")) 
 .then((snapshot)=>{
   safsdf.innerHTML = snapshot.val();
 })
 
-function writeUserData(userName, name, email) {
+function writeUserData(userName, name, email,badge) {
   const db = getDatabase();
   set(ref(db, "users/"+ userName), {
     username: name,
     email: email,
-    
+    badge: badge,
   });
 }
 
-// writeUserData("test","test","test@test.com")
+writeUserData("testUser1","test","test@test.com","1")
+writeUserData("testUser2","test2","test2@test.com","1,2")
 
 
 const getTimeEpoch = () => {
@@ -72,3 +73,28 @@ function writeEventData(eId,name,number,price,description,userName){
 }
 
 // writeEventData(getTimeEpoch(),"testEvent",1,0,"hi this is test event","test");
+
+function writeMessageData(mId,user1,user2,direction,text){
+  const db = getDatabase();
+  set(ref(db,"message/"+mId),{
+    user1:user1,
+    user2:user2,
+    direction:direction,
+    text:text,
+    time:new Date(),
+  })
+}
+
+// writeMessageData(getTimeEpoch(),"test","test2",">","hi this is test1")
+
+function writeBadgeData(bId,image,name,point){
+  const db = getDatabase();
+  set(ref(db,"badges/"+bId),{
+    image: image,
+    name: name,
+    point: point,
+  })
+};
+
+writeBadgeData(1,"badge.com","badge1",1)
+writeBadgeData(2,"badge2.com","badge2",2)
