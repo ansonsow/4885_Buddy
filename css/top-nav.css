@@ -121,7 +121,33 @@ nav.home-topnav .logo {
 }
 
 @media (max-width: 600px) {
+    .account-icon i{
+        display: none;
+    }
+
     .top-navlinks {
-        display:none;
+        position: absolute;
+        background-color: var( --Header-BG);
+        left:-100%;
+        top: 100px;
+        gap:0;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+        height: 25%;
+        transition: 0.3s;
+        z-index: 1;
+    }
+
+    .hamburger-links{
+        margin: 15px;
+    }
+
+    .hamburger-links:hover{
+        color: #999;
+    }
+
+    .top-navlinks.active {
+        left: 0;
     }
 }
