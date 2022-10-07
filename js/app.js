@@ -3,8 +3,8 @@
 import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
 // import { getAnalytics } from "/firebase/analytics";
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
-import {getDatabase, set, get, update, remove, ref, child} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js'
-
+// import {getDatabase, set, get, update, remove, ref, child} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js'
+import {getFirestore, collection, doc, updateDoc, getDoc, addDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 
 
@@ -27,29 +27,71 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const db = getDatabase();
+const db = getFirestore();
 
-const dbref = ref(db);
 
 // reference DB structure:
 // https://media.discordapp.net/attachments/1019654199077773322/1026680643595276408/unknown.png
 
 // temporary test events/id: 1664847154304
 
-get(child(dbref, "events/1664847154304/description")) 
-.then((snapshot)=>{
-  safsdf.innerHTML = snapshot.val();
-})
+// get(child(dbref, "events/1664847154304/description")) 
+// .then((snapshot)=>{
+//   safsdf.innerHTML = snapshot.val();
+// })
 
-function writeUserData(userName, name, email,badge) {
-  const db = getDatabase();
-  set(ref(db, "users/"+ userName), {
-    username: name,
+// function writeUserData(userName, name, email,badge) {
+//   const db = getDatabase();
+//   set(ref(db, "users/"+ userName), {
+//     username: name,
+//     email: email,
+//     badge: badge,
+//   });
+// }
+
+async function writeUserData(userName, fname, lname, email, badge){
+
+  try {
+    const docRef = await addDoc(collection(db, "users"), {
+    username: userName,
+    firstName: fname,
+    lastName: lname,
     email: email,
     badge: badge,
-  });
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
 }
 
+
+
+// writeUserData("testUsername1 String[50]","testFirstName String[50]",
+// "testLastName String[50]","testEmail@aaa.aaa String[50]","1,2 Array[Number]");
+// test user id: 40V6aBT5jmbc2N3nkQ03
+
+async function updateUserData(id,userName, fname, lname, email, badge){
+  const db = getFirestore();
+  // var userRef = db.collection("users").doc(id);
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    lastName: lname
+  });
+  // Set the "capital" field of the city 'DC'
+  // return userRef.update({
+  //     lastname: lame
+  // })
+  // .then(() => {
+  //     console.log("Document successfully updated!");
+  // })
+  // .catch((error) => {
+  //     // The document probably doesn't exist.
+  //     console.error("Error updating document: ", error);
+  // });
+}
+
+updateUserData("40V6aBT5jmbc2N3nkQ03","","","update","","")
 // writeUserData("testUser1","test","test@test.com","1")
 // writeUserData("testUser2","test2","test2@test.com","1,2")
 
