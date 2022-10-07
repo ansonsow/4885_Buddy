@@ -4,7 +4,7 @@ import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase
 // import { getAnalytics } from "/firebase/analytics";
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
 // import {getDatabase, set, get, update, remove, ref, child} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js'
-import {getFirestore, collection, doc, updateDoc, getDoc, addDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import {getFirestore, collection, doc, updateDoc, getDocs, addDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 
 
@@ -33,12 +33,22 @@ const db = getFirestore();
 // reference DB structure:
 // https://media.discordapp.net/attachments/1019654199077773322/1026680643595276408/unknown.png
 
-// temporary test events/id: 1664847154304
+// temporary test events/id: uGfj5SGWqdBIdFsM7Lie
 
 // get(child(dbref, "events/1664847154304/description")) 
 // .then((snapshot)=>{
 //   safsdf.innerHTML = snapshot.val();
 // })
+
+const querySnapshot = await getDocs(collection(db, "events"));
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  if(doc.id=="uGfj5SGWqdBIdFsM7Lie"){
+    safsdf.innerHTML = doc.val;
+  }
+  
+});
+
 
 
 async function writeUserData(userName, fname, lname, email, event, pfpURL){
@@ -72,7 +82,7 @@ async function updateUserLastName(id,lname){
   });
 
 
-// add or remove badges
+// add or remove event
 // await updateDoc(userRef, {
 //   badge: arrayUnion(union)
 // });
@@ -107,7 +117,6 @@ async function updateUserevent(id,event){
   await updateDoc(userRef, {
     event: event
   });
-
 }
 async function updateUserProfilePictureURL(id,pfpURL){
   const db = getFirestore();
@@ -132,15 +141,20 @@ const getTimeEpoch = () => {
 
 
 // dont know how to do date and time / location / photo yet
-async function writeEventData(name,number,price,description,userName){
+async function writeEventData(name, hostId, price, pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus){
   try {
-    const docRef = await addDoc(collection(db, "users"), {
-    username: userName,
-    firstName: fname,
-    lastName: lname,
-    email: email,
-    event: event,
-    pfpURL: pfpURL
+    const docRef = await addDoc(collection(db, "events"), {
+    name: name,
+    hostId: hostId,
+    price: price,
+    image: pfpURL,
+    location: location,
+    dateCreated: dateCreated,
+    dateOfEvent: dateOfEvent,
+    description: description,
+    numOfPeople: numOfPeople,
+    maxCapacity: maxCapacity,
+    eventStatus: eventStatus,
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -148,18 +162,19 @@ async function writeEventData(name,number,price,description,userName){
   }
 }
 
+// writeEventData("test event","1","0","testPic.aaa","111","10/07/2022","06/09/2023","this is a test event","1","2","1")
 // writeEventData(getTimeEpoch(),"testEvent",1,0,"hi this is test event","test");
 
-function writeMessageData(mId,user1,user2,direction,text){
-  const db = getDatabase();
-  set(ref(db,"message/"+mId),{
-    user1:user1,
-    user2:user2,
-    direction:direction,
-    text:text,
-    time:new Date(),
-  })
-}
+// function writeMessageData(mId,user1,user2,direction,text){
+//   const db = getDatabase();
+//   set(ref(db,"message/"+mId),{
+//     user1:user1,
+//     user2:user2,
+//     direction:direction,
+//     text:text,
+//     time:new Date(),
+//   })
+// }
 
 // writeMessageData(getTimeEpoch(),"test","test2",">","hi this is test1")
 
