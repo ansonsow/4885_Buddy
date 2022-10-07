@@ -40,16 +40,8 @@ const db = getFirestore();
 //   safsdf.innerHTML = snapshot.val();
 // })
 
-// function writeUserData(userName, name, email,badge) {
-//   const db = getDatabase();
-//   set(ref(db, "users/"+ userName), {
-//     username: name,
-//     email: email,
-//     badge: badge,
-//   });
-// }
 
-async function writeUserData(userName, fname, lname, email, badge){
+async function writeUserData(userName, fname, lname, email, event){
 
   try {
     const docRef = await addDoc(collection(db, "users"), {
@@ -57,7 +49,8 @@ async function writeUserData(userName, fname, lname, email, badge){
     firstName: fname,
     lastName: lname,
     email: email,
-    badge: badge,
+    event: event,
+    
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -71,29 +64,27 @@ async function writeUserData(userName, fname, lname, email, badge){
 // "testLastName String[50]","testEmail@aaa.aaa String[50]","1,2 Array[Number]");
 // test user id: 40V6aBT5jmbc2N3nkQ03
 
-async function updateUserData(id,userName, fname, lname, email, badge){
+async function updateUserLastName(id,lname){
   const db = getFirestore();
-  // var userRef = db.collection("users").doc(id);
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
     lastName: lname
   });
-  // Set the "capital" field of the city 'DC'
-  // return userRef.update({
-  //     lastname: lame
-  // })
-  // .then(() => {
-  //     console.log("Document successfully updated!");
-  // })
-  // .catch((error) => {
-  //     // The document probably doesn't exist.
-  //     console.error("Error updating document: ", error);
-  // });
+
+
+// add or remove badges
+// await updateDoc(userRef, {
+//   badge: arrayUnion(union)
+// });
+
+// await updateDoc(userRef, {
+//   badge: arrayRemove(union)
+// });
+
 }
 
-updateUserData("40V6aBT5jmbc2N3nkQ03","","","update","","")
-// writeUserData("testUser1","test","test@test.com","1")
-// writeUserData("testUser2","test2","test2@test.com","1,2")
+// updateUserData("40V6aBT5jmbc2N3nkQ03","","","update","","")
+
 
 
 const getTimeEpoch = () => {
