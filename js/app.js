@@ -83,6 +83,46 @@ async function updateUserLastName(id,lname){
 
 }
 
+async function updateUserFirstName(id,fname){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    FirstName: fname
+  });
+
+}
+async function updateUseremail(id,email){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    email: email
+  });
+
+}
+// updateUseremail("40V6aBT5jmbc2N3nkQ03", "Vijay.yarabarla00@mylangara.ca")
+
+async function updateUserevent(id,event){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    event: event
+  });
+
+}
+async function updateUserProfilePictureURL(id,pfpURL){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    pfpURL: pfpURL
+  });
+}
+
+  // updateUserProfilePictureURL("40V6aBT5jmbc2N3nkQ03", "URL...here")
+
+// updateUserevent("40V6aBT5jmbc2N3nkQ03", "Basket_Ball")
+
+
+// updateUserFirstName("40V6aBT5jmbc2N3nkQ03", "Vijay")
 
 
 
