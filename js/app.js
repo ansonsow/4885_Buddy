@@ -109,7 +109,17 @@ async function updateUserevent(id,event){
   });
 
 }
-updateUserevent("40V6aBT5jmbc2N3nkQ03", "Basket_Ball")
+async function updateUserProfilePictureURL(id,pfpURL){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    pfpURL: pfpURL
+  });
+}
+
+  updateUserProfilePictureURL("40V6aBT5jmbc2N3nkQ03", "URL...here")
+
+// updateUserevent("40V6aBT5jmbc2N3nkQ03", "Basket_Ball")
 
 
 // updateUserFirstName("40V6aBT5jmbc2N3nkQ03", "Vijay")
