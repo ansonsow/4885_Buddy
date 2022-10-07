@@ -41,7 +41,7 @@ const db = getFirestore();
 // })
 
 
-async function writeUserData(userName, fname, lname, email, event){
+async function writeUserData(userName, fname, lname, email, event, pfpURL){
 
   try {
     const docRef = await addDoc(collection(db, "users"), {
@@ -50,7 +50,7 @@ async function writeUserData(userName, fname, lname, email, event){
     lastName: lname,
     email: email,
     event: event,
-    
+    pfpURL: pfpURL
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -82,6 +82,7 @@ async function updateUserLastName(id,lname){
 // });
 
 }
+
 
 // updateUserData("40V6aBT5jmbc2N3nkQ03","","","update","","")
 
