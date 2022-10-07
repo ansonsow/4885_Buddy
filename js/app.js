@@ -68,7 +68,7 @@ async function updateUserLastName(id,lname){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
-    lastName: lname
+    lastName: lname,
   });
 
 
@@ -84,8 +84,6 @@ async function updateUserLastName(id,lname){
 }
 
 
-// updateUserData("40V6aBT5jmbc2N3nkQ03","","","update","","")
-
 
 
 const getTimeEpoch = () => {
@@ -94,16 +92,20 @@ const getTimeEpoch = () => {
 
 
 // dont know how to do date and time / location / photo yet
-function writeEventData(eId,name,number,price,description,userName){
-  const db = getDatabase();
-  set(ref(db, "events/"+eId),{
-    eventName: name,
-    number: number,
-    price: price,
-    description: description,
-    timeOfCreation: new Date(),
-    userName: userName,
-  })
+async function writeEventData(name,number,price,description,userName){
+  try {
+    const docRef = await addDoc(collection(db, "users"), {
+    username: userName,
+    firstName: fname,
+    lastName: lname,
+    email: email,
+    event: event,
+    pfpURL: pfpURL
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
 }
 
 // writeEventData(getTimeEpoch(),"testEvent",1,0,"hi this is test event","test");
