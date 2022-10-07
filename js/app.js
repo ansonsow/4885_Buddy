@@ -91,6 +91,25 @@ async function updateUserFirstName(id,fname){
   });
 
 }
+async function updateUseremail(id,email){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    email: email
+  });
+
+}
+// updateUseremail("40V6aBT5jmbc2N3nkQ03", "Vijay.yarabarla00@mylangara.ca")
+
+async function updateUserevent(id,event){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    event: event
+  });
+
+}
+updateUserevent("40V6aBT5jmbc2N3nkQ03", "Basket_Ball")
 
 
 // updateUserFirstName("40V6aBT5jmbc2N3nkQ03", "Vijay")
