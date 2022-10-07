@@ -83,6 +83,17 @@ async function updateUserLastName(id,lname){
 
 }
 
+async function updateUserFirstName(id,fname){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    FirstName: fname
+  });
+
+}
+
+
+updateUserFirstName("40V6aBT5jmbc2N3nkQ03", "Vijay")
 
 // updateUserData("40V6aBT5jmbc2N3nkQ03","","","update","","")
 
