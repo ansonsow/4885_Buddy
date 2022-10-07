@@ -93,7 +93,7 @@ async function updateUserFirstName(id,fname){
 }
 
 
-updateUserFirstName("40V6aBT5jmbc2N3nkQ03", "Vijay")
+// updateUserFirstName("40V6aBT5jmbc2N3nkQ03", "Vijay")
 
 // updateUserData("40V6aBT5jmbc2N3nkQ03","","","update","","")
 
