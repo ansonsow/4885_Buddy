@@ -117,7 +117,7 @@ async function updateUserProfilePictureURL(id,pfpURL){
   });
 }
 
-  updateUserProfilePictureURL("40V6aBT5jmbc2N3nkQ03", "URL...here")
+  // updateUserProfilePictureURL("40V6aBT5jmbc2N3nkQ03", "URL...here")
 
 // updateUserevent("40V6aBT5jmbc2N3nkQ03", "Basket_Ball")
 
