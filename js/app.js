@@ -4,7 +4,7 @@ import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase
 // import { getAnalytics } from "/firebase/analytics";
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
 // import {getDatabase, set, get, update, remove, ref, child} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js'
-import {getFirestore, collection, doc, updateDoc, getDocs, addDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import {getFirestore, collection, doc, updateDoc, getDocs, addDoc, arrayUnion, arrayRemove} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 
 
@@ -71,8 +71,8 @@ async function writeUserData(userName, fname, lname, email, event, pfpURL){
 
 
 // writeUserData("testUsername1 String[50]","testFirstName String[50]",
-// "testLastName String[50]","testEmail@aaa.aaa String[50]","1,2 Array[Number]");
-// test user id: 40V6aBT5jmbc2N3nkQ03
+// "testLastName String[50]","testEmail@aaa.aaa String[50]","1,2 Array[Number]","url");
+// test user id: hPJQxUZYKQLKVWqkHxou
 
 async function updateUserLastName(id,lname){
   const db = getFirestore();
@@ -80,45 +80,33 @@ async function updateUserLastName(id,lname){
   await updateDoc(userRef, {
     lastName: lname,
   });
-
-
-// add or remove event
-// await updateDoc(userRef, {
-//   badge: arrayUnion(union)
-// });
-
-// await updateDoc(userRef, {
-//   badge: arrayRemove(union)
-// });
-
 }
+
+updateUserLastName("hPJQxUZYKQLKVWqkHxou","updateL")
 
 async function updateUserFirstName(id,fname){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
-    FirstName: fname
+    firstName: fname
   });
-
 }
-async function updateUseremail(id,email){
+
+updateUserFirstName("hPJQxUZYKQLKVWqkHxou","updateF")
+
+
+async function updateUserEmail(id,email){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
     email: email
   });
-
 }
-// updateUseremail("40V6aBT5jmbc2N3nkQ03", "Vijay.yarabarla00@mylangara.ca")
 
-async function updateUserevent(id,event){
-  const db = getFirestore();
-  const userRef = doc(db, "users", id);
-  await updateDoc(userRef, {
-    event: event
-  });
-}
-async function updateUserProfilePictureURL(id,pfpURL){
+updateUserEmail("hPJQxUZYKQLKVWqkHxou","update Email")
+
+
+async function updateUserPicture(id,pfpURL){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
@@ -126,13 +114,40 @@ async function updateUserProfilePictureURL(id,pfpURL){
   });
 }
 
-  // updateUserProfilePictureURL("40V6aBT5jmbc2N3nkQ03", "URL...here")
+updateUserPicture("hPJQxUZYKQLKVWqkHxou","update URL")
 
 // updateUserevent("40V6aBT5jmbc2N3nkQ03", "Basket_Ball")
 
+// add or remove event
+// await updateDoc(userRef, {
+//   event: arrayUnion(union)
+// });
 
-// updateUserFirstName("40V6aBT5jmbc2N3nkQ03", "Vijay")
+// await updateDoc(userRef, {
+//   event: arrayRemove(union)
+// });
 
+async function addUserEvent(id,event){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    event: arrayUnion(event)
+  });
+}
+
+// addUserEvent("hPJQxUZYKQLKVWqkHxou","new event")
+// addUserEvent("hPJQxUZYKQLKVWqkHxou","new event2")
+
+async function removeUserEvent(id,event){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    event: arrayRemove(event)
+  });
+}
+
+
+removeUserEvent("hPJQxUZYKQLKVWqkHxou","new event")
 
 
 const getTimeEpoch = () => {
