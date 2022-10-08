@@ -202,16 +202,29 @@ async function writeEventData(name, hostId, price, pfpURL, location, dateCreated
 }
 
 // writeEventData("test event","1","0","testPic.aaa","111","10/07/2022","06/09/2023","this is a test event","1","2","1")
+// test EVENTS id: uGfj5SGWqdBIdFsM7Lie
 
 async function updateEventName(id,eventName){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
   await updateDoc(userRef, {
-    username: uname,
+    name: eventName,
   });
 }
 
+updateEventName("uGfj5SGWqdBIdFsM7Lie","updateEvent")
 
+
+
+async function updateEventPrice(id,eventPrice){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    price: eventPrice,
+  });
+}
+
+updateEventPrice("uGfj5SGWqdBIdFsM7Lie","$6")
 
 async function writeBadgeData(uId, image, name, point){
   try {
@@ -227,6 +240,6 @@ async function writeBadgeData(uId, image, name, point){
   }
 }
 
-writeBadgeData("hPJQxUZYKQLKVWqkHxou","imgurl.com","testBadgeName","5")
+// writeBadgeData("hPJQxUZYKQLKVWqkHxou","imgurl.com","testBadgeName","5")
 // writeBadgeData(1,"badge.com","badge1",1)
 // writeBadgeData(2,"badge2.com","badge2",2)
