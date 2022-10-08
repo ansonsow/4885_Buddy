@@ -3,6 +3,7 @@
 :root {
     /*------ GENERAL ------*/
     --Body-Font:"Inter";
+    --Body-Font-Size:1rem;
     --Text-Color:#444;
     --Accent-Color:#222; /* change later */
     --Links-Color:#222;
@@ -40,6 +41,21 @@
     --Hero-Image-Left-Margin:-7rem;
     --Hero-Image-Width:60vw;
     --Hero-Image-Height:80%;
+
+    /*------ CAROUSEL / SLIDESHOW ------*/
+    --Carousel-Image-Width:60vw;
+    --Carousel-Image-Height:400px;
+
+    --Carousel-Arrows-Size:2rem;
+    --Carousel-Arrows-Color:#222;
+    --Carousel-Arrows-Gap:-3rem;
+
+    --Carousel-Bottom-Gap:-2rem;
+    --Carousel-Dots-Size:0.6rem;
+    --Carousel-Dots-Color:#bbb;
+    --Carousel-Dots-Active-Color:#222;
+    --Carousel-Dots-Padding:0px;
+    --Carousel-Dots-Spacing:30px;
 
     /*------ HOME CATEGORIES ------*/
     --Category-Links-BG:#fff;

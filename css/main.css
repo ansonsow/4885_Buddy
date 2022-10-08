@@ -7,6 +7,7 @@
 body {
     background-attachment:fixed;
     font-family:var(--Body-Font);
+    font-size:var(--Body-Font-Size);
     color:var(--Text-Color);
 }
 
@@ -106,22 +107,100 @@ a {
     font-size: 3rem;
 }
 
+.carousel-container {
+    position:relative;
+}
+
 .home-carousel{
-    width:60%;
+    width:var(--Carousel-Image-Width);
     margin:0px auto;
 }
 
+.slick-dotted.slick-slider {
+    margin-bottom:0;
+}
+
+.slick-list {
+    line-height:0;
+}
+
 .slick-slide img{
-    height: 400px;
+    height: var(--Carousel-Image-Height);
     width:100%;
 }
 
+/* carousel ARROWS */
+.slick-arrow {
+    width:var(--Carousel-Arrows-Size);
+    height:var(--Carousel-Arrows-Size);
+    z-index:4;
+}
+
+.slick-arrow:before {
+    font-size:var(--Carousel-Arrows-Size);
+    color: var(--Carousel-Arrows-Color)!important;
+    opacity:1!important;
+}
+
+/* LEFT carousel arrow */
+.slick-prev {
+    left:0;
+    margin-left:calc(0px - var(--Carousel-Arrows-Size) - var(--Carousel-Arrows-Gap));
+}
+
 .slick-prev:before {
-    color: #bababa !important;
+    content:"<";
+    font-family:manrope;
+}
+
+/* RIGHT carousel arrow */
+.slick-next {
+    right:0;
+    margin-right:calc(0px - var(--Carousel-Arrows-Size) - var(--Carousel-Arrows-Gap));
 }
 
 .slick-next:before {
-    color: #bababa !important;
+    content:">";
+    font-family:manrope;
+}
+
+/* carousel navigation dots/circles */
+.slick-dots {
+    position:absolute;
+    margin-top:var(--Carousel-Bottom-Gap);
+    bottom:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.slick-dots li {
+    display:block;
+    margin:0;
+    width:calc(var(--Carousel-Dots-Size) + var(--Carousel-Dots-Spacing));
+    height:auto;
+}
+
+.slick-dots li button {
+    display:block;
+    position:relative;
+    margin:auto;
+    padding:var(--Carousel-Dots-Padding);
+    width:var(--Carousel-Dots-Size);
+    height:var(--Carousel-Dots-Size);
+}
+
+.slick-dots li button:before {
+    font-size:var(--Carousel-Dots-Size);
+    line-height:var(--Carousel-Dots-Size);
+    width:auto;
+    height:auto;
+    opacity:1!important;
+    color:var(--Carousel-Dots-Color);
+}
+
+.slick-dots li.slick-active button:before {
+    color:var(--Carousel-Dots-Active-Color);
 }
 
 @media (max-width: 600px) {
