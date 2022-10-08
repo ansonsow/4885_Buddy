@@ -202,29 +202,23 @@ async function writeEventData(name, hostId, price, pfpURL, location, dateCreated
 }
 
 // writeEventData("test event","1","0","testPic.aaa","111","10/07/2022","06/09/2023","this is a test event","1","2","1")
-// writeEventData(getTimeEpoch(),"testEvent",1,0,"hi this is test event","test");
 
-// function writeMessageData(mId,user1,user2,direction,text){
-//   const db = getDatabase();
-//   set(ref(db,"message/"+mId),{
-//     user1:user1,
-//     user2:user2,
-//     direction:direction,
-//     text:text,
-//     time:new Date(),
-//   })
-// }
 
-// writeMessageData(getTimeEpoch(),"test","test2",">","hi this is test1")
 
-function writeBadgeData(bId,image,name,point){
-  const db = getDatabase();
-  set(ref(db,"badges/"+bId),{
-    image: image,
+async function writeBadgeData(uId, image, name, point){
+  try {
+    const docRef = await addDoc(collection(db, "badge"), {
     name: name,
+    userId: uId,
     point: point,
-  })
-};
+    image: image,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
 
+// writeBadgeData("hPJQxUZYKQLKVWqkHxou","imgurl.com","testBadgeName","5")
 // writeBadgeData(1,"badge.com","badge1",1)
 // writeBadgeData(2,"badge2.com","badge2",2)
