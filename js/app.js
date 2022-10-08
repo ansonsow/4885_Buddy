@@ -261,6 +261,18 @@ async function updateEventDate(id,eventDate){
 
 updateEventDate("uGfj5SGWqdBIdFsM7Lie","newDate")
 
+
+
+async function updateEventDesc(id,eventDesc){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    description: eventDesc,
+  });
+}
+
+updateEventDesc("uGfj5SGWqdBIdFsM7Lie","new description")
+
 async function writeBadgeData(uId, image, name, point){
   try {
     const docRef = await addDoc(collection(db, "badges"), {
