@@ -275,7 +275,7 @@ async function writeBadgeData(uId, image, name, point){
   }
 }
 
-writeBadgeData("hPJQxUZYKQLKVWqkHxou","imgurl.com","testBadgeName","5")
+// writeBadgeData("hPJQxUZYKQLKVWqkHxou","imgurl.com","testBadgeName","5")
 // writeBadgeData(1,"badge.com","badge1",1)
 // writeBadgeData(2,"badge2.com","badge2",2)
 
