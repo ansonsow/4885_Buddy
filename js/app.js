@@ -211,7 +211,7 @@ async function updateEventName(id,eventName){
   });
 }
 
-
+// --------------------------------------------
 
 async function writeBadgeData(uId, image, name, point){
   try {
@@ -227,6 +227,42 @@ async function writeBadgeData(uId, image, name, point){
   }
 }
 
-writeBadgeData("hPJQxUZYKQLKVWqkHxou","imgurl.com","testBadgeName","5")
 // writeBadgeData(1,"badge.com","badge1",1)
 // writeBadgeData(2,"badge2.com","badge2",2)
+
+async function addBadgeUser(id, uId){
+  const db = getFirestore();
+  const userRef = doc(db, "badges", id);
+  await updateDoc(userRef, {
+    userId: arrayUnion(uId)
+  });
+}
+
+async function updateBadgeImage(id, image){
+  const db = getFirestore();
+  const userRef = doc(db, "badges", id);
+  await updateDoc(userRef, {
+    image: image,
+  });
+}
+
+async function updateBadgeName(id, name){
+  const db = getFirestore();
+  const userRef = doc(db, "badges", id);
+  await updateDoc(userRef, {
+    name: name,
+  });
+}
+
+async function updateBadgePoint(id, point){
+  const db = getFirestore();
+  const userRef = doc(db, "badges", id);
+  await updateDoc(userRef, {
+    point: point,
+  });
+}
+
+// addBadgeUser("A3kE5jdVFjySfCCN6hjw","badgeUser0069");
+// updateBadgeImage("A3kE5jdVFjySfCCN6hjw","https://cdn.discordapp.com/attachments/371018789673893898/1026580881260953680/unknown.png");
+// updateBadgeName("A3kE5jdVFjySfCCN6hjw","coolBadge420");
+// updateBadgePoint("A3kE5jdVFjySfCCN6hjw",6969);
