@@ -19,7 +19,7 @@ You need to remove the `4885_Buddy` folder from your *local* computer first, and
 6. Go to `localhost:8888/4885_Buddy`. You should see this:  
 
 ![image](https://user-images.githubusercontent.com/25330392/193746250-e9d4949f-3f10-45db-9b79-fd78e87c3ca1.png)
-
+UPDATE STEP 7 NOT WORKING ATM
 7. Click `profile.html`. If you are able to see `"hi this is test event"`, it is working.
 
 8. Click `main.html` and you should see the homepage Pam & HT worked on:  
