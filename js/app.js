@@ -216,6 +216,7 @@ updateEventName("uGfj5SGWqdBIdFsM7Lie","updateEvent")
 
 
 
+
 async function updateEventPrice(id,eventPrice){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
@@ -225,6 +226,40 @@ async function updateEventPrice(id,eventPrice){
 }
 
 updateEventPrice("uGfj5SGWqdBIdFsM7Lie","$6")
+
+
+async function updateEventImage(id,eventImage){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    image: eventImage,
+  });
+}
+
+updateEventImage("uGfj5SGWqdBIdFsM7Lie","newImageURL.aaa")
+
+
+async function updateEventLocation(id,eventLocation){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    location: eventLocation,
+  });
+}
+
+updateEventLocation("uGfj5SGWqdBIdFsM7Lie","newLocation")
+
+
+
+async function updateEventDate(id,eventDate){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    dateOfEvent: eventDate,
+  });
+}
+
+updateEventDate("uGfj5SGWqdBIdFsM7Lie","newDate")
 
 async function writeBadgeData(uId, image, name, point){
   try {
