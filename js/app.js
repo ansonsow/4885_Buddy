@@ -4,7 +4,7 @@ import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase
 // import { getAnalytics } from "/firebase/analytics";
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
 // import {getDatabase, set, get, update, remove, ref, child} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js'
-import {getFirestore, collection, doc, updateDoc, getDocs, addDoc, deleteDoc, arrayUnion, arrayRemove} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import {Firestore, getFirestore, collection, doc, updateDoc, getDocs,getDoc, addDoc, deleteDoc, arrayUnion, arrayRemove} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 
 
@@ -42,15 +42,26 @@ const db = getFirestore();
 // .then((snapshot)=>{
 //   safsdf.innerHTML = snapshot.val();
 // })
+// const db = getFirestore();
+// const userRef = doc(db, "events", id);
 
-const querySnapshot = await getDocs(collection(db, "events"));
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  if(doc.id=="uGfj5SGWqdBIdFsM7Lie"){
-    safsdf.innerHTML = doc.val;
-  }
-  
-});
+// const docSnap = await getDoc(userRef);
+// // console.log(docSnap.data().numOfPeople);          
+// let numb = Number(docSnap.data().numOfPeople)+1
+
+
+const querySnapshot = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
+console.log(querySnapshot.data().description);
+safsdf.innerHTML = querySnapshot.data().description;
+// querySnapshot.data().description
+// querySnapshot.forEach((doc) => {
+//   // doc.data() is never undefined for query doc snapshots
+//   if(doc.id=="uGfj5SGWqdBIdFsM7Lie"){
+//     safsdf.innerHTML = doc.val;
+//   }
+// });
+
+// console.log(object);
 
 
 // ============================================== add new user ==============================================
@@ -88,7 +99,7 @@ async function updateUserUsername(id,uname){
   });
 }
 
-updateUserUsername("hPJQxUZYKQLKVWqkHxou","update uname")
+// updateUserUsername("hPJQxUZYKQLKVWqkHxou","update uname")
 
 
 // --------------------------------------------
@@ -101,7 +112,7 @@ async function updateUserLastName(id,lname){
   });
 }
 
-updateUserLastName("hPJQxUZYKQLKVWqkHxou","updateL")
+// updateUserLastName("hPJQxUZYKQLKVWqkHxou","updateL")
 
 // --------------------------------------------
 
@@ -113,7 +124,7 @@ async function updateUserFirstName(id,fname){
   });
 }
 
-updateUserFirstName("hPJQxUZYKQLKVWqkHxou","updateF")
+// updateUserFirstName("hPJQxUZYKQLKVWqkHxou","updateF")
 
 // --------------------------------------------
 
@@ -125,7 +136,7 @@ async function updateUserEmail(id,email){
   });
 }
 
-updateUserEmail("hPJQxUZYKQLKVWqkHxou","update Email")
+// updateUserEmail("hPJQxUZYKQLKVWqkHxou","update Email")
 
 // --------------------------------------------
 
@@ -137,7 +148,7 @@ async function updateUserPicture(id,pfpURL){
   });
 }
 
-updateUserPicture("hPJQxUZYKQLKVWqkHxou","update URL")
+// updateUserPicture("hPJQxUZYKQLKVWqkHxou","update URL")
 
 // --------------------------------------------
 
@@ -212,7 +223,7 @@ async function updateEventName(id,eventName){
   });
 }
 
-updateEventName("uGfj5SGWqdBIdFsM7Lie","updateEvent")
+// updateEventName("uGfj5SGWqdBIdFsM7Lie","updateEvent")
 
 
 
@@ -225,7 +236,7 @@ async function updateEventPrice(id,eventPrice){
   });
 }
 
-updateEventPrice("uGfj5SGWqdBIdFsM7Lie","$6")
+// updateEventPrice("uGfj5SGWqdBIdFsM7Lie","$6")
 
 
 async function updateEventImage(id,eventImage){
@@ -236,7 +247,7 @@ async function updateEventImage(id,eventImage){
   });
 }
 
-updateEventImage("uGfj5SGWqdBIdFsM7Lie","newImageURL.aaa")
+// updateEventImage("uGfj5SGWqdBIdFsM7Lie","newImageURL.aaa")
 
 
 async function updateEventLocation(id,eventLocation){
@@ -247,7 +258,7 @@ async function updateEventLocation(id,eventLocation){
   });
 }
 
-updateEventLocation("uGfj5SGWqdBIdFsM7Lie","newLocation")
+// updateEventLocation("uGfj5SGWqdBIdFsM7Lie","newLocation")
 
 
 
@@ -259,7 +270,7 @@ async function updateEventDate(id,eventDate){
   });
 }
 
-updateEventDate("uGfj5SGWqdBIdFsM7Lie","newDate")
+// updateEventDate("uGfj5SGWqdBIdFsM7Lie","newDate")
 
 
 
@@ -271,7 +282,47 @@ async function updateEventDesc(id,eventDesc){
   });
 }
 
-updateEventDesc("uGfj5SGWqdBIdFsM7Lie","new description")
+// updateEventDesc("uGfj5SGWqdBIdFsM7Lie","new description")
+
+
+// number of ppl ++
+async function updateEventNum(id){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+
+  const docSnap = await getDoc(userRef);
+  // console.log(docSnap.data().numOfPeople);          
+  let numb = Number(docSnap.data().numOfPeople)+1
+  
+  await updateDoc(userRef, {
+    numOfPeople: numb,
+  });
+}
+
+// updateEventNum("uGfj5SGWqdBIdFsM7Lie")
+
+async function updateEventMax(id,eventMax){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    maxCapacity: eventMax,
+  });
+}
+
+// updateEventMax("uGfj5SGWqdBIdFsM7Lie",5)
+
+
+
+async function updateEventStatus(id,eventStat){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    eventStatus: eventStat,
+  });
+}
+
+// updateEventStatus("uGfj5SGWqdBIdFsM7Lie",2)
+
 
 async function writeBadgeData(uId, image, name, point){
   try {
