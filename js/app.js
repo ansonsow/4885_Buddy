@@ -30,10 +30,13 @@ const analytics = getAnalytics(app);
 const db = getFirestore();
 
 
-// reference DB structure:
-// https://media.discordapp.net/attachments/1019654199077773322/1026680643595276408/unknown.png
+// reference DB structure – USERS:
+// https://cdn.discordapp.com/attachments/1014951045820072017/1028394035066437724/unknown.png
 
-// temporary test events/id: uGfj5SGWqdBIdFsM7Lie
+// reference DB structure – EVENTS:
+// https://cdn.discordapp.com/attachments/1014951045820072017/1028394130700779530/unknown.png
+
+// test EVENTS id: uGfj5SGWqdBIdFsM7Lie
 
 // get(child(dbref, "events/1664847154304/description")) 
 // .then((snapshot)=>{
@@ -75,7 +78,7 @@ async function writeUserData(userName, fname, lname, email, event, pfpURL){
 
 
 // ============================================== update user info ==============================================
-// test user id: hPJQxUZYKQLKVWqkHxou
+// test USER id: hPJQxUZYKQLKVWqkHxou
 
 async function updateUserUsername(id,uname){
   const db = getFirestore();
@@ -88,6 +91,8 @@ async function updateUserUsername(id,uname){
 updateUserUsername("hPJQxUZYKQLKVWqkHxou","update uname")
 
 
+// --------------------------------------------
+
 async function updateUserLastName(id,lname){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
@@ -98,6 +103,7 @@ async function updateUserLastName(id,lname){
 
 updateUserLastName("hPJQxUZYKQLKVWqkHxou","updateL")
 
+// --------------------------------------------
 
 async function updateUserFirstName(id,fname){
   const db = getFirestore();
@@ -109,6 +115,7 @@ async function updateUserFirstName(id,fname){
 
 updateUserFirstName("hPJQxUZYKQLKVWqkHxou","updateF")
 
+// --------------------------------------------
 
 async function updateUserEmail(id,email){
   const db = getFirestore();
@@ -120,6 +127,7 @@ async function updateUserEmail(id,email){
 
 updateUserEmail("hPJQxUZYKQLKVWqkHxou","update Email")
 
+// --------------------------------------------
 
 async function updateUserPicture(id,pfpURL){
   const db = getFirestore();
@@ -131,6 +139,7 @@ async function updateUserPicture(id,pfpURL){
 
 updateUserPicture("hPJQxUZYKQLKVWqkHxou","update URL")
 
+// --------------------------------------------
 
 async function addUserEvent(id,event){
   const db = getFirestore();
@@ -143,6 +152,7 @@ async function addUserEvent(id,event){
 // addUserEvent("hPJQxUZYKQLKVWqkHxou","new event")
 // addUserEvent("hPJQxUZYKQLKVWqkHxou","new event2")
 
+// --------------------------------------------
 
 async function removeUserEvent(id,event){
   const db = getFirestore();
@@ -154,13 +164,15 @@ async function removeUserEvent(id,event){
 
 // removeUserEvent("hPJQxUZYKQLKVWqkHxou","new event")
 
+// --------------------------------------------
 
 async function deleteUser(id){
   await deleteDoc(doc(db, "users", id));
 }
 
-
 // deleteUser("ThE4mHCcIIGys1AeVCNu")
+
+// --------------------------------------------
 
 const getTimeEpoch = () => {
   return new Date().getTime().toString();                             
