@@ -4,7 +4,7 @@ import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase
 // import { getAnalytics } from "/firebase/analytics";
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
 // import {getDatabase, set, get, update, remove, ref, child} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js'
-import {getFirestore, collection, doc, updateDoc, getDocs, addDoc, arrayUnion, arrayRemove} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import {getFirestore, collection, doc, updateDoc, getDocs, addDoc, deleteDoc, arrayUnion, arrayRemove} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 
 
@@ -50,7 +50,7 @@ querySnapshot.forEach((doc) => {
 });
 
 
-
+// ============================================== add new user ==============================================
 async function writeUserData(userName, fname, lname, email, event, pfpURL){
 
   try {
@@ -72,7 +72,21 @@ async function writeUserData(userName, fname, lname, email, event, pfpURL){
 
 // writeUserData("testUsername1 String[50]","testFirstName String[50]",
 // "testLastName String[50]","testEmail@aaa.aaa String[50]","1,2 Array[Number]","url");
+
+
+// ============================================== update user info ==============================================
 // test user id: hPJQxUZYKQLKVWqkHxou
+
+async function updateUserUsername(id,uname){
+  const db = getFirestore();
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    username: uname,
+  });
+}
+
+updateUserUsername("hPJQxUZYKQLKVWqkHxou","update uname")
+
 
 async function updateUserLastName(id,lname){
   const db = getFirestore();
@@ -83,6 +97,7 @@ async function updateUserLastName(id,lname){
 }
 
 updateUserLastName("hPJQxUZYKQLKVWqkHxou","updateL")
+
 
 async function updateUserFirstName(id,fname){
   const db = getFirestore();
@@ -116,16 +131,6 @@ async function updateUserPicture(id,pfpURL){
 
 updateUserPicture("hPJQxUZYKQLKVWqkHxou","update URL")
 
-// updateUserevent("40V6aBT5jmbc2N3nkQ03", "Basket_Ball")
-
-// add or remove event
-// await updateDoc(userRef, {
-//   event: arrayUnion(union)
-// });
-
-// await updateDoc(userRef, {
-//   event: arrayRemove(union)
-// });
 
 async function addUserEvent(id,event){
   const db = getFirestore();
@@ -138,6 +143,7 @@ async function addUserEvent(id,event){
 // addUserEvent("hPJQxUZYKQLKVWqkHxou","new event")
 // addUserEvent("hPJQxUZYKQLKVWqkHxou","new event2")
 
+
 async function removeUserEvent(id,event){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
@@ -146,9 +152,15 @@ async function removeUserEvent(id,event){
   });
 }
 
+// removeUserEvent("hPJQxUZYKQLKVWqkHxou","new event")
 
-removeUserEvent("hPJQxUZYKQLKVWqkHxou","new event")
 
+async function deleteUser(id){
+  await deleteDoc(doc(db, "users", id));
+}
+
+
+// deleteUser("ThE4mHCcIIGys1AeVCNu")
 
 const getTimeEpoch = () => {
   return new Date().getTime().toString();                             
