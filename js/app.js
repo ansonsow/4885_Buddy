@@ -45,7 +45,7 @@ safsdf.innerHTML = querySnapshot.data().description;
 
 
 // ============================================== add new user ==============================================
-async function writeUserData(userName, fname, lname, email, event, pfpURL){
+async function writeUserData(userName, fname, lname, email, eventId, pfpURL){
 
   try {
     const docRef = await addDoc(collection(db, "users"), {
@@ -53,7 +53,7 @@ async function writeUserData(userName, fname, lname, email, event, pfpURL){
     firstName: fname,
     lastName: lname,
     email: email,
-    event: event,
+    event: eventId,
     pfpURL: pfpURL
     });
     console.log("Document written with ID: ", docRef.id);
@@ -64,8 +64,8 @@ async function writeUserData(userName, fname, lname, email, event, pfpURL){
 
 
 
-// writeUserData("testUsername1 String[50]","testFirstName String[50]",
-// "testLastName String[50]","testEmail@aaa.aaa String[50]","1,2 Array[Number]","url");
+// writeUserData("testUsername1 String[20]","testFirstName String[20]",
+// "testLastName String[20]","testEmail@aaa.aaa String[100]","[String[20]]","url String[2048]");
 
 
 // ============================================== update user info ==============================================
@@ -142,6 +142,8 @@ async function addUserEvent(id,event){
 
 // addUserEvent("hPJQxUZYKQLKVWqkHxou","new event")
 // addUserEvent("hPJQxUZYKQLKVWqkHxou","new event2")
+// addUserEvent("o8geRPS8ISFpQIxn7U0a", "aaaaaaaaa")
+// addUserEvent("o8geRPS8ISFpQIxn7U0a", "[String[20]]")
 
 // --------------------------------------------
 
@@ -173,7 +175,7 @@ const getTimeEpoch = () => {
 
 
 // ============================================== add new Event ==============================================
-// dont know how to do date and time / location / photo yet
+// dont know how to do date and location / photo yet
 async function writeEventData(name, hostId, price, pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus){
   try {
     const docRef = await addDoc(collection(db, "events"), {
@@ -196,6 +198,8 @@ async function writeEventData(name, hostId, price, pfpURL, location, dateCreated
 }
 
 // writeEventData("test event","1","0","testPic.aaa","111","10/07/2022","06/09/2023","this is a test event","1","2","1")
+// writeEventData("testEventname1 String[50]","testHostId String[20]",
+// "0 Number","imgURL.aaa String[50]","location Number","20221009 Number","20221109 Number","test description String[2048]","2 Number","3 Number","1 Number");
 
 
 
@@ -328,6 +332,7 @@ async function writeBadgeData(uId, image, name, point){
 }
 
 // writeBadgeData("hPJQxUZYKQLKVWqkHxou","imgurl.com","testBadgeName","5")
+// writeBadgeData("","imageURL String[2048]","testBadgeName String[20]","5 Number")
 
 
 
@@ -340,6 +345,9 @@ async function addBadgeUser(id, uId){
     userId: arrayUnion(uId)
   });
 }
+
+// addBadgeUser("IvkCFkgGR6RoatAP3fJ3","bbbbbbbbbbb")
+// addBadgeUser("IvkCFkgGR6RoatAP3fJ3","[String[20]]")
 
 async function updateBadgeImage(id, image){
   const db = getFirestore();
