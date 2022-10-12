@@ -1,17 +1,12 @@
+// This file is only for function that calls the database
+
 // Import the functions you need from the SDKs you need
-// import { initializeApp } from "/firebase/app";
 import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
-// import { getAnalytics } from "/firebase/analytics";
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
-// import {getDatabase, set, get, update, remove, ref, child} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js'
 import {Firestore, getFirestore, collection, doc, updateDoc, getDocs,getDoc, addDoc, deleteDoc, arrayUnion, arrayRemove} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
+// Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyA35aDry2OtC2rifEFrkxWAyxBame5LPEw",
