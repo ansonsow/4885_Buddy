@@ -1,3 +1,7 @@
+import * as db from "./app.js"
+// example of call the db function outside of app.js
+// db.writeUserData("a","fa","la","amail","[1,2]","aaa.aa");
+
 $(document).ready(function(){
     /*------ HOME SLICK CAROUSEL ------*/
     $(".home-carousel").slick({

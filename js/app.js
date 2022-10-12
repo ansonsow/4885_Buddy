@@ -35,11 +35,10 @@ const db = getFirestore();
 
 // retriving data from event collection and id uGfj5SGWqdBIdFsM7Lie document's description field
 const querySnapshot = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
-safsdf.innerHTML = querySnapshot.data().description;
-
+// safsdf.innerHTML = querySnapshot.data().description;
 
 // ============================================== add new user ==============================================
-async function writeUserData(userName, fname, lname, email, eventId, pfpURL){
+export async function writeUserData(userName, fname, lname, email, eventId, pfpURL){
 
   try {
     const docRef = await addDoc(collection(db, "users"), {
@@ -64,12 +63,17 @@ async function writeUserData(userName, fname, lname, email, eventId, pfpURL){
 // ============================================== update user info ==============================================
 // test USER id: hPJQxUZYKQLKVWqkHxou
 
-async function updateUserUsername(id,uname){
-  const db = getFirestore();
-  const userRef = doc(db, "users", id);
-  await updateDoc(userRef, {
-    username: uname,
-  });
+export async function updateUserUsername(id,uname){
+  if(uname.length()<=20){
+    const db = getFirestore();
+    const userRef = doc(db, "users", id);
+    await updateDoc(userRef, {
+      username: uname,
+    });
+  }else{
+    console.log(uname+" exedes the 20 word count");
+  }
+
 }
 
 // updateUserUsername("hPJQxUZYKQLKVWqkHxou","update uname")
@@ -77,7 +81,7 @@ async function updateUserUsername(id,uname){
 
 // --------------------------------------------
 
-async function updateUserLastName(id,lname){
+export async function updateUserLastName(id,lname){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
@@ -89,7 +93,7 @@ async function updateUserLastName(id,lname){
 
 // --------------------------------------------
 
-async function updateUserFirstName(id,fname){
+export async function updateUserFirstName(id,fname){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
@@ -101,7 +105,7 @@ async function updateUserFirstName(id,fname){
 
 // --------------------------------------------
 
-async function updateUserEmail(id,email){
+export async function updateUserEmail(id,email){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
@@ -113,7 +117,7 @@ async function updateUserEmail(id,email){
 
 // --------------------------------------------
 
-async function updateUserPicture(id,pfpURL){
+export async function updateUserPicture(id,pfpURL){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
@@ -125,7 +129,7 @@ async function updateUserPicture(id,pfpURL){
 
 // --------------------------------------------
 
-async function addUserEvent(id,event){
+export async function addUserEvent(id,event){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
@@ -138,7 +142,7 @@ async function addUserEvent(id,event){
 
 // --------------------------------------------
 
-async function removeUserEvent(id,event){
+export async function removeUserEvent(id,event){
   const db = getFirestore();
   const userRef = doc(db, "users", id);
   await updateDoc(userRef, {
@@ -150,7 +154,7 @@ async function removeUserEvent(id,event){
 
 // --------------------------------------------
 
-async function deleteUser(id){
+export async function deleteUser(id){
   await deleteDoc(doc(db, "users", id));
 }
 
@@ -167,7 +171,7 @@ const getTimeEpoch = () => {
 
 // ============================================== add new Event ==============================================
 // dont know how to do date and location / photo yet
-async function writeEventData(name, hostId, price, pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus){
+export async function writeEventData(name, hostId, price, pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus){
   try {
     const docRef = await addDoc(collection(db, "events"), {
     name: name,
@@ -196,7 +200,7 @@ async function writeEventData(name, hostId, price, pfpURL, location, dateCreated
 // ============================================== update event info ==============================================
 // test EVENTS id: uGfj5SGWqdBIdFsM7Lie
 
-async function updateEventName(id,eventName){
+export async function updateEventName(id,eventName){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
   await updateDoc(userRef, {
@@ -209,7 +213,7 @@ async function updateEventName(id,eventName){
 
 
 
-async function updateEventPrice(id,eventPrice){
+export async function updateEventPrice(id,eventPrice){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
   await updateDoc(userRef, {
@@ -220,7 +224,7 @@ async function updateEventPrice(id,eventPrice){
 // updateEventPrice("uGfj5SGWqdBIdFsM7Lie","$6")
 
 
-async function updateEventImage(id,eventImage){
+export async function updateEventImage(id,eventImage){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
   await updateDoc(userRef, {
@@ -231,7 +235,7 @@ async function updateEventImage(id,eventImage){
 // updateEventImage("uGfj5SGWqdBIdFsM7Lie","newImageURL.aaa")
 
 
-async function updateEventLocation(id,eventLocation){
+export async function updateEventLocation(id,eventLocation){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
   await updateDoc(userRef, {
@@ -243,7 +247,7 @@ async function updateEventLocation(id,eventLocation){
 
 
 
-async function updateEventDate(id,eventDate){
+export async function updateEventDate(id,eventDate){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
   await updateDoc(userRef, {
@@ -255,7 +259,7 @@ async function updateEventDate(id,eventDate){
 
 
 
-async function updateEventDesc(id,eventDesc){
+export async function updateEventDesc(id,eventDesc){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
   await updateDoc(userRef, {
@@ -267,7 +271,7 @@ async function updateEventDesc(id,eventDesc){
 
 
 // number of ppl ++
-async function updateEventNum(id){
+export async function updateEventNum(id){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
 
@@ -281,7 +285,7 @@ async function updateEventNum(id){
 
 // updateEventNum("uGfj5SGWqdBIdFsM7Lie")
 
-async function updateEventMax(id,eventMax){
+export async function updateEventMax(id,eventMax){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
   await updateDoc(userRef, {
@@ -293,7 +297,7 @@ async function updateEventMax(id,eventMax){
 
 
 
-async function updateEventStatus(id,eventStat){
+export async function updateEventStatus(id,eventStat){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
   await updateDoc(userRef, {
@@ -307,7 +311,7 @@ async function updateEventStatus(id,eventStat){
 
 
 // ============================================== add new badge ==============================================
-async function writeBadgeData(uId, image, name, point){
+export async function writeBadgeData(uId, image, name, point){
   try {
     const docRef = await addDoc(collection(db, "badges"), {
     name: name,
@@ -327,7 +331,7 @@ async function writeBadgeData(uId, image, name, point){
 
 
 // ============================================== update badge info ==============================================
-async function addBadgeUser(id, uId){
+export async function addBadgeUser(id, uId){
   const db = getFirestore();
   const userRef = doc(db, "badges", id);
   await updateDoc(userRef, {
@@ -338,7 +342,7 @@ async function addBadgeUser(id, uId){
 addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","bbbbbbbbbbb")
 addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","([str], 20)")
 
-async function updateBadgeImage(id, image){
+export async function updateBadgeImage(id, image){
   const db = getFirestore();
   const userRef = doc(db, "badges", id);
   await updateDoc(userRef, {
@@ -346,7 +350,7 @@ async function updateBadgeImage(id, image){
   });
 }
 
-async function updateBadgeName(id, name){
+export async function updateBadgeName(id, name){
   const db = getFirestore();
   const userRef = doc(db, "badges", id);
   await updateDoc(userRef, {
@@ -354,7 +358,7 @@ async function updateBadgeName(id, name){
   });
 }
 
-async function updateBadgePoint(id, point){
+export async function updateBadgePoint(id, point){
   const db = getFirestore();
   const userRef = doc(db, "badges", id);
   await updateDoc(userRef, {
