@@ -1,4 +1,4 @@
-import * as ldb from "./app.js"
+import * as dbf from "./app.js"
 
 import {Firestore, query, getFirestore, collection, doc, getDocs,getDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 const db = getFirestore();
@@ -21,7 +21,7 @@ const db = getFirestore();
 // console.log(querySnapshot2.data().price);
 
 // example of call the db function outside of appjs
-// ldb.writeUserData("a","fa","la","amail","[1,2]","aaa.aa");
+// dbf.writeUserData("a","fa","la","amail","[1,2]","aaa.aa");
 
 $(document).ready(function(){
     /*------ HOME SLICK CAROUSEL ------*/
