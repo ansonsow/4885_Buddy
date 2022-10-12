@@ -9,11 +9,12 @@ const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
     console.log(doc.data());
 });
-//single document
+
+// single document
 // const querySnapshot2 = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
 // console.log(querySnapshot2.data());
 
-// // single field
+// single field
 // const querySnapshot2 = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
 // console.log(querySnapshot2.data().price);
 
