@@ -38,9 +38,8 @@ const db = getFirestore();
 
 // test EVENTS id: uGfj5SGWqdBIdFsM7Lie
 
-
+// retriving data from event collection and id uGfj5SGWqdBIdFsM7Lie document's description field
 const querySnapshot = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
-// console.log(querySnapshot.data().description);
 safsdf.innerHTML = querySnapshot.data().description;
 
 
