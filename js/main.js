@@ -9,6 +9,13 @@ const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
     console.log(doc.data());
 });
+//single document
+// const querySnapshot2 = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
+// console.log(querySnapshot2.data());
+
+// // single field
+// const querySnapshot2 = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
+// console.log(querySnapshot2.data().price);
 
 // example of call the db function outside of appjs
 // ldb.writeUserData("a","fa","la","amail","[1,2]","aaa.aa");
