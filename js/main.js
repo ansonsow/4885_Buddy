@@ -1,14 +1,16 @@
 import * as ldb from "./app.js"
 
-import {Firestore, query, getFirestore, collection, doc, updateDoc, getDocs,getDoc, addDoc, deleteDoc, arrayUnion, arrayRemove} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import {Firestore, query, getFirestore, collection, doc, getDocs,getDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 const db = getFirestore();
 
 // example of reading info from db
-const q = query(collection(db, "events"));
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
-    console.log(doc.data());
-});
+
+// all documents in a collection
+// const q = query(collection(db, "events"));
+// const querySnapshot = await getDocs(q);
+// querySnapshot.forEach((doc) => {
+//     console.log(doc.data());
+// });
 
 // single document
 // const querySnapshot2 = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
