@@ -1,0 +1,88 @@
+    /*------ VARIABLES FOR LOG IN PAGE  ------*/
+
+:root {
+    --top-logo-size: 4rem;
+    --top-logo-color: #999;
+    --welcome-font: "impact";
+    --span-font: "arial";
+    --form-width: 54%
+}   
+/*-------------------------------------------*/
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.left-container{
+    width: 50%;
+}
+
+.login-logo {
+    margin: 5%;
+    font-size: var(--top-logo-size);
+    text-decoration: none;
+    color: var(--top-logo-color);
+}
+
+h1{
+    margin: 30% 10% 5% 10% ;
+    font-family: var(--welcome-font);
+}
+
+.buddy{
+    font-family: var(--span-font);
+}
+
+.text_field input {
+    margin: 0 auto 3% 10%;
+    width: var(--form-width);
+    border:none;
+    outline:none;
+    background: none;
+    border-bottom: 1px solid #999;
+    font-size: 1rem;
+
+}
+
+.checkbox-wrap{
+    width: var(--form-width);
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto 5% 10%;
+    font-size: 0.8rem;
+    font-family: helvetica;
+}
+
+.forget-password{
+    text-decoration: none;
+    color: #000;
+}
+
+
+.btn-wrap{
+    margin: 5% auto 3% 10%;
+}
+
+.ctn{
+    width: 20rem;
+    font-size: 1rem;
+    padding: 3%;
+    margin: 1.5%;
+    border: none;
+    border-radius: 5rem;
+    cursor: pointer;
+}
+
+img {
+    width: 710px;
+    height: 710px;
+    border-top-left-radius: 20%;
+    border-bottom-left-radius: 20%;
+} 
+
+.container {
+    display: flex;
+}
+
