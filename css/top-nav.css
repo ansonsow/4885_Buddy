@@ -120,9 +120,25 @@ nav.home-topnav .logo {
     font-size:calc(var(--TopBar-Links-Size) * 1.5);
 }
 
+.hide-on-web {
+    display: none;
+}
+
 @media (max-width: 600px) {
-    .account-icon i{
+    .hide-on-mobile {
         display: none;
+    }
+
+    .hide-on-web {
+        display: block;
+    }
+
+    .top-navlinks hr {
+        border-bottom: solid 1px #000;
+        border-style: dashed;
+        text-align: left;
+        margin: 10px;
+        width: 70%;
     }
 
     .top-navlinks {
@@ -134,7 +150,7 @@ nav.home-topnav .logo {
         flex-direction: column;
         justify-content: flex-start;
         width: 100%;
-        height: 25%;
+        height: 38%;
         transition: 0.3s;
         z-index: 1;
     }
