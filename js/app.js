@@ -217,7 +217,7 @@ const getTimeEpoch = () => {
   return new Date().getTime().toString();                             
 }
 
-console.log(getTimeEpoch());
+// console.log(getTimeEpoch());
 // console.log(new Date().getDate());
 
 
