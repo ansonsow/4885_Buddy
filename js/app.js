@@ -64,29 +64,34 @@ export async function writeUserData(userName, fname, lname, email, eventId, pfpU
 // test USER id: hPJQxUZYKQLKVWqkHxou
 
 export async function updateUserUsername(id,uname){
-  if(uname.length()<=20){
+  if(uname.length>20){
+    console.log(uname+" exceed the 20 word count");
+  }else{
     const db = getFirestore();
     const userRef = doc(db, "users", id);
     await updateDoc(userRef, {
       username: uname,
     });
-  }else{
-    console.log(uname+" exedes the 20 word count");
   }
 
 }
 
-// updateUserUsername("hPJQxUZYKQLKVWqkHxou","update uname")
+// updateUserUsername("hPJQxUZYKQLKVWqkHxou","update unameaaa")
 
 
 // --------------------------------------------
 
 export async function updateUserLastName(id,lname){
-  const db = getFirestore();
-  const userRef = doc(db, "users", id);
-  await updateDoc(userRef, {
-    lastName: lname,
-  });
+  if(lname.length>20){
+    console.log(lname+" exceed the 20 words count");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "users", id);
+    await updateDoc(userRef, {
+      lastName: lname,
+    });
+  }
+
 }
 
 // updateUserLastName("hPJQxUZYKQLKVWqkHxou","updateL")
@@ -94,11 +99,16 @@ export async function updateUserLastName(id,lname){
 // --------------------------------------------
 
 export async function updateUserFirstName(id,fname){
-  const db = getFirestore();
-  const userRef = doc(db, "users", id);
-  await updateDoc(userRef, {
-    firstName: fname
-  });
+  if(fname.length>20){
+    console.log(fname+" exceed the 20 words count");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "users", id);
+    await updateDoc(userRef, {
+      firstName: fname
+    });
+  }
+
 }
 
 // updateUserFirstName("hPJQxUZYKQLKVWqkHxou","updateF")
@@ -106,59 +116,100 @@ export async function updateUserFirstName(id,fname){
 // --------------------------------------------
 
 export async function updateUserEmail(id,email){
-  const db = getFirestore();
-  const userRef = doc(db, "users", id);
-  await updateDoc(userRef, {
-    email: email
-  });
+  if(email.length>100){
+    console.log(email=" exceed the 100 words count");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "users", id);
+    await updateDoc(userRef, {
+      email: email
+    });
+  }
+
 }
 
 // updateUserEmail("hPJQxUZYKQLKVWqkHxou","update Email")
 
 // --------------------------------------------
 
+function isImage(url) {
+  return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url)&&(url.length<1024);
+}
+
+
 export async function updateUserPicture(id,pfpURL){
-  const db = getFirestore();
-  const userRef = doc(db, "users", id);
-  await updateDoc(userRef, {
-    pfpURL: pfpURL
-  });
+  if(!isImage(pfpURL)){
+    console.log("url not valid or not an image");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "users", id);
+    await updateDoc(userRef, {
+      pfpURL: pfpURL
+    });
+  }
+
 }
 
 // updateUserPicture("hPJQxUZYKQLKVWqkHxou","update URL")
 
 // --------------------------------------------
 
+
+
+
 export async function addUserEvent(id,event){
-  const db = getFirestore();
-  const userRef = doc(db, "users", id);
-  await updateDoc(userRef, {
-    event: arrayUnion(event)
-  });
+
+  const docSnap = await getDoc(doc(db, "events", event));
+  if(docSnap.exists()){
+    const db = getFirestore();
+    const userRef = doc(db, "users", id);
+    await updateDoc(userRef, {
+      event: arrayUnion(event)
+    });
+  }else{
+    console.log("event do not exist");
+  }
 }
 
-// addUserEvent("K8OjYqy2PVL3yF94OavC", "aaaaaaaaa")
+
+
+// addUserEvent("K8OjYqy2PVL3yF94OavC", "wat da fak")
 // addUserEvent("K8OjYqy2PVL3yF94OavC", "([str], 20)")
 
 // --------------------------------------------
 
+
 export async function removeUserEvent(id,event){
+  
   const db = getFirestore();
-  const userRef = doc(db, "users", id);
-  await updateDoc(userRef, {
-    event: arrayRemove(event)
-  });
+
+  const snapShot = await getDoc(doc(db, "users", id));
+  if(snapShot.data().event.includes(event)){
+    const userRef = doc(db, "users", id);
+    await updateDoc(userRef, {
+      event: arrayRemove(event)
+    });
+  }
+  else{
+    console.log("event do not exist in the user's list");
+  }
 }
 
-// removeUserEvent("hPJQxUZYKQLKVWqkHxou","new event")
+// removeUserEvent("hPJQxUZYKQLKVWqkHxou","new event2")
 
 // --------------------------------------------
 
 export async function deleteUser(id){
-  await deleteDoc(doc(db, "users", id));
+  const docSnap = await getDoc(doc(db, "users", id));
+  if(docSnap.exists()){
+    await deleteDoc(doc(db, "users", id));
+  }else{
+    console.log("user do not exist");
+  }
+
 }
 
-// deleteUser("ThE4mHCcIIGys1AeVCNu")
+// deleteUser("aaa")
 
 // --------------------------------------------
 
@@ -171,7 +222,7 @@ const getTimeEpoch = () => {
 
 // ============================================== add new Event ==============================================
 // dont know how to do date and location / photo yet
-export async function writeEventData(name, hostId, price, pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus){
+export async function writeEventData(name, hostId, price, pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag){
   try {
     const docRef = await addDoc(collection(db, "events"), {
     name: name,
@@ -185,6 +236,7 @@ export async function writeEventData(name, hostId, price, pfpURL, location, date
     numOfPeople: numOfPeople,
     maxCapacity: maxCapacity,
     eventStatus: eventStatus,
+    tags: tag,
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -193,7 +245,8 @@ export async function writeEventData(name, hostId, price, pfpURL, location, date
 }
 
 // writeEventData("testEventname1 (str, 20)","testHostId (str, 20)",
-// "0 (num)","imgURL.aaa (str, 2048)","location (num)","20221009 (num)","20221109 (num)","test description (str, 2048)","2 (num)","3 (num)","1 (num)");
+// "0 (num)","imgURL.aaa (str, 2048)","location (num)","20221009 (num)","20221109 (num)","test description (str, 2048)","2 (num)","3 (num)",
+// "1 (num)","aaa");
 
 
 
@@ -306,6 +359,27 @@ export async function updateEventStatus(id,eventStat){
 }
 
 // updateEventStatus("uGfj5SGWqdBIdFsM7Lie",2)
+
+export async function addEventTag(id,tag){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    tags: arrayUnion(tag)
+  });
+}
+
+// addEventTag("B3FW82VcBNZrwwl0py0w","tag1")
+
+// addEventTag("B3FW82VcBNZrwwl0py0w","tag2")
+
+
+export async function removeEventTag(id,tag){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    tags: arrayRemove(tag)
+  });
+}
 
 
 
