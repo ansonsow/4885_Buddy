@@ -4,6 +4,10 @@
 import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
 import {Firestore, getFirestore, collection, doc, updateDoc, getDocs,getDoc, addDoc, deleteDoc, arrayUnion, arrayRemove} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, connectAuthEmulator, signOut} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+
+
 
 
 // Firebase configuration
@@ -23,7 +27,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore();
-
+const auth = getAuth(app);
 
 // reference DB structure – USERS:
 // https://cdn.discordapp.com/attachments/1014951045820072017/1028394035066437724/unknown.png
@@ -480,3 +484,68 @@ export async function updateBadgePoint(id, point){
 // updateBadgeImage("A3kE5jdVFjySfCCN6hjw","https://cdn.discordapp.com/attachments/371018789673893898/1026580881260953680/unknown.png");
 // updateBadgeName("A3kE5jdVFjySfCCN6hjw","coolBadge420");
 // updateBadgePoint("A3kE5jdVFjySfCCN6hjw",6969);
+
+
+//============User Authentication=================
+
+//   connectAuthEmulator(auth, "https://localhost:9099");
+// const loginEmailPassword = async () => {
+//   const loginEmail = email.value;
+//   const loginPassword = psw.value;
+
+//   //To show user if worng password is enterted
+//   try {
+//   const userCredential  = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+//   console.log(userCredential.user);
+//   }
+//   catch(error){
+//     console.log(error);
+//     //Need to write a funtion to show error message on UI
+//   }
+
+// }
+// document.getElementById("btnLogin").addEventListener("click", loginEmailPassword);
+
+//To create a new user account
+const createAccount = async () => {
+  const loginEmail = email.value;
+  const loginPassword = psw.value;
+
+  try {
+  const userCredential  = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
+  console.log(userCredential.user);
+  }
+  catch(error){
+    console.log(error);
+  }
+
+}
+
+// document.getElementById("btnSignup").addEventListener("click", createAccount);
+btnsignup.addEventListener("click", createAccount);
+
+
+//To change UI
+// const toMonitorAuthState  = async() => {
+//   onAuthStateChanged(auth, user => {
+//     if(user){
+//       console.log(user);
+//       showApp();
+//       showLoginState(user);
+
+//       hideLoginError();
+//     }
+//     else{
+//       showLoginForm();
+//       noteToUser.innerHTML = "You are not loggin in";
+//     }
+//   });
+// }
+// toMonitorAuthState();
+
+//To logout 
+// const logout = async()=>{
+//   await signOut(auth);
+
+// }
+// document.getElementById("btnLogout").addEventListener("click", logout);
