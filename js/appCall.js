@@ -24,3 +24,6 @@ const db = getFirestore();
 
 // example of call the db function outside of appjs
 // dbf.writeUserData("a", "fa", "la", "amail", "[1,2]", "AAAAAAAAAAA.png");
+
+
+// console.log(new Date());

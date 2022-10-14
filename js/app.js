@@ -138,15 +138,15 @@ function isImage(url) {
 
 
 export async function updateUserPicture(id,pfpURL){
-  if(!isImage(pfpURL)){
-    console.log("url not valid or not an image");
-  }else{
+  // if(!isImage(pfpURL)){
+  //   console.log("url not valid or not an image");
+  // }else{
     const db = getFirestore();
     const userRef = doc(db, "users", id);
     await updateDoc(userRef, {
       pfpURL: pfpURL
     });
-  }
+  // }
 
 }
 
@@ -231,7 +231,7 @@ export async function writeEventData(name, hostId, price, pfpURL, location, date
     price: price,
     image: pfpURL,
     location: location,
-    dateCreated: dateCreated,
+    dateCreated: new Date(),
     dateOfEvent: dateOfEvent,
     description: description,
     numOfPeople: numOfPeople,
@@ -288,18 +288,18 @@ export async function updateEventPrice(id,eventPrice){
 
 
 export async function updateEventImage(id,eventImage){
-  if(!isImage(eventImage)){
-    console.log("url not valid or not an image");
-  }else{
+  // if(!isImage(eventImage)){
+  //   console.log("url not valid or not an image");
+  // }else{
     const db = getFirestore();
     const eventRef = doc(db, "events", id);
     await updateDoc(eventRef, {
       image: eventImage,
     });
-  }
+  // }
 }
 
-// updateEventImage("uGfj5SGWqdBIdFsM7Lie","newImageURL.aaa")
+// updateEventImage("hkHdS7xIYAVtg1W1OXBZ","https://unsplash.com/photos/E-6M5FExlbk")
 
 // still dont know tomtom yet
 export async function updateEventLocation(id,eventLocation){
@@ -461,15 +461,15 @@ export async function addBadgeUser(id, uId){
 // addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","([str], 20)")
 
 export async function updateBadgeImage(id, image){
-  if(!isImage(image)){
-    console.log("url link is not an image");
-  }else{
+  // if(!isImage(image)){
+  //   console.log("url link is not an image");
+  // }else{
     const db = getFirestore();
     const userRef = doc(db, "badges", id);
     await updateDoc(userRef, {
       image: image,
     });
-  }
+  // }
 
 }
 
