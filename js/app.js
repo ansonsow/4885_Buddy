@@ -443,37 +443,60 @@ export async function writeBadgeData(uId, image, name, point){
 // ============================================== update badge info ==============================================
 export async function addBadgeUser(id, uId){
   const db = getFirestore();
-  const userRef = doc(db, "badges", id);
-  await updateDoc(userRef, {
-    userId: arrayUnion(uId)
-  });
+
+  const snapShot = await getDoc(doc(db, "users", uId));
+  if(snapShot.exists()){
+    const userRef = doc(db, "badges", id);
+    await updateDoc(userRef, {
+      userId: arrayUnion(uId)
+    });
+  }else{
+    console.log("user not exist");
+  }
+  // const db = getFirestore();
+
 }
 
-addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","bbbbbbbbbbb")
-addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","([str], 20)")
+// addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","bbbbbbbbbbb")
+// addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","([str], 20)")
 
 export async function updateBadgeImage(id, image){
-  const db = getFirestore();
-  const userRef = doc(db, "badges", id);
-  await updateDoc(userRef, {
-    image: image,
-  });
+  if(!isImage(image)){
+    console.log("url link is not an image");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "badges", id);
+    await updateDoc(userRef, {
+      image: image,
+    });
+  }
+
 }
 
 export async function updateBadgeName(id, name){
-  const db = getFirestore();
-  const userRef = doc(db, "badges", id);
-  await updateDoc(userRef, {
-    name: name,
-  });
+  if(name.length>20){
+    console.log("name exceed 20 word count");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "badges", id);
+    await updateDoc(userRef, {
+      name: name,
+    });
+  }
+
 }
 
 export async function updateBadgePoint(id, point){
-  const db = getFirestore();
-  const userRef = doc(db, "badges", id);
-  await updateDoc(userRef, {
-    point: point,
-  });
+  if(isNaN(point)){
+    console.log(point+ "is not a number");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "badges", id);
+    await updateDoc(userRef, {
+      point: point,
+    });
+  }
+
 }
 
 // addBadgeUser("A3kE5jdVFjySfCCN6hjw","badgeUser0069");
