@@ -217,7 +217,8 @@ const getTimeEpoch = () => {
   return new Date().getTime().toString();                             
 }
 
-
+console.log(getTimeEpoch());
+// console.log(new Date().getDate());
 
 
 // ============================================== add new Event ==============================================
@@ -254,11 +255,15 @@ export async function writeEventData(name, hostId, price, pfpURL, location, date
 // test EVENTS id: uGfj5SGWqdBIdFsM7Lie
 
 export async function updateEventName(id,eventName){
-  const db = getFirestore();
-  const userRef = doc(db, "events", id);
-  await updateDoc(userRef, {
-    name: eventName,
-  });
+  if(eventName.length>20){
+    console.log("event name excced 20 characters");
+  }else{
+    const db = getFirestore();
+    const eventRef = doc(db, "events", id);
+    await updateDoc(eventRef, {
+      name: eventName,
+    });
+  }
 }
 
 // updateEventName("uGfj5SGWqdBIdFsM7Lie","updateEvent")
@@ -267,27 +272,36 @@ export async function updateEventName(id,eventName){
 
 
 export async function updateEventPrice(id,eventPrice){
-  const db = getFirestore();
-  const userRef = doc(db, "events", id);
-  await updateDoc(userRef, {
-    price: eventPrice,
-  });
+  if(isNaN(eventPrice)){
+    console.log("not a number");
+  }else{
+    const db = getFirestore();
+    const eventRef = doc(db, "events", id);
+    await updateDoc(eventRef, {
+      price: eventPrice,
+    });
+  }
 }
+
 
 // updateEventPrice("uGfj5SGWqdBIdFsM7Lie","$6")
 
 
 export async function updateEventImage(id,eventImage){
-  const db = getFirestore();
-  const userRef = doc(db, "events", id);
-  await updateDoc(userRef, {
-    image: eventImage,
-  });
+  if(!isImage(eventImage)){
+    console.log("url not valid or not an image");
+  }else{
+    const db = getFirestore();
+    const eventRef = doc(db, "events", id);
+    await updateDoc(eventRef, {
+      image: eventImage,
+    });
+  }
 }
 
 // updateEventImage("uGfj5SGWqdBIdFsM7Lie","newImageURL.aaa")
 
-
+// still dont know tomtom yet
 export async function updateEventLocation(id,eventLocation){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
@@ -299,7 +313,7 @@ export async function updateEventLocation(id,eventLocation){
 // updateEventLocation("uGfj5SGWqdBIdFsM7Lie","newLocation")
 
 
-
+// not sure what is format is
 export async function updateEventDate(id,eventDate){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
@@ -313,11 +327,15 @@ export async function updateEventDate(id,eventDate){
 
 
 export async function updateEventDesc(id,eventDesc){
-  const db = getFirestore();
-  const userRef = doc(db, "events", id);
-  await updateDoc(userRef, {
-    description: eventDesc,
-  });
+  if(eventDesc.length>2048){
+    console.log("description exceed 2048 charater count");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "events", id);
+    await updateDoc(userRef, {
+      description: eventDesc,
+    });
+  }
 }
 
 // updateEventDesc("uGfj5SGWqdBIdFsM7Lie","new description")
@@ -339,11 +357,16 @@ export async function updateEventNum(id){
 // updateEventNum("uGfj5SGWqdBIdFsM7Lie")
 
 export async function updateEventMax(id,eventMax){
-  const db = getFirestore();
-  const userRef = doc(db, "events", id);
-  await updateDoc(userRef, {
-    maxCapacity: eventMax,
-  });
+  if(isNaN(eventMax)){
+    console.log("event max not a number");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "events", id);
+    await updateDoc(userRef, {
+      maxCapacity: eventMax,
+    });
+  }
+
 }
 
 // updateEventMax("uGfj5SGWqdBIdFsM7Lie",5)
@@ -351,11 +374,16 @@ export async function updateEventMax(id,eventMax){
 
 
 export async function updateEventStatus(id,eventStat){
-  const db = getFirestore();
-  const userRef = doc(db, "events", id);
-  await updateDoc(userRef, {
-    eventStatus: eventStat,
-  });
+  if(isNaN(eventStat)){
+    console.log("event stat not a number");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "events", id);
+    await updateDoc(userRef, {
+      eventStatus: eventStat,
+    });
+  }
+
 }
 
 // updateEventStatus("uGfj5SGWqdBIdFsM7Lie",2)
@@ -375,10 +403,18 @@ export async function addEventTag(id,tag){
 
 export async function removeEventTag(id,tag){
   const db = getFirestore();
-  const userRef = doc(db, "events", id);
-  await updateDoc(userRef, {
-    tags: arrayRemove(tag)
-  });
+
+  const snapShot = await getDoc(doc(db, "events", id));
+  if(snapShot.data().tags.includes(tag)){
+    const userRef = doc(db, "events", id);
+    await updateDoc(userRef, {
+      tags: arrayRemove(tag)
+    });
+  }else{
+    console.log("tag do not exist");
+  }
+  // const db = getFirestore();
+
 }
 
 
