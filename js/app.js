@@ -142,15 +142,15 @@ function isImage(url) {
 
 
 export async function updateUserPicture(id,pfpURL){
-  if(!isImage(pfpURL)){
-    console.log("url not valid or not an image");
-  }else{
+  // if(!isImage(pfpURL)){
+  //   console.log("url not valid or not an image");
+  // }else{
     const db = getFirestore();
     const userRef = doc(db, "users", id);
     await updateDoc(userRef, {
       pfpURL: pfpURL
     });
-  }
+  // }
 
 }
 
@@ -221,7 +221,7 @@ const getTimeEpoch = () => {
   return new Date().getTime().toString();                             
 }
 
-console.log(getTimeEpoch());
+// console.log(getTimeEpoch());
 // console.log(new Date().getDate());
 
 
@@ -235,7 +235,7 @@ export async function writeEventData(name, hostId, price, pfpURL, location, date
     price: price,
     image: pfpURL,
     location: location,
-    dateCreated: dateCreated,
+    dateCreated: new Date(),
     dateOfEvent: dateOfEvent,
     description: description,
     numOfPeople: numOfPeople,
@@ -292,18 +292,18 @@ export async function updateEventPrice(id,eventPrice){
 
 
 export async function updateEventImage(id,eventImage){
-  if(!isImage(eventImage)){
-    console.log("url not valid or not an image");
-  }else{
+  // if(!isImage(eventImage)){
+  //   console.log("url not valid or not an image");
+  // }else{
     const db = getFirestore();
     const eventRef = doc(db, "events", id);
     await updateDoc(eventRef, {
       image: eventImage,
     });
-  }
+  // }
 }
 
-// updateEventImage("uGfj5SGWqdBIdFsM7Lie","newImageURL.aaa")
+// updateEventImage("hkHdS7xIYAVtg1W1OXBZ","https://unsplash.com/photos/E-6M5FExlbk")
 
 // still dont know tomtom yet
 export async function updateEventLocation(id,eventLocation){
@@ -447,37 +447,60 @@ export async function writeBadgeData(uId, image, name, point){
 // ============================================== update badge info ==============================================
 export async function addBadgeUser(id, uId){
   const db = getFirestore();
-  const userRef = doc(db, "badges", id);
-  await updateDoc(userRef, {
-    userId: arrayUnion(uId)
-  });
+
+  const snapShot = await getDoc(doc(db, "users", uId));
+  if(snapShot.exists()){
+    const userRef = doc(db, "badges", id);
+    await updateDoc(userRef, {
+      userId: arrayUnion(uId)
+    });
+  }else{
+    console.log("user not exist");
+  }
+  // const db = getFirestore();
+
 }
 
-addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","bbbbbbbbbbb")
-addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","([str], 20)")
+// addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","bbbbbbbbbbb")
+// addBadgeUser("0Mwwe0xDCBSjWCvkB0Ef","([str], 20)")
 
 export async function updateBadgeImage(id, image){
-  const db = getFirestore();
-  const userRef = doc(db, "badges", id);
-  await updateDoc(userRef, {
-    image: image,
-  });
+  // if(!isImage(image)){
+  //   console.log("url link is not an image");
+  // }else{
+    const db = getFirestore();
+    const userRef = doc(db, "badges", id);
+    await updateDoc(userRef, {
+      image: image,
+    });
+  // }
+
 }
 
 export async function updateBadgeName(id, name){
-  const db = getFirestore();
-  const userRef = doc(db, "badges", id);
-  await updateDoc(userRef, {
-    name: name,
-  });
+  if(name.length>20){
+    console.log("name exceed 20 word count");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "badges", id);
+    await updateDoc(userRef, {
+      name: name,
+    });
+  }
+
 }
 
 export async function updateBadgePoint(id, point){
-  const db = getFirestore();
-  const userRef = doc(db, "badges", id);
-  await updateDoc(userRef, {
-    point: point,
-  });
+  if(isNaN(point)){
+    console.log(point+ "is not a number");
+  }else{
+    const db = getFirestore();
+    const userRef = doc(db, "badges", id);
+    await updateDoc(userRef, {
+      point: point,
+    });
+  }
+
 }
 
 // addBadgeUser("A3kE5jdVFjySfCCN6hjw","badgeUser0069");
