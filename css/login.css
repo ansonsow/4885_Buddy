@@ -1,13 +1,14 @@
-    /*------ VARIABLES FOR LOG IN PAGE  ------*/
+/*---------- VARIABLES FOR LOGIN PAGE  ----------*/
 
 :root {
     --top-logo-size: 4rem;
     --top-logo-color: #999;
     --welcome-font: "impact";
     --span-font: "arial";
-    --form-width: 54%
+    --form-width-full: 60%;
+    --form-width-mobile: 90%
 }   
-/*-------------------------------------------*/
+/*----------------------------------------------*/
 
 * {
     margin:0;
@@ -15,19 +16,33 @@
     box-sizing:border-box;
 }
 
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
 .left-container{
     width: 50%;
 }
 
-.login-logo {
-    margin: 5%;
+/*---------- Right Image / LOGO --------*/
+img {
+    width: 100%;
+    height: 716px;
+    border-radius: 20% 0 0 20%;
+} 
+
+.buddy-logo {
+    position: absolute;
+    top:5%;
+    left:5%;
     font-size: var(--top-logo-size);
     text-decoration: none;
     color: var(--top-logo-color);
 }
-
-h1{
-    margin: 30% 10% 5% 10% ;
+/*---------- Welcome Title --------*/
+.welcome{
+    margin: 40% 10% 5% 15% ;
     font-family: var(--welcome-font);
 }
 
@@ -35,9 +50,10 @@ h1{
     font-family: var(--span-font);
 }
 
+/*---------- Form Section --------*/
 .text_field input {
-    margin: 0 auto 3% 10%;
-    width: var(--form-width);
+    margin: 0 auto 3% 15%;
+    width: var(--form-width-full);
     border:none;
     outline:none;
     background: none;
@@ -47,10 +63,10 @@ h1{
 }
 
 .checkbox-wrap{
-    width: var(--form-width);
+    width: var(--form-width-full);
     display: flex;
     justify-content: space-between;
-    margin: 0 auto 5% 10%;
+    margin: 0 auto 5% 15%;
     font-size: 0.8rem;
     font-family: helvetica;
 }
@@ -60,9 +76,11 @@ h1{
     color: #000;
 }
 
-
+/*---------- Button Section --------*/
 .btn-wrap{
-    margin: 5% auto 3% 10%;
+    text-align: center;
+    width: var(--form-width-mobile);
+    margin-bottom: 10%;
 }
 
 .ctn{
@@ -75,14 +93,62 @@ h1{
     cursor: pointer;
 }
 
-img {
-    width: 710px;
-    height: 710px;
-    border-top-left-radius: 20%;
-    border-bottom-left-radius: 20%;
-} 
+@media (max-width: 600px) {
+    .container {
+        display: block;
+    }
 
-.container {
-    display: flex;
+    .left-container{
+        width: 100%;
+    }
+
+    /*---------- Head Section --------*/
+    img {
+        width: 100%;
+        height: 450px;
+        border-radius: 0 0 15% 15%;
+        margin-bottom: 15%;
+    } 
+
+    .buddy-logo {
+        display: none;
+    }
+
+    .welcome, .buddy {
+        z-index: 1;
+        position: absolute;
+        top: 17%
+    }
+
+    .buddy {
+        display: block;
+        margin-top: 40px;
+    }
+
+
+    /*---------- Form Section --------*/
+    .form {
+        width: 80%;
+        margin: auto;
+    }
+
+    .text_field{
+        margin: 0;
+    }
+
+    .text_field input {
+        margin: 0 0 8% 0;
+        width: var(--form-width-mobile);
+    }
+    
+    .checkbox-wrap{
+        width: var(--form-width-mobile);
+        margin: 0 0 10% 0%;
+    }
+
+    /*---------- Button Section --------*/
+    .ctn{
+        width: 10rem;
+        padding: 5%;
+    }
 }
-
