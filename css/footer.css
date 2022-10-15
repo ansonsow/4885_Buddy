@@ -6,9 +6,11 @@
 
 /* left column */
 .home-footer-content{
-    padding: 4% 3% 3% 10%;
+    padding: 3.5vw 5vw;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 1fr 1.25fr 1fr;
+    grid-gap:4vw;
+    place-items:center;
 }
 
 .home-footer-logo .logo{
@@ -29,16 +31,13 @@
     font-size: 1.2rem;
 }
 
-.social-icon i{
-    margin:2% 2% 0 0;
+.social-icon {
+    margin-right:0.4rem;
+    font-size:1rem;
     color:var(--Main-Title);
 }
 
 /* middle column */
-.home-footer-about{
-    margin: 10% 0 0 15%;
-}
-
 .home-footer-about h2{
     font-family:var(--Body-Font);
     font-size: 1.5rem;
@@ -55,10 +54,6 @@
 }
 
 /* right colunm */
-.home-footer-contact{
-    margin: 10% 0 0 37%
-}
-
 .home-footer-contact h2{
     font-family:var(--Body-Font);
     font-size: 1.5rem;
@@ -69,6 +64,14 @@
 .home-footer-contact h2,
 .home-footer-contact h2 a {
     color:var(--Main-Title);
+}
+
+.footer-about-us {
+    display:none;
+}
+
+.home-footer-contact h2:last-child {
+    margin-bottom:0;
 }
 
 /* copy right */
@@ -86,34 +89,49 @@
 }
 
 @media (max-width: 600px) {
-    .home-footer-logo p{
-        font-size: 1rem;
+    .home-footer-content {
+        grid-template-columns:1fr 1.1fr;
+        grid-gap:10vw;
     }
 
+    /* "Buddy */
     .home-footer-logo h2{
-        font-size: 0.7rem;
+        font-size: 0.9rem;
     }
 
-    .home-footer-about p{
-        margin-top: 5%;
-        font-size: 0.2rem;
+    /* "follow us */
+    .home-footer-logo p{
+        font-size: 1.1rem;
     }
 
-    .home-footer-about p{
-        margin-top: 4%;
-        font-size: 1rem;
+    /* social media icons */
+    .home-footer-logo .social-icon {
+        font-size:0.7rem;
+        margin-right:4px;
+    }
+
+    /* "About Us" */
+    .home-footer-about {
+        display:none;
+    }
+
+    .footer-about-us {
+        display:block;
     }
 
     .home-footer-about h2{
-        font-size: 1rem;
+        font-size: 1.4rem;
     }
     
+    /* "About Us", paragraph */
     .home-footer-about p{
-        font-size: 0.7rem;
+        font-size: 0.9rem;
     }
 
-    .home-footer-contact{
-        margin: 10% 0 0 10%
+    /* "Contact Us", "Help" */
+    .home-footer-contact h2 {
+        font-size:1.3rem;
+        margin-bottom:0.5rem;
     }
 
     .home-footer-contact p{

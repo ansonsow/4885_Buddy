@@ -175,10 +175,6 @@ nav.home-topnav .logo {
         margin: 15px!important;
     }
 
-    .hamburger-links:hover{
-        color: #999;
-    }
-
     .top-navlinks.active {
         left: 0;
     }

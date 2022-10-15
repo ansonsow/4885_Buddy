@@ -63,16 +63,18 @@ let filesReadyCheck = setInterval(() => {
 /* ---------- Hamburger Menu ----------*/
 
 function vanillaJS_functions(){
-    const changeIcon = function(icon){
-        icon.classList.toggle("fa-xmark");
-    }
+    // const changeIcon = function(icon){
+    //     icon.classList.toggle("fa-xmark");
+    // }
 
-    const topHamburger = document.querySelector(".top-hamburger");
+    const topHamburger = document.querySelector(".top-hamburger i");
     const navMenu = document.querySelector(".top-navlinks");
 
-    topHamburger.addEventListener("click", ()=>{
-    topHamburger.classList.toggle("active")
-    navMenu.classList.toggle("active")
+    topHamburger.addEventListener("click", () => {
+        topHamburger.classList.toggle("fa-bars");
+        topHamburger.classList.toggle("fa-xmark");
+        topHamburger.classList.toggle("active")
+        navMenu.classList.toggle("active")
     })
 
 }//end vanillaJS_functions()
