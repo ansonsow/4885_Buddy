@@ -1,7 +1,7 @@
 /* ------------- Footer Section ------------ */
 .home-footer{
-    background-color: var(--BG);
-    color:var(--Main-Title);
+    background-color: var(--Orange);
+    color:var(--White);
 }
 
 /* left column */
@@ -16,7 +16,7 @@
 .home-footer-logo .logo{
     font-family:var(--Heading-Font);
     font-size: 2rem;
-    color:var(--Main-Title);
+    color:var(--White);
 }
 
 .home-footer-logo h2, h2.slogan {
@@ -34,7 +34,7 @@
 .social-icon {
     margin-right:0.4rem;
     font-size:1rem;
-    color:var(--Main-Title);
+    color:var(--White);
 }
 
 /* middle column */
@@ -45,7 +45,7 @@
 
 .home-footer-about h2,
 .home-footer-about h2 a {
-    color:var(--Main-Title);
+    color:var(--White);
 }
 
 .home-footer-about p{
@@ -63,7 +63,7 @@
 
 .home-footer-contact h2,
 .home-footer-contact h2 a {
-    color:var(--Main-Title);
+    color:var(--White);
 }
 
 .footer-about-us {
@@ -79,7 +79,7 @@
     width: 90%;
     margin: auto;
     border:0px solid transparent;
-    border-top:1px solid var(--Main-Title);
+    border-top:1px solid var(--White);
 }
 
 .copy-right{

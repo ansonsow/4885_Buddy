@@ -71,8 +71,8 @@ h1, h2, h3, h4, h5, h6 {
     margin:0;
     font-size: var(--Hero-Title-Size);
     white-space:pre-line;
-    color:var(--Main-Title);
-    text-shadow:0px calc(var(--Hero-Title-Size) * 0.1) calc(var(--Hero-Title-Size) * 0.1) var(--BG);
+    color:var(--White);
+    text-shadow:0px calc(var(--Hero-Title-Size) * 0.1) calc(var(--Hero-Title-Size) * 0.1) var(--Orange);
     z-index: 1;
 }
 

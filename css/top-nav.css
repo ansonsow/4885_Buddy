@@ -1,6 +1,6 @@
 /*-------- TOP BAR --------*/
 header {
-    background-color:var(--BG);
+    background-color:var(--Orange);
 }
 
 nav.home-topnav {
@@ -26,7 +26,7 @@ nav.home-topnav {
 
 .top-hamburger i {
     font-size:var(--Top-Hamburger-Size);
-    color:var(--Main-Title);
+    color:var(--White);
 }
 
 @media (min-width: 600px) {
@@ -68,11 +68,11 @@ nav.home-topnav .logo {
     outline:none;
     border:0px solid transparent;    
     font-family:var(--Body-Font);
-    color:var(--Searchbar-Text-Color);
+    color:var(--Text-Color);
 }
 
 .searchbar, .searchbar input {
-    background:var(--Searchbar-BG);
+    background:var(--White);
     font-size:var(--Searchbar-Font-Size);
 }
 
@@ -86,7 +86,7 @@ nav.home-topnav .logo {
 
 .searchbar button i {
     font-size:var(--Searchbar-Font-Size);
-    color:var(--Searchbar-Icon-Color-A);
+    color:var(--Text-Color);
 }
 
 @media (max-width: 600px) {
@@ -104,10 +104,18 @@ nav.home-topnav .logo {
     .searchbar input {
         visibility:collapse;
         width:0!important;
+        display:none;
     }
 
     .searchbar button i {
-        color:var(--Searchbar-Icon-Color-B);
+        color:var(--White);
+    }
+}
+
+@media (max-width: 1000px) {
+    .searchbar {
+        flex:1;
+        width:auto;
     }
 }
 
@@ -121,7 +129,7 @@ nav.home-topnav .logo {
 }
 
 .top-navlinks a {
-    color:var(--Main-Title);
+    color:var(--White);
 }
 
 .top-navlinks a + a {
@@ -147,7 +155,7 @@ nav.home-topnav .logo {
 
     .top-navlinks hr {
         border:0px solid transparent;
-        border-bottom: 1px dashed var(--Main-Title);
+        border-bottom: 1px dashed var(--White);
         text-align: left;
         margin: 10px;
         width: 70%;
@@ -155,7 +163,7 @@ nav.home-topnav .logo {
 
     .top-navlinks {
         position: absolute;
-        background-color: var(--BG);
+        background-color: var(--Orange);
         left:100vw;
         top: 97px;
         gap:0;

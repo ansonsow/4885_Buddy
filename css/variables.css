@@ -3,32 +3,32 @@
 :root {
     /*------ FONTS ------*/
     --Body-Font:"brandon-grotesque";
-    --Body-Font-Size:1rem;
-    --Text-Color:#545454;
+    --Body-Font-Size:1rem;    
 
     --Heading-Font:"macho";
 
     /*------ COLORS ------*/
-    --BG:#ff7951; /* color for top bar & footer */
-    --Main-Title:#f9f9f9;
+    --Orange:#ff7951;
+    --Orange-Light:#f7b1A6;
 
+    --Yellow:#ffb543;
     --Yellow-Faded:#ffe4ae;
 
-    --Accent-Color:#222; /* change later */
-    --Links-Color:#222;    
+    --Blue:#2367a2;
+    --Blue-Light:#7fa9c6;
+
+    --White:#f9f9f9;
+
+    --Text-Color:#545454;   
 
     /*------ TOP BAR ------*/
     --TopBar-Padding:20px;
     --Top-Hamburger-Size:1.4rem;
 
     /*------ SEARCHBAR ------*/
-    --Searchbar-BG:#fff;
     --Searchbar-Padding:0.8rem 1rem;
     --Searchbar-Font-Size:1rem;
-    --Searchbar-Text-Color:#222;
-    --Searchbar-Icon-Color-A:#999;
-    --Searchbar-Icon-Color-B:#444;
-    --Searchbar-Roundness:2rem;
+    --Searchbar-Roundness:30px;
     --Searchbar-Spacing:25px; /* left & right gap */
 
     /*------ TOP RIGHT LINKS ------*/
