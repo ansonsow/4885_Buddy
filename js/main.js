@@ -63,10 +63,7 @@ let filesReadyCheck = setInterval(() => {
 /* ---------- Hamburger Menu ----------*/
 
 function vanillaJS_functions(){
-    // const changeIcon = function(icon){
-    //     icon.classList.toggle("fa-xmark");
-    // }
-
+    
     const topHamburger = document.querySelector(".top-hamburger i");
     const navMenu = document.querySelector(".top-navlinks");
 
