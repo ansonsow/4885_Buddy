@@ -1,12 +1,18 @@
 /* Global CSS Variables */
 
 :root {
-    /*------ GENERAL ------*/
-    --Body-Font:"Inter";
+    /*------ FONTS ------*/
+    --Body-Font:"brandon-grotesque";
     --Body-Font-Size:1rem;
-    --Text-Color:#444;
+    --Text-Color:#545454;
+
+    --Heading-Font:"macho";
+
+    /*------ COLORS ------*/
+    --Secondary-Color:#ff7951; /* color for top bar & footer */
+
     --Accent-Color:#222; /* change later */
-    --Links-Color:#222;
+    --Links-Color:#222;    
 
     /*------ TOP BAR ------*/
     --TopBar-Padding:20px;
@@ -47,13 +53,13 @@
     --Carousel-Image-Height:400px;
 
     --Carousel-Arrows-Size:2rem;
-    --Carousel-Arrows-Color:#222;
+    --Carousel-Arrows-Color:#eee;
     --Carousel-Arrows-Gap:-3rem;
 
     --Carousel-Bottom-Gap:-2rem;
     --Carousel-Dots-Size:0.6rem;
-    --Carousel-Dots-Color:#bbb;
-    --Carousel-Dots-Active-Color:#222;
+    --Carousel-Dots-Color:#555;
+    --Carousel-Dots-Active-Color:#eee;
     --Carousel-Dots-Padding:0px;
     --Carousel-Dots-Spacing:30px;
 

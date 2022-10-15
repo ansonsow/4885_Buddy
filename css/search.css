@@ -6,10 +6,12 @@
 }   
 /*----------------------------------------------*/
 
+/* top bar adjustments for SEARCH PAGE */
 header {
     position:fixed;
     right:0;
     background-color:transparent;
+    z-index:3;
 }
 
 .top-hamburger, header .logo, .searchbar {

@@ -1,3 +1,9 @@
+/* FONT: Brandon Grotesque (body font) */
+@import url("https://use.typekit.net/xfl3wgw.css");
+
+/* FONT: Macho (Bold, headings) */
+@import url("https://use.typekit.net/zew8byy.css");
+
 * {
     margin:0;
     padding:0;
@@ -30,6 +36,10 @@ a {
     color:var(--Links-Color);
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family:var(--Heading-Font);
+}
+
 /* --------------- Top Hero Section -------------- */
 
 .home-top-section{
@@ -50,7 +60,6 @@ a {
 
 .hero-text h1 {
     margin:0;
-    font-family: var(--Body-Font);
     font-size: var(--Hero-Title-Size);
     font-weight:700; /* temporary, for Inter only */
     white-space:pre-line;
@@ -233,7 +242,7 @@ a {
     justify-content:center;
     padding: 20px;    
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 700;
     border-radius: 3rem;
     background-color: var(--Category-Links-BG);
     border:1px solid var(--Category-Links-Border);
@@ -253,7 +262,7 @@ a {
 
 .free-online a {
     padding:20px;
-    font-weight: 500;
+    font-weight: 700;
     border-radius: 3rem;
     background-color:var(--Category-Buttons-BG);
     border:0px solid transparent;
