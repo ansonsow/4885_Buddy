@@ -25,9 +25,7 @@ document.querySelectorAll(".home-carousel img, .slick-cloned img").forEach(funct
 });
 
 // get FINAL slider image
-document.querySelectorAll(".slick-track > .slick-cloned[data-slick-index='-1'] img").forEach(function(lastSliderIMG){
-    lastSliderIMG.setAttribute("src",slideshowIMGArray[slideshowIMGArray.length-1]);
-});
+document.querySelector(".slick-track > .slick-cloned[data-slick-index='-1'] img").setAttribute("src",slideshowIMGArray[slideshowIMGArray.length-1]);
 
 // add ALL slider images
 document.querySelectorAll(".slick-slide ~ .slick-cloned img").forEach(function(sliderIMGEach, imgOrder){
