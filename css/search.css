@@ -3,6 +3,8 @@
 :root {
     --top-logo-size: 3rem;
     --top-logo-color: #888;
+    --logo-padding: 30px;
+    --text-field-width: 300px;
 }   
 /*----------------------------------------------*/
 
@@ -22,10 +24,19 @@ nav.home-topnav {
     grid-template-columns:none;
 }
 
+/* Override top-navlinks Color */
+.top-navlinks a {
+    color:#999;
+}
+
+/*----------------------------------------------*/
+/* ------------ LEFT Column ------------------- */
+/* Logo & Text fields */
 .buddy-logo{
     font-size: var(--top-logo-size);
     color: var(--top-logo-color);
     text-decoration: none;
+    padding: var(--logo-padding);
 }
 
 .container{
@@ -54,12 +65,15 @@ nav.home-topnav {
     background: none;
     border-bottom: 1px solid #999;
     font-size: 1.2rem;
-}    
+    color: #888;
+    width:var(--text-field-width)
+}   
 
 .drop-down {
     margin: 0 auto 5% 5%;
     color: #888;
-    width: var(--form-width-full);
+    /* width: var(--form-width-full); */
+    width:var(--text-field-width);
     border:none;
     outline:none;
     background: none;
@@ -67,6 +81,8 @@ nav.home-topnav {
     font-size: 1.2rem;
 }
 
+
+/* ------ Buttons ------ */
 .btn-wrap{
     display: flex;
     justify-content: center;
@@ -87,3 +103,46 @@ nav.home-topnav {
     background-color: #c8c8c8;
     border: none;
 }
+
+
+/* --------Event Card---------- */
+
+.event-wraper {
+    display: block;
+    width: 60%; 
+    margin: 5%;
+}
+
+.event-container {
+    width: 100%;
+    margin-top: 4%;
+}
+
+.card-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border-radius: 0 20px 20px 0;
+    background-color: #f0f0f0;
+    margin: auto;
+}
+
+.card-content.image {
+    width: 350px;
+    height: 124px;
+    border-radius: 0 20px 20px 0;
+}
+
+.card-description {
+    padding: 0.5rem 0;
+}
+
+h3.card-content{
+    padding-bottom: 0.4rem;
+}
+
+
+@media (max-width: 600px) {
+    /* still working on it */
+}
+
