@@ -35,36 +35,7 @@
 
 <body>
     <!------ TOP BAR ------>
-    <header>
-        <nav class="home-topnav">
-            <a class="top-hamburger" href="#">
-                <i class="fa-solid fa-bars" onclick="changeIcon(this)"></i>
-            </a>
-
-            <a class="logo" href="#">Buddy</a>
-
-            <form class="searchbar" action="/search" method="get">
-                <input type="text" placeholder="Search">
-                <button class="search-icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
-
-            <div class="top-navlinks">
-                <a class="hamburger-links hide-on-web" href="#">Home</a>
-                <a class="hamburger-links" href="#">Message</a>
-                <a class="hamburger-links" href="#">Find Events</a>
-                <a class="hamburger-links hide-on-mobile" href="#">Help</a>
-
-                <a class="account-icon hide-on-mobile" href="#">
-                    <i class="fa-regular fa-circle-user"></i>
-                </a>
-                <hr class="hide-on-web">
-                <a class="hamburger-links hide-on-web" href="#">Contact US</a>
-                <a class="hamburger-links hide-on-web" href="#">Help</a>
-            </div>
-        </nav>
-    </header>
+    <div js-include-html="../html/top-bar.html"></div>
 
     <!------ MAIN ------>
     <main>
@@ -123,31 +94,6 @@
     </main>
 
     <!------ FOOTER ------>
-    <footer>
-        <div class="home-footer">
-            <div class="home-footer-content">
-                <div class="home-footer-logo">
-                    <a class="logo" href="#">Buddy</a>
-                    <h2>BUDDY SLOGAN</h2>
-                    <p>Follow us</p>
-                    <a class="social-icon" href="#"><i class="fa-brands fa-square-facebook fa-2x"></i></a>
-                    <a class="social-icon" href="#"><i class="fa-brands fa-instagram fa-2x"></i></a>
-                    <a class="social-icon" href="#"><i class="fa-brands fa-square-twitter fa-2x"></i></a>
-                </div>
-                <div class="home-footer-about">
-                    <h2><a href="#">About Us</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="home-footer-contact">
-                    <p><a href="#">Contact Us</a></p>
-                    <p><a href="#">Help</a></p>
-                </div>
-            </div>
-
-
-            <hr>
-            <p class="copy-right">&copy; 2022 Finder Masters</p>
-        </div>
-    </footer>
+    <div js-include-html="../html/footer.html"></div>
 </body>
 </html>

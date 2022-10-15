@@ -6,10 +6,18 @@
 }   
 /*----------------------------------------------*/
 
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+header {
+    position:fixed;
+    right:0;
+    background-color:transparent;
+}
+
+.top-hamburger, header .logo, .searchbar {
+    display:none!important;
+}
+
+nav.home-topnav {
+    grid-template-columns:none;
 }
 
 .buddy-logo{
