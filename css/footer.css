@@ -1,6 +1,7 @@
 /* ------------- Footer Section ------------ */
 .home-footer{
-    background-color: var(--Header-BG);
+    background-color: var(--BG);
+    color:var(--Main-Title);
 }
 
 /* left column */
@@ -13,7 +14,7 @@
 .home-footer-logo .logo{
     font-family:var(--Heading-Font);
     font-size: 2rem;
-    color:#949494;
+    color:var(--Main-Title);
 }
 
 .home-footer-logo h2, h2.slogan {
@@ -30,6 +31,7 @@
 
 .social-icon i{
     margin:2% 2% 0 0;
+    color:var(--Main-Title);
 }
 
 /* middle column */
@@ -38,8 +40,13 @@
 }
 
 .home-footer-about h2{
+    font-family:var(--Body-Font);
     font-size: 1.5rem;
-    color: #000;
+}
+
+.home-footer-about h2,
+.home-footer-about h2 a {
+    color:var(--Main-Title);
 }
 
 .home-footer-about p{
@@ -52,17 +59,24 @@
     margin: 10% 0 0 37%
 }
 
-.home-footer-contact p{
+.home-footer-contact h2{
+    font-family:var(--Body-Font);
     font-size: 1.5rem;
     font-weight: 700;
-    color: #000;
     margin-bottom: 5%;
+}
+
+.home-footer-contact h2,
+.home-footer-contact h2 a {
+    color:var(--Main-Title);
 }
 
 /* copy right */
 .home-footer hr{
     width: 90%;
     margin: auto;
+    border:0px solid transparent;
+    border-top:1px solid var(--Main-Title);
 }
 
 .copy-right{

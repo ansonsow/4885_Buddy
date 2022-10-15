@@ -1,5 +1,8 @@
 /*------ INCLUDE HTML ------*/
 /* credit: www.w3schools.com/howto/tryit.asp?filename=tryhow_html_include_2 */
+
+let filesReady;
+
 function jsIncludeHTML() {
   var z, i, elmnt, file, xhttp;
   /*loop through a collection of all HTML elements:*/
@@ -19,6 +22,7 @@ function jsIncludeHTML() {
           elmnt.removeAttribute("js-include-html");
           elmnt.replaceWith(...elmnt.childNodes); // unwrap
           jsIncludeHTML();
+          filesReady = "yes";
         }
       }      
       xhttp.open("GET", file, true);
@@ -39,16 +43,36 @@ $(document).ready(function(){
     });
 });
 
+// check when the reusable site parts have been loaded
+// via jsIncludeHTML()
+// when loaded, proceed with vanilla JS functions
+let timeSt = Date.now();
+let timeStop = 1000;
+
+let filesReadyCheck = setInterval(() => {
+	if(Date.now() - timeSt > timeStop){
+		clearInterval(filesReadyCheck);
+	} else {
+		if(filesReady == "yes"){
+            clearInterval(filesReadyCheck);
+            vanillaJS_functions();
+        }
+	}
+},0);
 
 /* ---------- Hamburger Menu ----------*/
-const changeIcon = function(icon){
-    icon.classList.toggle("fa-xmark")
-}
 
-const topHamburger = document.querySelector(".top-hamburger");
-const navMenu = document.querySelector(".top-navlinks");
+function vanillaJS_functions(){
+    const changeIcon = function(icon){
+        icon.classList.toggle("fa-xmark");
+    }
 
-topHamburger.addEventListener("click", ()=>{
-   topHamburger.classList.toggle("active")
-   navMenu.classList.toggle("active")
-})
+    const topHamburger = document.querySelector(".top-hamburger");
+    const navMenu = document.querySelector(".top-navlinks");
+
+    topHamburger.addEventListener("click", ()=>{
+    topHamburger.classList.toggle("active")
+    navMenu.classList.toggle("active")
+    })
+
+}//end vanillaJS_functions()

@@ -545,7 +545,7 @@ const createAccount = async () => {
 }
 
 // document.getElementById("btnSignup").addEventListener("click", createAccount);
-btnsignup.addEventListener("click", createAccount);
+// btnsignup.addEventListener("click", createAccount);
 
 
 //To change UI

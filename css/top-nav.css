@@ -1,6 +1,6 @@
 /*-------- TOP BAR --------*/
 header {
-    background-color:var(--Header-BG);
+    background-color:var(--BG);
 }
 
 nav.home-topnav {
@@ -19,10 +19,14 @@ nav.home-topnav {
 /*-------- HAMBURGER MENU --------*/
 .top-hamburger {
     line-height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .top-hamburger i {
     font-size:var(--Top-Hamburger-Size);
+    color:var(--Main-Title);
 }
 
 @media (min-width: 600px) {
@@ -50,7 +54,9 @@ nav.home-topnav .logo {
     display:flex;
     align-items:center;
     justify-content:space-between;
-    flex:1;
+    /* flex:1; */
+    width:500px;
+    height:40px;
 
     margin:0 var(--Searchbar-Spacing);
     padding:var(--Searchbar-Padding);
@@ -110,6 +116,12 @@ nav.home-topnav .logo {
     display:flex;
     align-items:center;
     justify-content:center;
+    font-size:var(--TopBar-Links-Size);
+    font-weight:500;
+}
+
+.top-navlinks a {
+    color:var(--Main-Title);
 }
 
 .top-navlinks a + a {
@@ -134,8 +146,8 @@ nav.home-topnav .logo {
     }
 
     .top-navlinks hr {
-        border-bottom: solid 1px #000;
-        border-style: dashed;
+        border:0px solid transparent;
+        border-bottom: 1px dashed var(--Main-Title);
         text-align: left;
         margin: 10px;
         width: 70%;
@@ -143,20 +155,24 @@ nav.home-topnav .logo {
 
     .top-navlinks {
         position: absolute;
-        background-color: var( --Header-BG);
-        left:-100%;
-        top: 100px;
+        background-color: var(--BG);
+        left:100vw;
+        top: 97px;
         gap:0;
         flex-direction: column;
         justify-content: flex-start;
         width: 100%;
-        height: 38%;
+        /* height: 38%; */
         transition: 0.3s;
         z-index: 1;
     }
 
+    .top-navlinks a + a {
+        margin-left:0;
+    }
+
     .hamburger-links{
-        margin: 15px;
+        margin: 15px!important;
     }
 
     .hamburger-links:hover{

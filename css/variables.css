@@ -9,7 +9,10 @@
     --Heading-Font:"macho";
 
     /*------ COLORS ------*/
-    --Secondary-Color:#ff7951; /* color for top bar & footer */
+    --BG:#ff7951; /* color for top bar & footer */
+    --Main-Title:#f9f9f9;
+
+    --Yellow-Faded:#ffe4ae;
 
     --Accent-Color:#222; /* change later */
     --Links-Color:#222;    
@@ -41,8 +44,6 @@
     --Hero-CTA-Top-Gap:4vh;
     --Hero-CTA-Size:1.2rem;
     --Hero-CTA-Padding:0.6rem 5rem;
-    --Hero-CTA-BG:#f0f0f0;
-    --Hero-CTA-Border:#747474;
 
     --Hero-Image-Left-Margin:-7rem;
     --Hero-Image-Width:60vw;
