@@ -1,0 +1,76 @@
+/*---------- VARIABLES FOR LOGIN PAGE  ----------*/
+
+:root {
+    --top-logo-size: 3rem;
+    --top-logo-color: #888;
+}   
+/*----------------------------------------------*/
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.buddy-logo{
+    font-size: var(--top-logo-size);
+    color: var(--top-logo-color);
+    text-decoration: none;
+}
+
+.container{
+    display: flex;
+}
+
+.left-container{
+    width: 40%;
+    background-color: #f0f0f0;
+    border-radius: 0 15% 15% 0;
+}
+
+.text-field-wrap{
+    margin: 35% 0 0 10%;
+}
+
+
+.text-field input {
+    margin: 0 auto 5% 5%;
+    width: var(--form-width-full);
+    border:none;
+    outline:none;
+    background: none;
+    border-bottom: 1px solid #999;
+    font-size: 1.2rem;
+}    
+
+.drop-down {
+    margin: 0 auto 5% 5%;
+    color: #888;
+    width: var(--form-width-full);
+    border:none;
+    outline:none;
+    background: none;
+    border-bottom: 1px solid #999;
+    font-size: 1.2rem;
+}
+
+.btn-wrap{
+    display: flex;
+    justify-content: center;
+    margin: 10% 0 10% 0;
+}
+
+.ctn{
+    width: 10rem;
+    font-size: 1rem;
+    padding: 3%;
+    margin: 4%;
+    border-radius: 5rem;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.ctn:hover{
+    background-color: #c8c8c8;
+    border: none;
+}
