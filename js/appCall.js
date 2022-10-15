@@ -8,7 +8,7 @@ const db = getFirestore();
 // all documents in a collection
 
 
-// var q = query(collection(db, "events"), where("hostId", "==", "testHostId (str, 20)"), where("name","==","testEventname1 (str, 20)"));
+// let q = query(collection(db, "events"), where("hostId", "==", "testHostId (str, 20)"), where("name","==","testEventname1 (str, 20)"));
 // const querySnapshot = await getDocs(q);
 // querySnapshot.forEach((doc) => {
 //     console.log(doc.id);
