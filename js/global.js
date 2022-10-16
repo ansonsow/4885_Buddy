@@ -35,14 +35,6 @@ function jsIncludeHTML() {
 
 jsIncludeHTML();
 
-$(document).ready(function(){
-    /*------ HOME SLICK CAROUSEL ------*/
-    $(".home-carousel").slick({
-        slidesToShow: 1,
-        dots:true
-    });
-});
-
 // check when the reusable site parts have been loaded
 // via jsIncludeHTML()
 // when loaded, proceed with vanilla JS functions
