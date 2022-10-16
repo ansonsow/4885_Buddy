@@ -1,11 +1,14 @@
 /* Global CSS Variables */
 
 :root {
-    /*------ FONTS ------*/
+    /*------ FONTS / TEXT SETTINGS ------*/
     --Body-Font:"brandon-grotesque";
     --Body-Font-Size:1rem;    
 
     --Heading-Font:"macho";
+    --H1-Size:48px;  --Mobile-H1-Size:32px;
+    --H2-Size:36px;  --Mobile-H2-Size:24px;
+    --H3-Size:32px;  --Mobile-H3-Size:18px;
 
     /*------ COLORS ------*/
     --Orange:#ff7951;
@@ -25,7 +28,7 @@
     --Header-Height:75vh;
     --Header-BG:#f0f0f0;
 
-    --Hero-Title-Size:3.4rem;
+    --Hero-Title-Size:64px;  --Mobile-Hero-Title-Size:40px;
     --Hero-Title-Line-Height:130%;
 
     --Hero-CTA-Top-Gap:6vmin;
@@ -35,22 +38,24 @@
     --Hero-CTA-Height:80px;  --Mobile-Hero-CTA-Height:57px;
     --Hero-CTA-Roundness:30px;
 
+    /*
     --Hero-Image-Left-Margin:-7rem;
     --Hero-Image-Width:60vw;
     --Hero-Image-Height:80%;
+    */
 
     /*------ CAROUSEL / SLIDESHOW ------*/
     --Carousel-Image-Width:60vw;
     --Carousel-Image-Height:400px;
 
     --Carousel-Arrows-Size:2rem;
-    --Carousel-Arrows-Color:#eee;
+    --Carousel-Arrows-Color:var(--White);
     --Carousel-Arrows-Gap:-3rem;
 
     --Carousel-Bottom-Gap:-2rem;
     --Carousel-Dots-Size:0.6rem;
-    --Carousel-Dots-Color:#555;
-    --Carousel-Dots-Active-Color:#eee;
+    --Carousel-Dots-Color:var(--Text-Color);
+    --Carousel-Dots-Active-Color:var(--White);
     --Carousel-Dots-Padding:0px;
     --Carousel-Dots-Spacing:30px;
 
