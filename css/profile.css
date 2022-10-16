@@ -31,6 +31,8 @@ nav {
 
     --Right-Content-Width:32vw;
     --Profile-Picture-Size:214px;
+    --Star-Size:36px;
+    --Star-Spacing:3px;
 }
 
 /*---------- LEFT PANEL  ----------*/
@@ -93,6 +95,9 @@ a.create-event {
 
 .right-inner {
     width:var(--Right-Content-Width);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 .profile-picture {
@@ -100,4 +105,27 @@ a.create-event {
     height:var(--Profile-Picture-Size);
     object-fit:cover;
     border-radius:100%;
+}
+
+/* row of stars */
+.star-rating {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:nowrap;
+    margin:0.5rem 0;
+}
+
+.star-rating i {
+    margin:0 calc(var(--Star-Spacing) / 2);
+    display:block;
+    font-size:var(--Star-Size);
+}
+
+.star-rating i.fill {
+    color:var(--Primary);
+}
+
+.star-rating i.empty {
+    color:var(--Secondary-Faded);
 }

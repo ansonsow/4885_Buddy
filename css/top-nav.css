@@ -1,5 +1,7 @@
 :root {
     /*------ TOP BAR ------*/
+    --TopBar-Height:80px;
+
     --TopBar-Padding:20px;
     --Top-Hamburger-Size:1.4rem;
 
@@ -28,6 +30,7 @@ nav.home-topnav {
     grid-template-columns:0fr 1fr auto;
     align-items:center;
     padding:var(--TopBar-Padding);
+    height:var(--TopBar-Height);
 }
 
 @media (max-width: 600px) {
@@ -193,8 +196,9 @@ nav .logo svg {
     .top-navlinks {
         position: absolute;
         background-color: var(--Primary);
+        top:0;
+        margin-top:var(--TopBar-Height);
         left:100vw;
-        top: 97px;
         gap:0;
         flex-direction: column;
         justify-content: flex-start;
