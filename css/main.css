@@ -67,12 +67,16 @@ h1, h2, h3, h4, h5, h6 {
     position:relative;
 }
 
+/* "Immerse yourself" */
 .hero-text h1 {
     margin:0;
+    font-family: var(--Body-Font);
+    font-weight: 500;
     font-size: var(--Hero-Title-Size);
     white-space:pre-line;
     color:var(--White);
     text-shadow:0px calc(var(--Hero-Title-Size) * 0.1) calc(var(--Hero-Title-Size) * 0.1) var(--Orange);
+    line-height: var(--Hero-Title-Line-Height);
     z-index: 1;
 }
 
@@ -84,11 +88,20 @@ h1, h2, h3, h4, h5, h6 {
 .hero-text .cta a {
     display:inline-block;
     font-family: var(--Body-Font);
+    font-weight: 700;
     font-size: var(--Hero-CTA-Size);
-    padding: var(--Hero-CTA-Padding);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width: var(--Hero-CTA-Width);
+    height: var(--Hero-CTA-Height);
+
     background: var(--Yellow-Faded);
     border: 2px dashed var(--Text-Color);
-    border-radius: 3rem;
+    border-radius: var(--Hero-CTA-Roundness);
+    text-align: center;
 }
 
 /*
@@ -108,14 +121,17 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .hero-text h1{
-        max-width:35vw;
-        font-size: 1.5rem;
+        max-width:60vw;
+        font-size: calc(var(--Hero-Title-Size) * 0.6);
         white-space:normal;
     }
 
     .hero-text .cta a {
-        font-size:1rem;
-        padding:0.7rem 2.2rem;
+        /* font-size:1rem;
+        padding:0.7rem 2.2rem; */
+        width:var(--Mobile-Hero-CTA-Width);
+        height:var(--Mobile-Hero-CTA-Height);
+        font-size:var(--Mobile-Hero-CTA-Size);
     }
 }    
 

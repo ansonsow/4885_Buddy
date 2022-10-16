@@ -5,11 +5,8 @@
 
     /*------ LOGO ------*/
     --Logo-Container-Width:150px;
-    --Logo-Width:90px;
-    --Logo-Height:calc(var(--Logo-Width) / 3);
-
-    --Mobile-Logo-Width:75px;
-    --Mobile-Logo-Height:calc(var(--Mobile-Logo-Width) / 3);
+    --Logo-Width:90px;  --Mobile-Logo-Width:75px;
+    --Logo-Height:calc(var(--Logo-Width) / 3);  --Mobile-Logo-Height:calc(var(--Mobile-Logo-Width) / 3);
 
     /*------ SEARCHBAR ------*/
     --Searchbar-Padding:0.8rem 1rem;

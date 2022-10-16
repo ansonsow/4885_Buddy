@@ -25,11 +25,15 @@
     --Header-Height:75vh;
     --Header-BG:#f0f0f0;
 
-    --Hero-Title-Size:2.5rem;
+    --Hero-Title-Size:3.4rem;
+    --Hero-Title-Line-Height:130%;
 
-    --Hero-CTA-Top-Gap:4vh;
-    --Hero-CTA-Size:1.2rem;
-    --Hero-CTA-Padding:0.6rem 5rem;
+    --Hero-CTA-Top-Gap:6vmin;
+    --Hero-CTA-Size:32px;  --Mobile-Hero-CTA-Size:18px;
+
+    --Hero-CTA-Width:280px;  --Mobile-Hero-CTA-Width:200px;
+    --Hero-CTA-Height:80px;  --Mobile-Hero-CTA-Height:57px;
+    --Hero-CTA-Roundness:30px;
 
     --Hero-Image-Left-Margin:-7rem;
     --Hero-Image-Width:60vw;
