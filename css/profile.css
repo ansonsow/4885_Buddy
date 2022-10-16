@@ -1,0 +1,103 @@
+/*---------- TOP BAR  ----------*/
+/* customized for PROFILE.html */
+
+header {
+    background:transparent;
+    position:fixed;
+    width:100%;
+    z-index:3;
+}
+
+nav {
+    grid-template-columns:1fr 1fr;
+}
+
+.searchbar {
+    display:none;
+}
+
+.top-navlinks {
+    justify-content:right;
+}
+
+.top-navlinks a {
+    color:var(--Main-Text);
+}
+
+/*---------- VARIABLES FOR PROFILE PAGE  ----------*/
+:root {
+    --Left-Panel-Width:38vw;
+    --Left-Panel-Rounding:120px;
+
+    --Right-Content-Width:32vw;
+    --Profile-Picture-Size:214px;
+}
+
+/*---------- LEFT PANEL  ----------*/
+.left-panel {
+    position:fixed;
+    top:0;left:0;
+    width:var(--Left-Panel-Width);
+    height:100vh;
+    background:var(--Primary);
+    border-radius:0 var(--Left-Panel-Rounding) var(--Left-Panel-Rounding) 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.list-links {
+    font-size:var(--H2-Size);
+    font-weight:400;
+}
+
+.list-links a {
+    display:block;
+    margin-bottom:calc(var(--H2-Size) * 0.5);
+    color:var(--White);
+}
+
+a.create-event {
+    margin-top:5vh;
+    width:280px;
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--White);
+    border-radius:30px;
+
+    font-size:var(--H3-Size);
+    font-weight:700;
+    color:var(--Primary);
+    line-height:100%;
+}
+
+@media(max-width:600px){
+    .left-panel {
+        display:none;
+    }
+}
+
+/*---------- RIGHTSIDE ----------*/
+.rightside {
+    position:fixed;
+    top:0;left:0;
+    margin-left:var(--Left-Panel-Width);
+    width:calc(100vw - var(--Left-Panel-Width));
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.right-inner {
+    width:var(--Right-Content-Width);
+}
+
+.profile-picture {
+    width:var(--Profile-Picture-Size);
+    height:var(--Profile-Picture-Size);
+    object-fit:cover;
+    border-radius:100%;
+}

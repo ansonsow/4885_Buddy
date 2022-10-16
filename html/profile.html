@@ -14,12 +14,18 @@
     <!-- api key: xcVSGa6cCt3p8cdaJHKnUCMSWesW8tzc -->
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/<version>/maps/maps-web.min.js"></script>
 
+    <!-- required assets -->
     <link href="../css/variables.css" rel="stylesheet">
     <link href="../css/global.css" rel="stylesheet">
-    <link href="../css/top-nav.css" rel="stylesheet">
-    
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     <script src="../js/global.js" defer></script>
+
+    <!-- icon font: fontawesome -->
+    <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+    
+    <!-- page-specific assets -->
+    <link href="../css/top-nav.css" rel="stylesheet">
+    <link href="../css/profile.css" rel="stylesheet">
+
 </head>
 <body>
     <!-- firebase test -->
@@ -29,5 +35,26 @@
 
     <!------ TOP BAR ------>
     <div js-include-html="../html/top-bar.html"></div>
+
+    <!------ LEFT PANEL ------>
+    <div class="left-panel">
+        <div class="list-links">
+            <a href="#">Wish List</a>
+            <a href="#">Account Settings</a>
+            <a href="#">Previous Events</a>
+            <a href="#">My Reviews</a>
+            <a href="#">Manage my Events</a>
+
+            <a class="create-event" href="#">Create an Event</a>
+        </div>
+    </div><!--end left panel-->
+
+    <!------ RIGHTSIDE ------>
+    <div class="rightside">
+        <div class="right-inner">
+            <img class="profile-picture" src="../images/sad-sushi.jpeg">
+        </div>
+    </div>
+
 </body>
 </html>
