@@ -22,7 +22,18 @@ You need to remove the `4885_Buddy` folder from your *local* computer first, and
 
 7. Click `profile.html`. If you are able to see `"new description"`, it is working.  
 
-8. Click `main.html` and you should see the homepage Pam & HT worked on:  
-<img src="https://user-images.githubusercontent.com/25330392/193746578-638558d0-f450-4fb2-bece-32f6f802ea94.png" width="420">
+8. Click `main.html` and you should see the homepage:  
+<!--<img src="https://user-images.githubusercontent.com/25330392/193746578-638558d0-f450-4fb2-bece-32f6f802ea94.png" width="420">-->
+<img src="https://user-images.githubusercontent.com/25330392/196013655-38b8754a-3504-4d1d-93f4-85e61de824fa.png" width="420">
 
-💬 Currently there is no security in our database (authentication has yet to be figured out).
+
+---
+
+### Credits:
+
+Images used:  
+[github.com/ansonsow/4885_Buddy/tree/main/images](https://github.com/ansonsow/4885_Buddy/tree/main/images)
+* [unsplash.com/photos/cuKJre3nyYc](https://unsplash.com/photos/cuKJre3nyYc)
+* [unsplash.com/photos/cPgUiIos-q0](https://unsplash.com/photos/cPgUiIos-q0)
+* [unsplash.com/photos/T22nibt5XvI](https://unsplash.com/photos/T22nibt5XvI)
+* [unsplash.com/photos/Nwc-Z3_aEvw](https://unsplash.com/photos/Nwc-Z3_aEvw)
