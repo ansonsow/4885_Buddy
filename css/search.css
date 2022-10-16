@@ -1,44 +1,38 @@
+/* top bar adjustments for SEARCH PAGE */
+header {
+    background:transparent;
+    position:fixed;
+    width:100%;
+    z-index:3;
+}
+
+nav {
+    grid-template-columns:1fr 1fr;
+}
+
+.searchbar {
+    display:none;
+}
+
+.top-navlinks {
+    justify-content:right;
+}
+
+.top-navlinks a {
+    color:var(--Main-Text);
+}
+/*------------------------------------------------*/
+
 /*---------- VARIABLES FOR SEARCH PAGE  ----------*/
 
 :root {
-    --top-logo-size: 3rem;
-    --top-logo-color: #888;
-    --logo-padding: 30px;
     --text-field-width: 310px;
 }   
 /*----------------------------------------------*/
 
-/* top bar adjustments for SEARCH PAGE */
-header {
-    position:fixed;
-    right:0;
-    background-color:transparent;
-    z-index:3;
-}
 
-.top-hamburger, header .logo, .searchbar {
-    display:none!important;
-}
-
-nav.home-topnav {
-    grid-template-columns:none;
-}
-
-/* Override top-navlinks Color */
-.top-navlinks a {
-    color:#999;
-}
-
-/*----------------------------------------------*/
 /* ------------ LEFT Column ------------------- */
-/* Logo & Text fields */
-.buddy-logo{
-    font-size: var(--top-logo-size);
-    color: var(--top-logo-color);
-    text-decoration: none;
-    padding: var(--logo-padding);
-}
-
+/* ---------- Text fields ---------- */
 .container{
     position:fixed;
     width:100%;
@@ -48,12 +42,13 @@ nav.home-topnav {
 
 .left-container{
     width: 40%;
-    background-color: #f0f0f0;
+    background-color: var(--Primary);
     border-radius: 0 15% 15% 0;
+    color: var(--White);
 }
 
 .text-field-wrap{
-    margin: 35% 0 0 10%;
+    margin: 35% 0 0 15%;
 }
 
 .text-field input, .drop-down {
@@ -62,34 +57,44 @@ nav.home-topnav {
     border:none;
     outline:none;
     background: none;
-    border-bottom: 1px solid #999;
-    font-size: 1.2rem;
-    color: #888;
-    width:var(--text-field-width)
+    border-bottom: 1px solid #000;
+    font-size: var(--Body-Font-Size);
+    color: #000;
+    width:var(--text-field-width);
+    font-family: var(--Heading-Font);
 }
 
+::placeholder{
+    color: #000;
+}
+
+
 /* ------ Buttons ------ */
-.btn-wrap{
+.btn-wrap {
     display: flex;
     justify-content: center;
     margin: 10% 0 10% 0;
 }
 
-.ctn{
-    width: 10rem;
+.ctn {
+    width: 8rem;
     font-size: 1rem;
     padding: 3%;
     margin: 4%;
     border-radius: 5rem;
     cursor: pointer;
-    border: 1px solid;
+    border: none;
+    background-color: var(--Secondary);
+    color: var(--White);
+    font-family: var(--Body-Font-Size)
 }
 
-.ctn:hover{
-    background-color: #c8c8c8;
+.ctn:hover {
+    background-color: var(--Secondary-Faded);
     border: none;
 }
 
+/* ------------ Rifht Column ------------------- */
 /* --------Event Card---------- */
 
 .event-wraper {
@@ -113,7 +118,7 @@ nav.home-topnav {
 }
 
 .card-content.image {
-    width: 20em;
+    width: 20rem;
     height: 8.5rem;
     border-radius: 0 20px 20px 0;
 }
@@ -125,51 +130,40 @@ nav.home-topnav {
 
 h3.card-content{
     padding-bottom: 1rem;
+    font-size: var(--H3-Size);
 }
 
 
 @media (max-width: 600px) {
+    /* top bar adjustments for SEARCH PAGE */
+    header {
+        position:fixed;
+        right:0;
+        background-color:var(--Primary);
+        z-index:3;
+        width: 100vw;
+    }
 
+    .top-hamburger, header .logo, .searchbar {
+        display:block!important;
+    }
 
-/* top bar adjustments for SEARCH PAGE */
-header {
-    position:fixed;
-    right:0;
-    background-color:transparent;
-    z-index:3;
-    width: 100vw;
-}
+    nav.home-topnav {
+        width: 100%;
+        grid-template-columns:10% auto 10%;
+        justify-items: center;
+        align-items: center;
+    }
 
-.top-hamburger, header .logo, .searchbar {
-    display:block!important;
-}
-
-nav.home-topnav {
-    width: 100%;
-    grid-template-columns:10% auto 10%;
-    justify-items: center;
-    align-items: center;
-}
-
-/* Override top-navlinks Color */
-/* .top-navlinks a {
-    color:#999;
-} */
-
-
-
-/* =========================================== */
-/* =========================================== */
-
+    /* ---------- Left Column---------- */
     .container{
         display: block;
         
     }
     .left-container{
         width: 100%;
-        height: 50%;
+        height: 53%;
         border-radius: 0 0 10% 10%;
-
     }
 
     .buddy-logo{
@@ -178,17 +172,17 @@ nav.home-topnav {
 
     /* Test field */
     .text-field-wrap{
-        margin: 15% 15% 0 15%;
+        margin: 10% 15% 0 15%;
         padding-top: 2rem;
     }
 
     .text-field input, .drop-down{
-        margin: 0 auto 3% 5%;
+        margin: 0 auto 3% 3%;
         padding: 3% 5%;
         border: 1px solid #000;
         border-radius: 2rem;
         font-size: 0.7rem;
-        color: #888;
+        color: #000;
         width:var(--text-field-width)
     }   
 
@@ -205,6 +199,7 @@ nav.home-topnav {
         border-radius: 4rem;
     }
 
+    /* Right Column */
     /* Event Cards */
     .event-wraper {
         display: block;
@@ -221,11 +216,11 @@ nav.home-topnav {
     .card-description {
         padding: 1.5rem 0 0 0;
         line-height: 0.5rem;
-        font-size: 0.7rem;
     }
     
     h3.card-content{
         padding-bottom: 0.7rem;
+        font-size: var(--Mobile-H3-Size);
     }
 }
 

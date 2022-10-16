@@ -119,6 +119,7 @@ nav .logo svg {
 .searchbar button i {
     font-size:var(--Searchbar-Font-Size);
     color:var(--Text-Color);
+    cursor: pointer;
 }
 
 @media (max-width: 600px) {
