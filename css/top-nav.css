@@ -1,4 +1,27 @@
-/*-------- TOP BAR --------*/
+:root {
+    /*------ TOP BAR ------*/
+    --TopBar-Padding:20px;
+    --Top-Hamburger-Size:1.4rem;
+
+    /*------ LOGO ------*/
+    --Logo-Container-Width:150px;
+    --Logo-Width:90px;
+    --Logo-Height:calc(var(--Logo-Width) / 3);
+
+    --Mobile-Logo-Width:75px;
+    --Mobile-Logo-Height:calc(var(--Mobile-Logo-Width) / 3);
+
+    /*------ SEARCHBAR ------*/
+    --Searchbar-Padding:0.8rem 1rem;
+    --Searchbar-Font-Size:1rem;
+    --Searchbar-Roundness:30px;
+    --Searchbar-Spacing:25px; /* left & right gap */
+
+    /*------ TOP RIGHT LINKS ------*/
+    --TopBar-Links-Size:1rem;
+    --TopBar-Links-Spacing:5vmin;
+}
+
 header {
     background-color:var(--Orange);
 }
@@ -38,12 +61,21 @@ nav.home-topnav {
 /*-------- TOP BAR LOGO --------*/
 nav.home-topnav .logo {
     display:block;
-    font-family:"Roboto Slab";
-    font-size:1.8rem;
+    width:var(--Logo-Container-Width);
+}
+
+nav .logo svg {
+    display:block;
+    margin:auto;
+    width:var(--Logo-Width);
+    height:var(--Logo-Height);
 }
 
 @media (max-width: 600px) {
     .home-topnav .logo {
+        --Logo-Container-Width:100%;
+        --Logo-Width:var(--Mobile-Logo-Width);
+        --Logo-Height:var(--Mobile-Logo-Height);
         flex:1;
         text-align:center;
     }

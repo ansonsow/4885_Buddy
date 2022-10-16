@@ -19,21 +19,7 @@
 
     --White:#f9f9f9;
 
-    --Text-Color:#545454;   
-
-    /*------ TOP BAR ------*/
-    --TopBar-Padding:20px;
-    --Top-Hamburger-Size:1.4rem;
-
-    /*------ SEARCHBAR ------*/
-    --Searchbar-Padding:0.8rem 1rem;
-    --Searchbar-Font-Size:1rem;
-    --Searchbar-Roundness:30px;
-    --Searchbar-Spacing:25px; /* left & right gap */
-
-    /*------ TOP RIGHT LINKS ------*/
-    --TopBar-Links-Size:1rem;
-    --TopBar-Links-Spacing:5vmin;
+    --Text-Color:#545454;
 
     /*------ HEADER ------*/
     --Header-Height:75vh;
