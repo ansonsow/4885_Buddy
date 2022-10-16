@@ -196,6 +196,7 @@ h4, h5, h6 {
 .slick-slide img{
     height: var(--Carousel-Image-Height);
     width:100%;
+    object-fit:cover;
 }
 
 /* carousel ARROWS */
