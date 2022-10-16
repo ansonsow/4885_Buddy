@@ -110,7 +110,7 @@ h4, h5, h6 {
     font-size: var(--Hero-Title-Size);
     white-space:pre-line;
     color:var(--White);
-    text-shadow:0px calc(var(--Hero-Title-Size) * 0.1) calc(var(--Hero-Title-Size) * 0.1) var(--Orange);
+    text-shadow:0px calc(var(--Hero-Title-Size) * 0.1) calc(var(--Hero-Title-Size) * 0.1) var(--Primary);
     line-height: var(--Hero-Title-Line-Height);
     z-index: 1;
 }
@@ -133,7 +133,7 @@ h4, h5, h6 {
     width: var(--Hero-CTA-Width);
     height: var(--Hero-CTA-Height);
 
-    background: var(--Yellow-Faded);
+    background: var(--Secondary-Faded);
     border: 2px dashed var(--Text-Color);
     border-radius: var(--Hero-CTA-Roundness);
     text-align: center;
@@ -174,7 +174,6 @@ h4, h5, h6 {
 .home-middle-section h1{
     margin: 50px;
     text-align: center;
-    font-size: 3rem;
 }
 
 .carousel-container {
@@ -277,9 +276,6 @@ h4, h5, h6 {
     .slick-slide img{
         height: 200px;
         width:100%;
-    }
-    .home-middle-section h1{
-        font-size: 1.5rem;
     }
 }
 

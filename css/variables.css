@@ -11,14 +11,14 @@
     --H3-Size:32px;  --Mobile-H3-Size:18px;
 
     /*------ COLORS ------*/
-    --Orange:#ff7951;
-    --Orange-Light:#f7b1A6;
+    --Primary:#ff7951;
+    --Primary-Light:#f7b1A6;
 
-    --Yellow:#ffb543;
-    --Yellow-Faded:#ffe4ae;
+    --Secondary:#ffb543;
+    --Secondary-Faded:#ffe4ae;
 
-    --Blue:#2367a2;
-    --Blue-Light:#7fa9c6;
+    --Accent:#2367a2;
+    --Accent-Light:#7fa9c6;
 
     --White:#f9f9f9;
 

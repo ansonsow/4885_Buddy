@@ -20,7 +20,7 @@
 }
 
 header {
-    background-color:var(--Orange);
+    background-color:var(--Primary);
 }
 
 nav.home-topnav {
@@ -192,7 +192,7 @@ nav .logo svg {
 
     .top-navlinks {
         position: absolute;
-        background-color: var(--Orange);
+        background-color: var(--Primary);
         left:100vw;
         top: 97px;
         gap:0;
