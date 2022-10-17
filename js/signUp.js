@@ -12,7 +12,7 @@ document.getElementById("btnsignup").onclick=async ()=>{
             // the user should be kicked to the login page
             noteToUser.innerHTML = "SUCC"
             // writeUserData(userName, fname, lname, email, eventId, pfpURL)
-            dbf.writeUserData(username.value, fName.value, lName.value, email.value,[],"")
+            // dbf.writeUserData(username.value, fName.value, lName.value, email.value,[],"")
             
         }else{
             userMessage.then(value=>{
