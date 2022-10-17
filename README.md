@@ -20,9 +20,7 @@ You need to remove the `4885_Buddy` folder from your *local* computer first, and
 
 ![image](https://user-images.githubusercontent.com/25330392/193746250-e9d4949f-3f10-45db-9b79-fd78e87c3ca1.png)  
 
-7. Click `profile.html`. If you are able to see `"new description"`, it is working.  
-
-8. Click `main.html` and you should see the homepage:  
+7. Click `main.html` and you should see the homepage:  
 <!--<img src="https://user-images.githubusercontent.com/25330392/193746578-638558d0-f450-4fb2-bece-32f6f802ea94.png" width="420">-->
 <img src="https://user-images.githubusercontent.com/25330392/196013655-38b8754a-3504-4d1d-93f4-85e61de824fa.png" width="420">
 
