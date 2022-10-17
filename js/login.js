@@ -41,7 +41,7 @@ document.getElementById("logIn").onclick=async (e)=>{
     signInWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
       // console.log(userCredential.user);
-      noteToUser.innerHTML = "SUCC"
+    //   noteToUser.innerHTML = "SUCC"
       const user = userCredential.user;
     })
     .catch((error) => {

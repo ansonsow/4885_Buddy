@@ -547,17 +547,23 @@ export async function createAccount (email,password){
 
 // const auth = getAuth();
 export async function login (email,password){
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // console.log(userCredential.user);
-    const user = userCredential.user;
-  })
-  .catch((error) => {
-    console.log(error.message);
-    return error.message
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
+  try{  
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // console.log(userCredential.user);
+      const user = userCredential.user;
+    })
+    .catch((error) => {
+      console.log(error.message);
+      return error.message
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+  }
+  catch(error){
+    console.log(error);
+  }
+
 }
 
 
