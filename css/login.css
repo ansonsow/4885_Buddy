@@ -1,12 +1,8 @@
 /*---------- VARIABLES FOR LOGIN PAGE  ----------*/
 
 :root {
-    --top-logo-size: 4rem;
-    --top-logo-color: #999;
-    --welcome-font: "impact";
-    --span-font: "arial";
-    --form-width-full: 60%;
-    --form-width-mobile: 90%
+    --form-width-full: 27rem;
+    --form-width-mobile: 90%;
 }   
 /*----------------------------------------------*/
 
@@ -16,94 +12,113 @@
     box-sizing:border-box;
 }
 
+header {
+    display: none;
+}
+
+svg {
+    margin: 2rem 0 0 2rem;
+}
+
 .container {
     display: flex;
     flex-direction: row-reverse;
+    background: var( --Primary);
+    height: 100vh;
 }
 
 .left-container{
-    width: 50%;
+    margin-right: 30rem;
+    width: 70%;
+
 }
 
-/*---------- Right Image / LOGO --------*/
-img {
+/*---------- Right Image --------*/
+.img-wrap{
+    position: fixed;
+}
+
+.side-image {
     width: 100%;
-    height: 716px;
+    height: 100vh;
     border-radius: 20% 0 0 20%;
 } 
 
-.buddy-logo {
-    position: absolute;
-    top:5%;
-    left:5%;
-    font-size: var(--top-logo-size);
-    text-decoration: none;
-    color: var(--top-logo-color);
-}
 /*---------- Welcome Title --------*/
 .welcome{
-    margin: 40% 10% 5% 15% ;
-    font-family: var(--welcome-font);
-}
-
-.buddy{
-    font-family: var(--span-font);
+    margin: 20% 10% 5% 20% ;
+    color: var(--White);
 }
 
 /*---------- Form Section --------*/
 .text_field input {
-    margin: 0 auto 3% 15%;
+    margin: 0 auto 3% 20%;
     width: var(--form-width-full);
     border:none;
     outline:none;
     background: none;
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid var(--White);
     font-size: 1rem;
-
+    color: var(--White);
 }
 
-.checkbox-wrap{
+::placeholder{
+    color: var(--White);
+}
+
+.checkbox-wrap {
     width: var(--form-width-full);
     display: flex;
     justify-content: space-between;
-    margin: 0 auto 5% 15%;
-    font-size: 0.8rem;
-    font-family: helvetica;
-}
-
-.forget-password{
+    margin: 0 auto 5% 20%;
+    color: var(--White);
     text-decoration: none;
-    color: #000;
 }
 
 /*---------- Button Section --------*/
 .btn-wrap{
     text-align: center;
-    width: var(--form-width-mobile);
-    margin-bottom: 10%;
+    width: 80%
 }
 
 .ctn{
     width: 20rem;
     font-size: 1rem;
     padding: 3%;
-    margin: 1.5%;
+    margin: 1%;
     border: none;
     border-radius: 5rem;
     cursor: pointer;
+    color: var(--Text-Color);
+}
+
+.ctn:hover {
+    background-color: var( --Primary-Light);
+    color: var(--White)
 }
 
 @media (max-width: 600px) {
-    .container {
+    /* Top Bar */
+    header {
         display: block;
     }
 
+    .container {
+        display: block;
+        height: 100%;
+    }
+
     .left-container{
-        width: 100%;
+        width: 100vw;
+        padding-bottom: 2rem;
     }
 
     /*---------- Head Section --------*/
-    img {
+    .img-wrap{
+        position: relative;
+    }
+
+    .side-image {
         width: 100%;
         height: 450px;
         border-radius: 0 0 15% 15%;
@@ -115,9 +130,9 @@ img {
     }
 
     .welcome, .buddy {
-        z-index: 1;
+        z-index: 1.5;
         position: absolute;
-        top: 17%
+        top: 35%;
     }
 
     .buddy {
@@ -137,18 +152,23 @@ img {
     }
 
     .text_field input {
-        margin: 0 0 8% 0;
+        margin: 0 0 8% 3%;
         width: var(--form-width-mobile);
     }
     
     .checkbox-wrap{
         width: var(--form-width-mobile);
-        margin: 0 0 10% 0%;
+        margin: 0 0 10% 3%;
     }
 
     /*---------- Button Section --------*/
+    .btn-wrap{
+        width: 100%
+    }
+
     .ctn{
-        width: 10rem;
-        padding: 5%;
+        width: 9rem;
+        padding: 1rem;
+        margin-top: 1rem;
     }
 }
