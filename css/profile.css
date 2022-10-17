@@ -24,6 +24,17 @@ nav {
     color:var(--Main-Text);
 }
 
+/* mobile adjustments for TOP BAR */
+@media(max-width:600px){
+    header {
+        background:var(--Primary);
+    }
+
+    .searchbar {
+        display:flex;
+    }
+}
+
 /*---------- VARIABLES FOR PROFILE PAGE  ----------*/
 :root {
     --Left-Panel-Width:38vw;
@@ -86,9 +97,14 @@ a.create-event {
     line-height:100%;
 }
 
+/* mobile adjustments for LEFT PANEL */
 @media(max-width:600px){
     .left-panel {
         display:none;
+    }
+
+    :root {
+        --Left-Panel-Width:0px;
     }
 }
 
@@ -223,4 +239,42 @@ h2.badges-title {
 
 .badge-label {
     margin-top:0.6em;
+}
+
+/*---------- FOOTER  ----------*/
+/* customized for PROFILE.html */
+footer {
+    display:none;
+}
+
+/* mobile adjustments for RIGHTSIDE */
+@media(max-width:600px){
+    :root {
+        --Right-Content-Width:85vw;
+        --Profile-Picture-Size:25vw;
+        --Badges-Image-Size:18vw;
+    }
+
+    .rightside {
+        position:relative;
+        top:initial;
+        left:initial;
+        margin-left:0;
+        width:auto;
+        min-height:0;
+        display:block;
+    }
+
+    .right-inner {
+        margin:0 auto;
+        padding-top:calc(var(--TopBar-Height) + var(--Profile-Page-Screen-Padding));
+    }
+
+    .profile-desc {
+        display:none;
+    }
+
+    footer {
+        display:block;
+    }
 }
