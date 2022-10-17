@@ -33,7 +33,7 @@ document.getElementById("logIn").onclick=async (e)=>{
                 // console.log("aaa");
             });
         })
-        console.log(localStorage.getItem("currentUserId"));
+        // console.log(localStorage.getItem("currentUserId"));
     })
     .catch((error) => {
         console.log(error.message.substring(' ' + 10));
