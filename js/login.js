@@ -11,7 +11,7 @@ import { signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.
 // querySnapshot.forEach((doc) => {
 //     currentUserId = doc.id;
 // });
-var currentUserId;
+// var currentUserId;
 
 document.getElementById("logIn").onclick=async (e)=>{
     e.preventDefault;
@@ -28,11 +28,12 @@ document.getElementById("logIn").onclick=async (e)=>{
         querySnapshot.then(value=>{
             value.forEach(element => {
                 // console.log(element.id);
-                currentUserId = element.id
+                localStorage.setItem("currentUserId",element.id)
+                // currentUserId = element.id
                 // console.log("aaa");
             });
         })
-        // console.log(currentUserId);
+        console.log(localStorage.getItem("currentUserId"));
     })
     .catch((error) => {
         console.log(error.message.substring(' ' + 10));

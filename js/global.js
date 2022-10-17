@@ -1,7 +1,7 @@
 /*------ INCLUDE HTML ------*/
 /* credit: www.w3schools.com/howto/tryit.asp?filename=tryhow_html_include_2 */
 
-var currentUserId
+var currentUserId = localStorage.getItem("currentUserId");
 let filesReady;
 
 function jsIncludeHTML() {
