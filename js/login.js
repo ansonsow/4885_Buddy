@@ -4,51 +4,42 @@ const db = getFirestore();
 import { signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 
 
-let currentUserId;
-console.log(currentUserId);
 
+// console.log(currentUserId);
+
+
+// querySnapshot.forEach((doc) => {
+//     currentUserId = doc.id;
+// });
+var currentUserId;
 
 document.getElementById("logIn").onclick=async (e)=>{
     e.preventDefault;
-    let userMessage;
-    // console.log(await dbf.login(email.value,password.value));
-
-    // if(userMessage=dbf.login(email.value,password.value)){
-    //     noteToUser.innerHTML = "SUCC"
-    //     // writeUserData(userName, fname, lname, email, eventId, pfpURL)
-    //     let q = query(collection(db, "users"), where("email", "==", email.value));
-    //     const querySnapshot = await getDocs(q);
-    //     querySnapshot.forEach((doc) => {
-    //         currentUserId = doc.id;
-    //     });
-            
-    //     }else{
-    //         userMessage.then(value=>{
-    //         noteToUser.innerHTML = value.substring(' ' + 10);
-    //     }).catch(err=>{
-    //         console.log(err);
-    //     })
-    // }
-
-    // dbf.login(email.value,password.value)
-    // .then(user =>{
-    //     logInSuccess();
-    // })
-    // .catch(error =>{
-    //     console.log("login fail");
-    // })
-
-    signInWithEmailAndPassword(auth, email.value, password.value)
+    // let userMessage;
+    
+    signInWithEmailAndPassword(dbf.auth, email.value, password.value)
     .then((userCredential) => {
-      // console.log(userCredential.user);
-    //   noteToUser.innerHTML = "SUCC"
-      const user = userCredential.user;
+        // console.log(userCredential.user);
+        noteToUser.innerHTML = "SUCCESS"
+        const user = userCredential.user;
+        let q = query(collection(db, "users"), where("email", "==", email.value));
+        const querySnapshot = getDocs(q);
+        // console.log(querySnapshot);
+        querySnapshot.then(value=>{
+            value.forEach(element => {
+                // console.log(element.id);
+                currentUserId = element.id
+                // console.log("aaa");
+            });
+        })
+        // console.log(currentUserId);
     })
     .catch((error) => {
-      console.log(error.message);
-      return error.message
-      const errorCode = error.code;
-      const errorMessage = error.message;
+        console.log(error.message.substring(' ' + 10));
+        noteToUser.innerHTML = error.message.substring(' ' + 10);
+        const errorCode = error.code;
+        const errorMessage = error.message;
     });
+    
 };
 

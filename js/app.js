@@ -27,7 +27,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore();
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 // reference DB structure – USERS:
 // https://cdn.discordapp.com/attachments/1014951045820072017/1028394035066437724/unknown.png
@@ -534,37 +534,39 @@ export async function updateBadgePoint(id, point){
 export async function createAccount (email,password){
   try {
     const userCredential  = await createUserWithEmailAndPassword(auth, email, password); 
+    // message = "aaa"
     // console.log(userCredential.user);
     // return("your account has created")
     return true
     }
     catch(error){
-      // return(error);
-      // console.log(error.message);
-      return false
+      console.log(error.message);
+      return(error.message);
+      // return false
     }
 }
 
 // const auth = getAuth();
-export async function login (email,password){
-  try{  
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // console.log(userCredential.user);
-      const user = userCredential.user;
-    })
-    .catch((error) => {
-      console.log(error.message);
-      return error.message
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
-  }
-  catch(error){
-    console.log(error);
-  }
+// export async function login (email,password){
+//   try{  
+//     // await signInWithEmailAndPassword(auth, email, password)
+    
+//     // signInWithEmailAndPassword(auth, email, password)
+//     // .then((userCredential) => {
+//     //   const user = userCredential.user;
+//     // })
+//     // .catch((error) => {
+//     //   console.log(error.message);
+//     //   return error.message
+//     //   const errorCode = error.code;
+//     //   const errorMessage = error.message;
+//     // });
+//   }
+//   catch(error){
+//     console.log(error);
+//   }
 
-}
+// }
 
 
 
