@@ -536,23 +536,25 @@ export async function createAccount (email,password){
     const userCredential  = await createUserWithEmailAndPassword(auth, email, password); 
     // console.log(userCredential.user);
     // return("your account has created")
+    return true
     }
     catch(error){
       // return(error);
       // console.log(error.message);
-      return error.message
+      return false
     }
 }
 
 // const auth = getAuth();
-export async function logIn (email,password){
+export async function login (email,password){
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    // Signed in 
+    // console.log(userCredential.user);
     const user = userCredential.user;
-    // ...
   })
   .catch((error) => {
+    console.log(error.message);
+    return error.message
     const errorCode = error.code;
     const errorMessage = error.message;
   });
