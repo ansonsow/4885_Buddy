@@ -23,7 +23,9 @@ const db = getFirestore();
 // console.log(querySnapshot2.data().price);
 
 // example of call the db function outside of appjs
-// dbf.writeUserData("a", "fa", "la", "amail", "[1,2]", "AAAAAAAAAAA.png");
+// document.getElementById("btnsignup").onclick=async ()=>{
+//     dbf.createAccount(email.value,psw.value)
+// };
 
 
 // console.log(new Date());

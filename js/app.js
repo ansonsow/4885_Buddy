@@ -530,22 +530,17 @@ export async function updateBadgePoint(id, point){
 // document.getElementById("btnLogin").addEventListener("click", loginEmailPassword);
 
 //To create a new user account
-const createAccount = async () => {
-  const loginEmail = email.value;
-  const loginPassword = psw.value;
 
+export async function createAccount (email,password){
   try {
-  const userCredential  = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
-  console.log(userCredential.user);
-  }
-  catch(error){
-    console.log(error);
-  }
-
+    const userCredential  = await createUserWithEmailAndPassword(auth, email, password); 
+    console.log(userCredential.user);
+    }
+    catch(error){
+      console.log(error);
+    }
 }
 
-// document.getElementById("btnSignup").addEventListener("click", createAccount);
-// btnsignup.addEventListener("click", createAccount);
 
 
 //To change UI
