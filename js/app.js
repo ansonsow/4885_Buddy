@@ -534,12 +534,30 @@ export async function updateBadgePoint(id, point){
 export async function createAccount (email,password){
   try {
     const userCredential  = await createUserWithEmailAndPassword(auth, email, password); 
-    console.log(userCredential.user);
+    // console.log(userCredential.user);
+    // return("your account has created")
     }
     catch(error){
-      console.log(error);
+      // return(error);
+      // console.log(error.message);
+      return error.message
     }
 }
+
+// const auth = getAuth();
+export async function logIn (email,password){
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+}
+
 
 
 

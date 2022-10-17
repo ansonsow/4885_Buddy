@@ -9,6 +9,7 @@
     <link href="../css/global.css" rel="stylesheet">
     <link href="../css/login.css" rel="stylesheet">
 
+    <script src="../js/login.js"></script>
     <title>user login</title>
 </head>
 <body>
@@ -26,10 +27,10 @@
 
                 <form class="form" action="#" method="post">
                     <div class="text_field">
-                        <input type="text" placeholder="Email / Username" name="" value="" required>
+                        <input type="text" placeholder="Email" name="" value="" id="email" required>
                     </div>
                     <div class="text_field">
-                        <input type="password" placeholder="Password" name="" value="" required>
+                        <input type="password" placeholder="Password" name="" value="" id="password" required>
                     </div>
         
                     <div class="checkbox-wrap">
@@ -41,7 +42,7 @@
                     </div>
             
                     <div class="btn-wrap">
-                        <button class="ctn" type="submit">Log in</button><br>
+                        <button class="ctn" type="submit" id="logIn">Log in</button><br>
                         <button class="ctn" type="submit">Sign up</button>
                     </div>
                 </form>
