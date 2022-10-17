@@ -89,12 +89,18 @@ svg {
     border: none;
     border-radius: 5rem;
     cursor: pointer;
-    color: var(--Text-Color);
+    background-color: var(--White);
+    color: var(--Accent);
 }
 
 .ctn:hover {
-    background-color: var( --Primary-Light);
+    background-color: var( --Accent);
     color: var(--White)
+}
+
+/* Error Message */
+#noteToUser{
+    color: var(--White);
 }
 
 @media (max-width: 600px) {

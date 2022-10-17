@@ -62,15 +62,19 @@ nav {
     border:none;
     outline:none;
     background: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--White);
     font-size: var(--Body-Font-Size);
-    color: #000;
+    color: var(--White);
     width:var(--text-field-width);
     font-family: var(--Heading-Font);
 }
 
 ::placeholder{
-    color: #000;
+    color: var(--White);
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
 }
 
 
@@ -97,6 +101,12 @@ nav {
 .ctn:hover {
     background-color: var(--Secondary-Faded);
     border: none;
+    color: var(--Accent);
+}
+
+/* Error Message */
+.noteToUser{
+    color: var(--White);
 }
 
 /* ------------ Rifht Column ------------------- */
@@ -179,10 +189,10 @@ h3.card-content{
     .text-field input, .drop-down{
         margin: 0 auto 3% 3%;
         padding: 3% 5%;
-        border: 1px solid #000;
+        border: 1px solid var(--White);
         border-radius: 2rem;
         font-size: 0.7rem;
-        color: #000;
+        color: var(--White);
         width:var(--text-field-width)
     }   
 
