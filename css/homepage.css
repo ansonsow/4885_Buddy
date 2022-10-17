@@ -242,6 +242,11 @@
     border:0px solid transparent;
 }
 
+.categories-grid a:hover, .free-online a:hover{
+    background-color: var(--Accent);
+    color: var(--White);
+}
+
 @media (max-width: 600px) {
     .categories-grid {
         grid-template-columns:1fr 1fr;
