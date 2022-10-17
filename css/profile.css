@@ -30,9 +30,20 @@ nav {
     --Left-Panel-Rounding:120px;
 
     --Right-Content-Width:32vw;
-    --Profile-Picture-Size:214px;
-    --Star-Size:36px;
+    --Profile-Page-Screen-Padding:10vh; /* margin at top&bottom of screen*/
+
+    --Profile-Picture-Size:calc(var(--Right-Content-Width) * 0.420); /* prototype: 214px */
+    --Star-Size:var(--H2-Size);
     --Star-Spacing:3px;
+
+    --Profile-Desc-Margin:2rem;
+    --Profile-Desc-Width:calc(var(--Right-Content-Width) * 0.8);
+
+    --Profile-Quotes-Margin:calc(var(--Profile-Quotes-Size) * 0.8);
+    --Profile-Quotes-Size:calc(var(--H1-Size) * 1.2);
+
+    --Badges-Image-Size:7vw;
+    --Badges-Spacing:1.5rem;
 }
 
 /*---------- LEFT PANEL  ----------*/
@@ -83,11 +94,11 @@ a.create-event {
 
 /*---------- RIGHTSIDE ----------*/
 .rightside {
-    position:fixed;
+    position:absolute;
     top:0;left:0;
     margin-left:var(--Left-Panel-Width);
     width:calc(100vw - var(--Left-Panel-Width));
-    height:100vh;
+    min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -98,8 +109,20 @@ a.create-event {
     display:flex;
     flex-direction:column;
     align-items:center;
+    padding:var(--Profile-Page-Screen-Padding) 0;
 }
 
+.right-inner > *:last-child {
+    margin-bottom:0;
+}
+
+/*----- PROFILE USERNAME -----*/
+.rightside h1.username {
+    margin-top:calc(var(--H1-Size) * 0.2);
+    margin-bottom:calc(var(--H1-Size) * 0.4);
+}
+
+/*----- PROFILE PICTURE -----*/
 .profile-picture {
     width:var(--Profile-Picture-Size);
     height:var(--Profile-Picture-Size);
@@ -107,13 +130,17 @@ a.create-event {
     border-radius:100%;
 }
 
-/* row of stars */
+/*----- STAR RATING -----*/
 .star-rating {
     display:flex;
     align-items:center;
     justify-content:center;
     flex-wrap:nowrap;
     margin:0.5rem 0;
+}
+
+h1.username + .star-rating {
+    margin-top:0;
 }
 
 .star-rating i {
@@ -128,4 +155,72 @@ a.create-event {
 
 .star-rating i.empty {
     color:var(--Secondary-Faded);
+}
+
+/*----- PROFILE DESCRIPTION -----*/
+.profile-desc {
+    position:relative;
+    margin:var(--Profile-Desc-Margin) 0;
+    width:100%;
+}
+
+.profile-desc p {
+    margin:0 auto;
+    width:var(--Profile-Desc-Width);
+}
+
+.profile-quote-left i,
+.profile-quote-right i {
+    font-size:var(--Profile-Quotes-Size);
+}
+
+.profile-quote-left {
+    position:absolute;
+    top:0;right:0;
+    margin-top:calc(0px - (var(--Profile-Quotes-Size) / 2) + (var(--Profile-Quotes-Size) * 0.2));
+    margin-right:calc(100% + var(--Profile-Quotes-Margin));
+}
+
+.profile-quote-right {
+    position:absolute;
+    bottom:0;left:0;
+    margin-bottom:calc(0px - (var(--Profile-Quotes-Size) / 2));
+    margin-left:calc(100% + var(--Profile-Quotes-Margin));
+}
+
+/*----- PROFILE BADGES -----*/
+h2.badges-title {
+    margin:var(--H2-Size) 0;
+}
+
+.profile-desc + .badges-title {
+    margin-top:0;
+}
+
+.badges {
+    display:grid;
+    grid-template-columns:var(--Badges-Image-Size) var(--Badges-Image-Size) var(--Badges-Image-Size);
+    grid-gap:var(--Badges-Spacing);
+}
+
+.badge {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.badge > * {
+    flex-shrink:0;
+    display:block;
+}
+
+.badge img {
+    width:var(--Badges-Image-Size);
+    height:var(--Badges-Image-Size);
+    border-radius:100%;
+    object-fit:cover;
+}
+
+.badge-label {
+    margin-top:0.6em;
 }

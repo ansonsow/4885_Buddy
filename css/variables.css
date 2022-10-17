@@ -3,12 +3,19 @@
 :root {
     /*------ FONTS / TEXT SETTINGS ------*/
     --Body-Font:"brandon-grotesque";
-    --Body-Font-Size:1rem;    
+    --Body-Font-Size:1.1rem;    
 
     --Heading-Font:"macho";
+    --H1-Size:2.2rem;  --Mobile-H1-Size:32px;
+    --H2-Size:1.8rem;  --Mobile-H2-Size:24px;
+    --H3-Size:1.5rem;  --Mobile-H3-Size:18px;
+
+    /* figma prototype sizes: */
+    /*
     --H1-Size:48px;  --Mobile-H1-Size:32px;
     --H2-Size:36px;  --Mobile-H2-Size:24px;
     --H3-Size:32px;  --Mobile-H3-Size:18px;
+    */
 
     /*------ COLORS ------*/
     --Primary:#ff7951;
