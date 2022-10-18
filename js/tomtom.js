@@ -37,6 +37,6 @@ let map = tt.map({
 
 let popup = new tt.Popup({
     closeButton: false,
-}).setText("event")
+}).setText("testEventname1 (str, 20)")
 let marker = new tt.Marker().setLngLat(location).setPopup(popup)
 marker.addTo(map)

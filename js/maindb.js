@@ -12,7 +12,7 @@ let slideshowIMGArray = [];
 let q = query(collection(db, "events"));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
-    console.log(doc.data().image);
+    // console.log(doc.data().image);
     slideshowIMGArray.push(doc.data().image);
 });
 

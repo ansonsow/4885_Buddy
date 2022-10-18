@@ -226,7 +226,7 @@ const getTimeEpoch = () => {
 
 
 // ============================================== add new Event ==============================================
-// dont know how to do date and location / photo yet
+// dont know how to do date and / photo yet
 export async function writeEventData(name, hostId, price, pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag){
   try {
     const docRef = await addDoc(collection(db, "events"), {
@@ -250,7 +250,7 @@ export async function writeEventData(name, hostId, price, pfpURL, location, date
 }
 
 // writeEventData("testEventname1 (str, 20)","testHostId (str, 20)",
-// "0 (num)","imgURL.aaa (str, 2048)","location (num)","20221009 (num)","20221109 (num)","test description (str, 2048)","2 (num)","3 (num)",
+// "0 (num)","imgURL.aaa (str, 2048)","[lat, long] (num)","20221009 (num)","20221109 (num)","test description (str, 2048)","2 (num)","3 (num)",
 // "1 (num)","aaa");
 
 
@@ -314,7 +314,7 @@ export async function updateEventLocation(id,eventLocation){
   });
 }
 
-// updateEventLocation("uGfj5SGWqdBIdFsM7Lie","newLocation")
+// updateEventLocation("0Pd3kRlGNKAvqxeObdty",[90,90])
 
 
 // not sure what is format is
