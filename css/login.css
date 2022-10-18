@@ -28,14 +28,14 @@ svg {
 }
 
 .left-container{
-    margin-right: 30rem;
-    width: 70%;
-
+    margin-right: 50%;
+    width: 100%;
 }
 
 /*---------- Right Image --------*/
 .img-wrap{
     position: fixed;
+    object-fit: cover;
 }
 
 .side-image {
@@ -46,7 +46,7 @@ svg {
 
 /*---------- Welcome Title --------*/
 .welcome{
-    margin: 20% 10% 5% 20% ;
+    margin: 25% 10% 3% 20% ;
     color: var(--White);
 }
 
@@ -78,7 +78,7 @@ svg {
 /*---------- Button Section --------*/
 .btn-wrap{
     text-align: center;
-    width: 80%
+    width: 100%
 }
 
 .ctn{
@@ -101,6 +101,7 @@ svg {
 /* Error Message */
 #noteToUser{
     color: var(--White);
+    margin: 5% 0 0 20%;
 }
 
 @media (max-width: 600px) {
@@ -116,7 +117,7 @@ svg {
 
     .left-container{
         width: 100vw;
-        padding-bottom: 2rem;
+        padding-bottom: 1rem;
     }
 
     /*---------- Head Section --------*/
@@ -135,15 +136,16 @@ svg {
         display: none;
     }
 
-    .welcome, .buddy {
-        z-index: 1.5;
+    .welcome {
         position: absolute;
-        top: 35%;
+        margin: auto;
+        top: 25rem;
+        left: 4rem;
+
     }
 
     .buddy {
         display: block;
-        margin-top: 40px;
     }
 
 
@@ -164,7 +166,7 @@ svg {
     
     .checkbox-wrap{
         width: var(--form-width-mobile);
-        margin: 0 0 10% 3%;
+        margin: 0 0 8% 3%;
     }
 
     /*---------- Button Section --------*/
@@ -175,6 +177,10 @@ svg {
     .ctn{
         width: 9rem;
         padding: 1rem;
-        margin-top: 1rem;
+    }
+
+    /* Error Message */
+    #noteToUser{
+        margin: 5% 0 0 15%;
     }
 }

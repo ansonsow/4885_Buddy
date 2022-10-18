@@ -53,7 +53,7 @@ nav {
 }
 
 .text-field-wrap{
-    margin: 35% 0 0 15%;
+    margin: 50% 0 0 20%;
 }
 
 .text-field input, .drop-down {
@@ -77,12 +77,11 @@ nav {
     filter: invert(100%);
 }
 
-
 /* ------ Buttons ------ */
 .btn-wrap {
     display: flex;
     justify-content: center;
-    margin: 10% 0 10% 0;
+    margin: 10% auto;
 }
 
 .ctn {
@@ -102,11 +101,6 @@ nav {
     background-color: var(--Secondary-Faded);
     border: none;
     color: var(--Accent);
-}
-
-/* Error Message */
-.noteToUser{
-    color: var(--White);
 }
 
 /* ------------ Rifht Column ------------------- */
@@ -198,18 +192,26 @@ h3.card-content{
 
     /* Button */
     .btn-wrap{
-        margin: 0 0 10% 0;
+        margin: auto;
     }
 
     .ctn{
         width: 6rem;
         font-size: 0.8rem;
         padding: 3%;
-        margin: 3%;
+        margin: 7% 3% 0 3%;
         border-radius: 4rem;
     }
 
     /* Right Column */
+    h3 {
+        font-size: 1rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+
     /* Event Cards */
     .event-container {
         width: 100%;
@@ -229,7 +231,7 @@ h3.card-content{
     }
 
     .card-description {
-        padding: 1.5rem 0 0 1rem;
+        padding: 1.5rem 0 0 1.4rem;
         line-height: 0.5rem;
     }
     
