@@ -53,14 +53,22 @@ let filesReadyCheck = setInterval(() => {
 	}
 },0);
 
-/* ---------- Hamburger Menu ----------*/
-
 function vanillaJS_functions(){
-    
+    /* ---------- Hamburger Menu ----------*/
+
     const topHamburger = document.querySelector(".top-hamburger i");
+    const navCont = document.querySelector(".top-nav-container");
     const navMenu = document.querySelector(".top-navlinks");
 
     topHamburger.addEventListener("click", () => {
+        if(!navCont.classList.contains("active")){
+            navCont.classList.add("active");
+        } else {            
+            setTimeout(() => {
+                navCont.classList.remove("active");
+            },300)
+        }
+
         topHamburger.classList.toggle("fa-bars");
         topHamburger.classList.toggle("fa-xmark");
         topHamburger.classList.toggle("active")
