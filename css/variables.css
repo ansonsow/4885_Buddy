@@ -7,8 +7,8 @@
 
     --Heading-Font:"macho";
     --H1-Size:2.2rem;  --Mobile-H1-Size:32px;
-    --H2-Size:1.8rem;  --Mobile-H2-Size:24px;
-    --H3-Size:1.5rem;  --Mobile-H3-Size:18px;
+    --H2-Size:1.6rem;  --Mobile-H2-Size:24px;
+    --H3-Size:1.4rem;  --Mobile-H3-Size:18px;
 
     /* figma prototype sizes: */
     /*
@@ -28,8 +28,8 @@
     --Accent-Light:#7fa9c6;
 
     --White:#f9f9f9;
-
     --Text-Color:#545454;
+    --Light-Gray:#f3f3f3;
 
     /*------ HEADER ------*/
     --Header-Height:75vh;
