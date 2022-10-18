@@ -153,14 +153,6 @@ nav .logo svg {
 }
 
 /*-------- TOP RIGHT LINKS --------*/
-.top-nav-container {
-    opacity:0;
-}
-
-.top-nav-container.active {
-    opacity:1!important;
-}
-
 .top-navlinks {
     display:flex;
     align-items:center;
@@ -200,6 +192,14 @@ nav .logo svg {
         text-align: left;
         margin: 10px;
         width: 70%;
+    }
+
+    .top-nav-container {
+        opacity:0;
+    }
+
+    .top-nav-container.active {
+        opacity:1!important;
     }
 
     .top-navlinks {
