@@ -1,0 +1,278 @@
+/* top bar adjustments for SEARCH PAGE */
+header {
+    background:transparent;
+    position:fixed;
+    width:100%;
+    z-index:3;
+}
+
+nav {
+    grid-template-columns:1fr 1fr;
+}
+
+.searchbar {
+    display:none;
+}
+
+.top-navlinks {
+    justify-content:right;
+}
+
+.top-navlinks a {
+    color:var(--Main-Text);
+}
+/*------------------------------------------------*/
+
+/*---------- VARIABLES FOR SEARCH PAGE  ----------*/
+
+:root {
+    --text-field-width: 310px;
+}   
+/*----------------------------------------------*/
+
+
+/* ------------ LEFT Column ------------------- */
+/* ---------- Text fields ---------- */
+.container{
+    position: fixed;
+    width:100%;
+    height:100vh;
+    top: 0;
+    bottom:0;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+
+.left-container{
+    position: fixed;
+    width: 40%;
+    height: 100vh;
+    background-color: var(--Primary);
+    border-radius: 0 15% 15% 0;
+    color: var(--White);
+}
+
+.text-field-wrap{
+    margin: 50% 0 0 20%;
+}
+
+.text-field input, .drop-down {
+    margin: 0 auto 5% 5%;
+    width: var(--form-width-full);
+    border:none;
+    outline:none;
+    background: none;
+    border-bottom: 1px solid var(--White);
+    font-size: var(--Body-Font-Size);
+    color: var(--White);
+    width:var(--text-field-width);
+    font-family: var(--Heading-Font);
+}
+
+::placeholder{
+    color: var(--White);
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+}
+
+/* ------ Buttons ------ */
+.btn-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 10% auto;
+}
+
+.ctn {
+    width: 8rem;
+    font-size: 1rem;
+    padding: 3%;
+    margin: 4%;
+    border-radius: 5rem;
+    cursor: pointer;
+    border: none;
+    background-color: var(--Secondary);
+    color: var(--White);
+    font-family: var(--Body-Font-Size)
+}
+
+.ctn:hover {
+    background-color: var(--Secondary-Faded);
+    border: none;
+    color: var(--Accent);
+}
+
+/* ------------ Rifht Column ------------------- */
+
+/*-------- Tags area ---------*/
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 5% 0 45%;
+    margin-block-start: 5rem;
+}
+
+.tag {
+    background-color: transparent;
+    font-family: var(--Heading-Font);
+    color: var(--Text-Color);
+    width: 8em;
+    padding: 1rem 0 ;
+    margin: 1rem 0.4rem;
+    cursor: pointer;
+    border: 2px solid var(--Text-Color);
+    border-radius: 6rem;
+}
+
+/* Test */
+/* .travel, .food, .music, .sport {
+    display: none;
+} */
+
+/* --------Event Card---------- */
+
+.event-wraper {
+    display: block;
+    width: 100%; 
+}
+
+.event-container {
+    width: 50%;
+    margin: 1% 0 1% 45%;
+}
+
+.card-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    border-radius: 0 20px 20px 0;
+    background-color: #f0f0f0;
+    margin: auto;
+}
+
+.card-content.image {
+    width: 18rem;
+    height: 8.5rem;
+    border-radius: 0 20px 20px 0;
+    object-fit:cover;
+}
+
+.card-description {
+    padding: 1.5rem 0 0 0;
+    line-height: 0.7rem;
+}
+
+h3.card-content{
+    padding-bottom: 1rem;
+    font-size: var(--H3-Size);
+}
+
+
+@media (max-width: 600px) {
+    /* top bar adjustments for SEARCH PAGE */
+    header {
+        position:fixed;
+        right:0;
+        background-color:var(--Primary);
+        z-index:3;
+        width: 100vw;
+    }
+
+    .top-hamburger, header .logo, .searchbar {
+        display:block!important;
+    }
+
+    nav.home-topnav {
+        width: 100%;
+        grid-template-columns:10% auto 10%;
+        justify-items: center;
+        align-items: center;
+    }
+
+    /* ---------- Left Column---------- */
+
+    .left-container{
+        width: 100%;
+        height: 54%;
+        border-radius: 0 0 10% 10%;
+        position: relative;
+    }
+
+    /* Test field */
+    .text-field-wrap{
+        margin: 10% 15% 0 15%;
+        padding-top: 2rem;
+    }
+
+    .text-field input, .drop-down{
+        margin: 0 auto 3% 3%;
+        padding: 3% 5%;
+        border: 1px solid var(--White);
+        border-radius: 2rem;
+        font-size: 0.7rem;
+        color: var(--White);
+        width:var(--text-field-width)
+    }   
+
+    /* Button */
+    .btn-wrap{
+        margin: auto;
+    }
+
+    .ctn{
+        width: 6rem;
+        font-size: 0.8rem;
+        padding: 3%;
+        margin: 7% 3% 0 3%;
+        border-radius: 4rem;
+    }
+
+    /* ------------ Right Column ------------ */
+    h3 {
+        font-size: 1rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+
+    /*-------- Tags area ---------*/
+
+    .tag {
+        display: none;
+    }
+
+    .tags-container {
+        margin: 0;
+    }
+
+    /* ------ Event Cards ------- */
+    .event-container {
+        width: 100%;
+        margin: 3% 0 0 0;
+    }
+
+    .event-wraper {
+        display: block;
+        width: 90%; 
+        margin: 5%;
+    }
+
+    .card-content.image {
+        width: 12em;
+        height: 7.5rem;
+        border-radius: 0 20px 20px 0;
+    }
+
+    .card-description {
+        padding: 1.5rem 0 0 1.4rem;
+        line-height: 0.5rem;
+    }
+    
+    h3.card-content{
+        padding-bottom: 0.7rem;
+        font-size: var(--Mobile-H3-Size);
+    }
+}
+

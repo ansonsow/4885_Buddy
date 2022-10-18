@@ -1,9 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Result</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>Sesult</title>
+
+        <!-- fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Inter:400,700|Manrope:800" rel="stylesheet">
+
+        <!-- firebase -->
+        <script type="module" src="../js/app.js" defer></script>
+        <script type="module" src="../js/maindb.js" defer></script>
+
+        <!-- required assets -->
+        <link href="../css/variables.css" rel="stylesheet">
+        <link href="../css/global.css" rel="stylesheet">
+        <script src="../js/global.js" defer></script>
+
+        <!-- icon font: fontawesome -->
+        <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+
+        <!-- page-specific assets -->
+        <link href="../css/top-bar.css" rel="stylesheet">
+        <link href="../css/result.css" rel="stylesheet">
+        
+    </head>
+
+    <body>
+        <!------ TOP BAR ------>
+        <div js-include-html="../html/top-bar.html"></div>
+       
+        <div class="container">
+             <!-- Left Column Content -->
+            <div class="left-container">
+                
+                <div class="content">
     
-</body>
+                    <form class="form" action="#" method="post">
+                        <div class="text-field-wrap">
+                            <div class="text-field">
+                                <input type="text" placeholder="Search For Anything" name="" value="">
+                            </div>
+                            <div class="text-field">
+                                <input type="text" placeholder="Postal Code / Address" name="" value="">
+                            </div>
+                            <div class="text-field">
+                                <input type="date" placeholder="Date" name="" value="">
+                            </div>
+                            <div class="text-field">
+                                <input type="text" placeholder="Time" name="" value="">
+                            </div>
+                            <div class="text-field">
+                                <select class="drop-down" name="category" id="">
+                                    <option value="category">Category</option>
+                                    <option value="food-and-drinks">Food & Drinks</option>
+                                    <option value="travel">Travel</option>
+                                    <option value="sports">Sport</option>
+                                    <option value="music">Music</option>
+                                    <option value="performing">Performing</option>
+                                    <option value="business">Business</option>
+                                </select>
+                            </div>
+                        </div>
+                
+                        <div class="btn-wrap">
+                            <button class="ctn" type="submit">Reset</button><br>
+                            <button class="ctn" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+            <!-- Right Column Content -->
+
+            <div class="tags-container">
+                <button type="submit" id="" class="tag food"># Food</button>
+                <button type="submit" id="" class="tag travel"># Travel</button>
+                <button type="submit" id="" class="tag sport"># Sport</button>
+                <button type="submit" id="" class="tag music"># Music</button>
+                <button type="submit" id="" class="tag performing"># Performing</button>
+                <button type="submit" id="" class="tag business"># Business</button>
+            </div>
+
+
+            <div class="event-wraper">
+
+                <!-- For Testing -->
+                <!-- card 1-->
+                <div class="event-container">
+                    <div class="card-container" id="">
+                        <div>
+                            <a href="#"></a>
+                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_hiking_view_T22nibt5XvI.jpeg" alt=""></a>
+                        </div>
+                        <div class="card-description">
+                            <h3 class="card-content">Event name</h3>
+                            <p class="card-content">Location: Lorem Ipsum</p>
+                            <p class="card-content">Date: Lorem Ipsum</p>
+                            <p class="card-content">Time: Lorem Ipsum</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card 2 -->
+                <div class="event-container">
+                    <div class="card-container" id="">
+                        <div>
+                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt=""></a>
+                        </div>
+                        <div class="card-description">
+                            <h3 class="card-content">Event name</h3>
+                            <p class="card-content">Location: Lorem Ipsum</p>
+                            <p class="card-content">Date: Lorem Ipsum</p>
+                            <p class="card-content">Time: Lorem Ipsum</p>
+                        </div>
+                    </div>    
+                </div>
+
+                <!-- card 3 -->
+                <div class="event-container">
+                    <div class="card-container" id="">
+                        <div>
+                            <a href="#"><img class="card-content image search-page" id="test123" src="../images/unsplash_dance_group_Nwc-Z3_aEvw.jpeg" alt=""></a>
+                        </div>
+                        <div class="card-description">
+                            <h3 class="card-content">Event name</h3>
+                            <p class="card-content">Location: Lorem Ipsum</p>
+                            <p class="card-content">Date: Lorem Ipsum</p>
+                            <p class="card-content">Time: Lorem Ipsum</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card 4 -->
+                <div class="event-container">
+                    <div class="card-container" id="">
+                        <div>
+                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_gallery_event_cuKJre3nyYc.jpeg" alt=""></a>
+                        </div>
+                        <div class="card-description">
+                            <h3 class="card-content">Event name</h3>
+                            <p class="card-content">Location: Lorem Ipsum</p>
+                            <p class="card-content">Date: Lorem Ipsum</p>
+                            <p class="card-content">Time: Lorem Ipsum</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card 5 -->
+                <div class="event-container">
+                    <div class="card-container" id="">
+                        <div>
+                            <a href="#"><img class="card-content image search-page" id="test123" src="../images/unsplash_dance_group_Nwc-Z3_aEvw.jpeg" alt=""></a>
+                        </div>
+                        <div class="card-description">
+                            <h3 class="card-content">Event name</h3>
+                            <p class="card-content">Location: Lorem Ipsum</p>
+                            <p class="card-content">Date: Lorem Ipsum</p>
+                            <p class="card-content">Time: Lorem Ipsum</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card 6 -->
+                <div class="event-container">
+                    <div class="card-container" id="">
+                        <div>
+                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_gallery_event_cuKJre3nyYc.jpeg" alt=""></a>
+                        </div>
+                        <div class="card-description">
+                            <h3 class="card-content">Event name</h3>
+                            <p class="card-content">Location: Lorem Ipsum</p>
+                            <p class="card-content">Date: Lorem Ipsum</p>
+                            <p class="card-content">Time: Lorem Ipsum</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>    
+        </div>
+    </body>
 </html>
