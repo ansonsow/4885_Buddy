@@ -30,8 +30,19 @@ You need to remove the `4885_Buddy` folder from your *local* computer first, and
 ### Credits:
 
 Images used:  
-[github.com/ansonsow/4885_Buddy/tree/main/images](https://github.com/ansonsow/4885_Buddy/tree/main/images)
+[github.com/ansonsow/4885_Buddy/tree/main/images](https://github.com/ansonsow/4885_Buddy/tree/main/images)  
+
+**Slideshow images:**
 * [unsplash.com/photos/cuKJre3nyYc](https://unsplash.com/photos/cuKJre3nyYc)
 * [unsplash.com/photos/cPgUiIos-q0](https://unsplash.com/photos/cPgUiIos-q0)
 * [unsplash.com/photos/T22nibt5XvI](https://unsplash.com/photos/T22nibt5XvI)
 * [unsplash.com/photos/Nwc-Z3_aEvw](https://unsplash.com/photos/Nwc-Z3_aEvw)
+
+**Header image:**
+* [unsplash.com/photos/I9j8Rk-JYFM](https://unsplash.com/photos/I9j8Rk-JYFM)
+
+**Profile page:**
+* icon: [unsplash.com/photos/3JmfENcL24M](https://unsplash.com/photos/3JmfENcL24M)
+
+**Login page:**
+* [unsplash.com/photos/2LhCDvS_7xs](https://unsplash.com/photos/2LhCDvS_7xs)
