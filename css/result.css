@@ -117,9 +117,9 @@ nav {
     background-color: transparent;
     font-family: var(--Heading-Font);
     color: var(--Text-Color);
-    width: 8em;
+    width: 9em;
     padding: 1rem 0 ;
-    margin: 1rem 0.4rem;
+    margin: 1rem 0.5rem;
     cursor: pointer;
     border: 2px solid var(--Text-Color);
     border-radius: 6rem;
