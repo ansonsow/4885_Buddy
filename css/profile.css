@@ -75,7 +75,7 @@ nav {
     position:absolute;
     top:0;left:0;
     margin-left:var(--Left-Panel-Width);
-    width:calc(100vw - var(--Left-Panel-Width));
+    width:calc(100% - var(--Left-Panel-Width));
     min-height:100vh;
     display:flex;
     align-items:center;
