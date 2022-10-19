@@ -1,55 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sign Up</title>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Inter:400,700|Manrope:800" rel="stylesheet">
+
+    <!-- firebase -->
+    <script type="module" src="../js/app.js" defer></script>
+
     <!-- <script src="../js/app.js" type="module" defer></script> -->
     <script type="module" src="../js/signUp.js" defer></script>
+
+    <!-- <script type="module" src="../js/maindb.js" defer></script> -->
+    <!-- <script type="module" src="../js/login.js"></script> -->
+
+    <!-- required assets -->
+    <link href="../css/variables.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <script src="../js/global.js" defer></script>
+
+    <!-- icon font: fontawesome -->
+    <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+
+    <!-- page-specific assets -->
+    <link href="../css/top-bar.css" rel="stylesheet">
+    <link href="../css/signUp.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+        <!------ TOP BAR ------>
+        <div js-include-html="../html/top-bar.html"></div>
+
     
-<div >
-  
-  <form>
-    <div class="container">
-      <h1>Sign Up</h1>
-      <h3>Please fill in this form to create an account.</h3>
-      <br>
-      <label for="email"><b>Email</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="text" placeholder="Enter Email" name="email" id="email" required>
-      <br><br><br>
-
-      <label for="username"><b>Username</b></label>&nbsp;&nbsp;&nbsp;
-      <input type="text" placeholder="Enter Username" name="username" id="username" required>
-      <br><br><br>
-
-      <label for="psw"><b>Password</b></label>&nbsp;&nbsp;&nbsp;
-      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-      <br><br><br>
-
-      <label for="pswRepeat"><b>Confirm Password</b></label>&nbsp;&nbsp;&nbsp;
-      <input type="password" placeholder="Confirm Password" name="pswRepeat" id = "pswRepeat" required>
-      <br><br><br>
-      
-      <label for="fName"><b>First Name</b></label>&nbsp;&nbsp;&nbsp;
-      <input type="text" placeholder="First Name" name="fName" id="fName" required>
-      <br><br><br>
-
-      <label for="lName"><b>Last Name</b></label>&nbsp;&nbsp;&nbsp;
-      <input type="text" placeholder="Last Name" name="lName" id="lName" required>
-      <br><br><br>
-
-      <br><br>
-
-      <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-
-      <div>
-        <button id="btncancel" type="button" >Cancel</button>
-        <button id="btnsignup" type="button" >Sign Up</button>
-        <p id="noteToUser"></p>
-      </div>
-    </div>
-  </form>
-</div>
-</head>
-<body>
+        <div class="container">
+            <div class="img-wrap">
+                <img class="side-image" src="../images/unsplash_seaside_2LhCDvS_7xs.jpg" alt="">
+            </div>
     
-</body>
+            <div class="left-container">
+    
+                <a class="buddy-logo" href="../html/main.html">
+                    <div js-include-html="../svg/buddy_logo_grayscale.svg"></div>
+                </a>
+    
+                <div class="content">
+                    <h1 class="welcome">Welcome! <span class="buddy">Buddy</span></h1>
+
+    
+                    <form class="form" action="#" method="post">
+                      <div class="text_field">
+                        <input type="text" placeholder="First Name" name="fName" id="fName" required>
+                      </div>
+                      <div class="text_field">
+                        <input type="text" placeholder="Last Name" name="lName" id="lName" required>
+                      </div>
+
+                      <div class="text_field">
+                        <input type="text" placeholder="Email" name="email" id="email" required>
+                      </div>
+                      <div class="text_field">
+                        <input type="text" placeholder="Username" name="username" id="username" required>
+                      </div>
+                      <div class="text_field">
+                        <input type="password" placeholder="Password" name="psw" id="psw" required>
+                      </div>
+                      <div class="text_field">
+                        <input type="password" placeholder="Confirm Password" name="pswRepeat" id = "pswRepeat" required> 
+                      </div>
+
+                      <div class="btn-wrap">
+                        <button id="btncancel" type="button" class="ctn">Cancel</button>
+                        <button id="btnsignup" type="button" class="ctn">Sign Up</button>
+                      </div>  
+
+                    </form>
+                </div>
+                <p id="noteToUser"></p>
+            </div>
+        </div>
+  </body>
 </html>
