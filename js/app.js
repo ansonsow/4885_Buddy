@@ -314,7 +314,7 @@ export async function updateEventLocation(id,eventLocation){
   });
 }
 
-// updateEventLocation("0Pd3kRlGNKAvqxeObdty",[90,90])
+// updateEventLocation("B3FW82VcBNZrwwl0py0w",[90,90])
 
 
 // not sure what is format is
@@ -534,15 +534,10 @@ export async function updateBadgePoint(id, point){
 export async function createAccount (email,password){
   try {
     const userCredential  = await createUserWithEmailAndPassword(auth, email, password); 
-    // message = "aaa"
-    // console.log(userCredential.user);
-    // return("your account has created")
     return true
     }
     catch(error){
-      console.log(error.message);
       return(error.message);
-      // return false
     }
 }
 
