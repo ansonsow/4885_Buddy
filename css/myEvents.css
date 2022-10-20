@@ -6,11 +6,9 @@
     --Tray-Arrow-Size:1.5rem;
     --Tray-Arrow-Touch-Padding:0.8rem;
     --Tray-Arrow-Edge-Offset:0.6rem;
-}
 
-nav .logo [vector-part="buddy_bu"] path,
-nav .logo [vector-part="buddy_y"] path {
-    transition:fill 1s ease-in-out; /* change later */
+    --Tray-Transition-Speed:0.420s;
+    --Tray-Transition-Method:cubic-bezier(0.14, 0, 0.14, 1);
 }
 
 /*---------- DESKTOP  ----------*/
@@ -27,10 +25,14 @@ nav .logo [vector-part="buddy_y"] path {
         grid-template-columns:1fr 1fr;
     }
 
-    /* orange logo */
-    nav .logo [vector-part="buddy_bu"] path,
-    nav .logo [vector-part="buddy_y"] path {
-        fill:var(--Primary)
+    nav[status-change="proc"] .logo [vector-part="buddy_bu"] path,
+    nav[status-change="proc"] .logo [vector-part="buddy_y"] path {
+        transition:fill var(--Tray-Transition-Speed) var(--Tray-Transition-Method);
+    }
+
+    nav .logo[status="closed"] [vector-part="buddy_bu"] path,
+    nav .logo[status="closed"] [vector-part="buddy_y"] path {
+        fill:var(--Primary);
     }
 
     .searchbar {
@@ -65,19 +67,34 @@ nav .logo [vector-part="buddy_y"] path {
         align-items:center;
     }
 
-    .arrow-container i {
-        flex-shrink:0;
-        display:none;
+    .arrow-container [arrow]{
+        display:flex;
         align-items:center;
         justify-content:center;
         width:var(--Tray-Arrow-Size);
         height:var(--Tray-Arrow-Size);
+
         margin-left:calc(0px - var(--Tray-Arrow-Touch-Padding) - var(--Tray-Arrow-Size) - var(--Tray-Arrow-Edge-Offset));
         padding:var(--Tray-Arrow-Touch-Padding);
         padding-right:var(--Tray-Arrow-Edge-Offset);
-        font-size:var(--Tray-Arrow-Size);
+
         box-sizing:content-box;
+    }
+
+    .arrow-container i {
+        flex-shrink:0;
+        display:none;        
+        font-size:var(--Tray-Arrow-Size);
         color:var(--White);
+    }
+
+    /*---- CLOSED Panel ----*/
+    .left-panel[status="closed"]{
+        width:calc((var(--Tray-Arrow-Edge-Offset) * 2) + var(--Tray-Arrow-Size));
+    }
+
+    .left-panel[status-change="proc"]{
+        transition:width var(--Tray-Transition-Speed) var(--Tray-Transition-Method);
     }
 }
 

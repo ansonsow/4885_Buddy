@@ -6,7 +6,7 @@
     --Top-Hamburger-Size:1.4rem;
 
     /*------ LOGO ------*/
-    --Logo-Container-Width:150px;
+    --Logo-Container-Width:175px;
     --Logo-Width:90px;  --Mobile-Logo-Width:75px;
     --Logo-Height:calc(var(--Logo-Width) / 3);  --Mobile-Logo-Height:calc(var(--Mobile-Logo-Width) / 3);
 

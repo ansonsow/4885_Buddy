@@ -38,23 +38,29 @@ jsIncludeHTML();
 
 // check when the reusable site parts have been loaded
 // via jsIncludeHTML()
-// when loaded, proceed with vanilla JS functions
+// when loaded, proceed with any further functions
+// *CAN* be called in another js files!
 let timeSt = Date.now();
 let timeStop = 1000;
 
-let filesReadyCheck = setInterval(() => {
-	if(Date.now() - timeSt > timeStop){
-		clearInterval(filesReadyCheck);
-	} else {
-		if(filesReady == "yes"){
-            clearInterval(filesReadyCheck);
-            vanillaJS_functions();
-        }
-	}
-},0);
+function contentLoaded(param){
+  let filesReadyCheck = setInterval(() => {
+    if(Date.now() - timeSt > timeStop){
+      clearInterval(filesReadyCheck);
+    } else {
+      if(filesReady == "yes"){
+        clearInterval(filesReadyCheck);
+        param();
+      }
+    }
+  },0);
+}
 
-function vanillaJS_functions(){
-    /* ---------- Hamburger Menu ----------*/
+contentLoaded(hamburgerToggle);
+
+
+/* ---------- Hamburger Menu ----------*/
+function hamburgerToggle(){
 
     const topHamburger = document.querySelector(".top-hamburger i");
     const navCont = document.querySelector(".top-nav-container");
@@ -75,4 +81,4 @@ function vanillaJS_functions(){
         navMenu.classList.toggle("active")
     })
 
-}//end vanillaJS_functions()
+}//end hamburgerToggle()
