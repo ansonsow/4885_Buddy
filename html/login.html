@@ -52,10 +52,10 @@
 
                 <form class="form" action="#" method="post">
                     <div class="text_field">
-                        <input type="text" placeholder="Email" name="" value="" id="email" required>
+                        <input type="text" placeholder="Email&ast;" name="" value="" id="email" required>
                     </div>
                     <div class="text_field">
-                        <input type="password" placeholder="Password" name="" value="" id="password" required>
+                        <input type="password" placeholder="Password&ast;" name="" value="" id="password" required>
                     </div>
         
                     <div class="checkbox-wrap">
@@ -63,12 +63,12 @@
                             <input type="checkbox" name="remember-me"> 
                             <label for="remember-me">Remember me</label>
                         </div>
-                        <a class="forget-password" href="#">Forgot Password?</a>
+                        <a class="forget-password" href="/html/forgotPassword.html">Forgot Password?</a>
                     </div>
             
                     <div class="btn-wrap">
-                        <button class="ctn" type="button" id="logIn">Log in</button><br>
-                        <button class="ctn" type="submit">Sign up</button>
+                        <button class="ctn" type="button" id="logIn">Log in</button>
+                        <button class="ctn" onclick="location.href='/html/signUp.html'" type="button">Sign Up</button>
                     </div>
                 </form>
             </div>
