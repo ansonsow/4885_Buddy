@@ -8,6 +8,16 @@ const db = getFirestore();
 // });
 
 let slideshowIMGArray = [];
+// if(currentUserId=""){
+//     let q = query(collection(db, "events"));
+//     const querySnapshot = await getDocs(q);
+//     querySnapshot.forEach((doc) => {
+//         slideshowIMGArray.push(doc.data().image);
+//     }
+//     );
+// }else{
+//     console.log("blahblahblah");
+// }
 
 let q = query(collection(db, "events"));
 const querySnapshot = await getDocs(q);

@@ -439,7 +439,8 @@ export async function writeBadgeData(uId, image, name, point){
   }
 }
 
-// writeBadgeData("","imageURL (str, 2048)","testBadgeName (str, 20)","5 (num)")
+// writeBadgeData(["U22dg94nYP5XOMdMGMSV"],"https://github.com/ansonsow/4885_Buddy/blob/main/images/badges_03.png?raw=true","highlyPraised",20)
+
 
 
 
