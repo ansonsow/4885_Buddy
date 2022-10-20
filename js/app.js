@@ -24,9 +24,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const db = getFirestore();
+export const db = getFirestore();
 export const auth = getAuth(app);
 
 // reference DB structure – USERS:
