@@ -1,6 +1,6 @@
 // import * as dbf from "./app.js"
 
-import {Firestore, query, getFirestore, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import {Firestore, query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 const db = getFirestore();
 
 // example of reading info from db

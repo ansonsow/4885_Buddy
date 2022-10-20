@@ -15,3 +15,5 @@ const userDb = await getDoc(doc(dbf.db, "users",currentUserId));
 // console.log();
 
 document.getElementById("profile-picture").src= userDb.data().pfpURL;
+
+document.getElementById("username").innerHTML = userDb.data().username;
