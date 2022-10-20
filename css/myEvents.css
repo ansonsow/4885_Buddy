@@ -1,0 +1,95 @@
+/*---------- VARIABLES FOR MYEVENTS PAGE  ----------*/
+:root {
+    --Left-Panel-Width:38vw;
+    --Left-Panel-Rounding:120px;
+
+    --Tray-Arrow-Size:1.5rem;
+    --Tray-Arrow-Touch-Padding:0.8rem;
+    --Tray-Arrow-Edge-Offset:0.6rem;
+}
+
+nav .logo [vector-part="buddy_bu"] path,
+nav .logo [vector-part="buddy_y"] path {
+    transition:fill 1s ease-in-out; /* change later */
+}
+
+/*---------- DESKTOP  ----------*/
+@media(min-width:600px){
+    /*---- Top Bar ----*/
+    header {
+        background:transparent;
+        position:fixed;
+        width:100%;
+        z-index:3;
+    }
+
+    nav {
+        grid-template-columns:1fr 1fr;
+    }
+
+    /* orange logo */
+    nav .logo [vector-part="buddy_bu"] path,
+    nav .logo [vector-part="buddy_y"] path {
+        fill:var(--Primary)
+    }
+
+    .searchbar {
+        display:none;
+    }
+
+    .top-navlinks {
+        justify-content:right;
+    }
+
+    .top-navlinks a {
+        color:var(--Main-Text);
+    }
+
+    /*---- Left Panel ----*/
+    .left-panel {
+        position:fixed;
+        width:var(--Left-Panel-Width);
+        height:100vh;
+        border-radius:0 var(--Left-Panel-Rounding) var(--Left-Panel-Rounding) 0;
+        background:var(--Primary);
+        overflow:hidden;
+    }
+
+    .arrow-container {
+        position:absolute;
+        top:0;left:0;
+        margin-left:100%;
+        width:0px;
+        height:100%;
+        display:flex;
+        align-items:center;
+    }
+
+    .arrow-container i {
+        flex-shrink:0;
+        display:none;
+        align-items:center;
+        justify-content:center;
+        width:var(--Tray-Arrow-Size);
+        height:var(--Tray-Arrow-Size);
+        margin-left:calc(0px - var(--Tray-Arrow-Touch-Padding) - var(--Tray-Arrow-Size) - var(--Tray-Arrow-Edge-Offset));
+        padding:var(--Tray-Arrow-Touch-Padding);
+        padding-right:var(--Tray-Arrow-Edge-Offset);
+        font-size:var(--Tray-Arrow-Size);
+        box-sizing:content-box;
+        color:var(--White);
+    }
+}
+
+/*---------- MOBILE  ----------*/
+@media(max-width:600px){
+    /* un-orange logo */
+    nav .logo [vector-part="buddy_bu"] path,
+    nav .logo [vector-part="buddy_y"] path {
+        fill:default;
+    }
+
+    .left-panel {
+        display:none;
+    }
+}
