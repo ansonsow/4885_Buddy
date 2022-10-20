@@ -78,24 +78,26 @@ svg {
 /*---------- Button Section --------*/
 .btn-wrap{
     text-align: center;
-    width: 100%
+    width: 60%;
+    margin:auto;
 }
 
-.ctn{
-    width: 20rem;
+.ctn {
+    width: 8rem;
     font-size: 1rem;
-    padding: 3%;
-    margin: 1%;
-    border: none;
+    padding: 3% 4%;
+    margin: 1% 5%;
+    border: 2px solid var(--White);
     border-radius: 5rem;
     cursor: pointer;
-    background-color: var(--White);
-    color: var(--Accent);
+    background-color: var(--Primary);
+    color: var(--White);
+    font-weight: 900;
 }
 
 .ctn:hover {
-    background-color: var( --Accent);
-    color: var(--White)
+    background-color: var(--White);
+    color: var(--Text-Color)
 }
 
 /* Error Message */
@@ -166,17 +168,19 @@ svg {
     
     .checkbox-wrap{
         width: var(--form-width-mobile);
-        margin: 0 0 8% 3%;
+        margin: 0 0 9% 3%;
     }
 
     /*---------- Button Section --------*/
     .btn-wrap{
-        width: 100%
+        width: 100%;
+        margin-bottom: 10%;
     }
 
     .ctn{
         width: 9rem;
-        padding: 1rem;
+        display: block;
+        margin: 4% auto;
     }
 
     /* Error Message */

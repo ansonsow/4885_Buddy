@@ -22,15 +22,6 @@ nav {
     color:var(--Main-Text);
 }
 /*------------------------------------------------*/
-
-/*---------- VARIABLES FOR SEARCH PAGE  ----------*/
-
-:root {
-    --text-field-width: 310px;
-}   
-/*----------------------------------------------*/
-
-
 /* ------------ LEFT Column ------------------- */
 /* ---------- Text fields ---------- */
 .container{
@@ -58,14 +49,13 @@ nav {
 
 .text-field input, .drop-down {
     margin: 0 auto 5% 5%;
-    width: var(--form-width-full);
+    width: 310px;
     border:none;
     outline:none;
     background: none;
     border-bottom: 1px solid var(--White);
     font-size: var(--Body-Font-Size);
     color: var(--White);
-    width:var(--text-field-width);
     font-family: var(--Heading-Font);
 }
 
@@ -81,26 +71,26 @@ nav {
 .btn-wrap {
     display: flex;
     justify-content: center;
-    margin: 10% auto;
+    margin: 6% auto 0;
 }
 
 .ctn {
     width: 8rem;
     font-size: 1rem;
-    padding: 3%;
+    padding: 2% 3%;
     margin: 4%;
     border-radius: 5rem;
     cursor: pointer;
-    border: none;
-    background-color: var(--Secondary);
+    border: 2px solid var(--White);
+    background-color: var(--Primary);
     color: var(--White);
-    font-family: var(--Body-Font-Size)
+    font-family: var(--Body-Font-Size);
+    font-weight: 900;
 }
 
 .ctn:hover {
-    background-color: var(--Secondary-Faded);
-    border: none;
-    color: var(--Accent);
+    background-color: var(--White);
+    color: var(--Text-Color);
 }
 
 /* ------------ Rifht Column ------------------- */
@@ -169,14 +159,14 @@ h3.card-content{
 
     .left-container{
         width: 100%;
-        height: 54%;
+        height: 45%;
         border-radius: 0 0 10% 10%;
         position: relative;
     }
 
     /* Test field */
     .text-field-wrap{
-        margin: 10% 15% 0 15%;
+        margin: 15% 15% 0 15%;
         padding-top: 2rem;
     }
 
@@ -186,8 +176,6 @@ h3.card-content{
         border: 1px solid var(--White);
         border-radius: 2rem;
         font-size: 0.7rem;
-        color: var(--White);
-        width:var(--text-field-width)
     }   
 
     /* Button */
@@ -198,9 +186,8 @@ h3.card-content{
     .ctn{
         width: 6rem;
         font-size: 0.8rem;
-        padding: 3%;
         margin: 7% 3% 0 3%;
-        border-radius: 4rem;
+        border-radius: 3rem;
     }
 
     /* Right Column */

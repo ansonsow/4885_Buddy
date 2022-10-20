@@ -243,8 +243,7 @@
 }
 
 .categories-grid a:hover, .free-online a:hover{
-    background-color: var(--Accent);
-    color: var(--White);
+    transform: translateY(-7px);
 }
 
 @media (max-width: 600px) {
