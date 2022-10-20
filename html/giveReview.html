@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>Give Review</title>
+
+        <!-- fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Inter:400,700|Manrope:800" rel="stylesheet">
+
+        <!-- firebase -->
+        <script type="module" src="../js/app.js" defer></script>
+        <script type="module" src="../js/maindb.js" defer></script>
+
+        <!-- required assets -->
+        <link href="../css/variables.css" rel="stylesheet">
+        <link href="../css/global.css" rel="stylesheet">
+        <script src="../js/global.js" defer></script>
+
+        <!-- icon font: fontawesome -->
+        <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+
+        <!-- page-specific assets -->
+        <link href="../css/top-bar.css" rel="stylesheet">
+        <link href="../css/giveReview.css" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!------ TOP BAR ------>
+        <div js-include-html="../html/top-bar.html"></div>
+
+        <!----- LEFT CONTAINER ----->
+        <div class="left-container">
+            <div class="left-content">
+                <div class="review">
+                    <h3>Your Review</h3>
+                    <hr>
+                    <textarea name="" id="" cols="35" rows="13"></textarea>
+                </div>
+
+                <div class="rating">
+                    <h3>Rate Host</h3>
+                    <hr>
+                    <div class="star-rating">
+                        <i class="fa-solid fa-star fill"></i>
+                        <i class="fa-solid fa-star fill"></i>
+                        <i class="fa-solid fa-star fill"></i>
+                        <i class="fa-solid fa-star fill"></i>
+                        <i class="fa-solid fa-star empty"></i>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">Send</button>
+            </div>
+        </div>
+
+        <!----- RIGHT CONTAINER ----->
+        <div class="right-container">
+            <h1 class="event-name" id="">Event Name</h1>
+            
+            <div class="event-content">
+                <div class="content-detail-wrap">
+                    <div class="content-detail">
+                        <i class="fa-solid fa-location-dot"></i>&nbsp&nbsp&nbsp
+                        <span>Location : <a href="#">address of the place</a></span>
+                    </div>
+                    <div class="content-detail">
+                        <i class="fa-regular fa-calendar-days"></i>&nbsp&nbsp
+                        <span>Date : 11, Sept - 11, Sept</span>
+                    </div>
+                    <div class="content-detail">
+                        <i class="fa-solid fa-user-group fa-xs"></i>&nbsp&nbsp
+                        <span>Number of participants : 30 people</span>
+                    </div>
+                    <div class="content-detail">
+                        <i class="fa-solid fa-dollar-sign"></i>&nbsp&nbsp&nbsp&nbsp
+                        <span>Price : Free</span>
+                    </div>
+                    <div class="content-detail">
+                        <i class="fa-regular fa-user"></i>&nbsp&nbsp&nbsp
+                        <span>Host : <a href="#">Milla's Profile</a></span>
+                    </div>
+                </div>
+                
+
+                <div class="event-image">
+                    <img src="/images/unsplash_gallery_event_cuKJre3nyYc.jpeg" alt="">
+                </div>
+            </div>
+            <div class="descriptions-wrap">
+            <p class="descriptions">Descriptions :</p>    
+            <p class="descriptions">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>
