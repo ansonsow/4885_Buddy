@@ -43,14 +43,14 @@ jsIncludeHTML();
 let timeSt = Date.now();
 let timeStop = 1000;
 
-function contentLoaded(param){
+function contentLoaded(actionFunc){
   let filesReadyCheck = setInterval(() => {
     if(Date.now() - timeSt > timeStop){
       clearInterval(filesReadyCheck);
     } else {
       if(filesReady == "yes"){
         clearInterval(filesReadyCheck);
-        param();
+        actionFunc();
       }
     }
   },0);
