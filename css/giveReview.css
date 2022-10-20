@@ -1,0 +1,104 @@
+/* top bar adjustments for Give Review PAGE */
+header {
+    background:transparent;
+    position:fixed;
+    width:100%;
+    z-index:3;
+}
+
+nav {
+    grid-template-columns:1fr 1fr;
+}
+
+.searchbar {
+    display:none;
+}
+
+.top-navlinks {
+    justify-content:right;
+}
+
+.top-navlinks a {
+    color:var(--Main-Text);
+}
+/*------------------------------------------------*/
+/* ------------ LEFT Container ------------------- */
+
+.left-container{
+    position: fixed;
+    display: flex;
+    width: 35%;
+    height: 100vh;
+    background-color: var(--Primary);
+    border-radius: 0 15% 15% 0;
+    color: white;
+}
+
+.left-content {
+    justify-items: center;
+    margin: 12rem auto 0;
+}
+
+hr {
+    width: 100%;
+    margin: 0.5rem auto;
+}
+
+.rating{
+    margin-top: 1rem;
+}
+
+.star-rating i.fill {
+    color:var(--White);
+}
+
+.star-rating i.empty {
+    color:var(--Secondary-Faded);
+}
+
+.btn {
+    width: 8rem;
+    font-size: 1rem;
+    padding: 2%;
+    margin: 3rem 0;
+    border-radius: 2rem;
+    cursor: pointer;
+    border: none;
+    background-color: #f0f0f0;
+    color: var(--Text-Color);
+    font-family: var(--Body-Font-Size);
+    font-weight: 900;
+}
+
+/* ------------ RIGHT Container ------------------- */
+
+.right-container{
+    width: 60%;
+    margin: 0 0 0 40%;
+}
+
+.event-name {
+    padding: 9rem 1rem 2rem 0;
+}
+
+.event-content {
+    display: flex;
+}
+
+.content-detail {
+    margin: 0.5rem auto;
+}
+
+.event-image {
+    margin: 0 auto;
+}
+
+.event-image img {
+    width: 300px;
+    border-radius: 2rem;
+}
+
+.descriptions-wrap {
+    margin: 2rem 5rem 0 0;
+}
+
