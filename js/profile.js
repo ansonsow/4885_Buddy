@@ -21,7 +21,12 @@ document.getElementById("username").innerHTML = userDb.data().username;
 let b = query(collection(dbf.db, "badges"));
 const badgeQuerySnapshot = await getDocs(b);
 badgeQuerySnapshot.forEach((doc) => {
-    if(doc.data().userId.includes(currentUserId)){
-        console.log(doc.data().name);
+    if(!doc.data().userId.includes(currentUserId)){
+        // console.log(doc.data().name);
+        let badgeName = doc.data().name.toString()
+        document.getElementById(badgeName).style.filter = "grayscale(100%)";
+    }else{
+        // console.log("dont have "+doc.data().name);
+
     }
 });
