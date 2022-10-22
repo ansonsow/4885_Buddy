@@ -77,6 +77,10 @@ nav {
     filter: invert(100%);
 }
 
+select {
+    appearance: none;
+}
+
 /* ------ Buttons ------ */
 .btn-wrap {
     display: flex;

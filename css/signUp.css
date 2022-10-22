@@ -74,8 +74,8 @@ svg {
 .ctn{
     width: 10rem;
     font-size: 1rem;
-    padding: 3% 2%;
-    margin: 4% 2%;
+    padding: 2% 2%;
+    margin: 4% 0;
     border: 2px solid var(--White);
     border-radius: 5rem;
     cursor: pointer;

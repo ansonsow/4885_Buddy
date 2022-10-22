@@ -41,14 +41,26 @@ h1 {
     font-size: 1.2rem;
     font-weight: 900;
     border: 2px solid var(--White);
-    background-color: var(--Primary);
-    color: var(--White);
     font-family: var(--Heading-Font);
 }
 
-.btn:hover {
-    background-color: var(--White);
+.back-to-home {
+    background-color: var(--Primary);
+    color: var(--White);
+}
+
+.back-to-home:hover {
+    border: 2px solid var(--Text-Color);
+}
+
+.check-it {
+    background-color: var(--Light-Gray);
     color: var(--Primary);
+}
+
+.check-it:hover {
+    border: 2px solid var(--Secondary-Faded);
+    background-color: var(--Secondary-Faded);
 }
 
 
@@ -80,10 +92,15 @@ h1 {
         color: var(--White);
     }
 
+    .btn-wrap {
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 2rem auto 0;
+    }
+
     .btn {
-        display: block;
         padding: 0.7rem;
-        margin: 1.3rem auto;
+        margin: 0.7rem auto;
         font-size: 1rem;
     }
 

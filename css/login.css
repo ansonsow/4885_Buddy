@@ -90,14 +90,27 @@ svg {
     border: 2px solid var(--White);
     border-radius: 5rem;
     cursor: pointer;
-    background-color: var(--Primary);
-    color: var(--White);
     font-weight: 900;
 }
 
-.ctn:hover {
+.logIn {
     background-color: var(--White);
     color: var(--Text-Color)
+}
+
+.logIn:hover {
+    background-color: var(--Secondary-Faded);
+    border: 2px solid var(--Secondary-Faded);
+    color: var(--Text-Color)
+}
+
+.signUp {
+    background-color: var(--Primary);
+    color: var(--White)
+}
+
+.signUp:hover {
+    border: 2px solid var(--Text-Color);
 }
 
 /* Error Message */
