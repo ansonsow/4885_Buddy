@@ -21,9 +21,17 @@ nav {
 .top-navlinks a {
     color:var(--Main-Text);
 }
+
+
+/*------------------------------------------------*/
+/* ------------ Mobile Top ------------------- */
+.mobile-top {
+    display: none;
+}
+
 /*------------------------------------------------*/
 /* ------------ LEFT Container ------------------- */
-
+/* ------- Review Section-------- */
 .left-container{
     position: fixed;
     display: flex;
@@ -39,13 +47,19 @@ nav {
     margin: 12rem auto 0;
 }
 
+textarea {
+    width: 350px;
+    height: 200px;
+}
+
 hr {
     width: 100%;
     margin: 0.5rem auto;
 }
 
+/* ------- Stars Section-------- */
 .rating{
-    margin-top: 1rem;
+    margin: 1rem 0 2rem 0;
 }
 
 .star-rating i.fill {
@@ -56,18 +70,26 @@ hr {
     color:var(--Secondary-Faded);
 }
 
+
+/* ------- Buttons Section-------- */
 .btn {
     width: 8rem;
+    display: block;
     font-size: 1rem;
     padding: 2%;
-    margin: 3rem 0;
+    margin: 1rem 0;
     border-radius: 2rem;
     cursor: pointer;
-    border: none;
-    background-color: #f0f0f0;
-    color: var(--Text-Color);
+    border: 2px solid var(--White);
+    background-color: var(--Primary);
+    color: var(--White);
     font-family: var(--Body-Font-Size);
     font-weight: 900;
+}
+
+.btn:hover{
+    color: #545454;
+    background-color: #F9F9F9;
 }
 
 /* ------------ RIGHT Container ------------------- */
@@ -89,6 +111,11 @@ hr {
     margin: 0.5rem auto;
 }
 
+.link {
+    color: #0A7AFF;
+    border-bottom: 1px solid #0A7AFF;
+}
+
 .event-image {
     margin: 0 auto;
 }
@@ -96,9 +123,142 @@ hr {
 .event-image img {
     width: 300px;
     border-radius: 2rem;
+    object-fit:cover;
 }
 
 .descriptions-wrap {
     margin: 2rem 5rem 0 0;
 }
 
+
+@media (max-width: 600px) {
+
+    /* top bar adjustments */
+    header {
+        position:fixed;
+        right:0;
+        background-color:var(--Primary);
+        z-index:3;
+        width: 100vw;
+    }
+
+    .top-hamburger, header .logo, .searchbar {
+        display:block!important;
+    }
+
+    nav.home-topnav {
+        width: 100%;
+        grid-template-columns:10% auto 10%;
+        justify-items: center;
+        align-items: center;
+    }
+    
+    
+    .right-container {
+        display: none;
+    }
+
+
+/* -------- Top Banner -------- */
+    .mobile-top {
+        display: block;
+    }
+
+    .top-banner img {
+        margin: 5rem 0 0 0;
+        padding: 5%;
+        width: 100vw;
+    }
+
+/* -------- Event Card - Mobile --------- */
+    .event-wraper {
+        display: block;
+        width: 90%; 
+        margin: 5%;
+    }
+
+    .event-container {
+        width: 100%;
+        margin: 2% 0 0 0;
+    }
+
+    .card-container {
+        width: 90%;
+        display: grid;
+        grid-template-columns: 45% 55%;
+        border-radius: 0 20px 20px 0;
+        background-color: #f0f0f0;
+        margin: auto;
+    }
+
+    .card-content.image {
+        width: 12rem;
+        height: 9rem;
+        border-radius: 0 20px 20px 0;
+        object-fit:cover;
+    }
+
+    .card-description {
+        padding: 1.6rem 0 0 1.4rem;
+        line-height: 0.8rem;
+    }
+
+    h3.card-content{
+        padding-bottom: 0.8rem;
+        font-size: var(--Mobile-H3-Size);
+    }
+
+    /* ------- Review Section-------- */
+    .left-container{
+        display: block;
+        position: relative;
+        width: 100vw;
+        height: 100%;
+        color: #090909;
+        background-color: transparent;
+        margin: 0 0 0 0;
+    }
+
+    .left-content {
+        width: 90%;
+        margin: 2rem auto;
+    }
+
+    .review {
+        margin: 0 auto;
+    }
+
+    textarea {
+        width: 100%;
+        height: 200px;
+    }
+
+    /* ------- Stars Section-------- */
+    .rating{
+        margin: 1rem 0 2rem 0;
+    }
+    
+    .star-rating i.fill {
+        color:var(--Primary);
+    }
+    
+    .star-rating i.empty {
+        color:var(--Secondary-Faded);
+    }
+
+    /* ------- Buttons Section-------- */
+
+    .btn {
+        background-color: transparent;
+        border: 2px solid #545454;
+        color: #545454;
+        margin: 1rem auto;
+    }
+    
+    .btn:hover {
+        background-color: #545454;
+        border: 2px solid #545454;
+        color: #fff;
+    }
+
+}
