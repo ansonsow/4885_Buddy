@@ -1,4 +1,4 @@
-/* top bar adjustments for SEARCH PAGE */
+/* top bar adjustments*/
 header {
     background:transparent;
     position:fixed;
@@ -22,14 +22,6 @@ nav {
     color:var(--Main-Text);
 }
 /*------------------------------------------------*/
-
-/*---------- VARIABLES FOR SEARCH PAGE  ----------*/
-
-:root {
-    --text-field-width: 310px;
-}   
-/*----------------------------------------------*/
-
 
 /* ------------ LEFT Column ------------------- */
 .container {
