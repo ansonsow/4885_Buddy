@@ -17,3 +17,11 @@ const userDb = await getDoc(doc(dbf.db, "users",currentUserId));
 document.getElementById("profile-picture").src= userDb.data().pfpURL;
 
 document.getElementById("username").innerHTML = userDb.data().username;
+
+let b = query(collection(dbf.db, "badges"));
+const badgeQuerySnapshot = await getDocs(b);
+badgeQuerySnapshot.forEach((doc) => {
+    if(doc.data().userId.includes(currentUserId)){
+        console.log(doc.data().name);
+    }
+});
