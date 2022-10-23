@@ -1,22 +1,5 @@
 /*---------- VARIABLES FOR MYEVENTS PAGE  ----------*/
 :root {
-    --Left-Panel-Width:38vw;
-    --Left-Panel-Rounding:120px;
-
-    --Quick-Links-Spacing:1rem; /* desktop only */
-
-    --Create-Event-Button-Width:calc(var(--Left-Panel-Width) / 2);
-    --Create-Event-Button-Height:7vh;
-
-    --Tray-Arrow-Size:1.5rem;
-    --Tray-Arrow-Touch-Padding:0.8rem;
-    --Tray-Arrow-Edge-Offset:0.6rem;
-
-    --Tray-Transition-Speed:0.420s;
-    --Tray-Transition-Method:cubic-bezier(0.14, 0, 0.14, 1);
-
-    --Panel-CLOSED-Width:calc(var(--Tray-Arrow-Size) + var(--Tray-Arrow-Touch-Padding) + var(--Tray-Arrow-Edge-Offset));
-
     --Events-H1-Bottom-Gap:3rem;
 
     /*---- Event Container Settings ----*/
@@ -54,25 +37,8 @@
 /*---------- DESKTOP  ----------*/
 @media(min-width:600px){
     /*---- Top Bar ----*/
-    header {
-        background:transparent;
-        position:fixed;
-        width:100%;
-        z-index:3;
-    }
-
     nav {
         grid-template-columns:1fr 1fr;
-    }
-
-    nav[status="closed"] .logo [vector-part="buddy_bu"] path,
-    nav[status="closed"] .logo [vector-part="buddy_y"] path {
-        fill:var(--Primary);
-    }
-
-    nav[status-change="proc"] .logo [vector-part="buddy_bu"] path,
-    nav[status-change="proc"] .logo [vector-part="buddy_y"] path {
-        transition:fill var(--Tray-Transition-Speed) var(--Tray-Transition-Method);
     }
 
     .searchbar {
@@ -85,111 +51,6 @@
 
     .top-navlinks a {
         color:var(--Main-Text);
-    }
-
-    /*---- Left Panel ----*/
-    .left-panel {
-        position:fixed;
-        width:var(--Left-Panel-Width);
-        height:100vh;
-        border-radius:0 var(--Left-Panel-Rounding) var(--Left-Panel-Rounding) 0;
-        background:var(--Primary);
-        overflow:hidden;
-        z-index:2;
-    }
-
-    /*---- Quick Links ----*/
-    .quick-links {
-        position:absolute;
-        top:0;left:0;
-        width:100%;
-        height:100%;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        flex-wrap:nowrap;
-        flex-direction:column;
-        width:calc(var(--Left-Panel-Width) - var(--Tray-Arrow-Size));
-        font-size:var(--H2-Size);
-    }
-
-    .left-panel[status="closed"] .quick-links {
-        margin-left:calc(0px - var(--Left-Panel-Width) + var(--Tray-Arrow-Size));
-    }
-
-    .left-panel[status-change="proc"] .quick-links {
-        transition:margin-left var(--Tray-Transition-Speed) var(--Tray-Transition-Method);
-    }
-
-    .quick-links a {
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        margin-bottom:var(--Quick-Links-Spacing);
-        color:var(--White);
-    }
-
-    .quick-links a:last-child {
-        margin-bottom:0;
-    }
-
-    .create-event {
-        /* note: flex items margins add up, so need to collapse it */
-        margin-top:calc(0px - var(--Quick-Links-Spacing) + 5vh);
-        min-width:var(--Create-Event-Button-Width);
-        min-height:var(--Create-Event-Button-Height);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        background:var(--White);
-        border-radius:30px;
-
-        font-size:var(--H3-Size);
-        font-weight:700;
-        color:var(--Primary)!important;
-        line-height:100%;
-    }
-
-    /*---- Arrow Container ----*/
-    .arrow-container {
-        position:absolute;
-        top:0;left:0;
-        margin-left:100%;
-        width:0px;
-        height:100%;
-        display:flex;
-        align-items:center;
-        z-index:1;
-    }
-
-    .arrow-container [arrow]{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        width:var(--Tray-Arrow-Size);
-        height:var(--Tray-Arrow-Size);
-
-        margin-left:calc(0px - var(--Tray-Arrow-Touch-Padding) - var(--Tray-Arrow-Size) - var(--Tray-Arrow-Edge-Offset));
-        padding:var(--Tray-Arrow-Touch-Padding);
-        padding-right:var(--Tray-Arrow-Edge-Offset);
-
-        box-sizing:content-box;
-    }
-
-    .arrow-container i {
-        flex-shrink:0;
-        display:none;        
-        font-size:var(--Tray-Arrow-Size);
-        color:var(--White);
-    }
-
-    /*---- CLOSED Panel ----*/
-    .left-panel[status="closed"]{
-        width:calc((var(--Tray-Arrow-Edge-Offset) * 2) + var(--Tray-Arrow-Size));
-    }
-
-    .left-panel[status-change="proc"]{
-        transition:width var(--Tray-Transition-Speed) var(--Tray-Transition-Method);
     }
 
     /*---- Main Content ----*/
