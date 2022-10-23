@@ -31,7 +31,8 @@
     --Event-Actions-Icon-Size:calc(var(--Body-Font-Size) * 1.1);
     --Event-Actions-Icon-Hover-Speed:0.25s;
     --Event-Actions-Icon-Spacing:0.5rem;
-    
+
+    --Remove-Event-Speed:400ms; /* ms only */    
 }
 
 /*---------- DESKTOP  ----------*/
@@ -195,6 +196,13 @@
 
     .event-actions a:hover i {
         color:var(--Primary);
+    }
+
+    /* trash icon: zoom out animation */
+    .event-block.zoom-out {
+        transform:scale(0,0);
+        transform-origin:center;
+        transition:transform var(--Remove-Event-Speed) linear;
     }
 
 }

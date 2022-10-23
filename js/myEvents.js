@@ -1,6 +1,4 @@
 $(document).ready(function(){
-    
-
     /*------ EVENTS ------*/
     let eventsCount = $(".event-block").length;
     let eventsPerRow = Number(getComputedStyle(document.documentElement).getPropertyValue("--Events-Per-Row"));
@@ -72,4 +70,27 @@ $(document).ready(function(){
             }
         }
     })//end arrows click
+
+    /*------ TRASH: CLICK ------*/
+    let rmEVspeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Remove-Event-Speed"));
+
+    $(document).on("click", ".delete-event", function(){
+        let that = this;
+
+        $(that).parents(".event-block").addClass("zoom-out");
+
+        setTimeout(() => {
+            $(that).parents(".event-block").remove();
+            eventsCount = $(".event-block").length;
+            slidesNeeded = Math.ceil(eventsCount/eventsPerRow);
+
+            $(".events-grid").attr("slides-needed",slidesNeeded);
+            $(".events-grid").attr("style","--Events-Per-Row:" + eventsCount);
+
+            if(slidesNeeded == 1){
+                $(".prev-events, .next-events").css("visibility","hidden")
+            }
+        },rmEVspeed)
+        
+    })
 })//end ready
