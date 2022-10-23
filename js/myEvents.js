@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    /*------ LEFT PANEL ------*/
     let panelStatus = $.trim($(".left-panel").attr("status"));
 
     contentLoaded(checkColor);
@@ -45,5 +46,17 @@ $(document).ready(function(){
             
             $(".left-panel").attr("status","open")
         }
+    })
+
+    /*------ EVENTS ------*/
+    let eventsCount = $(".event-block").length;
+    $(".events-grid").attr("style","--Events-Per-Row:" + eventsCount);
+
+    $(".next-events").click(function(){
+        $(".events-grid").css("margin-left","calc(0px - var(--Events-Grid-Width))")
+    })
+
+    $(".prev-events").click(function(){
+        $(".events-grid").css("margin-left","0")
     })
 })//end ready

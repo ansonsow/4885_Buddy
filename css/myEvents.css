@@ -24,6 +24,9 @@
     --Events-Container-Width:calc(100vw - var(--Panel-CLOSED-Width) - (var(--Events-Container-Side-Gaps) * 2));
     --Events-Container-Side-Gaps:30px;
 
+    --Events-Slide-Transition-Speed:500ms;
+    --Events-Slide-Transition-Method:cubic-bezier(0.14, 0, 0.14, 1);
+
     /*---- Event Arrows ----*/
     --Events-Arrows-Size:1.2rem;
     --Events-Arrows-Touch-Padding:0.6em;
@@ -31,6 +34,7 @@
     --Events-Arrows-Column-Width:calc(var(--Events-Arrows-Size) + var(--Events-Arrows-Touch-Padding) + var(--Events-Arrows-Aisle-Gap));
 
     /*---- Event Layout Settings ----*/
+    --Events-Grid-Width:calc(var(--Events-Container-Width) - (var(--Events-Arrows-Column-Width) * 2));
     --Events-Per-Row:3;
     --Events-Gaps-Count:calc(var(--Events-Per-Row) - 1);
     --Events-Spacing:15px;
@@ -102,12 +106,12 @@
         justify-content:center;
         flex-wrap:nowrap;
         flex-direction:column;
-        width:var(--Left-Panel-Width);
+        width:calc(var(--Left-Panel-Width) - var(--Tray-Arrow-Size));
         font-size:var(--H2-Size);
     }
 
     .left-panel[status="closed"] .quick-links {
-        margin-left:calc(0px - var(--Left-Panel-Width));
+        margin-left:calc(0px - var(--Left-Panel-Width) + var(--Tray-Arrow-Size));
     }
 
     .left-panel[status-change="proc"] .quick-links {
@@ -236,11 +240,16 @@
         padding-left:var(--Events-Arrows-Aisle-Gap);
     }
 
+    .events-grid-cont {
+        width:var(--Events-Grid-Width);
+        overflow:hidden;
+    }
+
     .events-grid {
         display:grid;
-        width:100%;
-        grid-template-columns:var(--Events-Each-Width) var(--Events-Each-Width) var(--Events-Each-Width);
+        grid-template-columns:repeat(var(--Events-Per-Row), var(--Events-Each-Width));
         grid-gap:var(--Events-Spacing);
+        transition:margin-left var(--Events-Slide-Transition-Speed) var(--Events-Slide-Transition-Method);
     }
 
     .event-block {
@@ -284,6 +293,10 @@
     }
 
     .left-panel {
+        display:none;
+    }
+
+    .events-cont {
         display:none;
     }
 }
