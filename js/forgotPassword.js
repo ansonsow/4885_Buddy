@@ -10,17 +10,12 @@ document.getElementById("reset").onclick=async (e)=>{
     console.log(email);
     sendPasswordResetEmail(dbf.auth, email)
     .then(() => {
-        // Password reset email sent!
-        // ..
         document.getElementById("noteToUser").innerHTML = "password reset email sent"
     })
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage);
         document.getElementById("noteToUser").innerHTML = error.message.substring(' ' + 10);
-
-        // ..
     });
 }
 
