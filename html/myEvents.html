@@ -34,8 +34,8 @@
     <!------ TOP BAR ------>
     <div js-include-html="../html/top-bar.html"></div>
 
-    <div class="left-panel" status="open">
-
+    <!------ LEFT PANEL ------>
+    <div class="left-panel" status="closed">
         <div class="quick-links">
             <a href="#">Manage my Events</span></a>
             <a href="#">Previous Events</a>
@@ -59,7 +59,43 @@
 
 
     <!------ MAIN PROFILE CONTENT ------>
-    <div class="rightside">
+    <div class="main-content">
+        <div class="mc-tb">
+            <h1 class="my-events">My Events</h1>
+
+            <div class="events-cont">
+                <a class="events-arrow prev-events" href="#">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+
+                <div class="events-grid">
+                    <div class="event-block">
+                        <img src="../images/unsplash_gallery_event_cuKJre3nyYc.jpeg">
+                        <div class="event-details">
+
+                        </div>
+                    </div>
+
+                    <div class="event-block">
+                        <img src="../images/unsplash_book_fair_cPgUiIos-q0.jpeg">
+                        <div class="event-details">
+                            
+                        </div>
+                    </div>
+
+                    <div class="event-block">
+                        <img src="../images/unsplash_hiking_view_T22nibt5XvI.jpeg">
+                        <div class="event-details">
+                            
+                        </div>
+                    </div>
+                </div><!--end events grid-->
+
+                <a class="events-arrow next-events" href="#">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+        </div><!--end mc-tb-->
     </div><!--end rightside-->
 
 </body>

@@ -31,7 +31,7 @@ $(document).ready(function(){
             $(".left-panel [arrow='left'] i").hide();
             $(".left-panel [arrow='right'] i").show();
             
-            $("nav .logo").attr("status","closed");
+            $("nav").attr("status","closed");
 
             $(".left-panel").attr("status","closed")
         }
@@ -41,7 +41,7 @@ $(document).ready(function(){
             $(".left-panel [arrow='left'] i").show();
             $(".left-panel [arrow='right'] i").hide();
 
-            $("nav .logo").attr("status","open");
+            $("nav").attr("status","open");
             
             $(".left-panel").attr("status","open")
         }
