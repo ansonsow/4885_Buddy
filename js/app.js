@@ -595,13 +595,14 @@ export async function updateBadgePoint(id, point){
 
 
 // ============================================== add new review ==============================================
-export async function writeReviewData(uId, image, point){
+export async function writeReviewData(uId, image, point,description){
   try {
     const docRef = await addDoc(collection(db, "reviews"), {
     authorId: uId,
     // targetEventId: eId,
     point: point,
-    image: image,
+    images: image,
+    description: description,
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -609,7 +610,7 @@ export async function writeReviewData(uId, image, point){
   }
 }
 
-// writeReviewData("ryan",["imageA","imageB"],"5")
+// writeReviewData("ryan",["imageA","imageB"],"5","cool event")
 
 // ============================================== update review info ==============================================
 
@@ -622,6 +623,41 @@ export async function updateReviewPoint(id, point){
   });
 }
 
+
+export async function updateReviewDesc(id, desc){
+  const db = getFirestore();
+  const userRef = doc(db, "reviews", id);
+  await updateDoc(userRef, {
+    description: desc,
+  });
+}
+
+
+
+
+
+export async function addReviewImage(id,image){
+  const db = getFirestore();
+  const userRef = doc(db, "reviews", id);
+  await updateDoc(userRef, {
+    images: arrayUnion(image)
+  });
+}
+
+
+export async function removeReviewImage(id,image){
+  const db = getFirestore();
+
+  const snapShot = await getDoc(doc(db, "reviews", id));
+  if(snapShot.data().images.includes(image)){
+    const userRef = doc(db, "reviews", id);
+    await updateDoc(userRef, {
+      images: arrayRemove(image)
+    });
+  }else{
+    console.log("tag do not exist");
+  }
+}
 
 
 
