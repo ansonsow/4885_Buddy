@@ -4,7 +4,19 @@ import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.
 
 
 // get current user
-const currentUser = dbf.auth.currentUser.email;
+let currentUser = dbf.auth.currentUser;
+let currentUserEmail;
+
+if (currentUser) {
+  currentUserEmail = currentUser.email;
+} else {
+  alert("you are not logged in")
+  setTimeout(()=>{
+    window.location.href="sample.html";
+
+  },2000)
+}
+// const currentUser = dbf.auth.currentUser.email;
 const user = "ryaniscool@gmail.com"
 
 
@@ -16,8 +28,6 @@ querySnapshot.forEach((doc) => {
 
 const userDb = await getDoc(doc(dbf.db, "users",currentUserId));
 
-
-// console.log();
 
 document.getElementById("profile-picture").src= userDb.data().pfpURL;
 document.getElementById("username").innerHTML = userDb.data().username;
@@ -37,11 +47,9 @@ async function getAvgStar(){
         reviews=doc.data().reviews;
         reviews.forEach((review)=>{
             let r = getReview(review)
-            .then(then=>{
-                eventStar = eventStar+then.data().point
-                boo = true
-                // console.log(then.data().point+" data point");
-                // console.log(eventStar + " star in loop");
+            .then(r=>{
+                eventStar = eventStar+r.data().point;
+                boo = true;
             })
             .catch(error=>{
                 console.log(error);

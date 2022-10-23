@@ -42,7 +42,7 @@ const querySnapshot = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
 // safsdf.innerHTML = querySnapshot.data().description;
 
 // ============================================== add new user ==============================================
-export async function writeUserData(userName, fname, lname, email, eventId, pfpURL){
+export async function writeUserData(userName, fname, lname, email, eventId, pfpURL, favEvent){
 
   try {
     const docRef = await addDoc(collection(db, "users"), {
@@ -50,8 +50,9 @@ export async function writeUserData(userName, fname, lname, email, eventId, pfpU
     firstName: fname,
     lastName: lname,
     email: email,
-    event: eventId,
-    pfpURL: pfpURL
+    events: eventId,
+    pfpURL: pfpURL,
+    favouriteEvents: favEvent
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -62,6 +63,7 @@ export async function writeUserData(userName, fname, lname, email, eventId, pfpU
 
 
 // writeUserData("testUsername1 (str,20)","testFirstName (str, 20)", "testLastName (str, 20)","testEmail@aaa.aaa (str, 100))","([str], 20)","url (str, 2048)");
+// writeUserData("coolGuyRyan","Ryan", "Cool","ryaniscool@gmail.com",["eventRyanIsGoing"],"https://github.com/ansonsow/4885_Buddy/blob/main/images/unsplash_ryan_3JmfENcL24M.png?raw=true",["eventsRyanFavourite"]);
 
 
 // ============================================== update user info ==============================================
@@ -168,7 +170,7 @@ export async function addUserEvent(id,event){
     const db = getFirestore();
     const userRef = doc(db, "users", id);
     await updateDoc(userRef, {
-      event: arrayUnion(event)
+      events: arrayUnion(event)
     });
   }else{
     console.log("event do not exist");
@@ -191,7 +193,7 @@ export async function removeUserEvent(id,event){
   if(snapShot.data().event.includes(event)){
     const userRef = doc(db, "users", id);
     await updateDoc(userRef, {
-      event: arrayRemove(event)
+      events: arrayRemove(event)
     });
   }
   else{
@@ -215,6 +217,51 @@ export async function deleteUser(id){
 
 // deleteUser("aaa")
 
+
+
+export async function addUserFavEvent(id,event){
+
+  const docSnap = await getDoc(doc(db, "events", event));
+  if(docSnap.exists()){
+    const db = getFirestore();
+    const userRef = doc(db, "users", id);
+    await updateDoc(userRef, {
+      favouriteEvents: arrayUnion(event)
+    });
+  }else{
+    console.log("event do not exist");
+  }
+}
+
+
+
+// addUserEvent("K8OjYqy2PVL3yF94OavC", "wat da fak")
+// addUserEvent("K8OjYqy2PVL3yF94OavC", "([str], 20)")
+
+// --------------------------------------------
+
+
+export async function removeUserFavEvent(id,event){
+  
+  const db = getFirestore();
+
+  const snapShot = await getDoc(doc(db, "users", id));
+  if(snapShot.data().event.includes(event)){
+    const userRef = doc(db, "users", id);
+    await updateDoc(userRef, {
+      favouriteEvents: arrayRemove(event)
+    });
+  }
+  else{
+    console.log("event do not exist in the user's list");
+  }
+}
+
+// removeUserEvent("hPJQxUZYKQLKVWqkHxou","new event2")
+
+
+
+
 // --------------------------------------------
 
 const getTimeEpoch = () => {
@@ -223,6 +270,9 @@ const getTimeEpoch = () => {
 
 // console.log(getTimeEpoch());
 // console.log(new Date().getDate());
+
+
+
 
 
 // ============================================== add new Event ==============================================
@@ -623,6 +673,7 @@ export async function updateReviewPoint(id, point){
   });
 }
 
+// updateReviewPoint("D8AvNmWcrgD0oPPdtOgv","4")
 
 export async function updateReviewDesc(id, desc){
   const db = getFirestore();
@@ -634,7 +685,7 @@ export async function updateReviewDesc(id, desc){
 
 
 
-
+// updateReviewDesc("D8AvNmWcrgD0oPPdtOgv","aaa")
 
 export async function addReviewImage(id,image){
   const db = getFirestore();
@@ -659,16 +710,19 @@ export async function removeReviewImage(id,image){
   }
 }
 
+// addReviewImage("D8AvNmWcrgD0oPPdtOgv","picture1")
+// removeReviewImage("D8AvNmWcrgD0oPPdtOgv","picture1")
 
 
-export async function updateReviewImage(id, image){
-    const db = getFirestore();
-    const userRef = doc(db, "reviews", id);
-    await updateDoc(userRef, {
-      image: image,
-    });
-}
+// export async function updateReviewImage(id, image){
+//     const db = getFirestore();
+//     const userRef = doc(db, "reviews", id);
+//     await updateDoc(userRef, {
+//       image: image,
+//     });
+// }
 
+// updateReviewImage("D8AvNmWcrgD0oPPdtOgv","")
 
 //============User Authentication=================
 
