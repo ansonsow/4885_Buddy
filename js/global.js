@@ -41,7 +41,7 @@ jsIncludeHTML();
 // when loaded, proceed with any further functions
 // *CAN* be called in another js files!
 let timeSt = Date.now();
-let timeStop = 1000;
+let timeStop = 2500;
 
 function contentLoaded(actionFunc){
   let filesReadyCheck = setInterval(() => {

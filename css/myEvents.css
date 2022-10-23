@@ -37,7 +37,7 @@
     --Events-Grid-Width:calc(var(--Events-Container-Width) - (var(--Events-Arrows-Column-Width) * 2));
     --Events-Per-Row:3;
     --Events-Gaps-Count:calc(var(--Events-Per-Row) - 1);
-    --Events-Spacing:15px;
+    --Events-Spacing:19px;
 
     /*---- Each Single Event ----*/
     --Events-Each-Width:calc((var(--Events-Container-Width) - (var(--Events-Arrows-Column-Width) * 2) - (var(--Events-Spacing) * var(--Events-Gaps-Count))) / var(--Events-Per-Row));
@@ -45,6 +45,9 @@
     --Events-Roundness:calc(var(--Events-Each-Width) * 0.11);
 
     --Event-Details-Padding:1.3rem;
+    --Event-Actions-Icon-Size:calc(var(--Body-Font-Size) * 1.1);
+    --Event-Actions-Icon-Hover-Speed:0.25s;
+    --Event-Actions-Icon-Spacing:0.5rem;
     
 }
 
@@ -204,11 +207,13 @@
         vertical-align:middle;
     }
 
+    /*---- "My Events" Title ----*/
     h1.my-events {
         text-align:center;
         margin-bottom:var(--Events-H1-Bottom-Gap);
     }
 
+    /*---- Events Large Container ----*/
     .events-cont {
         display:flex;
         align-items:center;
@@ -217,6 +222,7 @@
         margin-right:var(--Events-Container-Side-Gaps);
     }
 
+    /*---- Events Carousel Arrows ----*/
     .events-arrow {
         display:flex;
         align-items:center;
@@ -240,11 +246,14 @@
         padding-left:var(--Events-Arrows-Aisle-Gap);
     }
 
+    /*---- Events Carousel Constrainer ----*/
     .events-grid-cont {
         width:var(--Events-Grid-Width);
+        border-radius:var(--Events-Roundness);
         overflow:hidden;
     }
 
+    /*---- Events Grid ----*/
     .events-grid {
         display:grid;
         grid-template-columns:repeat(var(--Events-Per-Row), var(--Events-Each-Width));
@@ -258,6 +267,7 @@
         overflow:hidden;
     }
 
+    /*---- Event Image ----*/
     .event-block img {
         width:100%;
         height:var(--Events-Image-Height);
@@ -270,6 +280,11 @@
         padding-bottom:calc(var(--Event-Details-Padding) + (var(--Events-Roundness) / 8));
     }
 
+    .event-details > *:last-child {
+        margin-bottom:0;
+    }
+
+    /*---- Event Name ----*/
     h3.event-name {
         margin-top:calc(var(--H3-Size) * -0.2);
     }
@@ -280,6 +295,45 @@
 
     .detail-row b {
         padding-right:2px;
+    }
+
+    /*---- Event Divider ----*/
+    .event-details hr {
+        margin:1rem 0;
+        border:none;
+        border-top:1px dashed var(--Text-Color);
+    }
+
+    .ed-flex {
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
+
+    /*---- Event Date ----*/
+    .event-details .date {
+        opacity:0.7;
+    }
+
+    /*---- Event Action Icons ----*/
+    .event-actions {
+        display:grid;
+        grid-template-columns:auto auto;
+        grid-gap:var(--Event-Actions-Icon-Spacing);
+    }
+
+    .event-actions a {
+        display:block;
+    }
+
+    .event-actions i {
+        font-size:var(--Event-Actions-Icon-Size);
+        opacity:0.9;
+        transition:color var(--Event-Actions-Icon-Hover-Speed) ease-in-out;
+    }
+
+    .event-actions a:hover i {
+        color:var(--Primary);
     }
 
 }
