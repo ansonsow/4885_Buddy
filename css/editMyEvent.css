@@ -22,6 +22,12 @@ nav {
 .top-navlinks a {
     color:var(--Main-Text);
 }
+
+/* orange logo */
+nav .logo [vector-part="buddy_bu"] path,
+nav .logo [vector-part="buddy_y"] path {
+    fill:var(--Primary);
+}
 /*------------------------------------------------*/
 /*------------------------------------------------*/
 /* ----------- Form Area ----------- */
@@ -151,4 +157,33 @@ textarea::placeholder {
     background-color: var(--Text-Color);
     border: 1px solid var(--Text-Color);
     color: var(--White);
+}
+
+
+/*---------- MOBILE  ----------*/
+@media(max-width:600px){
+    /* top bar */
+    header {
+        position:fixed;
+        right:0;
+        background-color:var(--Primary);
+        z-index:3;
+        width: 100vw;
+    }
+
+    .top-hamburger, header .logo, .searchbar {
+        display:block!important;
+    }
+
+    nav.home-topnav {
+        width: 100%;
+        grid-template-columns:10% auto 10%;
+        justify-items: center;
+        align-items: center;
+    }
+/* --------------------------------------------- */
+    .containers-wrap {
+        display: flex;
+        margin: 0;
+    }
 }
