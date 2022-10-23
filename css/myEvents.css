@@ -19,16 +19,29 @@
 
     --Events-H1-Bottom-Gap:3rem;
 
+    /*---- Event Container Settings ----*/
+    /* events section width, including the arrows */
+    --Events-Container-Width:calc(100vw - var(--Panel-CLOSED-Width) - (var(--Events-Container-Side-Gaps) * 2));
+    --Events-Container-Side-Gaps:30px;
+
+    /*---- Event Arrows ----*/
     --Events-Arrows-Size:1.2rem;
     --Events-Arrows-Touch-Padding:0.6em;
     --Events-Arrows-Aisle-Gap:20px;
+    --Events-Arrows-Column-Width:calc(var(--Events-Arrows-Size) + var(--Events-Arrows-Touch-Padding) + var(--Events-Arrows-Aisle-Gap));
 
-    --Events-Roundness:3vw;
-    --Events-Image-Height:29vh;
-
+    /*---- Event Layout Settings ----*/
+    --Events-Per-Row:3;
+    --Events-Gaps-Count:calc(var(--Events-Per-Row) - 1);
     --Events-Spacing:15px;
 
-    --Events-Grid-Side-Gaps:20px;
+    /*---- Each Single Event ----*/
+    --Events-Each-Width:calc((var(--Events-Container-Width) - (var(--Events-Arrows-Column-Width) * 2) - (var(--Events-Spacing) * var(--Events-Gaps-Count))) / var(--Events-Per-Row));
+    --Events-Image-Height:calc(var(--Events-Each-Width) * 0.74);
+    --Events-Roundness:calc(var(--Events-Each-Width) * 0.11);
+
+    --Event-Details-Padding:1.3rem;
+    
 }
 
 /*---------- DESKTOP  ----------*/
@@ -176,7 +189,7 @@
     .main-content {
         position:absolute;
         margin-left:var(--Panel-CLOSED-Width);
-        width:calc(100% - var(--Panel-CLOSED-Width));
+        width:calc(100vw - var(--Panel-CLOSED-Width));
         height:100vh;
         display:table;
         z-index:0;
@@ -196,8 +209,8 @@
         display:flex;
         align-items:center;
         justify-content:center;
-        margin-left:var(--Events-Grid-Side-Gaps);
-        margin-right:var(--Events-Grid-Side-Gaps);
+        margin-left:var(--Events-Container-Side-Gaps);
+        margin-right:var(--Events-Container-Side-Gaps);
     }
 
     .events-arrow {
@@ -205,6 +218,7 @@
         align-items:center;
         justify-content:center;
         padding:var(--Events-Arrows-Touch-Padding);
+        width:var(--Events-Arrows-Column-Width);
     }
 
     .events-arrow i {
@@ -225,12 +239,12 @@
     .events-grid {
         display:grid;
         width:100%;
-        grid-template-columns:1fr 1fr 1fr;
+        grid-template-columns:var(--Events-Each-Width) var(--Events-Each-Width) var(--Events-Each-Width);
         grid-gap:var(--Events-Spacing);
     }
 
     .event-block {
-        background:var(--Light-Gray); /* change later */
+        background:var(--Light-Gray);
         border-radius:var(--Events-Roundness);
         overflow:hidden;
     }
@@ -242,7 +256,21 @@
     }
 
     .event-details {
-        height:19vh; /* change later */
+        padding:calc(var(--Event-Details-Padding) + (var(--Events-Roundness) / 4));
+        padding-top:var(--Event-Details-Padding);
+        padding-bottom:calc(var(--Event-Details-Padding) + (var(--Events-Roundness) / 8));
+    }
+
+    h3.event-name {
+        margin-top:calc(var(--H3-Size) * -0.2);
+    }
+
+    h3.event-name + .detail-row {
+        margin-top:calc(var(--H3-Size) * 0.2);
+    }
+
+    .detail-row b {
+        padding-right:2px;
     }
 
 }
