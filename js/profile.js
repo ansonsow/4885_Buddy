@@ -18,6 +18,14 @@ document.getElementById("profile-picture").src= userDb.data().pfpURL;
 
 document.getElementById("username").innerHTML = userDb.data().username;
 
+
+// stars dont know yet
+
+
+
+
+
+//  badge color
 let b = query(collection(dbf.db, "badges"));
 const badgeQuerySnapshot = await getDocs(b);
 badgeQuerySnapshot.forEach((doc) => {
