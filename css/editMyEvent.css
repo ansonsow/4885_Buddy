@@ -142,7 +142,7 @@ textarea::placeholder {
 }
 
 .btn {
-    margin: 0 1.5rem;
+    margin: 0 1.5rem 2rem;
     padding: 0.5rem 2rem;
     border-radius: 30px;
     cursor: pointer;
@@ -153,11 +153,22 @@ textarea::placeholder {
     border: 1px solid var(--Text-Color);
 }
 
+.cancel-btn:hover {
+    background-color: var(--Light-Gray);
+    border: 1px solid var(--Light-Gray);
+}
+
 .save-btn {
     background-color: var(--Text-Color);
     border: 1px solid var(--Text-Color);
     color: var(--White);
 }
+
+.save-btn:hover {
+    background-color: var(--Light-Gray);
+    border: 1px solid var(--Light-Gray);
+    color: var(--Text-Color);
+}    
 
 
 /*---------- MOBILE  ----------*/
@@ -181,9 +192,49 @@ textarea::placeholder {
         justify-items: center;
         align-items: center;
     }
+
+    /* un-orange logo */
+    nav .logo [vector-part="buddy_bu"] path,
+    nav .logo [vector-part="buddy_y"] path {
+        fill:var(--White);
+    }
 /* --------------------------------------------- */
     .containers-wrap {
         display: flex;
+        flex-direction:column-reverse;
         margin: 0;
     }
+
+    .images-container {
+        display: none;
+    }
+
+    .illustration img {
+        display: flex;
+        margin: auto;
+        margin-top: 2rem;
+    }
+
+    /* ----- Form Area ----- */
+    div .name{
+        margin-top: 0;
+    }
+
+    .left-container {
+        width: 100vw;
+        margin: 0;
+        padding: 0 1rem 0 0;
+    }
+
+    .btn-wrap {
+        margin: 2rem 0;
+        flex-direction: column-reverse;
+    }
+
+    .btn {
+        display: block;
+        padding: 1rem 3rem;
+        margin: 0.5rem auto; 
+    }
+
 }
