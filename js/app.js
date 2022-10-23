@@ -227,13 +227,14 @@ const getTimeEpoch = () => {
 
 // ============================================== add new Event ==============================================
 // dont know how to do date and / photo yet
-export async function writeEventData(name, hostId, price, pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag){
+export async function writeEventData(name, hostId, price, coverImage ,pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag, review){
   try {
     const docRef = await addDoc(collection(db, "events"), {
     name: name,
     hostId: hostId,
     price: price,
-    image: pfpURL,
+    coverImage: coverImage,
+    images: pfpURL,
     location: location,
     dateCreated: new Date(),
     dateOfEvent: dateOfEvent,
@@ -242,6 +243,7 @@ export async function writeEventData(name, hostId, price, pfpURL, location, date
     maxCapacity: maxCapacity,
     eventStatus: eventStatus,
     tags: tag,
+    reviews: review,
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -250,8 +252,8 @@ export async function writeEventData(name, hostId, price, pfpURL, location, date
 }
 
 // writeEventData("testEventname1 (str, 20)","testHostId (str, 20)",
-// "0 (num)","imgURL.aaa (str, 2048)","[lat, long] (num)","20221009 (num)","20221109 (num)","test description (str, 2048)","2 (num)","3 (num)",
-// "1 (num)","aaa");
+// "0 (num)","coverImageUrl",["imgURL.aaa (str, 2048)"],[90,90],"20221009 (num)","20221109 (num)","test description (str, 2048)","2 (num)","3 (num)",
+// "1 (num)",["tag1","tag2"],["aaa","bbb"]);
 
 
 
@@ -291,17 +293,62 @@ export async function updateEventPrice(id,eventPrice){
 // updateEventPrice("uGfj5SGWqdBIdFsM7Lie","$6")
 
 
-export async function updateEventImage(id,eventImage){
+export async function updateEventCoverImage(id,eventImage){
   // if(!isImage(eventImage)){
   //   console.log("url not valid or not an image");
   // }else{
     const db = getFirestore();
     const eventRef = doc(db, "events", id);
     await updateDoc(eventRef, {
-      image: eventImage,
+      coverImage: eventImage,
     });
   // }
 }
+
+
+
+
+
+export async function addEventImage(id,image){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    images: arrayUnion(image)
+  });
+}
+
+// addEventTag("B3FW82VcBNZrwwl0py0w","tag1")
+
+// addEventTag("B3FW82VcBNZrwwl0py0w","tag2")
+
+
+export async function removeEventImage(id,image){
+  const db = getFirestore();
+
+  const snapShot = await getDoc(doc(db, "events", id));
+  if(snapShot.data().images.includes(image)){
+    const userRef = doc(db, "events", id);
+    await updateDoc(userRef, {
+      images: arrayRemove(image)
+    });
+  }else{
+    console.log("tag do not exist");
+  }
+  // const db = getFirestore();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // updateEventImage("hkHdS7xIYAVtg1W1OXBZ","https://unsplash.com/photos/E-6M5FExlbk")
 
@@ -421,6 +468,41 @@ export async function removeEventTag(id,tag){
 
 }
 
+// removeEventTag("92RaEQhxmyG3xJLl82KM","tag1")
+// removeEventTag("92RaEQhxmyG3xJLl82KM","tag2")
+
+
+
+
+export async function addEventReview(id,review){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    reviews: arrayUnion(review)
+  });
+}
+
+// addEventTag("B3FW82VcBNZrwwl0py0w","tag1")
+
+// addEventTag("B3FW82VcBNZrwwl0py0w","tag2")
+
+
+export async function removeEventReview(id,review){
+  const db = getFirestore();
+
+  const snapShot = await getDoc(doc(db, "events", id));
+  if(snapShot.data().reviews.includes(review)){
+    const userRef = doc(db, "events", id);
+    await updateDoc(userRef, {
+      reviews: arrayRemove(review)
+    });
+  }else{
+    console.log("tag do not exist");
+  }
+  // const db = getFirestore();
+
+}
+
 
 
 
@@ -508,6 +590,84 @@ export async function updateBadgePoint(id, point){
 // updateBadgeImage("A3kE5jdVFjySfCCN6hjw","https://cdn.discordapp.com/attachments/371018789673893898/1026580881260953680/unknown.png");
 // updateBadgeName("A3kE5jdVFjySfCCN6hjw","coolBadge420");
 // updateBadgePoint("A3kE5jdVFjySfCCN6hjw",6969);
+
+
+
+
+// ============================================== add new review ==============================================
+export async function writeReviewData(uId, image, point,description){
+  try {
+    const docRef = await addDoc(collection(db, "reviews"), {
+    authorId: uId,
+    // targetEventId: eId,
+    point: point,
+    images: image,
+    description: description,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+// writeReviewData("ryan",["imageA","imageB"],"5","cool event")
+
+// ============================================== update review info ==============================================
+
+
+export async function updateReviewPoint(id, point){
+  const db = getFirestore();
+  const userRef = doc(db, "reviews", id);
+  await updateDoc(userRef, {
+    point: point,
+  });
+}
+
+
+export async function updateReviewDesc(id, desc){
+  const db = getFirestore();
+  const userRef = doc(db, "reviews", id);
+  await updateDoc(userRef, {
+    description: desc,
+  });
+}
+
+
+
+
+
+export async function addReviewImage(id,image){
+  const db = getFirestore();
+  const userRef = doc(db, "reviews", id);
+  await updateDoc(userRef, {
+    images: arrayUnion(image)
+  });
+}
+
+
+export async function removeReviewImage(id,image){
+  const db = getFirestore();
+
+  const snapShot = await getDoc(doc(db, "reviews", id));
+  if(snapShot.data().images.includes(image)){
+    const userRef = doc(db, "reviews", id);
+    await updateDoc(userRef, {
+      images: arrayRemove(image)
+    });
+  }else{
+    console.log("tag do not exist");
+  }
+}
+
+
+
+export async function updateReviewImage(id, image){
+    const db = getFirestore();
+    const userRef = doc(db, "reviews", id);
+    await updateDoc(userRef, {
+      image: image,
+    });
+}
 
 
 //============User Authentication=================

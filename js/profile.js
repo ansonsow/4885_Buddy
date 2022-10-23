@@ -2,6 +2,8 @@ import * as dbf from "./app.js"
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 
+
+// get current user
 const user = dbf.auth.currentUser.email;
 
 
@@ -12,6 +14,8 @@ querySnapshot.forEach((doc) => {
 });
 
 const userDb = await getDoc(doc(dbf.db, "users",currentUserId));
+
+
 // console.log();
 
 document.getElementById("profile-picture").src= userDb.data().pfpURL;
