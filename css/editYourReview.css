@@ -52,6 +52,11 @@ textarea {
     height: 200px;
 }
 
+::placeholder {
+    font-family: var(--Body-Font);
+    padding: 0.5rem;
+}
+
 hr {
     width: 100%;
     margin: 0.5rem auto;
@@ -80,16 +85,32 @@ hr {
     margin: 1rem 0;
     border-radius: 2rem;
     cursor: pointer;
-    border: 2px solid var(--White);
-    background-color: var(--Primary);
-    color: var(--White);
     font-family: var(--Body-Font-Size);
     font-weight: 900;
 }
 
-.btn:hover{
-    color: #545454;
+.btn-update {
     background-color: #F9F9F9;
+    color: var(--Text-Color);
+    border: 2px solid #F9F9F9;
+}
+
+.btn-update:hover{
+    color: var(--Text-Color);
+    background-color: var(--Secondary-Faded);
+    border: 2px solid var(--Secondary-Faded);
+}
+
+.btn-delete {
+    background-color: var(--Primary);
+    color: var(--White);
+    border: 2px solid var(--White);
+}
+
+.btn-delete:hover{
+    color: var(--Text-Color);
+    background-color: var( --Light-Gray);
+    border: 2px solid var(--Text-Color);
 }
 
 /* ------------ RIGHT Container ------------------- */
@@ -100,7 +121,7 @@ hr {
 }
 
 .event-name {
-    padding: 9rem 1rem 2rem 0;
+    padding: 7rem 1rem 1rem 0;
 }
 
 .event-content {
@@ -127,10 +148,24 @@ hr {
 }
 
 .descriptions-wrap {
-    margin: 2rem 5rem 0 0;
+    margin: 1rem 5rem 0 0;
+}
+
+/* ----------- Svg illustration Buttons ----------- */
+.illustration {
+    margin: -5rem 10rem;
+    z-index: -1;
 }
 
 
+.illustration img {
+    width: 25rem;
+    height: 25rem;
+    object-fit: contain;
+}
+
+
+/* *********** MOBILE SIZE ************ */
 @media (max-width: 600px) {
 
     /* top bar adjustments */
@@ -159,14 +194,14 @@ hr {
     }
 
 
-/* -------- Top Banner -------- */
+/* -------- Top illustration -------- */
     .mobile-top {
         display: block;
     }
 
-    .top-banner img {
-        margin: 5rem 0 0 0;
-        padding: 5%;
+    .top-illustration img {
+        margin: 0rem 0 -5rem 0;
+        padding: 15%;
         width: 100vw;
     }
 
@@ -249,16 +284,30 @@ hr {
     /* ------- Buttons Section-------- */
 
     .btn {
-        background-color: transparent;
-        border: 2px solid #545454;
-        color: #545454;
         margin: 1rem auto;
     }
-    
-    .btn:hover {
-        background-color: #545454;
-        border: 2px solid #545454;
-        color: #fff;
-    }
 
+    .btn-update {
+        background-color: var(--Text-Color);
+        color: var(--White);
+        border: 2px solid var(--Text-Color);
+    }
+    
+    .btn-update:hover{
+        color: var(--Text-Color);
+        background-color: var(--Light-Gray);
+        border: 2px solid var(--Light-Gray);
+    }
+    
+    .btn-delete {
+        background-color: var(--White);
+        color: var(--Text-Color);
+        border: 2px solid var(--Text-Color);
+    }
+    
+    .btn-delete:hover{
+        color: var(--Text-Color);
+        background-color: var( --Light-Gray);
+        border: 2px solid var(--Light-Gray);
+    }
 }

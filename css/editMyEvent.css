@@ -126,9 +126,15 @@ textarea::placeholder {
 
 /* ----------- Svg illustration Buttons ----------- */
 
+.illustration {
+    margin: -2rem 2rem -3rem;
+    z-index: -1;
+}
+
 .illustration img {
-    width: 20rem;
-    height: 20rem;
+    width: 25rem;
+    height: 25rem;
+    padding: 4rem;
     object-fit: contain;
 }
 
@@ -199,6 +205,7 @@ textarea::placeholder {
         fill:var(--White);
     }
 /* --------------------------------------------- */
+/* ------- illustration area ------- */
     .containers-wrap {
         display: flex;
         flex-direction:column-reverse;
@@ -226,6 +233,22 @@ textarea::placeholder {
         padding: 0 1rem 0 0;
     }
 
+    .input-fields {
+        display: block;
+        flex-grow: 1;
+        margin: 0 2rem 1.5rem 2rem;
+    }
+
+    label {
+        font-weight: 700;
+    }
+
+    input, ::placeholder {
+        width: 90%;
+        padding-left: 1rem;
+    }
+
+    /* ------ Buttons ------- */
     .btn-wrap {
         margin: 2rem 0;
         flex-direction: column-reverse;
@@ -236,5 +259,6 @@ textarea::placeholder {
         padding: 1rem 3rem;
         margin: 0.5rem auto; 
     }
+    
 
 }
