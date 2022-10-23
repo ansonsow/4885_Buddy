@@ -4,7 +4,8 @@ import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.
 
 
 // get current user
-const user = dbf.auth.currentUser.email;
+const currentUser = dbf.auth.currentUser.email;
+const user = "ryaniscool@gmail.com"
 
 
 let q = query(collection(dbf.db, "users"), where("email", "==", user));
