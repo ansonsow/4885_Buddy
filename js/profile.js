@@ -20,15 +20,60 @@ const userDb = await getDoc(doc(dbf.db, "users",currentUserId));
 // console.log();
 
 document.getElementById("profile-picture").src= userDb.data().pfpURL;
-
 document.getElementById("username").innerHTML = userDb.data().username;
 
 
 // stars dont know yet
+async function getAvgStar(){
+    let boo = false
+    let avgStar=0;
+    let eventNumber=0;
+    let reviews = [];
+    let eventStar = 0;
+    let e = query(collection(dbf.db, "events"), where("hostId", "==", currentUserId));
+    const starSnapshot = await getDocs(e);
+    starSnapshot.forEach((doc)=>{
+        eventNumber= eventNumber+1;
+        reviews=doc.data().reviews;
+        reviews.forEach((review)=>{
+            let r = getReview(review)
+            .then(then=>{
+                eventStar = eventStar+then.data().point
+                boo = true
+                // console.log(then.data().point+" data point");
+                // console.log(eventStar + " star in loop");
+            })
+            .catch(error=>{
+                console.log(error);
+            });
+            
+        })
+    })
+
+    let timeSt_ = Date.now();
+    let timeStop_ = 1000;
+
+    let avgInt = setInterval(() => {
+        if(Date.now() - timeSt_ > timeStop_){
+            clearInterval(avgInt);
+        } else {
+            if(boo == true){
+                clearInterval(avgInt);
+                avgStar = eventStar / eventNumber;
+                star.innerHTML = avgStar
+            }
+        }
+    },0);
+    
+}
+getAvgStar()
 
 
 
-
+async function getReview(id){
+    const r = await getDoc(doc(dbf.db, "reviews",id));
+    return r;
+}
 
 //  badge color
 let b = query(collection(dbf.db, "badges"));
