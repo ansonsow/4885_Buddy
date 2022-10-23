@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Edit My Event</title>
+
+        <!-- fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Inter:400,700|Manrope:800" rel="stylesheet">
+
+        <!-- firebase -->
+        <script type="module" src="../js/app.js" defer></script>
+        <!-- <script type="module" src="../js/maindb.js" defer></script> -->
+        <script type="module" src="../js/login.js"></script>
+
+        <!-- required assets -->
+        <link href="../css/variables.css" rel="stylesheet">
+        <link href="../css/global.css" rel="stylesheet">
+        <script src="../js/global.js" defer></script>
+
+        <!-- icon font: fontawesome -->
+        <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+
+        <!-- page-specific assets -->
+        <link href="../css/topBar.css" rel="stylesheet">
+        <link href="../css/editMyEvent.css" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!------ TOP BAR ------>
+        <div js-include-html="../html/topBar.html"></div>
+
+
+        <div class="containers-wrap">
+
+            <!-- Left Content -->
+            <div class="left-container">
+                <div class="event-content">
+                    <form class="form" action="">
+                        <div class="input-fields name">
+                            <label for="eventName">Event Name : </label>
+                            <input type="text" name="eventName" id="" value="Lorem Ipsum">
+                        </div>
+
+                        <div class="input-fields location">
+                            <label for="eventLacation">Location : </label>
+                            <input type="text" name="eventLacation" id="" value="100 W 49th Ave,Vancouver, BC V5Y 2Z6">
+                        </div>
+
+                        <div class="input-fields date">
+                            <label for="eventDate">Date : </label>
+                            <input type="text" name="eventDate" id="" value="21 October 2022">
+                        </div>
+
+                        <div class="input-fields numOfPeople">
+                            <label for="eventNumOfPeople">Number of participants : </label>
+                            <input type="text" name="eventNumOfPeople" id="" value="2 people">
+                        </div>
+
+                        <div class="input-fields price">
+                            <label for="eventPrice">Price : </label>
+                            <input type="text" name="eventPrice" id="" value="$28">
+                        </div>
+
+                        <div class="input-fields desc">
+                            <label for="eventDesc">Description : </label>
+                            <textarea name="eventDesc" id="" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, consectetur! Doloremque assumenda provident neque itaque ratione dolore, fuga alias iusto."></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!-- Right Content -->
+            <div class="right-container">
+                <div class="images-container">
+
+                    <div class="image-wrap">
+                        <img class="image" src="/images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt="">
+                        <button <i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+
+                    <div class="image-wrap">
+                        <img class="image" src="/images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt="">
+                        <button <i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+
+                    <div class="image-wrap">
+                        <img class="image" src="/images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt="">
+                        <button <i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+
+
+                    <div class="btn-wrap">
+                        <button>Browse</button>
+                    </div>
+
+                </div>
+
+                <div class="illustration">
+                    <img src="/svg/edit_my_event.svg" alt="">  
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <div class="btn-wrap">
+            <button class="btn cancel-btn">Cancel</button>
+            <button class="btn save-btn">Save</button>
+        </div>
+
+
+    </body>
+</html>

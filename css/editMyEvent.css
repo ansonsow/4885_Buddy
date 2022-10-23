@@ -1,0 +1,154 @@
+/*---------- TOP BAR  ----------*/
+/* top bar adjustments for SEARCH PAGE */
+header {
+    background:transparent;
+    /* position:fixed; */
+    width:100%;
+    z-index:3;
+}
+
+nav {
+    grid-template-columns:1fr 1fr;
+}
+
+.searchbar {
+    display:none;
+}
+
+.top-navlinks {
+    justify-content:right;
+}
+
+.top-navlinks a {
+    color:var(--Main-Text);
+}
+/*------------------------------------------------*/
+/*------------------------------------------------*/
+/* ----------- Form Area ----------- */
+.containers-wrap {
+    display: flex;
+    margin: 4rem 3rem 0 3rem;
+}
+
+.left-container {
+    width: 50%;
+    margin: 0 3rem 0 3rem;
+}
+
+.input-fields {
+    border-bottom: 1px solid var(--Light-Gray);
+    margin: 1.5rem;
+    color: var(--Text-Color);
+    display: flex;
+}
+
+input {
+    flex-grow: 1;
+    border: none;
+    color: var(--Text-Color);
+    font-family: var(--Body-Font);
+    font-size: 1.1rem;
+}
+
+
+label {
+    margin-right: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.desc {
+    display: block;
+}
+
+.desc textarea{
+    display: block;
+    margin-top: 1rem;
+    width: 100%;
+    height: 5rem;
+    border: none;
+    font-size: 1.1rem;
+}
+
+textarea::placeholder {
+    font-family: var(--Body-Font);
+}
+
+/* ----------- Upload Image Area ----------- */
+.images-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border: 2px solid var(--Text-Color);
+    padding: 1rem 0.5rem 0;
+    margin: 0 2.5rem;
+}
+
+.image-wrap {
+    position: relative;
+}
+
+.images-container img {
+    width: 170px;
+    height: 140px;
+    margin: 0.1rem 0.1rem;
+    object-fit: cover;
+}
+
+.images-container .fa-trash-can{
+    position: absolute;   
+    margin: 0;  
+    font-weight: 400;
+    bottom: -5px; 
+    left: 120px; 
+    color: var(--White);
+    font-size: 1.2rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.images-container button{
+    color: var(--Text-Color);
+    font-weight: 900;
+    margin: 1rem auto;
+    padding: 0.7rem 2rem;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ----------- Svg illustration Buttons ----------- */
+
+.illustration img {
+    width: 20rem;
+    height: 20rem;
+    object-fit: contain;
+}
+
+/* ----------- Cancel/Save Buttons ----------- */
+
+.btn-wrap {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    margin: 0 1.5rem;
+    padding: 0.5rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background-color: transparent;
+    border: 1px solid var(--Text-Color);
+}
+
+.save-btn {
+    background-color: var(--Text-Color);
+    border: 1px solid var(--Text-Color);
+    color: var(--White);
+}
