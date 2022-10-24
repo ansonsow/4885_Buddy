@@ -68,8 +68,11 @@ if(currentUser){
         // clonedEvent.querySelector(".location").innerHTML = 
         clonedEvent.querySelector(".date-published").innerHTML = doc.data().dateCreated.toDate().toDateString().slice(4)
         // console.log(doc.data().dateCreated.toDate().toDateString());
+        
+        /*---- 🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️ ----*/
+        // comment this to NOT delete the event from the database
         clonedEvent.querySelector(".delete-event").addEventListener("click", () => {
-            dbf.deleteEvent(doc.id)
+            // dbf.deleteEvent(doc.id)
         })
 
     })
