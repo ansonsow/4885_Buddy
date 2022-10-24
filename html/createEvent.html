@@ -1,9 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Create Event</title>
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Event</title>
     
+    <!-- firebase -->
+    <script type="module" src="../js/app.js"></script>
+    <!-- <script type="module" src="../js/appCall.js"></script> -->
+
+    <!-- required assets -->
+    <link href="../css/variables.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <script src="../js/global.js" defer></script>
+
+    <!-- icon font: fontawesome -->
+    <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+    <!-- <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet"> -->
+    
+    <!-- page-specific assets -->
+    <link href="../css/topBar.css" rel="stylesheet">
+    <link href="../css/leftPanel.css" rel="stylesheet">
+    <link href="../css/createEvent.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="../js/leftPanel.js" defer></script>
+    <!-- <script src="../js/myEvents.js" defer></script> -->
+
+</head>
+
+<body>
+    <!------ TOP BAR ------>
+    <div js-include-html="../html/topBar.html"></div>
+
+    <!------ LEFT PANEL ------>
+    <div js-include-html="../html/leftPanel.html"></div>
+
+
+    <!------ MAIN CONTENT ------>
+
+
+    <div class="main-container">
+        <!-- Heading -->
+        <div class="heading-wrap">
+            <p class="heading">Create an Event</p>
+        </div>
+        <!-- Left -->
+        <div class="left-container">
+
+            <!-- Form Inputs -->
+            <form action="">
+    
+                <div class="input-fields">
+                    <input type="text" name="" id="" value="" placeholder="Name of the event &ast;">
+                </div>
+
+                <div class="input-fields">
+                    <input type="text" name="" id="" value="" placeholder="Number of participants &ast;">
+                </div>
+
+                <div class="input-fields">
+                    <input type="text" name="" id="" value="" placeholder="Price">
+                </div>
+
+                <div class="input-fields location">
+                    <input type="text" name="" id="" value="" placeholder="Location">
+                </div>
+
+                <div class="input-fields date">
+                    <input type="date" name="" id="" value="" placeholder="Date">
+                </div>
+
+                <div class="input-fields desc">
+                    <label for="eventDesc">Description</label>
+                    <textarea name="eventDesc" id="" placeholder=""></textarea>
+                </div>
+
+            </form>
+           
+        </div> <!-- End left container-->
+
+        <!-- Right Container -->
+        <div class="right-container">
+
+            <div class="upload-content-wrap">
+
+                <div>
+                    <span class="upload">Upload Photo &nbsp;</span>
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+
+                <div class="upload-container">
+                    <label class="upload-img" for="upload">Browse</label>
+                    <input type="file" id="upload" accept=".jpg, .jpeg, .png" multiple>
+                </div>
+
+            </div>
+
+        </div> <!-- End Right Container--> 
+        
+
+        <div class="btn-wrap">
+            <button class="btn btn-cancel">Cancel</button>
+            <button class="btn btn-submit">Submit</button>
+        </div>
+
+    </div> <!-- End Main Container-->
+
 </body>
 </html>

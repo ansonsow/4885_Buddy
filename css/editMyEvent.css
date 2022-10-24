@@ -73,6 +73,7 @@ label {
     height: 5rem;
     border: none;
     font-size: 1.1rem;
+    font-family: var(--Body-Font);
 }
 
 textarea::placeholder {

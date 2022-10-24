@@ -133,6 +133,9 @@
         background:var(--Light-Gray);
         border-radius:var(--Events-Roundness);        
         overflow:hidden;
+        height:100%;
+        display:flex;
+        flex-direction:column;
     }
 
     /*---- Event Image ----*/
@@ -140,12 +143,17 @@
         width:100%;
         height:var(--Events-Image-Height);
         object-fit:cover;
+        flex-shrink:0;
     }
 
     .event-details {
         padding:calc(var(--Event-Details-Padding) + (var(--Events-Roundness) / 4));
         padding-top:var(--Event-Details-Padding);
         padding-bottom:calc(var(--Event-Details-Padding) + (var(--Events-Roundness) / 8));
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        height:100%;
     }
 
     .event-details > *:last-child {
@@ -179,7 +187,7 @@
     }
 
     /*---- Event Date ----*/
-    .event-details .date-published {
+    .event-details .date-published-label {
         opacity:0.7;
     }
 
