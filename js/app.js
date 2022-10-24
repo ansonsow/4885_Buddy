@@ -561,6 +561,15 @@ export async function removeEventReview(id,review){
 }
 
 
+export async function deleteEvent(id){
+  const docSnap = await getDoc(doc(db, "events", id));
+  if(docSnap.exists()){
+    await deleteDoc(doc(db, "events", id));
+  }else{
+    console.log("event do not exist");
+  }
+
+}
 
 
 // ============================================== add new badge ==============================================
