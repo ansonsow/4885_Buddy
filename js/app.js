@@ -303,9 +303,9 @@ export async function writeEventData(name, hostId, price, coverImage ,pfpURL, lo
 
 
 // YOATT4NtjFXekPYOC0Ng
-// writeEventData("Ryan event 3","YOATT4NtjFXekPYOC0Ng",
-// "0","https://raw.githubusercontent.com/ansonsow/4885_Buddy/main/images/unsplash_dance_group_Nwc-Z3_aEvw.jpeg",
-// [""],[90,90],"20221009 (num)","20221109 (num)",
+// writeEventData("TEST","YOATT4NtjFXekPYOC0Ng",
+// "0","https://media.discordapp.net/attachments/1014951045820072017/1033838435351412836/image.png?width=478&height=534",
+// [""], [ -123.1207,49.2827] ,"20221009 (num)","20221109 (num)",
 // "Ryan's third cool event","2","3",
 // "1",[""],[""]);
 // writeEventData("testEventname1 (str, 20)","testHostId (str, 20)",

@@ -9,6 +9,9 @@
     <!-- firebase -->
     <script type="module" src="../js/app.js"></script>
     <!-- <script type="module" src="../js/appCall.js"></script> -->
+    <!-- tomtom -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/services/services-web.min.js"></script>
+
 
     <!-- required assets -->
     <link href="../css/variables.css" rel="stylesheet">
@@ -56,24 +59,29 @@
                 <div class="events-grid">
 
                     <!------ AN EVENT ------>
-                    <div class="event-block">
+                    <div class="event-block" hidden>
                         <div class="block-inner">
                             <img src="../images/unsplash_gallery_event_cuKJre3nyYc.jpeg">
                             <div class="event-details">
                                 <h3 class="event-name">Event's name</h3>       
 
                                 <div class="detail-row">
-                                    <b>Location:</b> Lorem ipsum
+                                    <b class="location">Location:</b>
+                                    <span class="location-xyz"></span>
                                 </div>
 
                                 <div class="detail-row">
-                                    <b>Date:</b> Lorem ipsum
+                                    <b class="date">Date:</b>
+                                    <span class="date-xyz"></span>
                                 </div>
 
                                 <hr>
 
                                 <div class="ed-flex">
-                                    <div class="date">Published on 23 Sep 22</div>
+                                    <div class="date-published-label">
+                                        Published on
+                                        <span class="date-published"></span>
+                                    </div>
 
                                     <div class="event-actions">
                                         <a class="edit-event" href="#">
@@ -87,146 +95,6 @@
                                 </div>
                             </div><!--end event details-->
                         </div><!--end block inner-->                        
-                    </div><!--end an event-->
-
-
-                    <!------ AN EVENT ------>
-                    <div class="event-block">
-                        <div class="block-inner">
-                            <img src="../images/unsplash_book_fair_cPgUiIos-q0.jpeg">
-                            <div class="event-details">
-                                <h3 class="event-name">Event's name</h3>       
-
-                                <div class="detail-row">
-                                    <b>Location:</b> Lorem ipsum
-                                </div>
-
-                                <div class="detail-row">
-                                    <b>Date:</b> Lorem ipsum
-                                </div>
-
-                                <hr>
-
-                                <div class="ed-flex">
-                                    <div class="date">Published on 23 Sep 22</div>
-
-                                    <div class="event-actions">
-                                        <a class="edit-event" href="#">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </a>
-
-                                        <a class="delete-event" href="#">
-                                            <i class="fa-regular fa-trash-can"></i>
-                                        </a>
-                                    </div><!--end event actions-->                                
-                                </div>
-                            </div><!--end event details-->
-                        </div><!--end block inner-->
-                    </div><!--end an event-->
-
-                    
-                    <!------ AN EVENT ------>
-                    <div class="event-block">
-                        <div class="block-inner">
-                            <img src="../images/unsplash_hiking_view_T22nibt5XvI.jpeg">
-                            <div class="event-details">
-                                <h3 class="event-name">Event's name</h3>       
-
-                                <div class="detail-row">
-                                    <b>Location:</b> Lorem ipsum
-                                </div>
-
-                                <div class="detail-row">
-                                    <b>Date:</b> Lorem ipsum
-                                </div>
-
-                                <hr>
-
-                                <div class="ed-flex">
-                                    <div class="date">Published on 23 Sep 22</div>
-
-                                    <div class="event-actions">
-                                        <a class="edit-event" href="#">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </a>
-
-                                        <a class="delete-event" href="#">
-                                            <i class="fa-regular fa-trash-can"></i>
-                                        </a>
-                                    </div><!--end event actions-->                                
-                                </div>
-                            </div><!--end event details-->
-                        </div><!--end block inner-->
-                    </div><!--end an event-->
-
-
-                    <!------ AN EVENT ------>
-                    <div class="event-block">
-                        <div class="block-inner">
-                            <img src="../images/unsplash_dance_group_Nwc-Z3_aEvw.jpeg">
-                            <div class="event-details">
-                                <h3 class="event-name">Event's name</h3>       
-
-                                <div class="detail-row">
-                                    <b>Location:</b> Lorem ipsum
-                                </div>
-
-                                <div class="detail-row">
-                                    <b>Date:</b> Lorem ipsum
-                                </div>
-
-                                <hr>
-
-                                <div class="ed-flex">
-                                    <div class="date">Published on 23 Sep 22</div>
-
-                                    <div class="event-actions">
-                                        <a class="edit-event" href="#">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </a>
-
-                                        <a class="delete-event" href="#">
-                                            <i class="fa-regular fa-trash-can"></i>
-                                        </a>
-                                    </div><!--end event actions-->                                
-                                </div>
-                            </div><!--end event details-->
-                        </div><!--end block inner-->
-                    </div><!--end an event-->
-
-
-                    <!------ AN EVENT ------>
-                    <div class="event-block">
-                        <div class="block-inner">
-                            <img src="../images/unsplash_seaside_2LhCDvS_7xs.jpg">
-                            <div class="event-details">
-                                <h3 class="event-name">Event's name</h3>       
-
-                                <div class="detail-row">
-                                    <b>Location:</b> Lorem ipsum
-                                </div>
-
-                                <div class="detail-row">
-                                    <b>Date:</b> Lorem ipsum
-                                </div>
-
-                                <hr>
-
-                                <div class="ed-flex">
-                                    <div class="date">Published on 23 Sep 22</div>
-
-                                    <div class="event-actions">
-                                        <a class="edit-event" href="#">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </a>
-
-                                        <a class="delete-event" href="#">
-                                            <i class="fa-regular fa-trash-can"></i>
-                                        </a>
-                                    </div><!--end event actions-->                                
-                                </div>
-                            </div><!--end event details-->
-                        </div><!--end block inner-->
                     </div><!--end an event-->
 
                 </div><!--end events grid-->

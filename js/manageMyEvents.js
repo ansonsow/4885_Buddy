@@ -1,5 +1,7 @@
 import * as dbf from "./app.js"
+// import * as mapf from "./tomtom.js"
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+// import tt from "@tomtom-international/web-sdk-maps";
 
 
 let currentUser = dbf.auth.currentUser;
@@ -9,6 +11,15 @@ if(currentUser){
     // load the page
 
     // let oopsie;
+    // function reverseGeo(l){
+    //     tt.services.reverseGeocode({
+    //         key: tomtomApiKey,
+    //         position: l
+    //     })
+    //     .then(result=>{
+    //         console.log(result.addresses[0].address.freeformAddress);
+    //     });
+    // }
 
     let currentUserEmail = currentUser.email;
     let q = query(collection(dbf.db, "users"), where("email", "==", currentUserEmail));
@@ -22,18 +33,48 @@ if(currentUser){
     starSnapshot.forEach((doc)=>{
         console.log(doc.id);
         // oopsie = doc.id
+        // clone the hidden dummy event
+        let eventBlock = document.querySelector(".event-block");
+        let clonedEvent = eventBlock.cloneNode(true);
+        clonedEvent.removeAttribute("hidden");
+        eventBlock.parentNode.insertBefore(clonedEvent, eventBlock.nextSibling);
+
+        // set cloned event's image (as example)
+        clonedEvent.querySelector("img").setAttribute("src", doc.data().coverImage);
+        clonedEvent.querySelector("h3.event-name").innerHTML = doc.data().name;
+    
+        // let reverse = tt.services.reverseGeocode({
+        //     key:tomtomApiKey,
+        //     position:doc.data().location
+        // }).then(r=>{
+        //     clonedEvent.querySelector(".location").innerHTML = r.addresses[0].address.freeformAddress);
+        // })
+        // .catch(err=>{
+        //     console.log(err);
+        // });
+    
+        function reverseGeo(l){
+            tt.services.reverseGeocode({
+            key: tomtomApiKey,
+            position: l
+        })
+        .then(result=>{
+            clonedEvent.querySelector(".location-xyz").innerHTML = result.addresses[0].address.freeformAddress
+            // console.log(result.addresses[0].address.freeformAddress);
+        });
+        }
+        reverseGeo(doc.data().location)
+        // date-published
+        // clonedEvent.querySelector(".location").innerHTML = 
+        clonedEvent.querySelector(".date-published").innerHTML = doc.data().dateCreated.toDate().toDateString().slice(4)
+        // console.log(doc.data().dateCreated.toDate().toDateString());
+        clonedEvent.querySelector(".delete-event").addEventListener("click", () => {
+            dbf.deleteEvent(doc.id)
+        })
 
     })
 
-    // clone the hidden dummy event
-    let eventBlock = document.querySelector(".event-block");
-    let clonedEvent = eventBlock.cloneNode(true);
-    eventBlock.parentNode.insertBefore(clonedEvent, eventBlock.nextSibling);
-
-    // set cloned event's image (as example)
-    clonedEvent.querySelector("img").setAttribute("src","https://cdn.discordapp.com/attachments/678250651335000064/1031470108264120340/unknown.png")
-
-
+    
 
 
     $(document).ready(function(){

@@ -2,6 +2,8 @@
 /* credit: www.w3schools.com/howto/tryit.asp?filename=tryhow_html_include_2 */
 
 var currentUserId = localStorage.getItem("currentUserId");
+const tomtomApiKey = "xcVSGa6cCt3p8cdaJHKnUCMSWesW8tzc"
+
 let filesReady;
 
 function jsIncludeHTML() {

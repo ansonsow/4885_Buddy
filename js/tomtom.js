@@ -1,5 +1,4 @@
-// import tt from "@tomtom-international/web-sdk-maps";
-// import tt from "@tomtom-international/web-sdk-maps";
+
 import * as dbf from "./app.js"
 
 let tomtomApiKey = "xcVSGa6cCt3p8cdaJHKnUCMSWesW8tzc"
@@ -8,9 +7,9 @@ let location = [ -123.1207,49.2827]
 let zoom = "10"
 const user = dbf.auth.currentUser.email;
 
-document.getElementById("button").onclick=async ()=>{
-    console.log(user);
-}
+// document.getElementById("button").onclick=async ()=>{
+//     console.log(user);
+// }
 
 let map = tt.map({
     key: tomtomApiKey,
@@ -30,7 +29,6 @@ let map = tt.map({
 
 function moveMap(lng,lat){
     location = [lng,lat]
-
     map.flyTo({
         center: location,
         zoom: 15
@@ -40,7 +38,6 @@ function moveMap(lng,lat){
 function addMarker(lng, lat){
     let location = [lng,lat];
     let marker = new tt.Marker().setLngLat(location).addTo(map)
-
 }
 
 let handleResults = function(result){
@@ -65,6 +62,18 @@ let search = function(){
 // search.addEventListener("click",()=>{
 //     search
 // })
+
+// function reverseGeo(l){
+//     tt.services.reverseGeocode({
+//         key: tomtomApiKey,
+//         position: l
+//     })
+//     .then(result=>{
+//         console.log(result);
+//     });
+// }
+
+// reverseGeo()
 
 document.getElementById("search").addEventListener("click", () => {
     // alert("aaaa");
