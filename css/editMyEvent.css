@@ -105,8 +105,8 @@ textarea::placeholder {
     position: absolute;   
     margin: 0;  
     font-weight: 400;
-    bottom: -5px; 
-    left: 120px; 
+    bottom: 10px; 
+    right: 10px; 
     color: var(--White);
     font-size: 1.2rem;
     background-color: transparent;
@@ -114,7 +114,7 @@ textarea::placeholder {
     cursor: pointer;
 }
 
-.images-container button{
+.browse-btn{
     color: var(--Text-Color);
     font-weight: 900;
     margin: 1rem auto;
@@ -122,19 +122,23 @@ textarea::placeholder {
     border-radius: 20px;
     border: none;
     cursor: pointer;
+    border: 1px solid var(--Light-Gray);
+}
+
+
+.browse-btn:hover {
+    border: 1px solid var(--Text-Color);
 }
 
 /* ----------- Svg illustration Buttons ----------- */
 
 .illustration {
-    margin: -2rem 2rem -3rem;
-    z-index: -1;
+    margin: 2rem;
+    text-align: center;
 }
 
 .illustration img {
     width: 25rem;
-    height: 25rem;
-    padding: 4rem;
     object-fit: contain;
 }
 
@@ -218,14 +222,13 @@ textarea::placeholder {
 
     .illustration img {
         display: flex;
+        width: 18rem;
         margin: auto;
-        margin-top: 2rem;
+        padding-top: 7rem;
+
     }
 
     /* ----- Form Area ----- */
-    div .name{
-        margin-top: 0;
-    }
 
     .left-container {
         width: 100vw;

@@ -174,7 +174,7 @@ h3.card-content{
 
 
 @media (max-width: 600px) {
-    /* top bar adjustments for SEARCH PAGE */
+    /* top bar adjustments */
     header {
         position:fixed;
         right:0;
