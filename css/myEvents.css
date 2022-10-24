@@ -32,7 +32,8 @@
     --Event-Actions-Icon-Hover-Speed:0.25s;
     --Event-Actions-Icon-Spacing:0.5rem;
 
-    --Remove-Event-Speed:400ms; /* ms only */    
+    --Remove-Event-Speed:400ms; /* ms only */
+    --Remove-Event-Speed-Method:cubic-bezier(0.14, 0, 0.14, 1);
 }
 
 /*---------- DESKTOP  ----------*/
@@ -124,8 +125,13 @@
     }
 
     .event-block {
+        position:relative;
+        width:var(--Events-Each-Width);
+    }
+
+    .block-inner {
         background:var(--Light-Gray);
-        border-radius:var(--Events-Roundness);
+        border-radius:var(--Events-Roundness);        
         overflow:hidden;
     }
 
@@ -198,11 +204,17 @@
         color:var(--Primary);
     }
 
-    /* trash icon: zoom out animation */
-    .event-block.zoom-out {
+    /* trash, on delete: zoom out animation */
+    .event-block .block-inner.zoom-out {
         transform:scale(0,0);
         transform-origin:center;
         transition:transform var(--Remove-Event-Speed) linear;
+    }
+
+    /* trash, on delete: move remaining blocks left */
+    .block-move-left {
+        margin-left:calc(0px - var(--Events-Each-Width) - var(--Events-Spacing));
+        transition:margin-left var(--Remove-Event-Speed) var(--Remove-Event-Speed-Method);
     }
 
 }

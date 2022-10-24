@@ -76,21 +76,37 @@ $(document).ready(function(){
 
     $(document).on("click", ".delete-event", function(){
         let that = this;
+        let whichPanel = Number($(".events-grid").attr("panel-view"));
 
-        $(that).parents(".event-block").addClass("zoom-out");
+        // CURRENT EVENT - zoom out
+        $(that).parents(".event-block .block-inner").addClass("zoom-out");
 
         setTimeout(() => {
-            $(that).parents(".event-block").remove();
-            eventsCount = $(".event-block").length;
-            slidesNeeded = Math.ceil(eventsCount/eventsPerRow);
+            // after zoom out animation, move remaining blocks left
+            $(that).parents(".event-block").nextAll(".event-block").addClass("block-move-left");
 
-            $(".events-grid").attr("slides-needed",slidesNeeded);
-            $(".events-grid").attr("style","--Events-Per-Row:" + eventsCount);
+            setTimeout(() => {        
+                // put remaining blocks back where they were
+                $(that).parents(".event-block").nextAll(".event-block").removeClass("block-move-left");
 
-            if(slidesNeeded == 1){
-                $(".prev-events, .next-events").css("visibility","hidden")
-            }
-        },rmEVspeed)
-        
+                // remove DELETED EVENT
+                $(that).parents(".event-block").remove();
+
+                // reinitialize values
+                eventsCount = $(".event-block").length;
+                slidesNeeded = Math.ceil(eventsCount/eventsPerRow);
+
+                $(".events-grid").attr("slides-needed",slidesNeeded);
+                $(".events-grid").attr("style","--Events-Per-Row:" + eventsCount);
+
+                if(slidesNeeded == 1){
+                    $(".prev-events, .next-events").css("visibility","hidden");
+                    $(".events-grid").css("margin-left","0");
+                    $(".events-grid").attr("panel-view","1")
+                } else {
+                    $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(whichPanel-1) + ")");
+                }
+            },rmEVspeed)            
+        },rmEVspeed)        
     })
 })//end ready
