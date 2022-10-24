@@ -56,7 +56,6 @@ input {
     font-size: 1.1rem;
 }
 
-
 label {
     margin-right: 10px;
     font-size: 1.1rem;
@@ -78,6 +77,10 @@ label {
 
 textarea::placeholder {
     font-family: var(--Body-Font);
+}
+
+input:focus, textarea:focus {
+    outline: none;
 }
 
 /* ----------- Upload Image Area ----------- */

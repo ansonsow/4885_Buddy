@@ -50,11 +50,17 @@ nav {
 textarea {
     width: 350px;
     height: 200px;
+    font-family: var(--Body-Font);
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+textarea:focus {
+    outline: none;
 }
 
 ::placeholder {
     font-family: var(--Body-Font);
-    padding: 0.5rem;
 }
 
 hr {
@@ -121,7 +127,7 @@ hr {
 }
 
 .event-name {
-    padding: 7rem 1rem 1rem 0;
+    padding: 6rem 1rem 1rem 0;
 }
 
 .event-content {
@@ -148,20 +154,16 @@ hr {
 }
 
 .descriptions-wrap {
-    margin: 1rem 5rem 0 0;
+    margin: 0 5rem 0 0;
 }
 
 /* ----------- Svg illustration Buttons ----------- */
 .illustration {
-    margin: -5rem 10rem;
-    z-index: -1;
+    margin: 5% 15% 0%;
 }
-
 
 .illustration img {
     width: 25rem;
-    height: 25rem;
-    object-fit: contain;
 }
 
 
@@ -188,7 +190,6 @@ hr {
         align-items: center;
     }
     
-    
     .right-container {
         display: none;
     }
@@ -200,8 +201,8 @@ hr {
     }
 
     .top-illustration img {
-        margin: 0rem 0 -5rem 0;
-        padding: 15%;
+        margin: 7rem 0 0 0;
+        padding: 0% 15%;
         width: 100vw;
     }
 
@@ -214,7 +215,7 @@ hr {
 
     .event-container {
         width: 100%;
-        margin: 2% 0 0 0;
+        margin: 9% 0 0 0;
     }
 
     .card-container {

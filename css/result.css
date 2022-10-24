@@ -129,10 +129,11 @@ select {
     border-radius: 6rem;
 }
 
-/* Test */
-/* .travel, .food, .music, .sport {
-    display: none;
-} */
+.tag:hover {
+    background-color: #D9D9D9;
+    border: 2px solid #D9D9D9;
+    color: var(--Text-Color);
+}
 
 /* --------Event Card---------- */
 
