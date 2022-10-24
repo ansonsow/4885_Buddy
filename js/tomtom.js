@@ -1,3 +1,5 @@
+// import tt from "@tomtom-international/web-sdk-maps";
+// import tt from "@tomtom-international/web-sdk-maps";
 import * as dbf from "./app.js"
 
 let tomtomApiKey = "xcVSGa6cCt3p8cdaJHKnUCMSWesW8tzc"
@@ -17,10 +19,65 @@ let map = tt.map({
     center: location
 });
 
+// let search = 
 
+function moveMap(lng,lat){
+    location = [lng,lat]
 
-let popup = new tt.Popup({
-    closeButton: false,
-}).setText("testEventname1 (str, 20)")
-let marker = new tt.Marker().setLngLat(location).setPopup(popup)
-marker.addTo(map)
+    map.flyTo({
+        center: location,
+        zoom: 15
+    })
+}
+
+function addMarker(lng, lat){
+    let location = [lng,lat];
+    let marker = new tt.Marker().setLngLat(location).addTo(map)
+
+}
+
+let handleResults = function(result){
+    console.log(result);
+    if(result.results){
+        console.log(result.results[0].position.lat);
+        // location = [result.results[0].position.lat,result.results[0].position.lng]
+        moveMap(result.results[0].position.lng,result.results[0].position.lat)
+        // addMarker(result.results[0].position.lng,result.results[0].position.lat)
+        
+    }
+}
+
+let search = function(){
+    tt.services.fuzzySearch({
+        key: tomtomApiKey,
+        query: document.getElementById("query").value
+        // query: "vancouver"
+    }).then(handleResults)
+}
+
+// search.addEventListener("click",()=>{
+//     search
+// })
+
+document.getElementById("search").addEventListener("click", () => {
+    // alert("aaaa");
+    search()
+})
+
+document.addEventListener("keydown", function(e) {
+    if (e.keyCode == 13) {
+        if(document.getElementById("query").value!=""){
+            search()
+        }else{
+            console.log("nothing entered");
+        }
+        
+    }
+});
+
+// let popup = new tt.Popup({
+//     closeButton: false,
+// }).setText("testEventname1 (str, 20)")
+// let marker = new tt.Marker().setLngLat(location).setPopup(popup)
+// marker.addTo(map)
+
