@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Setting</title>
+    
+    <!-- firebase -->
+    <script type="module" src="../js/app.js"></script>
+    <!-- <script type="module" src="../js/appCall.js"></script> -->
+
+    <!-- required assets -->
+    <link href="../css/variables.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <script src="../js/global.js" defer></script>
+
+    <!-- icon font: fontawesome -->
+    <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+    <!-- <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet"> -->
+    
+    <!-- page-specific assets -->
+    <link href="../css/topBar.css" rel="stylesheet">
+    <link href="../css/leftPanel.css" rel="stylesheet">
+    <link href="../css/accountSetting.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="../js/leftPanel.js" defer></script>
+    <!-- <script src="../js/myEvents.js" defer></script> -->
+
+</head>
+
+<body>
+    <!------ TOP BAR ------>
+    <div js-include-html="../html/topBar.html"></div>
+
+    <!------ LEFT PANEL ------>
+    <div js-include-html="../html/leftPanel.html"></div>
+
+
+    <!------ MAIN CONTENT ------>
+
+
+    <div class="main-container">
+        <!-- Heading -->
+        <div class="heading-wrap">
+            <p class="heading">Account Setting</p>
+        </div>
+        <!-- Left -->
+        <div class="left-container">
+            <!-- Camera and Profile Name -->
+            <div class="profile-container">
+                <button class="camera-wrap">
+                    <i class="fa-solid fa-camera"></i>
+                </button>
+                <p class="title-name">Mila</hp>
+            </div>
+
+            <!-- Form Inputs -->
+            <div>
+                <form action="">
+        
+                    <div class="input-fields">
+                        <input type="text" name="" id="" value="" placeholder="First Name">
+                    </div>
+
+                    <div class="input-fields">
+                        <input type="text" name="" id="" value="" placeholder="Last Name">
+                    </div>
+
+                    <div class="input-fields">
+                        <input type="text" name="" id="" value="" placeholder="Username">
+                    </div>
+
+                    <div class="input-fields">
+                        <input type="text" name="" id="" value="" placeholder="Email">
+                    </div>
+
+                    <div class="input-fields desc">
+                        <label for="eventDesc">Description</label>
+                        <textarea name="eventDesc" id="" placeholder=""></textarea>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Button -->
+            <div class="btn-update-wrap">
+                <button class="btn-update">Update Profile</button>
+            </div>
+        </div> <!-- End left container-->
+
+        <!-- Right -->
+        <div class="right-container">
+            
+            <div class="btn-wrap">
+                <button class="changePsw btn">Change password</button>
+                <button class="AccSignOut btn">Sign Out</button>
+            </div>
+
+            <!-- illustration -->
+            <div class="illustration">
+                <img src="/svg/account_setting.svg" alt="">  
+            </div>
+
+
+        </div>
+        
+
+        <div class="leave-msg">
+            <p>If you want to leave us, you can <a href="">Click here</a>.</p>
+        </div>
+
+    </div> <!-- End Main Container-->
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
