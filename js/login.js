@@ -18,6 +18,10 @@ document.getElementById("logIn").onclick=async (e)=>{
                 localStorage.setItem("currentUserId",element.id)
             });
         })
+        alert("successfully logged in")
+        setTimeout(()=>{
+            window.location.href="./main.html";
+        },1000)
     })
     .catch((error) => {
         console.log(error.message.substring(' ' + 10));

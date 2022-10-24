@@ -15,6 +15,10 @@ document.getElementById("btnsignup").onclick=async ()=>{
                     // the user should be kicked to the login page
                     noteToUser.innerHTML = "SUCCESS"
                     dbf.writeUserData(username.value, fName.value, lName.value, email.value, [], "",[])
+                    alert("successfully sign up")
+                    setTimeout(()=>{
+                        window.location.href="./login.html";
+                    },1000)
                 }else{
                     noteToUser.innerHTML = value.substring(' ' + 10);
                 }
