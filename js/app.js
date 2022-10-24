@@ -301,6 +301,13 @@ export async function writeEventData(name, hostId, price, coverImage ,pfpURL, lo
   }
 }
 
+
+// YOATT4NtjFXekPYOC0Ng
+// writeEventData("Ryan event 3","YOATT4NtjFXekPYOC0Ng",
+// "0","https://raw.githubusercontent.com/ansonsow/4885_Buddy/main/images/unsplash_dance_group_Nwc-Z3_aEvw.jpeg",
+// [""],[90,90],"20221009 (num)","20221109 (num)",
+// "Ryan's third cool event","2","3",
+// "1",[""],[""]);
 // writeEventData("testEventname1 (str, 20)","testHostId (str, 20)",
 // "0 (num)","coverImageUrl",["imgURL.aaa (str, 2048)"],[90,90],"20221009 (num)","20221109 (num)","test description (str, 2048)","2 (num)","3 (num)",
 // "1 (num)",["tag1","tag2"],["aaa","bbb"]);
