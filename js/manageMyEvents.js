@@ -25,6 +25,16 @@ if(currentUser){
 
     })
 
+    // clone the hidden dummy event
+    let eventBlock = document.querySelector(".event-block");
+    let clonedEvent = eventBlock.cloneNode(true);
+    eventBlock.parentNode.insertBefore(clonedEvent, eventBlock.nextSibling);
+
+    // set cloned event's image (as example)
+    clonedEvent.querySelector("img").setAttribute("src","https://cdn.discordapp.com/attachments/678250651335000064/1031470108264120340/unknown.png")
+
+
+
 
     $(document).ready(function(){
         /*------ EVENTS ------*/
