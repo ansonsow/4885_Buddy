@@ -21,6 +21,13 @@ let map = tt.map({
 
 // let search = 
 
+
+// calculate distance for two location
+// Point2D p1 = new Point2D(lattitude1, longitude2);
+// Point2D p2 = new Point2D(lattitude2, longitude2);
+
+// double distanceBetweenTwoPoints = (double)Math.sqrt((double)Math.pow((p1.x - p2.x), 2.0) + (double)Math.pow((p1.y - p2.y), 2.0));
+
 function moveMap(lng,lat){
     location = [lng,lat]
 
