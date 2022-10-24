@@ -136,7 +136,7 @@ input, textarea {
 }
 
 .illustration {
-    margin: -5rem 0 -5rem 15rem;
+    margin: 3rem auto auto 15rem ;
 }
 
 .illustration img {
@@ -147,23 +147,106 @@ input, textarea {
 .leave-msg {
     grid-area: 3 / 1 / 4 / 3;
     text-align: center;
-    margin-top: 3rem;
+    margin: 3rem 0 2rem 0;
 }
 
 
-    /*---------- MOBILE  ----------*/
+/*---------------- MOBILE  ----------------*/
 @media(max-width:600px){
+
+    /* top bar adjustments*/
+    header {
+        position:fixed;
+        right:0;
+        background-color:var(--Primary);
+        z-index:3;
+        width: 100vw;
+    }
+
+    .top-hamburger, header .logo, .searchbar {
+        display:block!important;
+    }
+
+    nav.home-topnav {
+        width: 100%;
+        grid-template-columns:10% auto 10%;
+        justify-items: center;
+        align-items: center;
+    }
+
     /* un-orange logo */
     nav .logo [vector-part="buddy_bu"] path,
     nav .logo [vector-part="buddy_y"] path {
         fill:default;
     }
 
+    /* LEFT panel */
     .left-panel {
         display:none;
     }
+/*-------------------------------------------*/
 
-    .events-cont {
-        display:none;
+    /* TOP illustration */
+    .main-container {
+        display: block;
+        margin: 0;
+    }
+
+    .left-container {
+        width: 80vw;
+        margin: 3rem 3rem 0 3rem;
+    }
+
+    .heading-wrap {
+        margin: 0;
+        padding-top: 50%;
+    }
+
+    .heading {
+        display: none;
+    }
+
+    .illustration {
+        position: absolute;
+        top: 15%;
+        margin: 0;
+    }
+
+    .illustration img {
+        width: 20rem;
+        margin: 0 26%;
+    }
+
+
+    /* ----- CAMERA / Name / FORM ----- */
+    .profile-container {
+        margin: 5rem auto 2rem;
+    }
+
+    .input-fields {
+        border: 1px solid #D9D9D9;
+        padding: 0.5rem;
+        border-radius: 8px;
+    }
+
+    /* ----- Buttons ----- */
+    .btn-update {
+        width: 12rem;
+        padding: 0.7rem;
+        border-radius: 20rem;
+        background-color: #CCCCCC;
+        border: 2px solid var(--Text-Color);
+        font-family: var(--Body-Font);
+        font-size: 1rem;
+        display: block;
+        margin: 1rem auto 0;
+    }
+    
+    .btn-update:hover {
+        border: 2px solid var(--White);
+    }
+
+    .btn-wrap {
+        margin-top: 0;
     }
 }
