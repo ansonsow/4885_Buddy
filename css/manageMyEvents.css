@@ -208,7 +208,7 @@
     .event-block .block-inner.zoom-out {
         transform:scale(0,0);
         transform-origin:center;
-        transition:transform var(--Remove-Event-Speed) linear;
+        transition:transform var(--Remove-Event-Speed) var(--Remove-Event-Speed-Method);
     }
 
     /* trash, on delete: move remaining blocks left */
