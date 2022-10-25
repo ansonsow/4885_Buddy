@@ -127,7 +127,7 @@ svg {
         display: none;
     }
 
-    .welcome {
+    /* .welcome {
         position: absolute;
         margin: auto;
         top: 25rem;
@@ -136,6 +136,10 @@ svg {
 
     .buddy {
         display: block;
+    } */
+
+    .welcome {
+        display: none;
     }
 
     /*---------- Form Section --------*/
