@@ -81,23 +81,34 @@ if(currentUser){
 
 
     $(document).ready(function(){
-        $(".event-block[hidden]").before("<div dummy-area></div>")
 
-        /*------ RANDOM CAT IMAGES ------*/
-        // delete later, just for cloning purposes
-        for(let i=0; i<6; i++){
-            let jqc = $(".event-block:first").clone();
-            jqc.removeAttr("hidden");
-            let randnumA = Math.ceil(Math.random() * 2500) + 250;
-            let randnumB = Math.ceil(Math.random() * 2500) + 250;
-            jqc.find("img").attr("src",`https://placekitten.com/${randnumA}/${randnumB}`);
-            jqc.find(".event-name").text("Cat " + Math.floor(i+1))
-            $("[dummy-area]").append(jqc)
+        /********************************************************************** */
+        /******* TEST: ADD CATS AS EVENTS ************************************* */
+        /********************************************************************** */
+
+        function generateCats(){
+            $(".event-block[hidden]").before("<div dummy-area></div>")
+
+            let howManyCats = 6;
+
+            /*------ RANDOM CAT IMAGES ------*/
+            // delete later, just for cloning purposes
+            for(let i=0; i<howManyCats; i++){
+                let jqc = $(".event-block:first").clone();
+                jqc.removeAttr("hidden");
+                let randnumA = Math.ceil(Math.random() * 2500) + 250;
+                let randnumB = Math.ceil(Math.random() * 2500) + 250;
+                jqc.find("img").attr("src",`https://placekitten.com/${randnumA}/${randnumB}`);
+                jqc.find(".event-name").text("Cat " + Math.floor(i+1))
+                $("[dummy-area]").append(jqc)
+            }
+
+            $("[dummy-area]").children().unwrap();
+
+            $(".event-block[hidden]").remove();
         }
 
-        $("[dummy-area]").children().unwrap();
-
-        $(".event-block[hidden]").remove();
+        // generateCats();
 
         /********************************************************************** */
         /******* IMPORTANT REUSABLE VARIABLES ********************************* */
@@ -115,7 +126,7 @@ if(currentUser){
         /********************************************************************** */
         /******* FUNCTION: GENERATE COLUMN#S & SLIDE#S ************************ */
         /********************************************************************** */
-        // ideally used for afte the trash icon is pressed
+        // ideally used for after the trash icon is pressed
 
         function reInitEvents(){
             // label each column with its number
@@ -149,20 +160,36 @@ if(currentUser){
                     $(this).attr("slide",newnum)
                 }
             })
+
+            eventsCount = $(".event-block").length;
+            slidesNeeded = Math.ceil(eventsCount/eventsPerRow);
+
+            $(".events-grid").attr("slides-needed",slidesNeeded);
+            $(".events-grid").attr("style","--Events-Per-Row:" + eventsCount);
+
+            if($(".events-grid").is("[panel-view]")){
+                let pv = Number($(".events-grid").attr("panel-view"));
+
+                // imitate prev-click
+                if(pv > slidesNeeded){
+                    // $(".prev-events").click();
+                    let panelView = Number($(".events-grid").attr("panel-view"));
+
+                    panelView -= 1;
+                    $(".events-grid").attr("panel-view",panelView);
+                    $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(panelView-1) + ")");
+                    $(".prev-events").css("visibility","");
+                    $(".next-events").css("visibility","hidden")
+                }
+            }
         }//end reInitEvents()
 
-        reInitEvents();        
-
-        /*--------------------*/
-    
-        $(".events-grid").attr("slides-needed",slidesNeeded);
-        $(".events-grid").attr("style","--Events-Per-Row:" + eventsCount);
+        reInitEvents();
     
         /********************************************************************** */
         /******* 1ST PANEL || INITIAL VIEW ************************************ */
         /********************************************************************** */
-
-        let panelView = 1;
+        
         $(".events-grid").attr("panel-view","1");
         $(".prev-events").css("visibility","hidden");
     
@@ -179,17 +206,29 @@ if(currentUser){
             /******* NEXT ARROW CLICK ***************************************** */
             /****************************************************************** */
             if($(this).hasClass("next-events")){
+
+                let panelView = Number($(".events-grid").attr("panel-view"));
                 
                 $(".prev-events").css("visibility","");
 
                 // if there are only 2 panels
                 if(slidesNeeded == 2){
                     $(".prev-events").css("visibility","");
+                    $(".next-events").css("visibility","hidden");
+
+                    // condition: if there are only 2 panels
+                    // and user is on the 1st one
+                    // when next is clicked, change view from 1 -> 2
+                    if(panelView == 1){
+                        panelView += 1;
+                        $(".events-grid").attr("panel-view",panelView);
+                        $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(panelView-1) + ")");
+                    }
                 }
 
                 // if there are MORE than 2 panels
                 // MOVE TO NEXT PANEL
-                else {
+                else if(slidesNeeded > 2){
                     panelView += 1;
 
                     // if user is at the END, can't click right
@@ -223,13 +262,26 @@ if(currentUser){
 
                 // if there's more than 1 slide, show the prev arrow
                 else if(slidesNeeded > 1){
+                    let panelView = Number($(".events-grid").attr("panel-view"));
+
                     panelView -= 1;
                     $(".events-grid").attr("panel-view",panelView);
                     $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(panelView-1) + ")");
 
+                    // condition: only 2 slides remaining
+                    // 2nd last slide --> 1st slide
+                    if(panelView == 1 && slidesNeeded > 1){
+                        $(".prev-events").css("visibility","hidden")
+                        $(".next-events").css("visibility","");
+                    }
+
                     // if user CAN keep pressing prev
-                    if(panelView > 1){
+                    else if(panelView > 1){
                         $(".prev-events").css("visibility","");
+
+                        if(panelView < slidesNeeded){
+                            $(".next-events").css("visibility","")
+                        }
                     }
                     
                     // if user CAN'T keep pressing prev
@@ -244,30 +296,51 @@ if(currentUser){
         /********************************************************************** */
         /******* TRASH ICON CLICK ********************************************* */
         /********************************************************************** */
-        let rmEVspeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Remove-Event-Speed"));
+        let removeSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Remove-Event-Speed"));
     
         $(document).on("click", ".delete-event", function(){
             let that = this;
-            let whichPanel = Number($(".events-grid").attr("panel-view"));
+            let parentBlock = $(that).parents(".event-block");
+            
+            let focusCol = Number(parentBlock.attr("column"));
+            let focusPanel = Number(parentBlock.attr("slide"));
     
             // CURRENT EVENT - zoom out
-            $(that).parents(".event-block .block-inner").addClass("zoom-out");
-    
+            parentBlock.find(".block-inner").addClass("zoom-out");
+
             setTimeout(() => {
-                // after zoom out animation, move remaining blocks left
-                $(that).parents(".event-block").nextAll(".event-block").addClass("block-move-left");
-    
-                setTimeout(() => {        
-                    // put remaining blocks back where they were
-                    $(that).parents(".event-block").nextAll(".event-block").removeClass("block-move-left");
-    
-                    // remove DELETED EVENT
-                    $(that).parents(".event-block").remove();
-                },rmEVspeed)
-            },rmEVspeed)        
-        })
+                parentBlock.nextAll(".event-block").addClass("block-move-left");
+
+                setTimeout(() => {
+
+                    parentBlock.nextAll(".event-block").removeClass("block-move-left");
+
+                    parentBlock.remove();
+                    reInitEvents();
+
+                    $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(focusPanel-1) + ")");
+
+                    // if there is only 1 slide left
+                    // hide both arrows
+                    if(slidesNeeded == 1){
+                        $(".prev-events, .next-events").css("visibility","hidden")
+                    }
+                    // if the user is already on the last slide
+                    // hide the next arrow
+                    if(focusPanel == slidesNeeded){
+                        $(".next-events").css("visibility","hidden")
+                    }
+
+                    // force the user to go back to the prev slide
+                    // if there is nothing left on THAT slide
+                    else if(focusPanel > slidesNeeded){
+                        $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(focusPanel-2) + ")");
+                    }
+                },removeSpeed)
+            },removeSpeed)
+        })//end trash click
     })//end ready
-}else{
+} else {
     alert("you are not logged in")
     setTimeout(()=>{
         window.location.href="./login.html";
