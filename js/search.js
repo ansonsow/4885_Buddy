@@ -29,5 +29,5 @@ starSnapshot.forEach((doc)=>{
     reverseGeo(doc.data().location)
 
     // card-content location
-    clonedEvent.querySelector(".card-content.price").innerHTML = doc.data().price;
+    clonedEvent.querySelector(".card-content.time").innerHTML = "not sure yet";
 })
