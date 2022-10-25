@@ -81,13 +81,70 @@ if(currentUser){
 
 
     $(document).ready(function(){
+        $(".event-block[hidden]").before("<div dummy-area></div>")
+
         /*------ EVENTS ------*/
+
+        /*------ RANDOM CAT IMAGES ------*/
+        // delete later, just for cloning purposes
+        for(let i=0; i<6; i++){
+            let jqc = $(".event-block:first").clone();
+            jqc.removeAttr("hidden");
+            let randnumA = Math.ceil(Math.random() * 2500) + 250;
+            let randnumB = Math.ceil(Math.random() * 2500) + 250;
+            jqc.find("img").attr("src",`https://placekitten.com/${randnumA}/${randnumB}`);
+            jqc.find(".event-name").text("Cat " + Math.floor(i+1))
+            $("[dummy-area]").append(jqc)
+        }
+
+        $("[dummy-area]").children().unwrap();
+
+        $(".event-block[hidden]").remove();
+
+        /*------------------------------------*/
+
         // $(".event-block:first").attr("event-id",oopsie)
+
+        let originalEventsNum = $(".event-block").length;
 
         let eventsCount = $(".event-block").length;
         let eventsPerRow = Number(getComputedStyle(document.documentElement).getPropertyValue("--Events-Per-Row"));
         let slidesNeeded = Math.ceil(eventsCount/eventsPerRow);
         let panelSpan = "(var(--Events-Grid-Width) + var(--Events-Spacing))";
+
+        // label each column with its number
+        // column 1,
+        // column 2,
+        // column 3.
+        for(let i=0; i<=eventsPerRow; i++){
+            $(`.events-grid .event-block:nth-of-type(${eventsPerRow}n+${i})`).attr("column",i);
+        }
+
+        let eventBlockJQ = $(".events-grid > .event-block");
+
+        for(let i=0; i<eventBlockJQ.length; i+=eventsPerRow){
+            eventBlockJQ.slice(i, i+eventsPerRow).attr("slide",i) // gives 0, 3, 6, 9
+            // eventBlockJQ.slice(i, i+eventsPerRow).attr("slide",Math.random().toString(36).slice(2,7))
+        }
+
+        // revamp the slide numbers
+        $(".event-block[slide]").each(function(){
+            let numAttr = Number($(this).attr("slide"));
+
+            // if it's 0, make it 1 since it's gonna be the 1st slide
+            if(numAttr == 0){
+                $(this).attr("slide","1");
+            }
+            
+            // if it's anything larger than 1, divide it by eventsPerRow,
+            // then +1 because there's already a "slide 1" (created from "0")
+            else if(numAttr > 0){
+                let newnum = (numAttr/3)+1;
+                $(this).attr("slide",newnum)
+            }
+        })
+
+        /*--------------------*/
     
         $(".events-grid").attr("slides-needed",slidesNeeded);
         $(".events-grid").attr("style","--Events-Per-Row:" + eventsCount);
@@ -182,15 +239,62 @@ if(currentUser){
     
                     $(".events-grid").attr("slides-needed",slidesNeeded);
                     $(".events-grid").attr("style","--Events-Per-Row:" + eventsCount);
+
+                    // next line works
+                    // alert(`ORIGINAL ITEMS: ${originalEventsNum} || CURRENT ITEMS: ${eventsCount} || SLIDES NEEDED: ${slidesNeeded}`);
+
+                    //
     
+                    // IF THERE IS ONLY 1 SLIDE LEFT (aka 3 events)
                     if(slidesNeeded == 1){
+                        whichPanel = slidesNeeded;
                         $(".prev-events, .next-events").css("visibility","hidden");
                         $(".events-grid").css("margin-left","0");
-                        $(".events-grid").attr("panel-view","1")
-                    } else {
-                        $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(whichPanel-1) + ")");
+                        $(".events-grid").attr("panel-view","1");
+                        
+                        // $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(whichPanel-1) + ")");
                     }
-                },rmEVspeed)            
+                    
+                    // IF THERE ARE *MORE* THAN 1 SLIDE(S) LEFT
+                    else if(slidesNeeded > 1){
+
+                        // condition A: YOU ARE ON THE LAST POSSIBLE SLIDE
+                        // condition B: you click 🗑️ on one of the last items
+                        if(slidesNeeded == whichPanel){
+                            // alert(`you are STILL on slide ${whichPanel}`)
+                            // alert("you are on the LAST SLIDE, which is ALSO WHERE YOU PRESSED THE DELETE");
+
+                            $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(whichPanel-1) + ")");
+                        }
+                        
+                        // if you are:
+                        // NOT on the last possible slide, e.g. slide 2 of 3
+                        // you click one of those 🗑️
+                        else {
+                            // whichPanel -= 1;
+
+                            // alert(whichPanel)
+
+                            // next 2 lines are correct
+                            $(".events-grid").attr("panel-view",whichPanel);
+                            $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(whichPanel-1) + ")")
+
+
+
+                            // $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(whichPanel-1) + ")");
+                        }
+                        
+
+                        // whichPanel = slidesNeeded;
+
+                        // $(".events-grid").attr("panel-view",slidesNeeded);
+                        // alert(whichPanel)
+
+                        // $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(whichPanel-1) + ")");
+                    } else if(slidesNeeded == 3){
+                        // $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(whichPanel-1) + ")");
+                    }
+                },rmEVspeed)
             },rmEVspeed)        
         })
     })//end ready
