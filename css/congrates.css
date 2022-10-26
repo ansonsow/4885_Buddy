@@ -59,8 +59,8 @@ h1 {
 }
 
 .check-it:hover {
-    border: 2px solid var(--Secondary-Faded);
-    background-color: var(--Secondary-Faded);
+    border: 2px solid var(--Secondary-Light);
+    background-color: var(--Secondary-Light);
 }
 
 

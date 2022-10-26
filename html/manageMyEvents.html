@@ -41,6 +41,19 @@
     <!------ LEFT PANEL ------>
     <div js-include-html="../html/leftPanel.html"></div>
 
+    <!------ DELETE EVENT - POPUP ------>
+    <div class="del-popup" hidden>
+        <div class="popup-bg"></div>
+        <div class="popup-cont-a">
+            <div class="popup-cont-b">
+                <div class="popup-msg">
+                    <h3>Are you sure you want to delete <span class="popup-event-name"></span>?</h3>
+                    <button id="confirm_delete">Delete</button>
+                    <button class="cancel-popup">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div><!--end entire popup-->
 
     <!------ MAIN CONTENT ------>
     <div class="main-content">
@@ -81,6 +94,12 @@
                                     <div class="detail-row">
                                         <b class="date">Date:</b>
                                         <span class="date-xyz"></span>
+                                    </div>
+
+                                    <!-- event time -->
+                                    <div class="detail-row">
+                                        <b class="time">Time:</b>
+                                        <span class="time-xyz"></span>
                                     </div>
                                 </div><!--end ed-v-center-->
 

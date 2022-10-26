@@ -19,15 +19,19 @@
 
     /*------ COLORS ------*/
     --Primary:#ff7951;
+    --Primary-RGB:255,121,81;
+
     --Primary-Light:#f7b1A6;
 
     --Secondary:#ffb543;
-    --Secondary-Faded:#ffe4ae;
+    --Secondary-Light:#ffe4ae;
 
     --Accent:#2367a2;
     --Accent-Light:#7fa9c6;
 
     --White:#f9f9f9;
+    --White-RGB:249,249,249;
+
     --Text-Color:#545454;
     --Light-Gray:#f3f3f3;
 

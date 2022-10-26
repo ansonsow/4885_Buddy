@@ -78,7 +78,7 @@ hr {
 }
 
 .star-rating i.empty {
-    color:var(--Secondary-Faded);
+    color:var(--Secondary-Light);
 }
 
 
@@ -103,8 +103,8 @@ hr {
 
 .btn-update:hover{
     color: var(--Text-Color);
-    background-color: var(--Secondary-Faded);
-    border: 2px solid var(--Secondary-Faded);
+    background-color: var(--Secondary-Light);
+    border: 2px solid var(--Secondary-Light);
 }
 
 .btn-delete {
@@ -279,7 +279,7 @@ hr {
     }
     
     .star-rating i.empty {
-        color:var(--Secondary-Faded);
+        color:var(--Secondary-Light);
     }
 
     /* ------- Buttons Section-------- */

@@ -37,6 +37,7 @@ if(currentUser){
         let eventBlock = document.querySelector(".event-block");
         let clonedEvent = eventBlock.cloneNode(true);
         clonedEvent.removeAttribute("hidden");
+        clonedEvent.setAttribute("event-id",doc.id);
         eventBlock.parentNode.insertBefore(clonedEvent, eventBlock.nextSibling);
 
         // set cloned event's image (as example)
@@ -70,9 +71,10 @@ if(currentUser){
         // console.log(doc.data().dateCreated.toDate().toDateString());
         
         /*---- 🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️ ----*/
-        // comment this to NOT delete the event from the database
-        clonedEvent.querySelector(".delete-event").addEventListener("click", () => {
-            // dbf.deleteEvent(doc.id)
+        confirm_delete.addEventListener("click", () => {
+            let trashEventID = confirm_delete.getAttribute("event-id");
+            // comment this to NOT delete the event from the database
+            dbf.deleteEvent(trashEventID)
         })
 
     })
@@ -89,17 +91,18 @@ if(currentUser){
         function generateCats(){
             $(".event-block[hidden]").before("<div dummy-area></div>")
 
-            let howManyCats = 6;
+            let howManyCats = 4;
 
             /*------ RANDOM CAT IMAGES ------*/
             // delete later, just for cloning purposes
             for(let i=0; i<howManyCats; i++){
                 let jqc = $(".event-block:first").clone();
                 jqc.removeAttr("hidden");
+                jqc.attr("event-id",Math.random().toString(36).slice(2,7));
                 let randnumA = Math.ceil(Math.random() * 2500) + 250;
                 let randnumB = Math.ceil(Math.random() * 2500) + 250;
                 jqc.find("img").attr("src",`https://placekitten.com/${randnumA}/${randnumB}`);
-                jqc.find(".event-name").text("Cat " + Math.floor(i+1))
+                jqc.find(".event-name").text("Cat " + Math.floor(i+1));
                 $("[dummy-area]").append(jqc)
             }
 
@@ -108,7 +111,9 @@ if(currentUser){
             $(".event-block[hidden]").remove();
         }
 
-        // generateCats();
+        generateCats();
+
+        $(".event-block[hidden]").remove();
 
         /********************************************************************** */
         /******* IMPORTANT REUSABLE VARIABLES ********************************* */
@@ -172,7 +177,6 @@ if(currentUser){
 
                 // imitate prev-click
                 if(pv > slidesNeeded){
-                    // $(".prev-events").click();
                     let panelView = Number($(".events-grid").attr("panel-view"));
 
                     panelView -= 1;
@@ -292,15 +296,47 @@ if(currentUser){
                 }
             }
         })//end arrows click
-    
+
         /********************************************************************** */
-        /******* TRASH ICON CLICK ********************************************* */
+        /******* TRASH BUTTON CLICK ******************************************* */
         /********************************************************************** */
-        let removeSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Remove-Event-Speed"));
-    
+        let popupFadeSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Popup-Fade-Speed"));
+
         $(document).on("click", ".delete-event", function(){
             let that = this;
-            let parentBlock = $(that).parents(".event-block");
+            // get TBD event's ID
+            let trashEventID = $(that).parents(".event-block").attr("event-id");
+
+            // get TBD event's name
+            let trashEventName = $(that).parents(".event-block").find(".event-name").text();
+
+            $(".del-popup").fadeIn(popupFadeSpeed);
+            $(".del-popup .popup-event-name").text(trashEventName);
+            $(".del-popup #confirm_delete").attr("event-id",trashEventID)
+        });
+
+        /********************************************************************** */
+        /******* CANCEL BUTTON CLICK ****************************************** */
+        /********************************************************************** */
+        $(document).on("click", ".cancel-popup", function(){
+            let that = this;
+            $(".del-popup").fadeOut(popupFadeSpeed);
+        });
+    
+        /********************************************************************** */
+        /******* CONFIRM DELETION ********************************************* */
+        /********************************************************************** */
+        let removeCardSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Remove-Event-Speed"));
+    
+        $(document).on("click", "#confirm_delete", function(){
+
+            let that = this;
+
+            $(".del-popup").fadeOut(popupFadeSpeed);
+
+            let trashEventID = $(that).attr("event-id");
+
+            let parentBlock = $(`.event-block[event-id="${trashEventID}"]`);
             
             let focusCol = Number(parentBlock.attr("column"));
             let focusPanel = Number(parentBlock.attr("slide"));
@@ -336,8 +372,8 @@ if(currentUser){
                     else if(focusPanel > slidesNeeded){
                         $(".events-grid").css("margin-left","calc(" + panelSpan + " * -" + Math.floor(focusPanel-2) + ")");
                     }
-                },removeSpeed)
-            },removeSpeed)
+                },removeCardSpeed)
+            },removeCardSpeed)
         })//end trash click
     })//end ready
 } else {

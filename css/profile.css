@@ -132,7 +132,7 @@ h1.username + .star-rating {
 }
 
 .star-rating i.empty {
-    color:var(--Secondary-Faded);
+    color:var(--Secondary-Light);
 }
 
 /*----- PROFILE DESCRIPTION -----*/
