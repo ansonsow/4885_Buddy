@@ -27,6 +27,8 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     <script src="../js/leftPanel.js" defer></script>
+    <script src="../js/storage.js" defer></script>
+    
     
 
 </head>
@@ -97,8 +99,9 @@
                 </div>
 
                 <div class="upload-container">
-                    <label class="upload-img" for="upload">Browse</label>
-                    <input type="file" id="upload" accept=".jpg, .jpeg, .png" multiple>
+                    <label class="upload-img" for="upload">Browse</label
+                        >
+                    <input type="file" id="upload" accept=".jpg, .jpeg, .png" multiple onchange="chooseFile(event)">
                 </div>
 
             </div>
@@ -108,7 +111,7 @@
 
         <div class="btn-wrap">
             <button class="btn btn-cancel">Cancel</button>
-            <button class="btn btn-submit">Submit</button>
+            <button class="btn btn-submit" onclick='imageToUpload()' >Submit</button>
         </div>
 
     </div> <!-- End Main Container-->
