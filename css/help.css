@@ -35,29 +35,33 @@ nav {
 }
 
 .left-container{
-    width: 40%;
+    width: 38vw;
     height: 100%;
     background-color: var(--Primary);
-    border-radius: 0 10% 10% 0;
+    border-radius: 0 120px 120px 0;
     color: var(--White);
 }
 
 .left-content {
     position: relative;
-    margin: 9rem 3rem;
+    margin: 11rem 6rem 1rem;
 }
 
 .faq {
-    margin: 2rem 0 0 0;
-}
-
-.fa-caret-down {
-    cursor: pointer;
+    margin: 1.5rem 0 0 0;
 }
 
 .question {
     font-weight: 900;
     font-size: 1.2rem;
+}
+
+button.more {
+    color: #0A7AFF;
+    border: none;
+    background-color: var(--Primary);
+    margin: 1.5rem 0 2.5rem 18rem;
+    cursor: pointer;
 }
 
 
@@ -134,24 +138,50 @@ input:focus, textarea:focus {
         justify-items: center;
         align-items: center;
     }
+
+    .top-navlinks {
+        color: var(--White);
+    }
+
     /* --------------------------------- */
 
     .container {
-        display:block;
+        display: block;
     }
 
     .left-container{
         width: 100%;
+        height: 100%;
         background-color: var(--Primary);
         border-radius: 0;
         color: var(--White);
-        padding-bottom: 1rem;
+        /* padding-bottom: 1rem; */
     }
     
     .left-content {
-        margin: 5rem 3rem;
+        margin: 5rem 5rem 1rem 5rem;
+        font-size: 0.9rem;
     }
 
+    .question {
+        font-size: 1.1rem;
+    }
+
+    /* Button */
+    button.more {
+        color: var(--Text-Color);
+        border: 1px solid var(--White);
+        background-color: var(--White);
+        border-radius: 30px;
+        padding: 1rem 3rem;
+        margin: 2rem 6.5rem 2rem 6.5rem;
+        font-weight: 900;
+    }
+
+    button.more:hover {
+        border: 1px solid var(--Text-Color);
+        background-color: var(--Light-Gray);
+    }
 
   /* ---------- Contact Form ---------- */
 
@@ -179,5 +209,9 @@ input:focus, textarea:focus {
         justify-content: center;
         margin: 3rem auto 2rem 8.5rem;
     }
+
 }
+
+
+
 

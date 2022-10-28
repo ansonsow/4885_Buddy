@@ -33,6 +33,10 @@ nav {
     .searchbar {
         display:flex;
     }
+
+    .top-navlinks {
+        color: var(--White);
+    }
 }
 
 /*---------- VARIABLES FOR PROFILE PAGE  ----------*/

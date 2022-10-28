@@ -207,6 +207,10 @@ input:focus, textarea:focus {
         align-items: center;
     }
 
+    .top-navlinks {
+        color: var(--White);
+    }
+
     /* un-orange logo */
     nav .logo [vector-part="buddy_bu"] path,
     nav .logo [vector-part="buddy_y"] path {

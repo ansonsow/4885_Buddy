@@ -184,6 +184,10 @@ input:focus, textarea:focus {
         fill:default;
     }
 
+    .top-navlinks {
+        color: var(--White);
+    }
+
     /* LEFT panel */
     .left-panel {
         display:none;

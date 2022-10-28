@@ -244,6 +244,7 @@
 
 .categories-grid a:hover, .free-online a:hover{
     transform: translateY(-7px);
+    transition: all 0.4s;
 }
 
 @media (max-width: 600px) {

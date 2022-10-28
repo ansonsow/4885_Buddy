@@ -35,10 +35,10 @@ nav {
 .left-container{
     position: fixed;
     display: flex;
-    width: 35%;
+    width: 38vw;
     height: 100vh;
     background-color: var(--Primary);
-    border-radius: 0 15% 15% 0;
+    border-radius: 0 120px 120px 0;
     color: white;
 }
 
@@ -122,8 +122,8 @@ hr {
 /* ------------ RIGHT Container ------------------- */
 
 .right-container{
-    width: 60%;
-    margin: 0 0 0 40%;
+    width: 55vw;
+    margin: 0 0 0 43%;
 }
 
 .event-name {
@@ -154,12 +154,12 @@ hr {
 }
 
 .descriptions-wrap {
-    margin: 1rem 5rem 0 0;
+    margin: 1rem 3rem 0 0;
 }
 
-/* ----------- Svg illustration Buttons ----------- */
+/* ----------- illustration ---------- */
 .illustration {
-    margin: 5% 15% 0%;
+    margin: 5% 20% 0%;
 }
 
 .illustration img {
@@ -194,6 +194,9 @@ hr {
         display: none;
     }
 
+    .top-navlinks {
+        color: var(--White);
+    }
 
 /* -------- Top illustration -------- */
     .mobile-top {
@@ -209,7 +212,7 @@ hr {
 /* -------- Event Card - Mobile --------- */
     .event-wraper {
         display: block;
-        width: 90%; 
+        width: 100%; 
         margin: 5%;
     }
 
@@ -235,13 +238,18 @@ hr {
     }
 
     .card-description {
-        padding: 1.6rem 0 0 1.4rem;
-        line-height: 0.8rem;
+        padding: 1.2rem 0 0 1rem;
+        line-height: 1rem;
+        font-size: 0.9rem;
     }
 
-    h3.card-content{
-        padding-bottom: 0.8rem;
+    h3.card-content {
+        padding-bottom: 0.6rem;
         font-size: var(--Mobile-H3-Size);
+    }
+
+    p.card-content {
+        margin: 0.3rem 0;
     }
 
     /* ------- Review Section-------- */
@@ -256,7 +264,7 @@ hr {
     }
 
     .left-content {
-        width: 90%;
+        width: 80%;
         margin: 2rem auto;
     }
 
