@@ -49,6 +49,7 @@
         <div class="heading-wrap">
             <p class="heading">Create an Event</p>
         </div>
+
         <!-- Left -->
         <div class="left-container">
 
@@ -79,6 +80,20 @@
                     <input type="time" name="" id="createEventTime" value="" placeholder="Time">
                 </div>
 
+                <div class="input-fields category">
+                    <select class="drop-down" name="category" id="">
+                        <option value="category">Category</option>
+                        <option value="food-and-drinks">Food & Drinks</option>
+                        <option value="travel">Travel</option>
+                        <option value="sports">Sport</option>
+                        <option value="music">Music</option>
+                        <option value="performing">Performing</option>
+                        <option value="business">Business</option>
+                        <option value="free">Free Events</option>
+                        <option value="online">Online Events</option>
+                    </select>
+                </div>
+
                 <div class="input-fields desc">
                     <label for="eventDesc">Description</label>
                     <textarea name="eventDesc" id="" placeholder=""></textarea>
@@ -93,15 +108,39 @@
 
             <div class="upload-content-wrap">
 
-                <div>
-                    <span class="upload">Upload Photo &nbsp;</span>
+                <div class="upload-text">
+                    <span>Upload Photo &nbsp;</span>
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                 </div>
 
-                <div class="upload-container">
-                    <label class="upload-img" for="upload">Browse</label
-                        >
-                    <input type="file" id="upload" accept=".jpg, .jpeg, .png" multiple onchange="chooseFile(event)">
+                <div class="images-container">
+
+                    <!-- Image 1 -->
+                    <div class="image-wrap">
+                        <img class="image" src="../images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt="">
+                        <button <i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+
+                    <!-- Image 2 -->
+                    <div class="image-wrap">
+                        <img class="image" src="../images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt="">
+                        <button <i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+
+                    <!-- Image 3 -->
+                    <div class="image-wrap">
+                        <img class="image" src="../images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt="">
+                        <button <i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+
+
+                    <!-- Add Photo Buttons -->
+                    <div>
+                        <label class="upload-img" for="upload"><i class="fa-solid fa-folder-plus"></i>&nbsp;&nbsp;Add Photo</label>
+                        <input type="file" id="upload" accept=".jpg, .jpeg, .png" multiple onchange="chooseFile(event)">
+    
+                    </div>
+
                 </div>
 
             </div>
