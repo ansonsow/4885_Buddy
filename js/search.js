@@ -33,10 +33,9 @@ starSnapshot.forEach((doc)=>{
 })
 
 document.getElementById("searchButton").addEventListener("click",()=>{
-    let clonedEvents = document.getElementsByClassName("cloned-events-container");
-    clonedEvents.forEach(event => {
-        event.replaceChildren()
-    });
+	document.querySelectorAll(".cloned-events-container").forEach(event => {
+		event.replaceChildren();
+	});
 
     // document.querySelector(".cloned-events-container").innerHTML = "";
     console.log("aaaa");
