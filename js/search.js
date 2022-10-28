@@ -31,3 +31,13 @@ starSnapshot.forEach((doc)=>{
     // card-content location
     clonedEvent.querySelector(".card-content.time").innerHTML = "not sure yet";
 })
+
+document.getElementById("searchButton").addEventListener("click",()=>{
+    let clonedEvents = document.getElementsByClassName("cloned-events-container");
+    clonedEvents.forEach(event => {
+        event.replaceChildren()
+    });
+
+    // document.querySelector(".cloned-events-container").innerHTML = "";
+    console.log("aaaa");
+})
