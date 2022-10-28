@@ -1,5 +1,5 @@
 import {Storage} from "./app";
-import {useState} from "react";
+
 import {ref, uploadBytes} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js';
 import {v4} from 'uuid';
 
@@ -26,13 +26,6 @@ function chooseFile(e) {
     file = e.target.files[0];
 }
 
-// function uploadImage(){
-//     firbase.storage().ref(Storage, `images/${imageUpload.name + v4()}`).put(file).then(function (){
-//         console.log("Success");
-//     }).catch(error => {
-//         console.log("error");
-//     })
-// }
 
 
 
