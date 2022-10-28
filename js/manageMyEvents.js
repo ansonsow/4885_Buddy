@@ -74,7 +74,7 @@ if(currentUser){
         confirm_delete.addEventListener("click", () => {
             let trashEventID = confirm_delete.getAttribute("event-id");
             // comment this to NOT delete the event from the database
-            dbf.deleteEvent(trashEventID)
+            // dbf.deleteEvent(trashEventID)
         })
 
     })
@@ -88,10 +88,12 @@ if(currentUser){
         /******* TEST: ADD CATS AS EVENTS ************************************* */
         /********************************************************************** */
 
+        $("a[href='#']").removeAttr("href").css("cursor","pointer")
+
         function generateCats(){
             $(".event-block[hidden]").before("<div dummy-area></div>")
 
-            let howManyCats = 4;
+            let howManyCats = 3;
 
             /*------ RANDOM CAT IMAGES ------*/
             // delete later, just for cloning purposes
@@ -102,7 +104,24 @@ if(currentUser){
                 let randnumA = Math.ceil(Math.random() * 2500) + 250;
                 let randnumB = Math.ceil(Math.random() * 2500) + 250;
                 jqc.find("img").attr("src",`https://placekitten.com/${randnumA}/${randnumB}`);
-                jqc.find(".event-name").text("Cat " + Math.floor(i+1));
+                jqc.find(".event-name").text("Cat" + Math.floor(i+1));
+                jqc.find(".date-published").text("MM DD YYYY");
+
+                // uncomment for not-cats
+                // jqc.find(".event-name").text("Test Event " + Math.floor(i+1));
+
+                // if(i == "0"){
+                //     jqc.find(".event-name").text("Test Event A");
+                //     jqc.find("img").attr("src","https://images.unsplash.com/photo-1606494231076-fee23d48e4ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+                // } else if(i == "1"){
+                //     jqc.find(".event-name").text("Test Event B");
+                //     jqc.find("img").attr("src","https://images.unsplash.com/photo-1601118964938-228a89955311?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80");
+                // } else if(i == "2"){
+                //     jqc.find(".event-name").text("Test Event C");
+                //     jqc.find("img").attr("src","https://cdn.discordapp.com/attachments/382037367940448256/1035484549263675392/unknown.png");
+                // }
+                
+                jqc.find(".location-xyz, .date-xyz, .time-xyz").text("Lorem ipsum")
                 $("[dummy-area]").append(jqc)
             }
 
