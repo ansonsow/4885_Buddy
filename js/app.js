@@ -305,15 +305,11 @@ export async function writeEventData(name, hostId, price, coverImage ,pfpURL, lo
 
 
 // YOATT4NtjFXekPYOC0Ng
-// writeEventData("TEST","YOATT4NtjFXekPYOC0Ng",
-// "0","https://images-ext-2.discordapp.net/external/nDL5n9mrZ_64TawhCoYbFkQoAmVvIdkaKq_b1NukJjc/https/64.media.tumblr.com/43d83f9870eaeec6324179ce3f134c4d/tumblr_pa0tzmuj0R1wwb2aso2_400.gif",
+// writeEventData("Ryan cool event 4","YOATT4NtjFXekPYOC0Ng",
+// "0","https://github.com/ansonsow/4885_Buddy/blob/main/images/unsplash_concert_hTv8aaPziOQ.jpeg?raw=true",
 // [""], [ -123.1207,49.2827] ,"20221009 (num)","20221109 (num)",
-// "Ryan's third cool event","2","3",
-// "1",[""],[""]);
-// writeEventData("testEventname1 (str, 20)","testHostId (str, 20)",
-// "0 (num)","coverImageUrl",["imgURL.aaa (str, 2048)"],[90,90],"20221009 (num)","20221109 (num)","test description (str, 2048)","2 (num)","3 (num)",
-// "1 (num)",["tag1","tag2"],["aaa","bbb"]);
-
+// "Ryan's fourth cool event","2","3",
+// "1",["D8AvNmWcrgD0oPPdtOgv"],["music","performing"]);
 
 
 // ============================================== update event info ==============================================

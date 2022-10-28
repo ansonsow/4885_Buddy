@@ -91,9 +91,9 @@ document.addEventListener("keydown", function(e) {
     }
 });
 
-// let popup = new tt.Popup({
-//     closeButton: false,
-// }).setText("testEventname1 (str, 20)")
-// let marker = new tt.Marker().setLngLat(location).setPopup(popup)
-// marker.addTo(map)
+let popup = new tt.Popup({
+    closeButton: false,
+}).setText("testEventname1 (str, 20)")
+let marker = new tt.Marker().setLngLat(location).setPopup(popup)
+marker.addTo(map)
 

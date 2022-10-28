@@ -12,10 +12,12 @@ if (currentUser) {
     const user = "ryaniscool@gmail.com"
 
     currentUserEmail = currentUser.email;
+    
     let q = query(collection(dbf.db, "users"), where("email", "==", user));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         currentUserId = doc.id;
+        console.log(doc.id);
     });
 
     const userDb = await getDoc(doc(dbf.db, "users",currentUserId));
@@ -44,9 +46,11 @@ if (currentUser) {
                 .then(r=>{
                     // get all the points from all the reviews
                     eventStar = eventStar+r.data().point;
+                    console.log(eventStar);
                     boo = true;
                 })
                 .catch(error=>{
+                    eventStar = eventStar
                     console.log(error);
                 });
                 

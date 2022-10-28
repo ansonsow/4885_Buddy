@@ -22,7 +22,7 @@ let slideshowIMGArray = [];
 let q = query(collection(db, "events"));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
-    slideshowIMGArray.push(doc.data().image);
+    slideshowIMGArray.push(doc.data().coverImage);
 });
 
 /* ---------- Add Images from DB to Carousel ----------*/
