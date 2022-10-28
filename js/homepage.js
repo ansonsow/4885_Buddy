@@ -5,3 +5,8 @@ $(document).ready(function(){
         dots:true
     });
 });
+
+if(!guideFlag){
+    alert("hihi")
+    // popup
+}

@@ -3,6 +3,7 @@
 
 var currentUserId = localStorage.getItem("currentUserId");
 const tomtomApiKey = "xcVSGa6cCt3p8cdaJHKnUCMSWesW8tzc"
+var guideFlag = false;
 
 let filesReady;
 

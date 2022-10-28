@@ -7,6 +7,8 @@ const db = getFirestore();
 //     console.log(doc.id);
 // });
 
+
+
 let slideshowIMGArray = [];
 // if(currentUserId=""){
 //     let q = query(collection(db, "events"));

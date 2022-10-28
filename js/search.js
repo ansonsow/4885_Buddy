@@ -7,7 +7,7 @@ import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.
 let e = query(collection(dbf.db, "events"));
 const starSnapshot = await getDocs(e);
 starSnapshot.forEach((doc)=>{
-    console.log(doc.data().coverImage);
+    // console.log(doc.data().coverImage);
     let eventBlock = document.querySelector(".event-container");
     let clonedEvent = eventBlock.cloneNode(true);
     clonedEvent.removeAttribute("hidden");
@@ -32,11 +32,43 @@ starSnapshot.forEach((doc)=>{
     clonedEvent.querySelector(".card-content.time").innerHTML = "not sure yet";
 })
 
-document.getElementById("searchButton").addEventListener("click",()=>{
+
+
+document.getElementById("searchButton").addEventListener("click",async()=>{
 	document.querySelectorAll(".cloned-events-container").forEach(event => {
 		event.replaceChildren();
 	});
 
-    // document.querySelector(".cloned-events-container").innerHTML = "";
-    console.log("aaaa");
+
+
+    e = query(collection(dbf.db, "events"),where("name", ">=", textSearch.value.toString())
+                                          ,where("name", "<=", textSearch.value.toString()+'\uf8ff'))
+    const searchSnapshot = await getDocs(e);
+    searchSnapshot.forEach((doc)=>{
+        console.log(doc.data());
+
+            // console.log(doc.data().coverImage);
+    let eventBlock = document.querySelector(".event-container");
+    let clonedEvent = eventBlock.cloneNode(true);
+    clonedEvent.removeAttribute("hidden");
+    eventBlock.parentNode.insertBefore(clonedEvent, eventBlock.nextSibling);
+    clonedEvent.querySelector(".card-content.image.search-page").src = doc.data().coverImage;
+    clonedEvent.querySelector(".card-content.event-name").innerHTML = doc.data().name;
+    // clonedEvent.querySelector(".card-content.location").innerHTML = doc.data().name;
+
+    function reverseGeo(l){
+        tt.services.reverseGeocode({
+        key: tomtomApiKey,
+        position: l
+    })
+    .then(result=>{
+        clonedEvent.querySelector(".card-content.location").innerHTML = result.addresses[0].address.freeformAddress
+        // console.log(result.addresses[0].address.freeformAddress);
+    });
+    }
+    reverseGeo(doc.data().location)
+
+    // card-content location
+    clonedEvent.querySelector(".card-content.time").innerHTML = "not sure yet";
+    })
 })
