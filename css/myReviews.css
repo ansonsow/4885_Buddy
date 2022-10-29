@@ -134,6 +134,12 @@ nav {
     nav .logo [vector-part="buddy_y"] path {
         fill:var(--White);
     }
+
+    /* LEFT panel */
+    .left-panel {
+        display:none;
+    }
+
 /* --------------------------------------------- */
 
     body {
@@ -142,7 +148,7 @@ nav {
 
     .container {
         margin: 0 auto 4rem;
-        padding: 0;
+        padding-top: 4rem;
     }
 
     .illustration {
