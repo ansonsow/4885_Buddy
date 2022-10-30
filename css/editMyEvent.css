@@ -62,6 +62,11 @@ label {
     font-weight: 500;
 }
 
+.flex-layout{
+    display: flex;
+    justify-content: space-around;
+}
+
 .desc {
     display: block;
 }

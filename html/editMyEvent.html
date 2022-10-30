@@ -13,7 +13,7 @@
         <!-- firebase -->
         <script type="module" src="../js/app.js" defer></script>
         <!-- <script type="module" src="../js/maindb.js" defer></script> -->
-        <script type="module" src="../js/login.js"></script>
+        <!-- <script type="module" src="../js/login.js"></script> -->
 
         <!-- required assets -->
         <link href="../css/variables.css" rel="stylesheet">
@@ -26,6 +26,8 @@
         <!-- page-specific assets -->
         <link href="../css/topBar.css" rel="stylesheet">
         <link href="../css/editMyEvent.css" rel="stylesheet">
+
+        <script type="module" src="../js/editMyEvent.js"></script>
         
     </head>
     <body>
@@ -41,37 +43,44 @@
                     <form class="form" action="">
                         <div class="input-fields name">
                             <label for="eventName">Event Name : </label>
-                            <input type="text" name="eventName" id="" value="" placeholder="Lorem Ipsum">
+                            <input type="text" name="eventName" id="eventName" placeholder="Lorem Ipsum">
                         </div>
 
                         <div class="input-fields location">
                             <label for="eventLacation">Location : </label>
-                            <input type="text" name="eventLacation" id="" value="" placeholder="100 W 49th Ave,Vancouver, BC V5Y 2Z6">
+                            <input type="text" name="eventLacation" id="eventLocation" placeholder="100 W 49th Ave,Vancouver, BC V5Y 2Z6">
                         </div>
 
+                        <!-- Use datetime-local bacause by defalt date input splits out UTC time zone -->
                         <div class="input-fields date">
-                            <label for="eventDate">Date : </label>
-                            <input type="date" name="eventDate" id="" value="" placeholder="21 October 2022">
+                            <label for="eventDate">Date and Start Time : </label>
+                            <input type="datetime-local" name="eventDate" id="eventDate" placeholder="21 October 2022">
                         </div>
 
-                        <div class="input-fields date">
-                            <label for="eventTime">Time : </label>
-                            <input type="time" name="eventTime" id="" value="" placeholder="11:17 pm">
+                        <div class="flex-layout"> 
+    
+                            <div class="input-fields date">
+                                <label for="eventEndTime">End Time : </label>
+                                <input type="time" name="eventEndTime" id="eventEndTime" placeholder="End">
+                            </div>
+
+                            <div class="input-fields price">
+                                <label for="eventPrice">Price : </label>
+                                <input type="text" name="eventPrice" id="eventPrice" value="" placeholder="$28">
+                            </div>
+
                         </div>
+                        
 
                         <div class="input-fields numOfPeople">
                             <label for="eventNumOfPeople">Number of participants : </label>
-                            <input type="text" name="eventNumOfPeople" id="" value="" placeholder="2 people">
+                            <input type="text" name="eventNumOfPeople" id="eventNumOfPeople" value="" placeholder="2 people">
                         </div>
 
-                        <div class="input-fields price">
-                            <label for="eventPrice">Price : </label>
-                            <input type="text" name="eventPrice" id="" value="" placeholder="$28">
-                        </div>
 
                         <div class="input-fields desc">
                             <label for="eventDesc">Description : </label>
-                            <textarea name="eventDesc" id="" value="" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, consectetur! Doloremque assumenda provident neque itaque ratione dolore, fuga alias iusto."></textarea>
+                            <textarea name="eventDesc" id="eventDesc" value="" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, consectetur! Doloremque assumenda provident neque itaque ratione dolore, fuga alias iusto."></textarea>
                         </div>
                     </form>
                 </div>
@@ -86,19 +95,19 @@
 
                      <!-- Image 1 -->
                     <div class="image-wrap">
-                        <img class="image" src="../images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt="">
+                        <img class="image" src="../images/unsplash_concert_hTv8aaPziOQ.jpeg" alt="">
                         <button <i class="fa-regular fa-trash-can"></i></button>
                     </div>
 
                      <!-- Image 2 -->
                     <div class="image-wrap">
-                        <img class="image" src="../images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt="">
+                        <img class="image" src="../images/unsplash_concert_hTv8aaPziOQ.jpeg" alt="">
                         <button <i class="fa-regular fa-trash-can"></i></button>
                     </div>
 
                      <!-- Image 3 -->
                     <div class="image-wrap">
-                        <img class="image" src="../images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt="">
+                        <img class="image" src="../images/unsplash_concert_hTv8aaPziOQ.jpeg" alt="">
                         <button <i class="fa-regular fa-trash-can"></i></button>
                     </div>
                     
@@ -121,7 +130,7 @@
 
         <div class="btn-wrap">
             <button class="btn cancel-btn">Cancel</button>
-            <button class="btn save-btn">Save</button>
+            <button class="btn save-btn" id="submit">Save</button>
         </div>
 
 
