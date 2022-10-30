@@ -64,52 +64,64 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
     document.querySelectorAll(".cloned-events-container").forEach(event => {
         event.replaceChildren();
     });
+    searchResult=[];
+
 
     const searchSnapshot = await getDocs(e);
     searchSnapshot.forEach((doc)=>{
         // console.log(doc.data());
     })
-    console.log(allSearch);
+
     let textSearch = document.getElementById("textSearch").value;
     let tagSearch = document.getElementById("tagSearch").value;
 
 
     console.log(tagSearch);
     for(let i=0;i<allSearch.length;i++){
-        // text search
-        if(textSearch != ""){
-            if(allSearch[i].name.includes(textSearch)){
-                if(!searchResult.includes(allSearch[i])){
-                    console.log(allSearch[i]);
-                    searchResult.push(allSearch[i])
-                }
+
+        if(textSearch == "" && tagSearch == "category"){
+            alert("please fill up at lease one field");
+            for(let i=0;i<allSearch.length;i++){
+                displayResult(allSearch[i])
             }
-        }
 
-        // tag search
-        if(tagSearch != "category"){
+            break;
+        }else{
 
-            // console.log(searchResult.length);
-            if(searchResult.length!=0){
-                if(!searchResult.includes(allSearch[i])){
-                    searchResult.push(allSearch[i])
-                }
-                for(let j=0;j<searchResult.length;j++){
-                    if(!searchResult[j].tags.includes(tagSearch)){
-                        searchResult.splice(j,1)
-                    }
-                }
-
-            }else{
-
-                if(allSearch[i].tags.includes(tagSearch)){
+            // text search
+            if(textSearch != ""){
+                if(allSearch[i].name.includes(textSearch)){
                     if(!searchResult.includes(allSearch[i])){
+                        console.log(allSearch[i]);
                         searchResult.push(allSearch[i])
                     }
                 }
             }
-        }
 
+            // tag search
+            if(tagSearch != "category"){
+
+                // console.log(searchResult.length);
+                if(searchResult.length!=0){
+                    if(!searchResult.includes(allSearch[i])){
+                        searchResult.push(allSearch[i])
+                    }
+                    for(let j=0;j<searchResult.length;j++){
+                        if(!searchResult[j].tags.includes(tagSearch)){
+                            searchResult.splice(j,1)
+                        }
+                    }
+
+                }else{
+
+                    if(allSearch[i].tags.includes(tagSearch)){
+                        if(!searchResult.includes(allSearch[i])){
+                            searchResult.push(allSearch[i])
+                        }
+                    }
+                }
+            }
+        }
         // TODO: location search and date/time search
 
 
