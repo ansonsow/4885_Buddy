@@ -10,16 +10,31 @@ import {getFirestore, query,collection,where,getDocs,getDoc} from 'https://www.g
 // })
 
 // ***** If use time input *****
-// eventEndTime.addEventListener('change', function (){
-//     const time = eventEndTime.value;
-//     const hours = time.split(":")[0];
-//     const minutes = time.split(":")[1];
 
-//     console.log(`End Time: ${hours}:${minutes}`)
-// })
+
+
+
+
+
+eventDate.addEventListener('change', function (){
+    const datetime = eventDate.value;
+    const date= datetime.split("T")[0];
+    const time = datetime.split("T")[1];
+
+    console.log(datetime)
+    console.log(`Date_${date}, Time_${time}`)
+})
+
+eventEndTime.addEventListener('change', function (){
+    const time = eventEndTime.value;
+    const hours = time.split(":")[0];
+    const minutes = time.split(":")[1];
+
+    console.log(time)
+    console.log(`Hour_${hours}, Minutes_${minutes}`)
+})
 
 // ---------------------------------------------------
-
 const submitBtn = document.getElementById('submit')
 
 submitBtn.addEventListener('click', () => {
@@ -28,6 +43,7 @@ submitBtn.addEventListener('click', () => {
     const numberOfParticipants = document.getElementById('eventNumOfPeople').value;
     const eventPrice = document.getElementById('eventPrice').value;
     const eventDesc = document.getElementById('eventDesc').value;
+    const category = document.getElementById('category').value;
     const date = document.getElementById('eventDate').value.split("T")[0];
     const startTime = document.getElementById('eventDate').value.split("T")[1];
     const endTime = document.getElementById('eventEndTime').value;
@@ -39,6 +55,7 @@ submitBtn.addEventListener('click', () => {
     numberOfParticipants,
     eventPrice,
     eventDesc,
+    category,
     date,
     startTime,
     endTime

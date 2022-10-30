@@ -48,7 +48,7 @@ nav .logo [vector-part="buddy_y"] path {
     display: flex;
 }
 
-input {
+input, select {
     flex-grow: 1;
     border: none;
     color: var(--Text-Color);

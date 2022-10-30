@@ -118,7 +118,7 @@ input[type="file"] {
     position: absolute;   
     margin: 0;  
     font-weight: 400;
-    bottom: 35px; 
+    bottom: 115px; 
     right: 15px; 
     color: var(--White);
     font-size: 1.2rem;
@@ -257,7 +257,7 @@ label.upload-img {
         margin: 0.1rem 0.8rem;
      }
 
-    .images-container .fa-trash-can{
+    .images-container .fa-trash-can {
         bottom: 10px; 
         right: 5px; 
         font-size: 1rem;

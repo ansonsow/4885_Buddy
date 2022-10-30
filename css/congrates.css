@@ -4,10 +4,8 @@ body {
 }
 
 img {
-    width: 45rem;
-    height: 25rem;
-    margin: 4% 25%;
-    object-fit:cover;
+    width: 420px;
+    margin: 4rem 1rem 2rem 16rem;
 }
 
 h1 {
@@ -15,11 +13,12 @@ h1 {
     font-family: var(--Heading-Font);
 }
 
+.container {
+    display: flex;
+}
+
 .w_msg {
-    position: absolute;
-    top: 28rem;
-    width: 100%;
-    text-align: center;
+    margin: auto 6rem;
     color: var(--White);
 }
 
@@ -70,20 +69,24 @@ h1 {
         display: none;
     }
 
+    .container {
+        width: 100vw;
+        display: block;
+    }
+
     .m_msg {
         display: block;
-        position: absolute;
-        top: 10rem;
-        left: 7rem;
-        width: 100%;
         line-height: 2.5rem;
+        position: absolute;
+        top: 7rem;
+        left: 5rem;
     }
 
     img {
-        width: 20rem;
+        width: 65vw;
         height: 18rem;
         object-fit:cover;
-        margin: 35% 18% 3%;
+        margin: 12rem 5.5rem 0 5.5rem; 
     }
 
 
