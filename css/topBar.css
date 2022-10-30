@@ -162,6 +162,7 @@ nav .logo svg {
 }
 
 .top-navlinks a {
+    display:block;
     color:var(--White);
 }
 
@@ -173,25 +174,25 @@ nav .logo svg {
     font-size:calc(var(--TopBar-Links-Size) * 1.5);
 }
 
-.hide-on-web {
-    display: none;
+.mobile-links {
+    display:none;
 }
 
 @media (max-width: 600px) {
-    .hide-on-mobile {
-        display: none;
+    .web-links {
+        display:none;
     }
 
-    .hide-on-web {
-        display: block;
+    .mobile-links {
+        display:block;
+        padding:25px;
     }
 
     .top-navlinks hr {
         border:0px solid transparent;
         border-bottom: 1px dashed var(--White);
         text-align: left;
-        margin: 10px;
-        width: 70%;
+        margin: 20px 15px;
     }
 
     .top-nav-container {
@@ -222,7 +223,7 @@ nav .logo svg {
     }
 
     .hamburger-links{
-        margin: 15px!important;
+        margin:15px!important;
     }
 
     .top-navlinks.active {

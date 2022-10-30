@@ -87,7 +87,7 @@ function hamburgerToggle(){
 
     const topHamburger = document.querySelector(".top-hamburger i");
     const navCont = document.querySelector(".top-nav-container");
-    const navMenu = document.querySelector(".top-navlinks");
+    const navMenu = document.querySelector(".top-navlinks.mobile-links");
 
     topHamburger.addEventListener("click", () => {
         if(!navCont.classList.contains("active")){
