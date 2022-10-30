@@ -6,7 +6,3 @@ $(document).ready(function(){
     });
 });
 
-if(!guideFlag){
-    alert("hihi")
-    // popup
-}

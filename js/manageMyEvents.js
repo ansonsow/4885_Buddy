@@ -31,6 +31,8 @@ if(currentUser){
     let e = query(collection(dbf.db, "events"), where("hostId", "==", currentUserId));
     const starSnapshot = await getDocs(e);
     starSnapshot.forEach((doc)=>{
+    console.log(doc.data());
+
         console.log(doc.id);
         // oopsie = doc.id
         // clone the hidden dummy event

@@ -97,3 +97,21 @@ let popup = new tt.Popup({
 let marker = new tt.Marker().setLngLat(location).setPopup(popup)
 marker.addTo(map)
 
+// changeFlag
+console.log(localStorage.getItem('guideFlag'));
+document.getElementById("changeFlag").addEventListener("click",()=>{
+
+    localStorage.setItem('guideFlag', true)
+
+    // guideFlag = true
+    console.log(localStorage.getItem('guideFlag'));
+
+})
+
+
+if(localStorage.getItem('guideFlag')=="false"){
+    alert("hihi")
+    // popup
+}else{
+    
+}
