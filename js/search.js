@@ -39,8 +39,26 @@ function displayResult(doc){
 
     let eventBlock = document.querySelector(".event-container");
     let clonedEvent = eventBlock.cloneNode(true);
+
     clonedEvent.removeAttribute("hidden");
-    eventBlock.parentNode.insertBefore(clonedEvent, eventBlock.nextSibling);
+
+    eventBlock.after(clonedEvent)
+
+    let jqDateNow = Date.now();
+    let jqStop = 1000;
+    
+    let load_jQuery = setInterval(() => {
+        if(Date.now() - jqDateNow > jqStop){
+            clearInterval(load_jQuery);
+        } else {
+            if(typeof jQuery !== "undefined"){
+                clearInterval(load_jQuery);
+
+                document.querySelector(".cloned-events-container").append(clonedEvent);
+            }		
+        }
+    },0);
+
     clonedEvent.querySelector(".card-content.image.search-page").src = doc.coverImage;
     clonedEvent.querySelector(".card-content.event-name").innerHTML = doc.name;
 
