@@ -44,8 +44,25 @@ let handleResults = function(result){
     console.log(result);
     if(result.results){
         console.log(result.results[0].position.lat);
+        for(let i =0; i<result.results.length;i++){
+
+            let newDiv = document.createElement("div")
+            let newContent = document.createTextNode(result.results[i].address.freeformAddress)
+            let newB = document.createElement("b")
+            newDiv.appendChild(newContent);
+            newDiv.appendChild(newB);
+            newDiv.addEventListener("click",()=>{
+
+                moveMap(result.results[i].position.lng,result.results[i].position.lat)
+            })
+            // newDiv.onclick = moveMap(result.results[i].position.lng,result.results[i].position.lat)
+
+            document.getElementById("searchResultContainer").appendChild(newDiv);
+
+
+        }
         // location = [result.results[0].position.lat,result.results[0].position.lng]
-        moveMap(result.results[0].position.lng,result.results[0].position.lat)
+        // moveMap(result.results[0].position.lng,result.results[0].position.lat)
         // addMarker(result.results[0].position.lng,result.results[0].position.lat)
         
     }
@@ -59,6 +76,10 @@ let search = function(){
     }).then(handleResults)
 }
 
+
+// document.getElementById("query").addEventListener("keyup",async()=>{
+//     await search()
+// })
 // search.addEventListener("click",()=>{
 //     search
 // })

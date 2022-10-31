@@ -100,8 +100,6 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
             // tag search
             if(tagSearch != "category"){
-
-                // console.log(searchResult.length);
                 if(searchResult.length!=0){
                     if(!searchResult.includes(allSearch[i])){
                         searchResult.push(allSearch[i])
@@ -122,6 +120,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                 }
             }
         }
+        
         // TODO: location search and date/time search
 
 
