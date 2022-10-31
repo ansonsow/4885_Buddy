@@ -1,10 +1,10 @@
 /*---------- VARIABLES FOR MYEVENTS PAGE  ----------*/
 :root {
-    --Screen-Padding:5vh; /* top & bottom screen spacing */
+    --Screen-Padding:5vh; /* top & bottom screen spacing */    
 
     --Events-Main-Heading-Width:26vw;
     --Events-Main-Heading-Height:calc(var(--Events-Main-Heading-Width) * 0.6);
-    --Events-Main-Heading-Bottom-Gap:2.6rem;
+    --Events-Main-Heading-Bottom-Gap:2.6rem;    
 
     /*---- Event Container Settings ----*/
     /* events section width, including the arrows */
@@ -49,14 +49,30 @@
 
     --Delete-Buttons-Fade-Speed:250ms;
     --Delete-Buttons-Fade-Method:ease-in-out;
+
+    /*---- Mobile Settings ----*/
+    --Mobile-Screen-Padding:7vh;
+
+    --Mobile-Events-Main-Heading-Width:64vw;
+    --Mobile-Events-Main-Heading-Height:calc(var(--Mobile-Events-Main-Heading-Width) * 0.6);
+
+    --Mobile-Events-Width:84vw;
+    --Mobile-Events-Image-Width:calc(var(--Mobile-Events-Width) * 0.48);
+    --Mobile-Events-Image-Height:calc(var(--Mobile-Events-Image-Width) * 0.8);
+    --Mobile-Events-Roundness:35px;
+    --Mobile-Events-Row-Width:calc(var(--Mobile-Events-Width) - var(--Mobile-Events-Image-Width) - var(--Mobile-Events-Gutter) - var(--Mobile-Events-Padding));
+
+    --Mobile-Events-Padding:1.2rem;
+    --Mobile-Events-Gutter:1.4rem;
+    --Mobile-Events-Spacing:1.3rem;
+}
+
+body {
+    overflow-x:hidden;
 }
 
 /*---------- DESKTOP  ----------*/
 @media(min-width:600px){
-    body {
-        overflow-x:hidden;
-    }
-
     /*---- Top Bar ----*/
     nav {
         grid-template-columns:1fr 1fr;
@@ -359,11 +375,108 @@
         fill:default;
     }
 
-    .left-panel {
+    /*---- "My Events" Title ----*/
+    .manage-my-events {
+        display:block;
+        position:relative;
+        margin:auto;
+        width:var(--Mobile-Events-Main-Heading-Width);
+        height:var(--Mobile-Events-Main-Heading-Height);
+        text-align:center;
+        margin-bottom:var(--Events-Main-Heading-Bottom-Gap);
+    }
+
+    .manage-my-events svg {
+        position:absolute;
+        top:0;left:0;
+        display:block;
+        margin-top:calc(var(--Mobile-Events-Main-Heading-Width) * -0.2);
+        width:100%;
+        height:auto;
+    }
+
+    /*---- Main Content ----*/
+    .main-content {
+        padding:var(--Mobile-Screen-Padding) 0;
+    }
+
+    /*---- Events Constrainer ----*/
+    .events-cont {
+        margin:auto;
+        width:var(--Mobile-Events-Width);
+        overflow:hidden;
+    }
+
+    /*---- Events Carousel Arrows ----*/
+    .events-arrow {
         display:none;
     }
 
-    .events-cont {
+    /*---- Events Grid ----*/
+    .events-grid {
+        --Events-Per-Row:var(--Events-Per-Row)!important;
+    }
+
+    .event-block + .event-block {
+        margin-top:var(--Mobile-Events-Spacing);
+    }
+
+    .block-inner {
+        display:grid;
+        grid-template-columns:var(--Mobile-Events-Image-Width) auto;
+        height:var(--Mobile-Events-Image-Height);
+        background:var(--Light-Gray);
+        border-radius:0 var(--Mobile-Events-Roundness) var(--Mobile-Events-Roundness) 0;
+        overflow:hidden;
+    }
+
+    /*---- Event Image ----*/
+    .event-block img {
+        width:100%;
+        height:var(--Mobile-Events-Image-Height);
+        object-fit:cover;
+        border-radius:0 var(--Mobile-Events-Roundness) var(--Mobile-Events-Roundness) 0;
+    }
+
+    /*---- Event Details ----*/
+    .event-details {
+        margin-left:var(--Mobile-Events-Gutter);
+        padding:var(--Mobile-Events-Padding);
+        padding-left:0;
+        display:table;
+    }
+
+    .ed-v-center {
+        display:table-cell;
+        vertical-align:middle;
+    }
+
+    .ed-v-bot {
+        display:none;
+    }
+
+    .detail-row {
+        display:flex;
+        width:var(--Mobile-Events-Row-Width);
+    }
+
+    .detail-row * {
+        display:block;
+    }
+
+    .detail-row b {
+        padding-right:7px;
+    }
+
+    .event-details [class$="-xyz"]{
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+    }
+
+    /*----- below: change later -----*/
+
+    .left-panel {
         display:none;
     }
 }
