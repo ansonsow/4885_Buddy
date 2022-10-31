@@ -1,5 +1,8 @@
 
 import * as dbf from "./app.js"
+// import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
+import '../node_modules/regenerator-runtime/runtime.js'
+
 
 let tomtomApiKey = "xcVSGa6cCt3p8cdaJHKnUCMSWesW8tzc"
 //default to vancouver 
@@ -53,9 +56,8 @@ let handleResults = function(result){
             newDiv.appendChild(newB);
             newDiv.addEventListener("click",()=>{
 
-                moveMap(result.results[i].position.lng,result.results[i].position.lat)
             })
-            // newDiv.onclick = moveMap(result.results[i].position.lng,result.results[i].position.lat)
+            newDiv.onclick = moveMap(result.results[i].position.lng,result.results[i].position.lat)
 
             document.getElementById("searchResultContainer").appendChild(newDiv);
 
@@ -117,6 +119,37 @@ let popup = new tt.Popup({
 }).setText("testEventname1 (str, 20)")
 let marker = new tt.Marker().setLngLat(location).setPopup(popup)
 marker.addTo(map)
+
+
+
+
+var options = {
+    searchOptions: {
+        key: tomtomApiKey,
+        language: 'en-GB',
+        limit: 5
+    },
+    autocompleteOptions: {
+        key: tomtomApiKey,
+        language: 'en-GB'
+    }
+};
+
+
+async function searchBox(){
+    var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
+    var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+    searchPlugIn.appendChild(searchBoxHTML)
+    ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
+        console.log(data);
+        moveMap(data.data.result.position.lng,data.data.result.position.lat)
+    });
+}
+
+
+searchBox()
+
+
 
 // changeFlag
 console.log(localStorage.getItem('guideFlag'));

@@ -1,6 +1,7 @@
 import * as dbf from "./app.js"
 // import * as mapf from "./tomtom.js"
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import '../node_modules/regenerator-runtime/runtime.js'
 
 
 // console.log("aaa");
@@ -13,6 +14,10 @@ starSnapshot.forEach((doc)=>{
     allSearch.push(doc.data())
 
 })
+
+
+
+
 
 
 function displayResult(doc){
@@ -58,6 +63,12 @@ function displayResult(doc){
 
 }
 
+
+
+
+
+
+
 let searchResult = [];
 
 document.getElementById("searchButton").addEventListener("click",async()=>{
@@ -90,7 +101,8 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
             // text search
             if(textSearch != ""){
-                if(allSearch[i].name.includes(textSearch)){
+                if(allSearch[i].name.toUpperCase().includes(textSearch.toUpperCase())){
+                    console.log(allSearch[i].name.toUpperCase());
                     if(!searchResult.includes(allSearch[i])){
                         console.log(allSearch[i]);
                         searchResult.push(allSearch[i])
@@ -132,6 +144,35 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 })
 
 
+var options = {
+    searchOptions: {
+        key: tomtomApiKey,
+        language: 'en-GB',
+        limit: 5
+    },
+    autocompleteOptions: {
+        key: tomtomApiKey,
+        language: 'en-GB'
+    }
+};
+
+async function searchBox(){
+    var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
+    var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+    searchBoxPlugin.appendChild(searchBoxHTML)
+    ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
+        console.log(data);
+        // moveMap(data.data.result.position.lng,data.data.result.position.lat)
+    });
+}
+
+
+searchBox()
+
+
+
+
+// reset button
 document.getElementById("resetButton").addEventListener("click",async()=>{
     document.querySelectorAll(".cloned-events-container").forEach(event => {
         event.replaceChildren();
