@@ -1,5 +1,6 @@
 import * as dbf from "./app.js"
 // import * as mapf from "./tomtom.js"
+import $ from "./jquery.module.js";
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import '../node_modules/regenerator-runtime/runtime.js'
 
@@ -70,6 +71,8 @@ function displayResult(doc){
 
 
 let searchResult = [];
+let userCoord = [];
+
 
 document.getElementById("searchButton").addEventListener("click",async()=>{
     document.querySelectorAll(".cloned-events-container").forEach(event => {
@@ -131,6 +134,12 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                     }
                 }
             }
+
+
+
+            if(userCoord != []){
+                
+            }
         }
         
         // TODO: location search and date/time search
@@ -144,6 +153,10 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 })
 
 
+
+    /********************************************************************** */
+    /******* Tomtom Searchbox plugin  ************************************* */
+    /********************************************************************** */
 var options = {
     searchOptions: {
         key: tomtomApiKey,
@@ -159,15 +172,37 @@ var options = {
 async function searchBox(){
     var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
     var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-    searchBoxPlugin.appendChild(searchBoxHTML)
+    // searchBoxPlugin.appendChild(searchBoxHTML)
+    document.getElementsByClassName("popup-msg")[0].appendChild(searchBoxHTML)
+
     ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
         console.log(data);
-        // moveMap(data.data.result.position.lng,data.data.result.position.lat)
+        userCoord = [data.data.result.position.lng,data.data.result.position.lat]
     });
 }
 
 
+console.log(document.getElementsByClassName("popup-msg"));
+
 searchBox()
+
+
+
+    /********************************************************************** */
+    /******* Tomtom Map  ************************************************** */
+    /********************************************************************** */
+let location = [ -123.1207,49.2827] 
+setTimeout(map, 2500);
+
+function map(){
+    let map = tt.map({
+        key: tomtomApiKey,
+        container: "map",
+        zoom: "10",
+        center: location
+    });
+}
+
 
 
 
@@ -181,3 +216,47 @@ document.getElementById("resetButton").addEventListener("click",async()=>{
         displayResult(allSearch[i])
     }
 })
+
+
+
+$(document).ready(function(){
+    let someButton = $("#locationButton"); // change this to whatever you're binding your popup trigger to
+
+    someButton.click(function(){
+        // remove existing <h3> text
+        $(".del-popup h3").empty();
+
+        // customize your <h3> text
+        // $(".del-popup h3").text("Hello :)");
+        $(".popup-msg").append('<div id="map" style="width: 50%; height:50%; margin: auto></div>');
+
+        // customize your button 1 text
+        $("#popup_action_1").text("I'm button 1");
+
+        // customize your button 2 text
+        $("#popup_action_2").text("I'm button 2");
+
+        // fade in the pop-up
+        $(".del-popup").fadeIn(popupFadeSpeed);
+    })
+    
+    /********************************************************************** */
+    /******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
+    /********************************************************************** */
+
+    $(document).on("click", "#popup_action_1", function(){
+        let that = this; // don't touch this line
+
+        // do stuff
+    });
+
+    /********************************************************************** */
+    /******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
+    /********************************************************************** */
+    $(document).on("click", "#popup_action_2", function(){
+        let that = this; // don't touch this line
+
+        // fade out the pop-up
+        $(".del-popup").fadeOut(popupFadeSpeed);
+    });
+})//end ready
