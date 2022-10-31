@@ -71,6 +71,14 @@ body {
     overflow-x:hidden;
 }
 
+footer {
+    display:none!important;
+}
+
+footer.show-footer {
+    display:block!important;
+}
+
 /*---------- DESKTOP  ----------*/
 @media(min-width:600px){
     /*---- Top Bar ----*/
@@ -365,6 +373,9 @@ body {
         background:var(--Secondary-Light);
     }
 
+    footer.show-footer {
+        display:none!important;
+    }
 }
 
 /*---------- MOBILE  ----------*/

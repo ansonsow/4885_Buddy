@@ -45,6 +45,11 @@ if(currentUser){
         // set cloned event's image (as example)
         clonedEvent.querySelector("img").setAttribute("src", doc.data().coverImage);
         clonedEvent.querySelector("h3.event-name").innerHTML = doc.data().name;
+
+        let clonedStatus = document.querySelector(".event-block:not([hidden])");
+        if(typeof(clonedStatus) != "undefined" && clonedStatus != null){
+            document.querySelector("footer").classList.add("show-footer")
+        }
     
         // let reverse = tt.services.reverseGeocode({
         //     key:tomtomApiKey,
@@ -97,7 +102,7 @@ if(currentUser){
 
             let howManyPics = 3;
 
-            let categories = ["food", "drinks", "travel", "sports", "music", "performing", "business", "festival", "halloween", "exhibit", "museum", "party", "fun", "fair", "circus", "dance", "club", "camp", "camping", "night", "concert", "class", "collaboration", "friday", "climb", "sail", "climing", "sailing", "tent", "friends", "fishing", "surfing", "cycling"];
+            let categories = ["food", "drinks", "travel", "sports", "music", "performing", "business", "festival", "halloween", "exhibit", "museum", "gallery", "wine", "meeting", "party", "fun", "fair", "circus", "dance", "club", "camp", "camping", "night", "concert", "class", "collaboration", "friday", "climb", "sail", "climing", "sailing", "tent", "friends", "fishing", "surfing", "cycling", "explore", "exploring", "adventure", "forest", "plane", "airline", "airplane", "restaurant"];
 
             /*------ RANDOM UNSPLASH IMAGES ------*/
             // delete later, just for cloning purposes
@@ -130,8 +135,6 @@ if(currentUser){
             }
 
             $("[dummy-area]").children().unwrap();
-
-            $(".event-block[hidden]").remove();
         }
 
         generateUnsplash();
@@ -162,8 +165,6 @@ if(currentUser){
             }
 
             $("[dummy-area]").children().unwrap();
-
-            $(".event-block[hidden]").remove();
         }
 
         // generateCats();
@@ -173,10 +174,6 @@ if(currentUser){
         /********************************************************************** */
         /******* IMPORTANT REUSABLE VARIABLES ********************************* */
         /********************************************************************** */
-
-        // $(".event-block:first").attr("event-id",oopsie)
-
-        let originalEventsNum = $(".event-block").length;
 
         let eventsCount = $(".event-block").length;
         let eventsPerRow = Number(getComputedStyle(document.documentElement).getPropertyValue("--Events-Per-Row"));
