@@ -86,32 +86,34 @@ if(currentUser){
 
     $(document).ready(function(){
 
+        $("a[href='#']").removeAttr("href").css("cursor","pointer");
+
         /********************************************************************** */
-        /******* TEST: ADD CATS AS EVENTS ************************************* */
+        /******* TEST: RANDOM UNSPLASH TEST IMAGES **************************** */
         /********************************************************************** */
 
-        $("a[href='#']").removeAttr("href").css("cursor","pointer")
-
-        function generateCats(){
+        function generateUnsplash(){
             $(".event-block[hidden]").before("<div dummy-area></div>")
 
-            let howManyCats = 3;
+            let howManyPics = 3;
 
-            /*------ RANDOM CAT IMAGES ------*/
+            let categories = ["food", "drinks", "travel", "sports", "music", "performing", "business", "festival", "halloween", "exhibit", "museum", "party", "fun", "fair", "circus", "dance", "club", "camp", "camping", "night", "concert", "class", "collaboration", "friday", "climb", "sail", "climing", "sailing", "tent", "friends", "fishing", "surfing", "cycling"];
+
+            /*------ RANDOM UNSPLASH IMAGES ------*/
             // delete later, just for cloning purposes
-            for(let i=0; i<howManyCats; i++){
+            for(let i=0; i<howManyPics; i++){
                 let jqc = $(".event-block:first").clone();
                 jqc.removeAttr("hidden");
                 jqc.attr("event-id",Math.random().toString(36).slice(2,7));
-                let randnumA = Math.ceil(Math.random() * 2500) + 250;
-                let randnumB = Math.ceil(Math.random() * 2500) + 250;
-                jqc.find("img").attr("src",`https://placekitten.com/${randnumA}/${randnumB}`);
-                jqc.find(".event-name").text("Cat" + Math.floor(i+1));
+
+                let randomCategory = Math.floor(Math.random()*categories.length);
+                let chosenCategory = categories[randomCategory];
+
+                jqc.find("img").attr("src","//source.unsplash.com/random/?" + chosenCategory);
+                jqc.find(".event-name").text("Test Event " + Math.floor(i+1));
                 jqc.find(".date-published").text("MM DD YYYY");
 
-                // uncomment for not-cats
-                // jqc.find(".event-name").text("Test Event " + Math.floor(i+1));
-
+                // ---- uncomment for designated unsplash test images
                 // if(i == "0"){
                 //     jqc.find(".event-name").text("Test Event A");
                 //     jqc.find("img").attr("src","https://images.unsplash.com/photo-1606494231076-fee23d48e4ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
@@ -132,7 +134,39 @@ if(currentUser){
             $(".event-block[hidden]").remove();
         }
 
-        generateCats();
+        generateUnsplash();
+
+        /********************************************************************** */
+        /******* TEST: ADD CATS AS EVENTS ************************************* */
+        /********************************************************************** */
+
+        function generateCats(){
+            $(".event-block[hidden]").before("<div dummy-area></div>")
+
+            let howManyCats = 3;
+
+            /*------ RANDOM CAT IMAGES ------*/
+            // delete later, just for cloning purposes
+            for(let i=0; i<howManyCats; i++){
+                let jqc = $(".event-block:first").clone();
+                jqc.removeAttr("hidden");
+                jqc.attr("event-id",Math.random().toString(36).slice(2,7));
+                let randnumA = Math.ceil(Math.random() * 2500) + 250;
+                let randnumB = Math.ceil(Math.random() * 2500) + 250;
+                jqc.find("img").attr("src",`https://placekitten.com/${randnumA}/${randnumB}`);
+                jqc.find(".event-name").text("Cat " + Math.floor(i+1));
+                jqc.find(".date-published").text("MM DD YYYY");
+                
+                jqc.find(".location-xyz, .date-xyz, .time-xyz").text("Lorem ipsum")
+                $("[dummy-area]").append(jqc)
+            }
+
+            $("[dummy-area]").children().unwrap();
+
+            $(".event-block[hidden]").remove();
+        }
+
+        // generateCats();
 
         $(".event-block[hidden]").remove();
 
