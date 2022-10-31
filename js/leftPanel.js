@@ -29,13 +29,13 @@ function leftPanel(){
         // if panel is ALREADY OPEN
         if(panelStatus == "open"){
             $("nav").attr("status","open");
-            $(".left-panel [arrow='left'] i").show();
+            $(".left-panel [arrow='left'] i").css("display","block");
         }
 
         // if panel is ALREADY CLOSED
         else if(panelStatus == "closed"){
             $("nav").attr("status","closed");
-            $(".left-panel [arrow='right'] i").show();
+            $(".left-panel [arrow='right'] i").css("display","block");
         }
 
         $(".left-panel [arrow]").click(function(){
