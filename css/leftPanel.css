@@ -3,10 +3,12 @@
     --Left-Panel-Width:38vw;
     --Left-Panel-Rounding:120px;
 
+    --Quick-Links-Max-Width:calc((var(--Left-Panel-Width) - (var(--Panel-CLOSED-Width) * 2)) * 0.69);
     --Quick-Links-Spacing:1rem; /* desktop only */
+    --Quick-Links-Divider-Gap:1.8rem;
 
-    --Create-Event-Button-Width:calc(var(--Left-Panel-Width) / 2);
-    --Create-Event-Button-Height:7vh;
+    --Left-CTA-Button-Width:calc(var(--Left-Panel-Width) / 2);
+    --Left-CTA-Button-Height:7vh;
 
     --Tray-Arrow-Size:1.5rem;
     --Tray-Arrow-Touch-Padding:0.8rem;
@@ -74,20 +76,35 @@
     .quick-links a {
         display:flex;
         align-items:center;
-        justify-content:center;
         margin-bottom:var(--Quick-Links-Spacing);
+        width:var(--Quick-Links-Max-Width);
+        font-weight:500; /* brandon grotesque: medium */
         color:var(--White);
+        text-align:left;
     }
 
     .quick-links a:last-child {
         margin-bottom:0;
     }
 
-    .create-event {
+    .quick-links a + hr {
+        margin-top:calc(0px - var(--Quick-Links-Spacing));
+    }
+
+    .quick-links hr {
+        border:0px solid transparent;
+        border-bottom: 1px dashed var(--White);
+        text-align: left;
+        min-width:var(--Quick-Links-Max-Width);
+        padding-top:var(--Quick-Links-Divider-Gap);
+        margin-bottom:var(--Quick-Links-Divider-Gap);
+    }
+
+    .left-cta-blob {
         /* note: flex items margins add up, so need to collapse it */
         margin-top:calc(0px - var(--Quick-Links-Spacing) + 5vh);
-        min-width:var(--Create-Event-Button-Width);
-        min-height:var(--Create-Event-Button-Height);
+        min-width:var(--Left-CTA-Button-Width);
+        min-height:var(--Left-CTA-Button-Height);
         display:flex;
         align-items:center;
         justify-content:center;
