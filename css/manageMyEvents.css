@@ -1,6 +1,10 @@
 /*---------- VARIABLES FOR MYEVENTS PAGE  ----------*/
 :root {
-    --Events-H1-Bottom-Gap:3rem;
+    --Screen-Padding:5vh; /* top & bottom screen spacing */
+
+    --Events-Main-Heading-Width:26vw;
+    --Events-Main-Heading-Height:calc(var(--Events-Main-Heading-Width) * 0.6);
+    --Events-Main-Heading-Bottom-Gap:2.6rem;
 
     /*---- Event Container Settings ----*/
     /* events section width, including the arrows */
@@ -49,6 +53,10 @@
 
 /*---------- DESKTOP  ----------*/
 @media(min-width:600px){
+    body {
+        overflow-x:hidden;
+    }
+
     /*---- Top Bar ----*/
     nav {
         grid-template-columns:1fr 1fr;
@@ -79,12 +87,27 @@
     .mc-tb {
         display:table-cell;
         vertical-align:middle;
+        padding:var(--Screen-Padding) 0;
     }
 
     /*---- "My Events" Title ----*/
-    h1.manage-my-events {
+    .manage-my-events {
+        display:block;
+        position:relative;
+        margin:auto;
+        width:var(--Events-Main-Heading-Width);
+        height:var(--Events-Main-Heading-Height);
         text-align:center;
-        margin-bottom:var(--Events-H1-Bottom-Gap);
+        margin-bottom:var(--Events-Main-Heading-Bottom-Gap);
+    }
+
+    .manage-my-events svg {
+        position:absolute;
+        top:0;left:0;
+        display:block;
+        margin-top:calc(var(--Events-Main-Heading-Width) * -0.2);
+        width:100%;
+        height:auto;
     }
 
     /*---- Events Large Container ----*/
