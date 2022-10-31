@@ -173,7 +173,7 @@ async function searchBox(){
     var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
     var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
     // searchBoxPlugin.appendChild(searchBoxHTML)
-    document.getElementsByClassName("popup-msg")[0].appendChild(searchBoxHTML)
+    document.getElementsByClassName("popup-msg")[0].prepend(searchBoxHTML)
 
     ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
         console.log(data);
@@ -188,11 +188,10 @@ searchBox()
 
 
 
-    /********************************************************************** */
-    /******* Tomtom Map  ************************************************** */
-    /********************************************************************** */
-let location = [ -123.1207,49.2827] 
-setTimeout(map, 2500);
+/********************************************************************** */
+/******* Tomtom Map  ************************************************** */
+/********************************************************************** */
+let location = [ -123.1207,49.2827];
 
 function map(){
     let map = tt.map({
@@ -202,10 +201,6 @@ function map(){
         center: location
     });
 }
-
-
-
-
 
 // reset button
 document.getElementById("resetButton").addEventListener("click",async()=>{
@@ -222,13 +217,21 @@ document.getElementById("resetButton").addEventListener("click",async()=>{
 $(document).ready(function(){
     let someButton = $("#locationButton"); // change this to whatever you're binding your popup trigger to
 
+    // add map
+    $(".popup-msg").append("<div id='map'></div>");
+    map();
+
+    // push buttons under the map
+    $("#popup_action_1, #popup_action_2").each(function(){
+        $(this).appendTo($(this).parents(".popup-msg"));
+    })
+
     someButton.click(function(){
         // remove existing <h3> text
         $(".del-popup h3").empty();
 
         // customize your <h3> text
         // $(".del-popup h3").text("Hello :)");
-        $(".popup-msg").append('<div id="map" style="width: 50%; height:50%; margin: auto></div>');
 
         // customize your button 1 text
         $("#popup_action_1").text("I'm button 1");
@@ -253,8 +256,10 @@ $(document).ready(function(){
     /********************************************************************** */
     /******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
     /********************************************************************** */
-    $(document).on("click", "#popup_action_2", function(){
+    $(document).on("click", "#popup_action_2", function(e){
         let that = this; // don't touch this line
+
+        e.preventDefault();
 
         // fade out the pop-up
         $(".del-popup").fadeOut(popupFadeSpeed);

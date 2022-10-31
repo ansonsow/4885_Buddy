@@ -97,7 +97,24 @@ select {
     color: var(--Text-Color);
 }
 
-/* ------------ Rifht Column ------------------- */
+/********************************************************************** */
+/******* POPUP MAP **************************************************** */
+/********************************************************************** */
+#map canvas {
+    width:100%!important;
+    height:100%!important;
+}
+
+.tt-search-box {
+    margin-top:0;
+    margin-bottom:0.6rem;
+}
+
+.tt-search-box-input-container {
+    border-color:var(--Light-Gray);
+}
+
+/* ------------ Right Column ------------------- */
 /* --------Event Card---------- */
 
 .event-wraper {

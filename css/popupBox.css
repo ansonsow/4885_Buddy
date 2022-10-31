@@ -50,6 +50,10 @@
     background:var(--Popup-Box-BG);
 }
 
+.popup-msg h3:empty {
+    display:none;
+}
+
 .popup-msg h3 {
     margin-bottom:1.5rem;
 }
