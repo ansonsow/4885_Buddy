@@ -86,8 +86,8 @@ nav .logo svg {
     display:flex;
     align-items:center;
     justify-content:space-between;
-    /* flex:1; */
-    width:500px;
+    flex:1;
+    max-width:500px;
     height:40px;
 
     margin:0 var(--Searchbar-Spacing);
@@ -164,6 +164,10 @@ nav .logo svg {
 .top-navlinks a {
     display:block;
     color:var(--White);
+}
+
+.top-navlinks.web-links a {
+    white-space:nowrap;
 }
 
 .top-navlinks a + a {

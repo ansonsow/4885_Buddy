@@ -78,8 +78,8 @@ if(currentUser){
         // console.log(doc.data().dateCreated.toDate().toDateString());
         
         /*---- 🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️ ----*/
-        confirm_delete.addEventListener("click", () => {
-            let trashEventID = confirm_delete.getAttribute("event-id");
+        popup_action_2.addEventListener("click", () => {
+            let trashEventID = popup_action_2.getAttribute("event-id");
             // comment this to NOT delete the event from the database
             // dbf.deleteEvent(trashEventID)
         })
@@ -363,14 +363,16 @@ if(currentUser){
             let trashEventName = $(that).parents(".event-block").find(".event-name").text();
 
             $(".del-popup").fadeIn(popupFadeSpeed);
-            $(".del-popup .popup-event-name").text(trashEventName);
-            $(".del-popup #confirm_delete").attr("event-id",trashEventID)
+
+            $(".del-popup h3").empty();
+            $(".del-popup h3").html(`Are you sure you want to delete <span class="popup-event-name">${trashEventName}</span>?`);
+            $(".del-popup #popup_action_1").attr("event-id",trashEventID);
         });
 
         /********************************************************************** */
         /******* CANCEL BUTTON CLICK ****************************************** */
         /********************************************************************** */
-        $(document).on("click", ".cancel-popup", function(){
+        $(document).on("click", "#popup_action_2", function(){
             let that = this;
             $(".del-popup").fadeOut(popupFadeSpeed);
         });
@@ -380,7 +382,7 @@ if(currentUser){
         /********************************************************************** */
         let removeCardSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Remove-Event-Speed"));
     
-        $(document).on("click", "#confirm_delete", function(){
+        $(document).on("click", "#popup_action_1", function(){
 
             let that = this;
 

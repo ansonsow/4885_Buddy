@@ -105,3 +105,6 @@ function hamburgerToggle(){
     })
 
 }//end hamburgerToggle()
+
+// get pop-up fade speed from variables.css
+let popupFadeSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Popup-Fade-Speed"));
