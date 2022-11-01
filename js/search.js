@@ -65,7 +65,26 @@ function displayResult(doc){
 }
 
 
+// movable-type.co.uk/scripts/latlong.html
+function calculateDistance(locationA, locationB){
+    let lon1 = locationA[0]
+    let lat1 = locationA[1]
+    let lon2 = locationB[0]
+    let lat2 = locationB[1]
+    const R = 6371e3; // metres
+    const φ1 = lat1 * Math.PI/180; // φ, λ in radians
+    const φ2 = lat2 * Math.PI/180;
+    const Δφ = (lat2-lat1) * Math.PI/180;
+    const Δλ = (lon2-lon1) * Math.PI/180;
 
+    const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+            Math.cos(φ1) * Math.cos(φ2) *
+            Math.sin(Δλ/2) * Math.sin(Δλ/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    const d = R * c; // in metres
+    return d;
+}
 
 
 
@@ -93,7 +112,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
     console.log(tagSearch);
     for(let i=0;i<allSearch.length;i++){
 
-        if(textSearch == "" && tagSearch == "category"){
+        if(textSearch == "" && tagSearch == "category" && userCoord.length == 0){
             alert("please fill up at lease one field");
             for(let i=0;i<allSearch.length;i++){
                 displayResult(allSearch[i])
@@ -137,20 +156,37 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
 
 
-            if(userCoord != []){
-                
+            if(userCoord.length!=0){
+                if(searchResult.lenth!=0){                    
+                    if(!searchResult.includes(allSearch[i])){
+                            searchResult.push(allSearch[i])
+                        }
+                        if(radius != 0){
+                            for(let j=0;j<searchResult.length;j++){
+                                if(calculateDistance(userCoord,allSearch[i].location)>radius){
+                                    searchResult.splice(j,1)
+                                }
+                            }
+                        }
+                    }else{
+
+                        if(calculateDistance(userCoord,allSearch[i].location)<radius){
+                            if(!searchResult.includes(allSearch[i])){
+                                searchResult.push(allSearch[i])
+                            }
+                        }
+                    }
             }
         }
         
         // TODO: location search and date/time search
-
-
     }
     // console.log(searchResult);
     for(let i=0;i<searchResult.length;i++){
         displayResult(searchResult[i])
     }
 })
+
 
 
 
@@ -169,6 +205,8 @@ var options = {
     }
 };
 
+
+// searchbox is the one in popup
 async function searchBox(){
     var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
     var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
@@ -176,10 +214,24 @@ async function searchBox(){
     document.getElementsByClassName("popup-msg")[0].prepend(searchBoxHTML)
 
     ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
-        console.log(data);
+        moveMap(data.data.result.position.lng,data.data.result.position.lat)
         userCoord = [data.data.result.position.lng,data.data.result.position.lat]
     });
 }
+
+// searchbox2 is the one in the search.js
+async function searchBox2(){
+    var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
+    var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+    searchBoxPlugin.appendChild(searchBoxHTML)
+    // document.getElementsByClassName("popup-msg")[0].prepend(searchBoxHTML)
+
+    ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
+        moveMap(data.data.result.position.lng,data.data.result.position.lat)
+        userCoord = [data.data.result.position.lng,data.data.result.position.lat]
+    });
+}
+searchBox2()
 
 
 console.log(document.getElementsByClassName("popup-msg"));
@@ -192,15 +244,26 @@ searchBox()
 /******* Tomtom Map  ************************************************** */
 /********************************************************************** */
 let location = [ -123.1207,49.2827];
+let mapo;
+let zoom = 10;
 
 function map(){
-    let map = tt.map({
+    mapo = tt.map({
         key: tomtomApiKey,
         container: "map",
-        zoom: "10",
+        zoom: zoom,
         center: location
     });
 }
+
+function moveMap(lng,lat){
+    location = [lng,lat]
+    mapo.flyTo({
+        center: location,
+        zoom: zoom
+    })
+}
+
 
 // reset button
 document.getElementById("resetButton").addEventListener("click",async()=>{
@@ -214,6 +277,10 @@ document.getElementById("resetButton").addEventListener("click",async()=>{
 
 
 
+
+
+
+
 $(document).ready(function(){
     let someButton = $("#locationButton"); // change this to whatever you're binding your popup trigger to
 
@@ -221,10 +288,15 @@ $(document).ready(function(){
     $(".popup-msg").append("<div id='map'></div>");
     map();
 
+    $(".popup-msg").append("<input id='radiusInput'type='number'>");
+
+
     // push buttons under the map
     $("#popup_action_1, #popup_action_2").each(function(){
         $(this).appendTo($(this).parents(".popup-msg"));
     })
+
+    
 
     someButton.click(function(){
         // remove existing <h3> text
@@ -265,3 +337,20 @@ $(document).ready(function(){
         $(".del-popup").fadeOut(popupFadeSpeed);
     });
 })//end ready
+
+
+let radius = 1000;
+const circumference = 40075017
+document.getElementById("radiusInput").addEventListener("keyup",()=>{
+    radius = radiusInput.value*1000;
+    console.log(radius);
+    zoom = Math.log2(circumference/(radius*2))
+    // zoom = Math.log2(circumference/radius*2)
+
+    console.log(zoom);
+    if(userCoord.length==0){
+        moveMap(location[0],location[1])
+    }else{
+        moveMap(userCoord[0],userCoord[1])
+    }
+})
