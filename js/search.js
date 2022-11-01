@@ -162,20 +162,20 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                     // }
                     for(let j=0;j<searchResult.length;j++){
                         if(!searchResult[j].tags.includes(tagSearch)){
-                            // console.log("slice "+searchResult[j].name);
+                            console.log("slice "+searchResult[j].name);
                             searchResult.splice(j,1)
                         }
                     }
 
-                }else{
+                }
 
                     if(allSearch[i].tags.includes(tagSearch)){
                         if(!searchResult.includes(allSearch[i])){
-                            // console.log("push "+allSearch[i].name);
+                            console.log("push "+allSearch[i].name);
                             searchResult.push(allSearch[i])
                         }
                     }
-                }
+                
             }
 
 
@@ -192,14 +192,14 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                             }
                         }
                         
-                    }else{
+                    }
                         
                         if(calculateDistance(userCoord,allSearch[i].location)<radius){
                             if(!searchResult.includes(allSearch[i])){
                                 searchResult.push(allSearch[i])
                             }
                         }
-                    }
+                    
             }
             
 
