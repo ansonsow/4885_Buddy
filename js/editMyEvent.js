@@ -1,5 +1,5 @@
 import * as dbf from "./app.js"
-import {getFirestore, query,collection,where,getDocs,getDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import {getFirestore, query,collection,where,getDocs,getDoc,doc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 // const db = getFirestore();
 
 
@@ -11,6 +11,51 @@ import {getFirestore, query,collection,where,getDocs,getDoc} from 'https://www.g
 
 // ***** If use time input *****
 
+
+let testEventId = "GM7n7SlsJTYiUZecZsUX";
+//this page's event id 
+let targetEventId = testEventId;
+let currentUser = dbf.auth.currentUser;
+let currentUserEmail;
+
+if (currentUser) {
+    // const currentUser = dbf.auth.currentUser.email;
+    // TODO change to targetUser in the future
+
+    currentUserEmail = currentUser.email;
+    
+    let q = query(collection(dbf.db, "users"), where("email", "==", currentUserEmail));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        currentUserId = doc.id;
+        console.log(doc.id);
+    });
+
+
+    const userJson = await getDoc(doc(dbf.db, "users", currentUserId));
+    const userData = userJson.data()
+
+
+    const eventJson = await getDoc(doc(dbf.db, "events", targetEventId));
+    const eventData = eventJson.data()
+    console.log(eventData);
+
+    if(eventData.hostId != currentUserId){
+        alert("u shall not pass")
+    }else{
+        console.log("hi "+ userData.firstName);
+        document.getElementById("eventName").placeholder=eventData.name
+        // location need tomtom
+        // datetime not sure yet
+        document.getElementById("eventPrice").placeholder=eventData.price
+        document.getElementById("eventNumOfPeople").placeholder=eventData.maxCapacity
+        // category needs overhall
+        document.getElementById("eventDesc").placeholder=eventData.description
+
+
+    }
+
+}
 
 
 

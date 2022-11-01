@@ -9,6 +9,7 @@ let currentUserEmail;
 
 if (currentUser) {
     // const currentUser = dbf.auth.currentUser.email;
+    // TODO change to targetUser in the future
     const user = "ryaniscool@gmail.com"
 
     currentUserEmail = currentUser.email;
@@ -38,23 +39,27 @@ if (currentUser) {
         let e = query(collection(dbf.db, "events"), where("hostId", "==", currentUserId));
         const starSnapshot = await getDocs(e);
         starSnapshot.forEach((doc)=>{
-            eventNumber = eventNumber+1;
             // find all the reviews of events
-            reviews=doc.data().reviews;
-            reviews.forEach((review)=>{
-                let r = getReview(review)
-                .then(r=>{
-                    // get all the points from all the reviews
-                    eventStar = eventStar+r.data().point;
-                    console.log(eventStar);
-                    boo = true;
+            if(doc.data().reviews.length>0){
+                eventNumber = eventNumber+1;
+
+                reviews=doc.data().reviews;
+                reviews.forEach((review)=>{
+                    let r = getReview(review)
+                    .then(r=>{
+                        // get all the points from all the reviews
+                        eventStar = eventStar+r.data().point;
+                        console.log(eventStar);
+                        boo = true;
+                    })
+                    .catch(error=>{
+                        eventStar = eventStar
+                        console.log(error);
+                    });
+                    
                 })
-                .catch(error=>{
-                    eventStar = eventStar
-                    console.log(error);
-                });
-                
-            })
+            }
+
         })
 
         let timeSt_ = Date.now();

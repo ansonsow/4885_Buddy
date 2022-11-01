@@ -5,6 +5,8 @@ import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.
 import '../node_modules/regenerator-runtime/runtime.js'
 
 
+
+
 // console.log("aaa");
 let allSearch = [];
 
@@ -20,7 +22,7 @@ starSnapshot.forEach((doc)=>{
 
 
 
-
+// TODO add onclick to change target event so that event detail can know what event the user clicked
 function displayResult(doc){
 
     let eventBlock = document.querySelector(".event-container");
@@ -354,3 +356,10 @@ document.getElementById("radiusInput").addEventListener("keyup",()=>{
         moveMap(userCoord[0],userCoord[1])
     }
 })
+
+
+
+
+
+
+
