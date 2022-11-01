@@ -123,12 +123,32 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
             break;
         }else{
 
+            // if(textSearch!=""&&tagSearch!="category"&&userCoord.length!=0){
+            //     let search = allSearch.filter(element =>{
+            //         // if(element.name.toUpperCase().includes(textSearch.toUpperCase()) &&
+            //         //    element.tags.includes(tagSearch)&&
+            //         //    calculateDistance(userCoord,element.location)>radius)
+            //         //    {
+            //         //     searchResult.push(element)
+            //         //    }
+            //         console.log(element);
+            //         return element.name.toUpperCase().includes(textSearch.toUpperCase()) && element.tags.includes(tagSearch)&&calculateDistance(userCoord,element.location)>radius
+            //     })
+            //     console.log(search);
+            // }else{
             // text search
             if(textSearch != ""){
+                if(searchResult.length!=0){
+                    for(let j=0;j<searchResult.length;j++){
+                        if(!searchResult[j].name.toUpperCase().includes(textSearch.toUpperCase())){
+                            // console.log("slice "+searchResult[j].name);
+                            searchResult.splice(j,1)
+                        }
+                    }
+                }
                 if(allSearch[i].name.toUpperCase().includes(textSearch.toUpperCase())){
-                    console.log(allSearch[i].name.toUpperCase());
                     if(!searchResult.includes(allSearch[i])){
-                        console.log(allSearch[i]);
+                        // console.log(allSearch[i].name);
                         searchResult.push(allSearch[i])
                     }
                 }
@@ -137,11 +157,12 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
             // tag search
             if(tagSearch != "category"){
                 if(searchResult.length!=0){
-                    if(!searchResult.includes(allSearch[i])){
-                        searchResult.push(allSearch[i])
-                    }
+                    // if(!searchResult.includes(allSearch[i])){
+                    //     searchResult.push(allSearch[i])
+                    // }
                     for(let j=0;j<searchResult.length;j++){
                         if(!searchResult[j].tags.includes(tagSearch)){
+                            // console.log("slice "+searchResult[j].name);
                             searchResult.splice(j,1)
                         }
                     }
@@ -150,6 +171,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
                     if(allSearch[i].tags.includes(tagSearch)){
                         if(!searchResult.includes(allSearch[i])){
+                            // console.log("push "+allSearch[i].name);
                             searchResult.push(allSearch[i])
                         }
                     }
@@ -160,9 +182,9 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
             if(userCoord.length!=0){
                 if(searchResult.lenth!=0){                    
-                        if(!searchResult.includes(allSearch[i])){
-                            searchResult.push(allSearch[i])
-                        }
+                        // if(!searchResult.includes(allSearch[i])){
+                        //     searchResult.push(allSearch[i])
+                        // }
                         
                         for(let j=0;j<searchResult.length;j++){
                             if(calculateDistance(userCoord,allSearch[i].location)>radius){
@@ -171,7 +193,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                         }
                         
                     }else{
-
+                        
                         if(calculateDistance(userCoord,allSearch[i].location)<radius){
                             if(!searchResult.includes(allSearch[i])){
                                 searchResult.push(allSearch[i])
@@ -179,6 +201,10 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                         }
                     }
             }
+            
+
+            
+
         }
         
         // TODO: location search and date/time search
