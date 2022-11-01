@@ -154,6 +154,31 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                 }
             }
 
+            if(userCoord.length!=0){
+                if(searchResult.lenth!=0){                    
+                        // if(!searchResult.includes(allSearch[i])){
+                        //     searchResult.push(allSearch[i])
+                        // }
+                        
+                        for(let j=0;j<searchResult.length;j++){
+                            if(calculateDistance(userCoord,allSearch[i].location)>radius){
+                            console.log("slice "+searchResult[j].name);
+
+                                searchResult.splice(j,1)
+                            }
+                        }
+                        
+                    }
+                        
+                        if(calculateDistance(userCoord,allSearch[i].location)<radius){
+                            if(!searchResult.includes(allSearch[i])){
+                                console.log("push "+allSearch[i].name);
+                                searchResult.push(allSearch[i])
+                            }
+                        }
+                    
+            }
+
             // tag search
             if(tagSearch != "category"){
                 if(searchResult.length!=0){
@@ -180,27 +205,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
 
 
-            if(userCoord.length!=0){
-                if(searchResult.lenth!=0){                    
-                        // if(!searchResult.includes(allSearch[i])){
-                        //     searchResult.push(allSearch[i])
-                        // }
-                        
-                        for(let j=0;j<searchResult.length;j++){
-                            if(calculateDistance(userCoord,allSearch[i].location)>radius){
-                                searchResult.splice(j,1)
-                            }
-                        }
-                        
-                    }
-                        
-                        if(calculateDistance(userCoord,allSearch[i].location)<radius){
-                            if(!searchResult.includes(allSearch[i])){
-                                searchResult.push(allSearch[i])
-                            }
-                        }
-                    
-            }
+
             
 
             
