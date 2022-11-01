@@ -158,16 +158,16 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
             if(userCoord.length!=0){
                 if(searchResult.lenth!=0){                    
-                    if(!searchResult.includes(allSearch[i])){
+                        if(!searchResult.includes(allSearch[i])){
                             searchResult.push(allSearch[i])
                         }
-                        if(radius != 0){
-                            for(let j=0;j<searchResult.length;j++){
-                                if(calculateDistance(userCoord,allSearch[i].location)>radius){
-                                    searchResult.splice(j,1)
-                                }
+                        
+                        for(let j=0;j<searchResult.length;j++){
+                            if(calculateDistance(userCoord,allSearch[i].location)>radius){
+                                searchResult.splice(j,1)
                             }
                         }
+                        
                     }else{
 
                         if(calculateDistance(userCoord,allSearch[i].location)<radius){
