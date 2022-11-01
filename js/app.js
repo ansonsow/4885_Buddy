@@ -5,7 +5,7 @@ import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
 import {Firestore, getFirestore, collection, doc, updateDoc, getDocs,getDoc, addDoc, deleteDoc, arrayUnion, arrayRemove} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, connectAuthEmulator, signOut} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-import {getStorage} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js' //importaed firebase storage 
+import {getStorage,ref, uploadBytes} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js' //importaed firebase storage 
 
 
 
@@ -27,7 +27,8 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app); 
-export const Storage = getStorage(app); //Created a const to store
+export const storage = getStorage(app); 
+export const storageRef = ref(storage);//Created a const to store
 export const db = getFirestore();
 export const auth = getAuth(app);
 
@@ -819,3 +820,4 @@ export async function createAccount (email,password){
 
 // }
 // document.getElementById("btnLogout").addEventListener("click", logout);
+//---------------------------------------------------------------------------------
