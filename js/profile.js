@@ -21,9 +21,11 @@ if (currentUser) {
 
     const userDb = await getDoc(doc(dbf.db, "users",currentUserId));
 
-
     document.getElementById("profile-picture").src= userDb.data().pfpURL;
     document.getElementById("username").innerHTML = userDb.data().username;
+
+    // when profile image loads, show the profile
+    showProfile();
 
 
     // stars dont know yet
@@ -105,6 +107,15 @@ if (currentUser) {
     setTimeout(()=>{
         window.location.href="./login.html";
     },1000)
+}
+
+// when profile image loads, show the profile
+function showProfile(){
+    let pfpimg = new Image();
+    pfpimg.src = document.getElementById("profile-picture").getAttribute("src");
+    pfpimg.onload = function(){
+        document.querySelector(".rightside").classList.add("show-profile");
+    }    
 }
 
 

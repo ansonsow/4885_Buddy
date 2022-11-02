@@ -41,6 +41,9 @@ nav {
 
 /*---------- VARIABLES FOR PROFILE PAGE  ----------*/
 :root {
+    --Profile-Page-FadeIn-Speed:0.3s;
+    --Profile-Page-FadeIn-Method:linear;
+    
     --Left-Panel-Width:38vw;
     --Left-Panel-Rounding:120px;
 
@@ -84,6 +87,14 @@ nav {
     display:flex;
     align-items:center;
     justify-content:center;
+    visibility:hidden;
+    opacity:0;
+}
+
+.show-profile {
+    visibility:visible;
+    opacity:1;
+    transition:opacity var(--Profile-Page-FadeIn-Speed) var(--Profile-Page-FadeIn-Method);
 }
 
 .right-inner {
@@ -232,7 +243,7 @@ footer {
         width:auto;
         min-height:0;
         display:block;
-    }
+    }   
 
     .right-inner {
         margin:0 auto;
