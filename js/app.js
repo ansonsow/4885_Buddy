@@ -27,11 +27,13 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app); 
-export const storage = getStorage(); //Created a const to store
+export const storage = getStorage(app); //Created a const to store
+// export const StorageRef = ref();
 // export const storageRef = ref(storage, 'some-child');
-// export const toUpload =  uploadBytes(storageRef, ).then((snapshot)=>{
+// export const toUpload =  uploadBytes(storageRef,).then((snapshot)=>{
 //   console.log("File Uploaded!");
 // }); //Reference to storage
+
 export const db = getFirestore();
 export const auth = getAuth(app);
 
