@@ -1,6 +1,8 @@
-import * as dbf from "./app.js"
-import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import * as dbf from "./app.js";
+import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 
+
+// document.querySelectorAll(".left-panel")[0].setAttribute("status","open");
 
 
 // get current user

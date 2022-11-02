@@ -8,7 +8,7 @@
     
     <!-- firebase -->
     <!-- <script type="module" src="../js/app.js"></script> -->
-    <script type="module" src="../js/profile.js" defer></script>
+    
     
     <!-- <script type="module" src="../js/appCall.js"></script> -->
 
@@ -16,10 +16,16 @@
     <!-- api key: xcVSGa6cCt3p8cdaJHKnUCMSWesW8tzc -->
     <!-- <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/<version>/maps/maps-web.min.js"></script> -->
 
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
     <!-- required assets -->
     <link href="../css/variables.css" rel="stylesheet">
     <link href="../css/global.css" rel="stylesheet">
     <script src="../js/global.js" defer></script>
+
+    <script type="module" src="../js/profile.js" defer></script>
+    <script src="../js/leftPanel.js" defer></script>
 
     <!-- icon font: fontawesome -->
     <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
@@ -27,7 +33,10 @@
     <!-- page-specific assets -->
     <link href="../css/topBar.css" rel="stylesheet">
     <link href="../css/profile.css" rel="stylesheet">
+    <link href="../css/leftPanel.css" rel="stylesheet">
     <link href="../css/footer.css" rel="stylesheet">
+
+    
 
 </head>
 <body>
@@ -38,6 +47,9 @@
 
     <!------ TOP BAR ------>
     <div js-include-html="../html/topBar.html"></div>
+
+    <!------ LEFT PANEL ------>
+    <div js-include-html="../html/leftPanel.html"></div>
 
     <!------ MAIN PROFILE CONTENT ------>
     <div class="rightside">

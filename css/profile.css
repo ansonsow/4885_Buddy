@@ -172,55 +172,7 @@ h1.username + .star-rating {
 
 /*----- QUICK LINKS -----*/
 .links-panel {
-    position:fixed;
-    top:0;left:0;
-    width:var(--Left-Panel-Width);
-    height:100vh;
-    background:var(--Primary);
-    border-radius:0 var(--Left-Panel-Rounding) var(--Left-Panel-Rounding) 0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.quick-links {
-    display:block;
-    font-size:var(--H2-Size);
-}
-
-.quick-links a {
-    display:flex;
-    align-items:center;
-    margin-bottom:var(--Quick-Links-Spacing);
-    color:var(--White);
-}
-
-.quick-links a:last-child {
-    margin-bottom:0;
-}
-
-.create-event {
-    margin-top:5vh;
-    min-width:var(--Create-Event-Button-Width);
-    min-height:var(--Create-Event-Button-Height);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--White);
-    border-radius:30px;
-
-    font-size:var(--H3-Size);
-    font-weight:700;
-    color:var(--Primary)!important;
-    line-height:100%;
-}
-
-.quick-links a > * {
-    flex-shrink:0;
-}
-
-.quick-links i {
-    display:none;
+    display:none!important; /* desktop */
 }
 
 /*----- PROFILE BADGES -----*/
