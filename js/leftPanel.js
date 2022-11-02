@@ -23,6 +23,13 @@ function detectLeftPanel(){
 function leftPanel(){
 
     $(document).ready(function(){
+        // initial panel status
+        if(panel_status == "open"){
+            $(".left-panel").attr("status","open")
+        } else {
+            $(".left-panel").attr("status","closed")
+        }
+
         /*------ LEFT PANEL ------*/
         let panelStatus = $.trim($(".left-panel").attr("status"));
         

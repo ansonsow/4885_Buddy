@@ -1,10 +1,20 @@
-/*------ INCLUDE HTML ------*/
-/* credit: www.w3schools.com/howto/tryit.asp?filename=tryhow_html_include_2 */
-
 var currentUserId = localStorage.getItem("currentUserId");
 const tomtomApiKey = "xcVSGa6cCt3p8cdaJHKnUCMSWesW8tzc"
 var guideFlag;
 localStorage.setItem('guideFlag', false)
+
+/*------ LEFT PANEL ------*/
+// if it exists, set the initial state
+// either open or closed
+let leftPanelExists = document.querySelector("[js-include-html*='leftPanel.html'][status]");
+let panel_status;
+
+if(typeof(leftPanelExists) != "undefined" && leftPanelExists != null){
+  panel_status = leftPanelExists.getAttribute("status");
+}
+
+/*------ INCLUDE HTML ------*/
+/* credit: www.w3schools.com/howto/tryit.asp?filename=tryhow_html_include_2 */
 
 let filesReady;
 
