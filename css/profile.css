@@ -60,9 +60,9 @@ nav {
     --Profile-Quotes-Margin:calc(var(--Profile-Quotes-Size) * 0.8);
     --Profile-Quotes-Size:calc(var(--H1-Size) * 1.2);
 
-    --Quick-Links-Icon-Size:5vmin;
-    --Quick-Links-Icon-Gap-Right:0.8rem;
-    --Quick-Links-Spacing:1rem; /* desktop only */
+    --mobile-grid-links-Icon-Size:5vmin;
+    --mobile-grid-links-Icon-Gap-Right:0.8rem;
+    --mobile-grid-links-Spacing:1rem; /* desktop only */
 
     --Create-Event-Button-Width:calc(var(--Left-Panel-Width) / 2);
     --Create-Event-Button-Height:7vh;
@@ -183,7 +183,7 @@ h1.username + .star-rating {
 
 /*----- QUICK LINKS -----*/
 .links-panel {
-    display:none!important; /* desktop */
+    display:none; /* desktop */
 }
 
 /*----- PROFILE BADGES -----*/
@@ -235,6 +235,10 @@ footer {
         --Badges-Image-Size:18vw;
     }
 
+    .left-panel {
+        display:none;
+    }
+
     .rightside {
         position:relative;
         top:initial;
@@ -262,9 +266,10 @@ footer {
         height:auto;
         background:transparent;
         border-radius:0px;
+        display:block;
     }
 
-    .quick-links {
+    .mobile-grid-links {
         margin-top:6vmin;
         display:grid;
         grid-template-columns:1fr 1fr;
@@ -273,7 +278,7 @@ footer {
         font-size:var(--Body-Font-Size);
     }
 
-    .quick-links a {
+    .mobile-grid-links a {
         display:flex;
         align-items:center;
         margin-bottom:0;
@@ -298,15 +303,15 @@ footer {
         color:var(--Text-Color);
     }
 
-    .quick-links i {
+    .mobile-grid-links i {
         display:flex;
         justify-content:center;
-        width:var(--Quick-Links-Icon-Size);
-        font-size:var(--Quick-Links-Icon-Size);
+        width:var(--mobile-grid-links-Icon-Size);
+        font-size:var(--mobile-grid-links-Icon-Size);
     }
 
     i + .link-text {
-        margin-left:var(--Quick-Links-Icon-Gap-Right);
+        margin-left:var(--mobile-grid-links-Icon-Gap-Right);
     }
 
     /*---- MOBILE: BADGES ----*/

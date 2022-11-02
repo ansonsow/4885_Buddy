@@ -73,7 +73,8 @@ if (currentUser) {
                 if(boo == true){
                     clearInterval(avgInt);
                     avgStar = eventStar / eventNumber;
-                    star.innerHTML = avgStar
+                    star.innerHTML = avgStar;
+                    numbersToStars();
                 }
             }
         },0);
@@ -118,5 +119,26 @@ function showProfile(){
     }    
 }
 
+// when a user's star rating has loaded, convert number to how many stars
+function numbersToStars(){
+    let starCont = document.querySelector(".star-rating");
 
+    let howManyStars = Number(starCont.textContent.trim());
+    let maxStars = 5;
+    let emptyStars = Math.floor(maxStars - howManyStars);
+
+    starCont.replaceChildren();
+
+    for(let i=0; i<howManyStars; i++){
+        let createFillStar = document.createElement("i");
+        createFillStar.setAttribute("class", "fa-solid fa-star fill");
+        starCont.prepend(createFillStar);
+    }
+
+    for(let i=0; i<emptyStars; i++){
+        let createEmptyStar = document.createElement("i");
+        createEmptyStar.setAttribute("class", "fa-solid fa-star empty");
+        starCont.append(createEmptyStar);
+    }
+}
 
