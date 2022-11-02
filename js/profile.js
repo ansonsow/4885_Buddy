@@ -1,6 +1,9 @@
 import * as dbf from "./app.js";
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 
+// loader fade-out speed
+let loaderFadeSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Profile-Page-Fade-In-Speed"));
+
 // get current user
 let currentUser = dbf.auth.currentUser;
 let currentUserEmail;
@@ -115,7 +118,24 @@ function showProfile(){
     let pfpimg = new Image();
     pfpimg.src = document.getElementById("profile-picture").getAttribute("src");
     pfpimg.onload = function(){
-        document.querySelector(".rightside").classList.add("show-profile");
+        let backupSpeed = 420;
+        if(backupSpeed >= loaderFadeSpeed){
+            loaderFadeSpeed = loaderFadeSpeed
+        } else {
+            loaderFadeSpeed = backupSpeed
+        }
+        document.querySelector(".loader").classList.add("remove-loader");
+
+        setTimeout(() => {
+            document.querySelector(".loader").style.visibility = "collapse";
+            document.querySelector(".loader").remove();
+
+            document.querySelector(".right-inner").classList.add("flex-it");
+
+            setTimeout(() => {
+                document.querySelector(".right-inner").classList.add("show-profile");
+            },100)
+        },loaderFadeSpeed)        
     }    
 }
 

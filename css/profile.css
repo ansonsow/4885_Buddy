@@ -41,6 +41,10 @@ nav {
 
 /*---------- VARIABLES FOR PROFILE PAGE  ----------*/
 :root {
+    --Profile-Page-Loading-Icon-Size:6vw;
+    --Profile-Page-Loading-Spin-Speed:1.5s;
+    --Profile-Page-Loading-Spin-Method:linear;
+
     --Profile-Page-FadeIn-Speed:0.3s;
     --Profile-Page-FadeIn-Method:linear;
     
@@ -87,26 +91,63 @@ nav {
     display:flex;
     align-items:center;
     justify-content:center;
-    visibility:hidden;
-    opacity:0;
-}
-
-.show-profile {
-    visibility:visible;
-    opacity:1;
-    transition:opacity var(--Profile-Page-FadeIn-Speed) var(--Profile-Page-FadeIn-Method);
+    flex-direction:column;
 }
 
 .right-inner {
     width:var(--Right-Content-Width);
-    display:flex;
+    display:none;
     flex-direction:column;
     align-items:center;
     padding:var(--Profile-Page-Screen-Padding) 0;
+    opacity:0;
 }
 
 .right-inner > *:last-child {
     margin-bottom:0;
+}
+
+.right-inner.flex-it {
+    display:flex;
+}
+
+.right-inner.show-profile {
+    opacity:1;
+    transition:opacity var(--Profile-Page-FadeIn-Speed) var(--Profile-Page-FadeIn-Method);
+}
+
+/*----- LOADER -----*/
+/* shown when database content is still loading */
+.loader {
+    visibility:visible;
+    opacity:1;
+}
+
+.loader i {
+    display:block;
+    font-size:var(--Profile-Page-Loading-Icon-Size);
+    color:var(--Primary);
+    animation-name:loaderSpin;
+    animation-duration:var(--Profile-Page-Loading-Spin-Speed);
+    animation-direction:normal;
+    animation-timing-function:var(--Profile-Page-Loading-Spin-Method);
+    animation-iteration-count:infinite;
+    transform-origin:center;
+}
+
+@keyframes loaderSpin {
+    from {
+        transform:rotate(0deg)
+    }
+
+    to {
+        transform:rotate(360deg)
+    }
+}
+
+.remove-loader {
+    opacity:0;
+    transition:opacity var(--Profile-Page-FadeIn-Speed) var(--Profile-Page-FadeIn-Method);
 }
 
 /*----- PROFILE USERNAME -----*/
