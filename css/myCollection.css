@@ -1,0 +1,118 @@
+/*---- Top Bar ----*/
+nav {
+    grid-template-columns:1fr 1fr;
+}
+
+.searchbar {
+    display:none;
+}
+
+.top-navlinks {
+    justify-content:right;
+}
+
+.top-navlinks a {
+    color:var(--Main-Text);
+}
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+
+.illustration {
+    width: 400px;
+    position: fixed;
+    top: 17rem;
+    right: 4rem;
+}
+
+.container {
+    padding-top: 5rem;
+}
+
+
+/* --------Event Card---------- */
+
+.event-wraper {
+    display: block;
+}
+
+.event-container {
+    width: 55%;
+    margin: 1% 0 2% 8%;
+}
+
+.card-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 37% 57% 6%;
+    border-radius: 0 20px 20px 0;
+    background-color: #f0f0f0;
+    margin: auto;
+}
+
+.card-content.image {
+    width: 19rem;
+    height: 9.5rem;
+    border-radius: 0 20px 20px 0;
+    object-fit:cover;
+}
+
+.card-description {
+    padding: 1.2rem 0 0 3rem;
+    line-height: 1rem;
+}
+
+h3.card-content{
+    padding-bottom: 0.5rem;
+    font-size: var(--H3-Size);
+}
+
+.delete-event {
+    margin: auto 0;
+}
+
+
+
+/*---------- MOBILE  ----------*/
+@media(max-width:600px){
+    /* top bar */
+    header {
+        position:fixed;
+        right:0;
+        background-color:var(--Primary);
+        z-index:3;
+        width: 100vw;
+    }
+
+    .top-hamburger, header .logo, .searchbar {
+        display:block!important;
+    }
+
+    nav.home-topnav {
+        width: 100%;
+        grid-template-columns:10% auto 10%;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .top-navlinks {
+        color: var(--White);
+    }
+
+    /* un-orange logo */
+    nav .logo [vector-part="buddy_bu"] path,
+    nav .logo [vector-part="buddy_y"] path {
+        fill:var(--White);
+    }
+
+    /* LEFT panel */
+    .left-panel {
+        display:none;
+    }
+
+/* --------------------------------------------- */
+
+
+
+
+
+}
