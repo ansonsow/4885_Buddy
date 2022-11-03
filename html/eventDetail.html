@@ -1,9 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Event</title>
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buddy - Event Details</title>
+
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+    <!-- firebase -->
+    <script type="module" src="../js/app.js" defer></script>
+    <script type="module" src="../js/maindb.js" defer></script>
+
+    <!-- required assets -->
+    <link href="../css/variables.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <script src="../js/global.js" defer></script>
+
+    <!-- icon font: fontawesome -->
+    <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+
+    <!-- page-specific assets -->
+    <link href="../css/topBar.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
     
+    <link href="../css/eventDetail.css" rel="stylesheet">
+    <script src="../js/eventDetail.js" defer></script>
+
+</head>
+
+<body>
+    <!------ FOOTER ------>
+    <div js-include-html="../html/topBar.html"></div>
+
+    <!------ MAIN ------>
+    <div class="main-event-cont">
+        <div class="event-image"></div>
+
+        <div class="details-col">
+            <div class="row-event-name">
+                <!--- event name --->
+                <h2 class="event-name">Event Name</h2>
+
+                <!--- bookmark --->
+                <div class="event-bookmark" bookmark-status="inactive">
+                    <i class="fa-regular fa-bookmark inactive"></i>
+                    <i class="fa-solid fa-bookmark active"></i>
+                </div>
+            </div><!--end event name row-->
+
+            <!--- tags --->
+            <div class="event-tags">
+                <a href="#">#Food</a>
+                <a href="#">#Music</a>
+            </div>
+        </div><!--end details column-->
+    </div>
+
+    <!------ FOOTER ------>
+    <div js-include-html="../html/footer.html"></div>
 </body>
 </html>
