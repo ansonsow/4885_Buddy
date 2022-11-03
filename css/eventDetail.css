@@ -1,23 +1,55 @@
 /*---------- VARIABLES FOR EVENT DETAILS PAGE  ----------*/
 :root {
-    --Event-Container-Padding:10vmin 15vmin;
+    /*----- Event Container/Layout Settings -----*/
+    --Event-Container-Padding:8vmin 18vmin 10vmin 18vmin;
+    --Event-Layout-Column-Gap:4vw;
+    --Event-Details-Padding:1rem; /* some space at the top & bottom */
 
+    /*----- Event Image -----*/
     --Event-Image-Width:47vw;
-    --Event-Image-Height:calc(var(--Event-Image-Width) / 16 * 9);
+    --Event-Image-Min-Height:calc(var(--Event-Image-Width) / 14 * 9);
     --Event-Image-Roundness:30px;
 
-    --Event-Image-Gap-Right:3vw;
-
+    /*----- Event Name -----*/
     --Event-Name-Size:var(--H2-Size);
+
+    /*----- Event Bookmark -----*/
     --Event-Bookmark-Size:var(--H2-Size);
     --Event-Bookmark-Touch-Padding:calc(var(--Event-Bookmark-Size) * 0.3);
     --Event-Bookmark-Margin:1rem;
 
+    /*----- Event Tags -----*/
     --Event-Tags-Margin:1rem;
     --Event-Tags-Padding:calc(var(--Body-Font-Size) * 0.25) 1.4rem;
     --Event-Tags-Roundness:30px;
+    --Event-Tags-Hover-Speed:0.25s;
+    --Event-Tags-Hover-Method:ease-in-out;
     --Event-Tags-Spacing:0.3rem;
 
+    /*----- Event Details -----*/
+    --Event-Details-Margin:1.4rem;
+    --Event-Details-LineHeight:1.6; /* number only */
+    --Event-Details-Single-Row-Height:calc(var(--Body-Font-Size) * var(--Event-Details-LineHeight));
+    --Event-Details-Icons-Size:calc(var(--Body-Font-Size) + 3px);
+    --Event-Details-Icons-Spacing:0.8rem;
+    --Event-Details-Row-Spacing:10px;
+
+    /*----- "Contact Host" Button -----*/
+    --Contact-Host-Button-Padding:0.2rem 1.2rem;
+    --Contact-Host-Button-Roundness:30px;
+    --Contact-Host-Button-Hover-Speed:0.25s;
+    --Contact-Host-Button-Hover-Method:ease-in-out;
+
+    /*----- "Join Event" Button -----*/
+    --Join-Event-Button-Font-Size:calc(var(--H3-Size) * 0.9);
+    --Join-Event-Button-Padding:0.9rem 2rem;
+    --Join-Event-Button-Roundness:30px;
+    --Join-Event-Button-Hover-Speed:0.25s;
+    --Join-Event-Button-Hover-Method:ease-in-out;
+
+    /*----- Event Description -----*/
+    --Event-Desc-Top-Gap:2rem;
+    --Event-Desc-Indent-Amount:3rem;
 }
 
 /*---------- DESKTOP  ----------*/
@@ -52,7 +84,7 @@
     .main-event-cont {
         display:grid;
         grid-template-columns:var(--Event-Image-Width) auto;
-        grid-gap:var(--Event-Image-Gap-Right);
+        grid-gap:var(--Event-Layout-Column-Gap);
         align-items:center;
         padding:var(--Event-Container-Padding);
         margin:auto;
@@ -62,7 +94,8 @@
     .event-image {
         display:block;
         width:100%;
-        height:var(--Event-Image-Height);
+        min-height:var(--Event-Image-Height);
+        height:100%;
         background-size:cover;
         background-position:center;
         background-repeat:no-repeat;
@@ -70,24 +103,27 @@
         border-radius:var(--Event-Image-Roundness);
     }
 
-    /*----- Event Details Column (Right) -----*/
+    /*----- Event Text Column (Right) -----*/
     .details-col {
         width:100%;
-        height:100%;
+        min-height:calc(100% - (var(--Event-Details-Padding) * 2));
     }
 
     .row-event-name {
         display:flex;
     }
 
+    /*----- Event Name -----*/
     .event-name {
         display:inline-block;
         font-size:var(--Event-Name-Size);
     }
 
+    /*----- Event Bookmark -----*/
     .event-bookmark {
         position:relative;
         margin-left:calc((var(--Event-Bookmark-Margin) + var(--Event-Bookmark-Touch-Padding)) / 2);
+        cursor:pointer;
     }
 
     .event-bookmark i {
@@ -132,5 +168,87 @@
         padding:var(--Event-Tags-Padding);
         background:var(--Secondary-Light);
         border-radius:var(--Event-Tags-Roundness);
+        transition:all var(--Event-Tags-Hover-Speed) var(--Event-Tags-Hover-Method);
+    }
+
+    .event-tags a:hover {
+        background:var(--Primary);
+        color:var(--White);
+    }
+
+    /*----- Event Details (icons with text) -----*/
+    .row-table {
+        margin:var(--Event-Details-Margin) 0;
+        width:100%;
+        border-spacing:0 var(--Event-Details-Row-Spacing);
+        line-height:var(--Event-Details-LineHeight);
+    }
+
+    /* column: 1st one with the icon */
+    .row-table tr td:first-child {
+        width:0;
+        vertical-align:top;
+        padding-right:var(--Event-Details-Icons-Spacing);
+    }
+
+    .row-table .icon-wrap {
+        display:grid;
+        place-items:center;
+        height:var(--Event-Details-Single-Row-Height);
+    }
+    
+    .row-table td i {
+        font-size:var(--Event-Details-Icons-Size);
+    }
+
+    /* event details LINK */
+    .location-address, .host-profile-link {
+        border-bottom:1px solid var(--Primary-Light);
+        color:var(--Primary);
+    }
+
+    .contact-host {
+        margin-left:0.8rem;
+        padding:var(--Contact-Host-Button-Padding);
+        border:1px solid rgba(var(--Text-Color-RGB), 0.7);
+        border-radius:var(--Contact-Host-Button-Roundness);
+        background:var(--White);
+        line-height:1em;
+        transition:all var(--Contact-Host-Button-Hover-Speed) var(--Contact-Host-Button-Hover-Method);
+        cursor:pointer;
+    }
+
+    .contact-host:hover {
+        background:var(--Secondary-Light);
+        border-color:var(--Secondary);
+        color:var(--Text-Color);
+    }
+
+    /*----- Join the Event -----*/
+    .join-cont {
+        display:flex;
+    }
+
+    .join-event {
+        margin-left:calc(var(--Event-Details-Icons-Size) + var(--Event-Details-Icons-Spacing) + 5px);
+        padding:var(--Join-Event-Button-Padding);
+        background:var(--Text-Color);
+        border-radius:var(--Join-Event-Button-Roundness);
+        font-size:var(--Join-Event-Button-Font-Size);
+        font-weight:500;
+        color:var(--White);
+        line-height:1em;
+        transition:all var(--Join-Event-Button-Hover-Speed) var(--Join-Event-Button-Hover-Method);
+        cursor:pointer;
+    }
+
+    .join-event:hover {
+        background:var(--Primary);
+    }
+
+    /*----- Event Description -----*/
+    .event-description {
+        margin-top:calc(0px - var(--Event-Layout-Column-Gap) + var(--Event-Desc-Top-Gap));
+        padding:0 var(--Event-Desc-Indent-Amount);
     }
 }
