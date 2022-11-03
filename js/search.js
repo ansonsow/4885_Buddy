@@ -13,8 +13,8 @@ let allSearch = [];
 let e = query(collection(dbf.db, "events"));
 const starSnapshot = await getDocs(e);
 starSnapshot.forEach((doc)=>{
-    displayResult(doc.data());
-    allSearch.push(doc.data())
+    displayResult(doc.data(),doc.id);
+    allSearch.push(doc)
 
 })
 
@@ -23,12 +23,19 @@ starSnapshot.forEach((doc)=>{
 
 
 // TODO add onclick to change target event so that event detail can know what event the user clicked
-function displayResult(doc){
+function displayResult(doc,id){
 
     let eventBlock = document.querySelector(".event-container");
     let clonedEvent = eventBlock.cloneNode(true);
 
     clonedEvent.removeAttribute("hidden");
+    
+    clonedEvent.addEventListener("click",()=>{
+        localStorage.setItem(targetEventId, id);
+        console.log(id);
+        console.log(localStorage.getItem(targetEventId));
+    })
+
 
     eventBlock.after(clonedEvent)
 
@@ -117,7 +124,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
         if(textSearch == "" && tagSearch == "category" && userCoord.length == 0){
             alert("please fill up at lease one field");
             for(let i=0;i<allSearch.length;i++){
-                displayResult(allSearch[i])
+                displayResult(allSearch[i].data())
             }
 
             break;
@@ -140,13 +147,13 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
             if(textSearch != ""){
                 if(searchResult.length!=0){
                     for(let j=0;j<searchResult.length;j++){
-                        if(!searchResult[j].name.toUpperCase().includes(textSearch.toUpperCase())){
+                        if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
                             // console.log("slice "+searchResult[j].name);
                             searchResult.splice(j,1)
                         }
                     }
                 }
-                if(allSearch[i].name.toUpperCase().includes(textSearch.toUpperCase())){
+                if(allSearch[i].data().name.toUpperCase().includes(textSearch.toUpperCase())){
                     if(!searchResult.includes(allSearch[i])){
                         // console.log(allSearch[i].name);
                         searchResult.push(allSearch[i])
@@ -161,7 +168,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                         // }
                         
                         for(let j=0;j<searchResult.length;j++){
-                            if(calculateDistance(userCoord,allSearch[i].location)>radius){
+                            if(calculateDistance(userCoord,allSearch[i].data().location)>radius){
                             console.log("slice "+searchResult[j].name);
 
                                 searchResult.splice(j,1)
@@ -170,9 +177,9 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                         
                     }
                         
-                        if(calculateDistance(userCoord,allSearch[i].location)<radius){
+                        if(calculateDistance(userCoord,allSearch[i].data().location)<radius){
                             if(!searchResult.includes(allSearch[i])){
-                                console.log("push "+allSearch[i].name);
+                                console.log("push "+allSearch[i].data().name);
                                 searchResult.push(allSearch[i])
                             }
                         }
@@ -186,7 +193,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                     //     searchResult.push(allSearch[i])
                     // }
                     for(let j=0;j<searchResult.length;j++){
-                        if(!searchResult[j].tags.includes(tagSearch)){
+                        if(!searchResult[j].data().tags.includes(tagSearch)){
                             console.log("slice "+searchResult[j].name);
                             searchResult.splice(j,1)
                         }
@@ -194,9 +201,9 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
                 }
 
-                    if(allSearch[i].tags.includes(tagSearch)){
+                    if(allSearch[i].data().tags.includes(tagSearch)){
                         if(!searchResult.includes(allSearch[i])){
-                            console.log("push "+allSearch[i].name);
+                            console.log("push "+allSearch[i].data().name);
                             searchResult.push(allSearch[i])
                         }
                     }
@@ -216,7 +223,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
     }
     // console.log(searchResult);
     for(let i=0;i<searchResult.length;i++){
-        displayResult(searchResult[i])
+        displayResult(searchResult[i].data())
     }
 })
 

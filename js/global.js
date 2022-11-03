@@ -1,4 +1,5 @@
 var currentUserId = localStorage.getItem("currentUserId");
+var targetEventId;
 const tomtomApiKey = "xcVSGa6cCt3p8cdaJHKnUCMSWesW8tzc"
 var guideFlag;
 localStorage.setItem('guideFlag', false)

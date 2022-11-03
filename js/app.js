@@ -285,13 +285,13 @@ const getTimeEpoch = () => {
 
 // ============================================== add new Event ==============================================
 // dont know how to do date and / photo yet
-export async function writeEventData(name, hostId, price, coverImage ,pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag, review){
+export async function writeEventData(name, hostId, price,pfpURL, location, dateCreated, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag, review){
   try {
     const docRef = await addDoc(collection(db, "events"), {
     name: name,
     hostId: hostId,
     price: price,
-    coverImage: coverImage,
+
     images: pfpURL,
     location: location,
     dateCreated: new Date(),
@@ -352,19 +352,6 @@ export async function updateEventPrice(id,eventPrice){
 
 
 // updateEventPrice("uGfj5SGWqdBIdFsM7Lie","$6")
-
-
-export async function updateEventCoverImage(id,eventImage){
-  // if(!isImage(eventImage)){
-  //   console.log("url not valid or not an image");
-  // }else{
-    const db = getFirestore();
-    const eventRef = doc(db, "events", id);
-    await updateDoc(eventRef, {
-      coverImage: eventImage,
-    });
-  // }
-}
 
 
 
