@@ -130,8 +130,7 @@ body {
 
 /*----- Event Tags -----*/
 .event-tags {
-    --negate-tags-spacing:calc(0px - (var(--Event-Tags-Spacing) / 2));
-    
+    --negate-tags-spacing:calc(0px - (var(--Event-Tags-Spacing) / 2));    
     margin:calc(var(--Event-Tags-Margin) + var(--negate-tags-spacing)) var(--negate-tags-spacing);
 }
 
@@ -142,6 +141,7 @@ body {
     background:var(--Secondary-Light);
     border-radius:var(--Event-Tags-Roundness);
     transition:all var(--Event-Tags-Hover-Speed) var(--Event-Tags-Hover-Method);
+    text-transform:capitalize;
 }
 
 .event-tags a:hover {
