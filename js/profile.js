@@ -113,6 +113,8 @@ if (currentUser) {
     },1000)
 }
 
+// document.querySelector(".right-inner").style.height = "0px";
+
 // when profile image loads, show the profile
 function showProfile(){
     let pfpimg = new Image();
@@ -124,6 +126,7 @@ function showProfile(){
         } else {
             loaderFadeSpeed = backupSpeed
         }
+
         document.querySelector(".loader").classList.add("remove-loader");
 
         setTimeout(() => {
@@ -131,11 +134,13 @@ function showProfile(){
             document.querySelector(".loader").remove();
 
             document.querySelector(".right-inner").classList.add("flex-it");
+            document.querySelector("footer").style.visibility = "visible";
 
             setTimeout(() => {
-                document.querySelector(".right-inner").classList.add("show-profile");
+                document.querySelector(".right-inner").classList.add("reveal");                
+                document.querySelector("footer").classList.add("reveal");
             },100)
-        },loaderFadeSpeed)        
+        },loaderFadeSpeed)
     }    
 }
 
