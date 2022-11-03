@@ -70,6 +70,10 @@
 }
 
 /*-------- SHARED STYLING (both desktop & mobile --------*/
+body {
+    background:var(--White);
+    overflow-x:hidden;
+}
 
 /*----- Event Text Column (Right) -----*/
 .details-col {
@@ -227,7 +231,7 @@
     }
 
     /*----- Top Bar -----*/
-    header, body {
+    header {
         background:var(--White);
     }
 
@@ -279,10 +283,16 @@
         position:relative;
     }
 
-    .contact-host-cont {
-        position:absolute;
-        top:0;right:0;
-        margin-right:-0.8rem;
+    .row-host td:nth-child(2){
+        display:flex;
+    }
+
+    .host-profile-link {
+        margin-left:calc(var(--Body-Font-Size) * 0.3);
+    }
+
+    .contact-host-cont {        
+        margin-left:0.8rem;
     }
 
     
