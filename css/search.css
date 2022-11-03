@@ -25,9 +25,9 @@ nav {
 /* ------------ LEFT Column ------------------- */
 /* ---------- Text fields ---------- */
 .container{
-    position: fixed;
+    position: flex;
     width:100%;
-    height:100vh;
+    height:100%;
     top: 0;
     bottom:0;
     overflow-y:scroll;
@@ -44,7 +44,7 @@ nav {
 }
 
 .text-field-wrap{
-    margin: 50% 0 0 15%;
+    margin: 20% 0 0 15%;
 }
 
 .text-field input, .drop-down {
@@ -154,7 +154,12 @@ h3.card-content{
     font-size: var(--H3-Size);
 }
 
+/* --------- Footer ---------- */
+.home-footer {
+    display: none;
+}
 
+/*---------- MOBILE  ----------*/
 @media (max-width: 600px) {
     /* top bar adjustments for SEARCH PAGE */
     header {
@@ -184,7 +189,7 @@ h3.card-content{
 
     .left-container{
         width: 100vw;
-        height: 40vh;
+        height: 100%;
         border-radius: 0 0 10% 10%;
         position: relative;
     }
@@ -257,5 +262,12 @@ h3.card-content{
         padding-bottom: 0.8rem;
         font-size: var(--Mobile-H3-Size);
     }
+
+    /* ---- Footer ----- */
+    .home-footer {
+        display: block;
+        position: relative;
+    }
+    
 }
 

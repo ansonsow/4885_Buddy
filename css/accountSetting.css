@@ -154,6 +154,10 @@ input:focus, textarea:focus {
     margin: 3rem 0 2rem 0;
 }
 
+/* ---- Footer ----- */
+.home-footer {
+    display: none;
+}
 
 /*---------------- MOBILE  ----------------*/
 @media(max-width:600px){
@@ -256,5 +260,10 @@ input:focus, textarea:focus {
 
     .btn-wrap {
         margin-top: 0;
+    }
+
+    /* ---- Footer ----- */
+    .home-footer {
+        display: block;
     }
 }

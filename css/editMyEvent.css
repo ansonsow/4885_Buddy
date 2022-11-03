@@ -33,7 +33,7 @@ nav .logo [vector-part="buddy_y"] path {
 /* ----------- Form Area ----------- */
 .containers-wrap {
     display: flex;
-    margin: 4rem 3rem 0 3rem;
+    margin: 2rem 3rem 0 3rem;
 }
 
 .left-container {
@@ -93,6 +93,12 @@ input:focus, textarea:focus {
 
 .right-container {
     display: block;
+    margin-right: 3rem;
+}
+
+.images-container-wrap {
+    border: 2px solid var(--Text-Color);
+    width: 600px;
 }
 
 .images-container {
@@ -101,28 +107,28 @@ input:focus, textarea:focus {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    border: 2px solid var(--Text-Color);
-    padding: 0.2rem 0.5rem 0;
-    margin: 0 2.5rem;
+    margin: 0 0.2rem;
 }
 
 .image-wrap {
     position: relative;
+    margin: 1rem 0.5rem 0;
+    width: 180px;
+    height: 130px;
 }
 
 .images-container img {
-    width: 170px;
-    height: 140px;
-    margin: 0.2rem 0.6rem;
+    width: 180px;
+    height: 130px;
     object-fit: cover;
 }
 
-.images-container .fa-trash-can{
+.fa-trash-can{
     position: absolute;   
     margin: 0;  
     font-weight: 400;
-    bottom: 50px; 
-    right: 20px; 
+    bottom: 10px; 
+    right: 10px; 
     color: var(--White);
     font-size: 1.2rem;
     background-color: transparent;
@@ -138,14 +144,12 @@ input:focus, textarea:focus {
 .browse-btn{
     color: var(--Text-Color);
     font-weight: 900;
-    margin: 1rem;
+    margin: 0.5rem;
     padding: 0.7rem 2rem;
     border-radius: 20px;
-    border: none;
     cursor: pointer;
     border: 1px solid var(--Light-Gray);
 }
-
 
 .browse-btn:hover {
     border: 1px solid var(--Text-Color);
@@ -154,7 +158,7 @@ input:focus, textarea:focus {
 /* ----------- Svg illustration Buttons ----------- */
 
 .illustration {
-    margin: 2rem;
+    margin: 2rem 2rem 0 ;
     text-align: center;
 }
 
@@ -201,6 +205,10 @@ input:focus, textarea:focus {
     color: var(--Text-Color);
 }    
 
+/* ---- Footer ----- */
+.home-footer {
+    display: none;
+}
 
 /*---------- MOBILE  ----------*/
 @media(max-width:600px){
@@ -244,13 +252,21 @@ input:focus, textarea:focus {
     .images-container {
         display: none;
     }
+    .images-container-wrap {
+        display: none;
+    }
+
+    .browse-btn {
+        display: none;
+    }
+
+    .right-container {
+        margin: 6rem auto 3rem;
+    }
 
     .illustration img {
         display: flex;
-        width: 18rem;
-        margin: auto;
-        padding-top: 7rem;
-
+        width: 15rem;
     }
 
     /* ----- Form Area ----- */
@@ -288,5 +304,9 @@ input:focus, textarea:focus {
         margin: 0.5rem auto; 
     }
     
+    /* ---- Footer ----- */
+    .home-footer {
+        display: block;
+    }
 
 }

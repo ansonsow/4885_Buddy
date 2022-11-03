@@ -73,6 +73,11 @@ h3.card-content{
     color: var(--Primary);
 } 
 
+/* ------------ Footer ------------ */
+.home-footer {
+    display: none;
+}
+
 
 /*---------- MOBILE  ----------*/
 @media(max-width:600px){
@@ -160,6 +165,12 @@ h3.card-content{
     .delete-event {
         margin: auto 0;
         font-size: 1rem;
+    }
+
+    /* ---- Footer ----- */
+    .home-footer {
+        display: block;
+        margin-top: 4rem;
     }
 
 }
