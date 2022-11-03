@@ -17,17 +17,16 @@ nav {
 /* ----------------------------------------- */
 /* ----------------------------------------- */
 
+.container {
+    padding-top: 5rem;
+}
+
 .illustration {
     width: 400px;
     position: fixed;
     top: 17rem;
     right: 4rem;
 }
-
-.container {
-    padding-top: 5rem;
-}
-
 
 /* --------Event Card---------- */
 
@@ -67,9 +66,12 @@ h3.card-content{
 }
 
 .delete-event {
-    margin: auto 0;
+    margin: auto;
 }
 
+.delete-event:hover {
+    color: var(--Primary);
+} 
 
 
 /*---------- MOBILE  ----------*/
@@ -109,10 +111,55 @@ h3.card-content{
         display:none;
     }
 
-/* --------------------------------------------- */
+/* ------------------------------------ */
+    .container {
+        padding-top: 17rem;
+    }
+    
+    .illustration {
+        position: absolute;
+        top: 5rem;
+        right: 0;
+        padding: 1rem;
+        background-color: #fff;
+        width: 100%;
+    }
+
+    .illustration img {
+        width: 15rem;
+        margin: 0 25% 0;
+    }
 
 
+    /* --------Event Card---------- */
 
+    .event-container {
+        width: 85%;
+    }
 
+    .card-container {
+        border-radius: 0 25px 25px 0;
+    }
+
+    .card-content.image {
+        width: 12rem;
+        height: 100%;
+        border-radius: 0 25px 25px 0;
+    }
+
+    .card-description {
+        padding: 1.2rem 0 0 3rem;
+        font-size: 0.9rem;
+    }
+    
+    h3.card-content{
+        padding-bottom: 0.2rem;
+        font-size: 1.1rem;
+    }
+
+    .delete-event {
+        margin: auto 0;
+        font-size: 1rem;
+    }
 
 }
