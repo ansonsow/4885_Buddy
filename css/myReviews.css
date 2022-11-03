@@ -103,6 +103,11 @@ nav {
     color: var(--Primary);
 }
 
+/* ------------ Footer ------------ */
+.home-footer {
+    display: none;
+}
+
 /*---------- MOBILE  ----------*/
 @media(max-width:600px){
     /* top bar */
@@ -186,5 +191,9 @@ nav {
         color: var(--White);
     }
 
+    /* ---- Footer ----- */
+    .home-footer {
+        display: block;
+    }
 
 }

@@ -62,7 +62,12 @@ h1 {
     background-color: var(--Secondary-Light);
 }
 
+/* ---- Footer ----- */
+.home-footer {
+    display: none;
+}
 
+/*---------------- MOBILE  ----------------*/
 @media (max-width: 600px) {
 
     .w_msg {
@@ -98,13 +103,18 @@ h1 {
     .btn-wrap {
         display: flex;
         flex-direction: column-reverse;
-        margin: 2rem auto 0;
+        margin: 2rem auto 3rem;
     }
 
     .btn {
         padding: 0.7rem;
         margin: 0.7rem auto;
         font-size: 1rem;
+    }
+
+    /* ---- Footer ----- */
+    .home-footer {
+        display: block;
     }
 
 }

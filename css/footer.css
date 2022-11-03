@@ -1,6 +1,6 @@
 /* ------------- Footer Section ------------ */
 .home-footer{
-    background-color: var(--Primary);
+    background-color: var(--Text-Color);
     color:var(--White);
 }
 

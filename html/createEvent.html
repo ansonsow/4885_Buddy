@@ -107,12 +107,12 @@
         <!-- Right Container -->
         <div class="right-container">
 
-            <div class="upload-content-wrap">
+            <div class="upload-text">
+                <span>Upload Photo &nbsp;</span>
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
 
-                <div class="upload-text">
-                    <span>Upload Photo &nbsp;</span>
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                </div>
+            <div class="upload-content-wrap">
 
                 <div class="images-container">
 
@@ -135,16 +135,16 @@
                     </div>
 
 
-                    <!-- Add Photo Buttons -->
-                    <div>
-                        <label class="upload-img" for="upload"><i class="fa-solid fa-folder-plus"></i>&nbsp;&nbsp;Add Photo</label>
-                        <input type="file" id="upload"  accept=".jpg, .jpeg, .png"  >
-                        <!-- multiple onchange="chooseFile(event)" -->
+                </div>
 
-                        <!-- I wrote the below line to test -->
-                        <!-- <input type="file" onchange="uploadFile()" id="files" name="files[]" multiple /> -->
-                    </div>
+                <!-- Add Photo Buttons -->
+                <div>
+                    <label class="upload-img" for="upload"><i class="fa-solid fa-folder-plus"></i>&nbsp;&nbsp;Add Photo</label>
+                    <input type="file" id="upload"  accept=".jpg, .jpeg, .png"  >
+                    <!-- multiple onchange="chooseFile(event)" -->
 
+                    <!-- I wrote the below line to test -->
+                    <!-- <input type="file" onchange="uploadFile()" id="files" name="files[]" multiple /> -->
                 </div>
 
             </div>
@@ -158,6 +158,10 @@
         </div>
 
     </div> <!-- End Main Container-->
+
+
+    <!------ FOOTER ------>
+    <div js-include-html="../html/footer.html"></div>
 
 </body>
 </html>
