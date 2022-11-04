@@ -46,6 +46,14 @@ if(currentUser){
         clonedEvent.querySelector("img").setAttribute("src", doc.data().images[0]);
         clonedEvent.querySelector("h3.event-name").innerHTML = doc.data().name;
 
+        clonedEvent.querySelector("img").addEventListener("click",()=>{
+            localStorage.setItem(targetEventId, doc.id);
+            // console.log(id);
+            console.log(localStorage.getItem(targetEventId));
+            window.location = "../html/eventDetail.html#" + localStorage.getItem(targetEventId);
+        })
+    
+
         let clonedStatus = document.querySelector(".event-block:not([hidden])");
         if(typeof(clonedStatus) != "undefined" && clonedStatus != null){
             document.querySelector("footer").classList.add("show-footer")
