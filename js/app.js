@@ -498,18 +498,10 @@ export async function addEventTag(id,tag){
 
 export async function removeEventTag(id,tag){
   const db = getFirestore();
-
-  const snapShot = await getDoc(doc(db, "events", id));
-  if(snapShot.data().tags.includes(tag)){
-    const userRef = doc(db, "events", id);
-    await updateDoc(userRef, {
-      tags: arrayRemove(tag)
-    });
-  }else{
-    console.log("tag do not exist");
-  }
-  // const db = getFirestore();
-
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    tags: arrayRemove(tag)
+  });
 }
 
 // removeEventTag("92RaEQhxmyG3xJLl82KM","tag1")
