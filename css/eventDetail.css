@@ -205,6 +205,7 @@ body {
     margin-left:calc(var(--Event-Details-Icons-Size) + var(--Event-Details-Icons-Spacing) + 5px);
     padding:var(--Join-Event-Button-Padding);
     background:var(--Text-Color);
+    border:1px solid transparent;
     border-radius:var(--Join-Event-Button-Roundness);
     font-size:var(--Join-Event-Button-Font-Size);
     font-weight:500;
@@ -216,6 +217,12 @@ body {
 
 .join-event:hover {
     background:var(--Primary);
+}
+
+.join-event.joined {
+    background:var(--Secondary-Light);
+    border-color:var(--Secondary);
+    color:var(--Text-Color);
 }
 
 /*----- Event Description -----*/

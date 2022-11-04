@@ -1,4 +1,5 @@
-import {db} from "./app.js";
+import {db, addUserEvent} from "./app.js";
+import * as dbf from "./app.js"; // used to get current user
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 let temporary_image = "https://cdn.discordapp.com/attachments/382037367940448256/1037544194497052672/unsplash_fireworks_c5_eQi4rrjA.jpeg";
@@ -45,6 +46,11 @@ querySnapshot.forEach((doc) => {
 // show a random event just to see if the details are working/correct
 let randomEvent = Math.floor(Math.random()*allEvents.length);
 let chosenEvent = allEvents[randomEvent];
+
+/********************************************************************** */
+/**************************** EVENT ID ******************************** */
+/********************************************************************** */
+document.querySelector(".main-event-cont").setAttribute("event-id",chosenEvent.id);
 
 /********************************************************************** */
 /*************************** EVENT IMAGE ****************************** */
@@ -186,3 +192,52 @@ function reverseGeo(l){
 }
 
 reverseGeo(chosenEvent.location)
+
+/********************************************************************** */
+/*************************** JOIN EVENT ******************************* */
+/********************************************************************** */
+let currentUser = dbf.auth.currentUser;
+
+// get email from user authentication
+let currentUserEmail = currentUser.email;
+
+// if user IS logged in
+if(currentUser){
+
+    let qw = query(collection(dbf.db, "users"), where("email", "==", currentUserEmail));
+    let qsz = await getDocs(qw);
+
+    let bothJoinButtons = document.querySelectorAll(".join-event");
+
+    qsz.forEach((thisUser) => {
+        let existingEvents = thisUser.data().events;
+
+        let checkExisting = existingEvents.findIndex(uwu => {
+            return uwu === chosenEvent.id
+        })
+
+        // join new event
+        if(checkExisting == -1){
+
+            document.querySelectorAll(".join-event").forEach(joinEventButton => {
+                joinEventButton.addEventListener("click", () => {
+                    addUserEvent(thisUser.id,chosenEvent.id);
+
+                    bothJoinButtons.forEach(v => {
+                        v.classList.add("joined");
+                        v.innerHTML = `Event Joined <i class="fa-solid fa-check"></i>`;
+                    });
+                })//end click
+            });//end each
+        }
+        
+        // if user tries to join an event that they've already joined
+        else if(checkExisting > -1){
+            bothJoinButtons.forEach(v => {
+                v.classList.add("joined");
+                v.innerHTML = `Already Joined <i class="fa-regular fa-face-smile-beam"></i>`;
+            });
+        }        
+    });
+}
+
