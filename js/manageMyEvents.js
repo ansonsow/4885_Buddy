@@ -43,7 +43,7 @@ if(currentUser){
         eventBlock.parentNode.insertBefore(clonedEvent, eventBlock.nextSibling);
 
         // set cloned event's image (as example)
-        clonedEvent.querySelector("img").setAttribute("src", doc.data().coverImage);
+        clonedEvent.querySelector("img").setAttribute("src", doc.data().images[0]);
         clonedEvent.querySelector("h3.event-name").innerHTML = doc.data().name;
 
         let clonedStatus = document.querySelector(".event-block:not([hidden])");
