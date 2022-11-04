@@ -1,24 +1,10 @@
-import {db, addUserEvent} from "./app.js";
+import {db, addUserEvent, addUserFavEvent, removeUserFavEvent} from "./app.js";
 import * as dbf from "./app.js"; // used to get current user
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 let temporary_image = "https://cdn.discordapp.com/attachments/382037367940448256/1037544194497052672/unsplash_fireworks_c5_eQi4rrjA.jpeg";
 
 document.querySelector(".event-image").setAttribute("style",`background-image:url("${temporary_image}")`);
-
-/* basic bookmark click */
-let bookmarkIcon = document.querySelector(".event-bookmark");
-let bookmarkStatus = bookmarkIcon.getAttribute("bookmark-status");
-
-bookmarkIcon.addEventListener("click", () => {
-    if(bookmarkStatus == "inactive"){
-        bookmarkIcon.setAttribute("bookmark-status","active");
-        bookmarkStatus = "active";
-    } else {
-        bookmarkIcon.setAttribute("bookmark-status","inactive");
-        bookmarkStatus = "inactive";
-    }
-})
 
 /*----------- INSERT ACTUAL EVENT DETAILS -----------*/
 let allEvents = [];
@@ -194,7 +180,7 @@ function reverseGeo(l){
 reverseGeo(chosenEvent.location)
 
 /********************************************************************** */
-/*************************** JOIN EVENT ******************************* */
+/************************** CURRENT USER ****************************** */
 /********************************************************************** */
 let currentUser = dbf.auth.currentUser;
 
@@ -207,6 +193,7 @@ if(currentUser){
     let qw = query(collection(dbf.db, "users"), where("email", "==", currentUserEmail));
     let qsz = await getDocs(qw);
 
+    /*-------------- JOIN EVENT --------------*/
     let bothJoinButtons = document.querySelectorAll(".join-event");
 
     qsz.forEach((thisUser) => {
@@ -237,7 +224,49 @@ if(currentUser){
                 v.classList.add("joined");
                 v.innerHTML = `Already Joined <i class="fa-regular fa-face-smile-beam"></i>`;
             });
-        }        
+        }
     });
-}
+    
+    /*-------------- FAV EVENT --------------*/
+    let bookmarkIcon = document.querySelector(".event-bookmark");
+    let bookmarkStatus = bookmarkIcon.getAttribute("bookmark-status");
+
+    qsz.forEach((thisUser) => {
+        let existingFavs = thisUser.data().favouriteEvents;
+
+        let checkExisting = existingFavs.findIndex(uwu => {
+            return uwu === chosenEvent.id
+        })
+
+        /*---- on page load ----*/
+        // if event IS already in favorites
+        if(checkExisting > -1){
+            bookmarkStatus = "active";
+            bookmarkIcon.setAttribute("bookmark-status","active");
+        }
+        
+        // if event is NOT in favorites
+        else if(checkExisting == -1){
+            bookmarkStatus = "inactive";
+            bookmarkIcon.setAttribute("bookmark-status","inactive");
+        }
+
+        /*---- on bookmark click ----*/
+        bookmarkIcon.addEventListener("click", () => {
+            // favorite it
+            if(bookmarkStatus == "active"){
+                removeUserFavEvent(thisUser.id,chosenEvent.id);
+                bookmarkStatus = "inactive";
+                bookmarkIcon.setAttribute("bookmark-status","inactive");
+            }
+
+            // unfavorite it
+            else if(bookmarkStatus == "inactive"){
+                addUserFavEvent(thisUser.id,chosenEvent.id);
+                bookmarkStatus = "active";
+                bookmarkIcon.setAttribute("bookmark-status","active");
+            }
+        });
+    });
+}//end if(currentUser)
 

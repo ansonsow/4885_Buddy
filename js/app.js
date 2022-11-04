@@ -254,15 +254,10 @@ export async function removeUserFavEvent(id,event){
   const db = getFirestore();
 
   const snapShot = await getDoc(doc(db, "users", id));
-  if(snapShot.data().event.includes(event)){
-    const userRef = doc(db, "users", id);
-    await updateDoc(userRef, {
-      favouriteEvents: arrayRemove(event)
-    });
-  }
-  else{
-    console.log("event do not exist in the user's list");
-  }
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    favouriteEvents: arrayRemove(event)
+  });
 }
 
 // removeUserEvent("hPJQxUZYKQLKVWqkHxou","new event2")

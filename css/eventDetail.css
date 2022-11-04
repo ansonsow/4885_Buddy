@@ -96,6 +96,7 @@ body {
     position:relative;
     margin-left:calc((var(--Event-Bookmark-Margin) + var(--Event-Bookmark-Touch-Padding)) / 2);
     cursor:pointer;
+    align-self:baseline;
     z-index:0;
 }
 
