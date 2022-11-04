@@ -1,0 +1,68 @@
+/*---- Top Bar ----*/
+nav {
+    grid-template-columns:1fr 1fr;
+}
+
+.searchbar {
+    display:none;
+}
+
+.top-navlinks {
+    justify-content:right;
+}
+
+.top-navlinks a {
+    color:var(--Main-Text);
+}
+/* ----------------------------------------- */
+
+
+
+
+/* ----------- Category ----------- */
+
+.category {
+    display: inline;
+}
+
+.category-label {
+    display: block;
+    font-weight: 900;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.checkbox-option {
+    margin-right: 2rem;
+}
+
+.checkbox-option > input {
+    width: 20px;
+    margin: 0;
+}
+
+.arrow {
+    color: var(--Text-color);
+    cursor: pointer;
+}
+
+.category-list {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+/* ---- Footer ----- */
+.home-footer {
+    display: none;
+}
+
+
+
+/*---------------- MOBILE  ----------------*/
+@media(max-width:600px){
+
+}
