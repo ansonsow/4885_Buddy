@@ -28,14 +28,15 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app); 
 export const storage = getStorage(app); //Created a const to store
-// export const StorageRef = ref();
+export const StorageRef = ref(storage);
 // export const storageRef = ref(storage, 'some-child');
-// export const toUpload =  uploadBytes(storageRef,).then((snapshot)=>{
+// export const toUpload =  uploadBytes(storageRef).then((snapshot)=>{
 //   console.log("File Uploaded!");
 // }); //Reference to storage
 
 export const db = getFirestore();
 export const auth = getAuth(app);
+
 
 // reference DB structure – USERS:
 // https://cdn.discordapp.com/attachments/1014951045820072017/1028394035066437724/unknown.png
