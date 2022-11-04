@@ -33,6 +33,13 @@ querySnapshot.forEach((doc) => {
 let randomEvent = Math.floor(Math.random()*allEvents.length);
 let chosenEvent = allEvents[randomEvent];
 
+localStorage.getItem(targetEventId);
+for(let i =0;i<allEvents.length;i++){
+    if(allEvents[i].id == localStorage.getItem(targetEventId)){
+        chosenEvent = allEvents[i]
+    }
+}
+
 /********************************************************************** */
 /**************************** EVENT ID ******************************** */
 /********************************************************************** */
