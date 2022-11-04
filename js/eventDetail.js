@@ -1,10 +1,12 @@
-import {db, addUserEvent, addUserFavEvent, removeUserFavEvent} from "./app.js";
+import {db, addUserEvent, removeUserEvent, addUserFavEvent, removeUserFavEvent} from "./app.js";
 import * as dbf from "./app.js"; // used to get current user
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 let temporary_image = "https://cdn.discordapp.com/attachments/382037367940448256/1037544194497052672/unsplash_fireworks_c5_eQi4rrjA.jpeg";
 
 document.querySelector(".event-image").setAttribute("style",`background-image:url("${temporary_image}")`);
+
+let joinStatus;
 
 /*----------- INSERT ACTUAL EVENT DETAILS -----------*/
 let allEvents = [];
@@ -64,7 +66,10 @@ document.querySelector(".event-tags").replaceChildren();
 for(let i=0; i<chosenEvent.tags.length; i++){
     let addTag = document.createElement("a");
     addTag.setAttribute("href",chosenEvent.tags[i]); //  tag's url, may need to change later
-    addTag.textContent = "#" + chosenEvent.tags[i];
+
+    let tagsNoDashes = chosenEvent.tags[i].replaceAll("-"," ");
+    addTag.textContent = "#" + tagsNoDashes;
+
     document.querySelector(".event-tags").append(addTag)
 }
 
@@ -210,27 +215,19 @@ if(currentUser){
             return uwu === chosenEvent.id
         })
 
-        // join new event
-        if(checkExisting == -1){
-
-            document.querySelectorAll(".join-event").forEach(joinEventButton => {
-                joinEventButton.addEventListener("click", () => {
-                    addUserEvent(thisUser.id,chosenEvent.id);
-
-                    bothJoinButtons.forEach(v => {
-                        v.classList.add("joined");
-                        v.innerHTML = `Event Joined <i class="fa-solid fa-check"></i>`;
-                    });
-                })//end click
-            });//end each
-        }
-        
-        // if user tries to join an event that they've already joined
-        else if(checkExisting > -1){
+        /*---- on page load ----*/
+        // if user has ALREADY JOINED the event
+        if(checkExisting > -1){
+            joinStatus = "joined";
             bothJoinButtons.forEach(v => {
                 v.classList.add("joined");
                 v.innerHTML = `Already Joined <i class="fa-regular fa-face-smile-beam"></i>`;
             });
+        }
+        
+        // if user HASN'T JOINED the event
+        else if(checkExisting == -1){
+            joinStatus = "not joined";
         }
     });
     
@@ -277,3 +274,51 @@ if(currentUser){
     });
 }//end if(currentUser)
 
+$(document).ready(function(){
+    let someButton = $(".join-event"); // change this to whatever you're binding your popup trigger to
+
+    someButton.click(function(){
+        // remove existing <h3> text
+        $(".del-popup h3").empty();
+
+        if(joinStatus == "not joined"){
+            alert("not joined")
+        }
+
+        else {
+            alert("joined")
+        }
+
+        // customize your <h3> text
+        $(".del-popup h3").text("Hello :)");
+
+        // customize your button 1 text
+        $("#popup_action_1").text("I'm button 1");
+
+        // customize your button 2 text
+        $("#popup_action_2").text("I'm button 2");
+
+        // fade in the pop-up
+        $(".del-popup").fadeIn(popupFadeSpeed);
+    })
+    
+    /********************************************************************** */
+    /******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
+    /********************************************************************** */
+
+    $(document).on("click", "#popup_action_1", function(){
+        let that = this; // don't touch this line
+
+        // do stuff
+    });
+
+    /********************************************************************** */
+    /******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
+    /********************************************************************** */
+    $(document).on("click", "#popup_action_2", function(){
+        let that = this; // don't touch this line
+
+        // fade out the pop-up
+        $(".del-popup").fadeOut(popupFadeSpeed);
+    });
+})//end ready
