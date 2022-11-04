@@ -37,16 +37,3 @@ files.addEventListener("click", async() =>{
 
 
 
-
-// ---------------------------------------------------
-// --------------- Category Dropdown -----------------
-// ---------------------------------------------------
-
-document.querySelector(".category-field").addEventListener("click", () => {
-    document.querySelector(".list").classList.toggle("show");
-});
-
-
-
-
-

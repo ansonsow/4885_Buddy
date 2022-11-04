@@ -44,11 +44,11 @@ nav {
 }
 
 .text-field-wrap{
-    margin: 20% 0 0 15%;
+    margin: 30% 19% 0 15%;
 }
 
 .text-field input, .drop-down {
-    margin: 0 auto 5% 5%;
+    margin: 0 0 5% 0;
     width: 310px;
     border:none;
     outline:none;
@@ -67,8 +67,39 @@ nav {
     filter: invert(100%);
 }
 
-select {
-    appearance: none;
+/* ----------- Category ----------- */
+
+.category {
+    display: inline;
+}
+
+.category-label {
+    display: block;
+    font-weight: 900;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.checkbox-option {
+    margin-right: 2rem;
+}
+
+.checkbox-option > input {
+    width: 20px;
+    margin: 0;
+}
+
+.arrow {
+    color: var(--White);
+    cursor: pointer;
+}
+
+.category-list {
+    display: none;
+}
+
+.show {
+    display: block;
 }
 
 /* ------ Buttons ------ */
@@ -190,7 +221,7 @@ h3.card-content{
     .left-container{
         width: 100vw;
         height: 100%;
-        border-radius: 0 0 10% 10%;
+        border-radius: 0 0 7% 7%;
         position: relative;
     }
 
@@ -209,6 +240,25 @@ h3.card-content{
         font-size: 0.7rem;
     }   
 
+
+
+    /* ----------- Category ----------- */
+    .category-label {
+        font-size: 0.8rem;
+        margin-bottom: 0.1rem;
+        padding-top: 3%;
+    }
+
+    .checkbox-option {
+        font-size: 0.8rem;
+        margin: 0 0.3rem;
+    }
+
+    .checkbox-option > input {
+        width: 1rem;
+        margin: 0 0.2rem;
+    }
+
     /* Button */
     .btn-wrap{
         margin: auto;
@@ -217,7 +267,7 @@ h3.card-content{
     .ctn{
         width: 6rem;
         font-size: 0.8rem;
-        margin: 4% 3% 0 3%;
+        margin: 4% 3% 03%3%;
         padding: 2% 3%;
         border-radius: 3rem;
     }
@@ -267,6 +317,7 @@ h3.card-content{
     .home-footer {
         display: block;
         position: relative;
+        margin-top: 3rem;
     }
     
 }

@@ -65,10 +65,13 @@
                 <div class="content">
     
                     <form class="form" action="#" method="post">
+
                         <div class="text-field-wrap">
+
                             <div class="text-field">
                                 <input type="text" placeholder="Search For Anything" name="" value="" id="textSearch">
                             </div>
+                            
                             <div class="text-field" id="searchBoxPlugin">
                                 <input type="text" placeholder="Postal Code / Address" name="" value="">
                             </div>
@@ -76,35 +79,76 @@
 
                             <button class="ctn" id="locationButton" type="button">Search by location</button>
 
-                            <div class="text-field">
-                                <input type="datetime-local" placeholder="Date" name="" value="">
+                            <div class="text-field date-time">
+                                <input type="text" placeholder="Date and Start Time" name="" value="" onfocus="(this.type='datetime-local')">
                             </div>
 
-                            <div class="text-field">
-                                <input type="time" placeholder="Date" name="" value="">
+                            <div class="text-field time">
+                                <input type="text" placeholder="End Time" name="" value="" onfocus="(this.type='time')">
                             </div>
 
-                            <div class="text-field">
-                                <select class="drop-down" name="category" id="tagSearch">
-                                    <option value="category">Category</option>
-                                    <option value="food">Food & Drinks</option>
-                                    <option value="travel">Travel</option>
-                                    <option value="sport">Sport</option>
-                                    <option value="music">Music</option>
-                                    <option value="performing">Performing</option>
-                                    <option value="business">Business</option>
-                                    <option value="free">Free Events</option>
-                                    <option value="online">Online Events</option>
-                                </select>
-                            </div>
-                        </div>
+
+                            <div class="text-field category">
+
+                                <div class="category-label">
+                                    <label>Category </label>
+                                    <span class="arrow">&blacktriangledown;</span>
+                                </div>
+
+                                <!-- list of checkboxes -->
+
+                                <div class="category-list options">
+
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="categoryList" value="food-and-drinks">
+                                        Food & Drinks
+                                    </label> 
+
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="categoryList" value="travel">
+                                        Travel
+                                    </label> 
+
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="categoryList" value="sports">
+                                        Sport
+                                    </label> 
+
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="categoryList" value="music">
+                                        Music
+                                    </label> 
+
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="categoryList" value="performing">
+                                        Performing
+                                    </label> 
+
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="categoryList" value="business">
+                                        Business
+                                    </label> 
+
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="categoryList" value="online">
+                                        Online
+                                    </label> 
+
+                                </div>  <!-- End list of checkboxes -->
+
+                            </div> <!-- End category field-->
+
+                        </div>  <!-- End text fields wrap -->
+                        
                 
                         <div class="btn-wrap">
                             <button class="ctn" type="button" id="resetButton">Reset</button><br>
                             <button class="ctn" type="button" id="searchButton">Search</button>
                         </div>
+
                     </form>
-                </div>
+
+                </div> 
             </div>
         
             <!-- Right Column Content -->

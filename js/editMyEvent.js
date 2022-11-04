@@ -51,14 +51,6 @@ if (currentUser) {
 
 
 
-// ---------------------------------------------------
-// --------------- Category Dropdown -----------------
-// ---------------------------------------------------
-
-document.querySelector(".category-field").addEventListener("click", () => {
-    document.querySelector(".list").classList.toggle("show");
-});
-
 
 // ---------------------------------------------------
 // ------------------ DATE / TIME---------------------

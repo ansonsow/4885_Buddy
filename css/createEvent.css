@@ -87,7 +87,7 @@ input:focus, textarea:focus, .drop-down{
     border-bottom: 1px solid #CCCCCC;
 }
 
-.category-field > label {
+.category-label > label {
     font-size: 1rem;
 }
 
@@ -108,7 +108,7 @@ input:focus, textarea:focus, .drop-down{
     cursor: pointer;
 }
 
-.list {
+.category-list {
     display: none;
 }
 

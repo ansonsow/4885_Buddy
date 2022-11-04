@@ -54,21 +54,21 @@
                         </div>
 
                         <!-- Use datetime-local bacause by defalt date input splits out UTC time zone -->
-                        <div class="input-fields date">
+                        <div class="input-fields datetime">
                             <label for="eventDate">Date and Start Time : </label>
-                            <input type="datetime-local" name="eventDate" id="eventDate" placeholder="21 October 2022">
+                            <input type="datetime-local" name="eventDate" id="eventDate" placeholder="">
                         </div>
 
                         <div class="flex-layout"> 
     
-                            <div class="input-fields date">
+                            <div class="input-fields time">
                                 <label for="eventEndTime">End Time : </label>
-                                <input type="time" name="eventEndTime" id="eventEndTime" placeholder="End">
+                                <input type="time" name="eventEndTime" id="eventEndTime" placeholder="">
                             </div>
 
                             <div class="input-fields price">
                                 <label for="eventPrice">Price : </label>
-                                <input type="number" name="eventPrice" id="eventPrice" value="" placeholder="$28">
+                                <input type="number" name="eventPrice" id="eventPrice" value="" placeholder="">
                             </div>
 
                         </div>
@@ -76,18 +76,18 @@
 
                         <div class="input-fields numOfPeople">
                             <label for="eventNumOfPeople">Number of participants : </label>
-                            <input type="number" name="eventNumOfPeople" id="eventNumOfPeople" value="" placeholder="2 people">
+                            <input type="number" name="eventNumOfPeople" id="eventNumOfPeople" value="" placeholder="">
                         </div>
 
                         <div class="input-fields category">
 
-                            <div class="category-field">
+                            <div class="category-label">
                                 <label>Category </label>
                                 <span class="arrow">&blacktriangledown;</span>
                             </div>
+                            
                             <!-- list of checkboxes -->
-
-                            <div class="list">
+                            <div class="category-list options">
 
                                 <label class="checkbox-option">
                                     <input type="checkbox" name="categoryList" value="food-and-drinks">
@@ -130,7 +130,7 @@
 
                         <div class="input-fields desc">
                             <label for="eventDesc">Description : </label>
-                            <textarea name="eventDesc" id="eventDesc" value="" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, consectetur! Doloremque assumenda provident neque itaque ratione dolore, fuga alias iusto."></textarea>
+                            <textarea name="eventDesc" id="eventDesc" value="" placeholder=""></textarea>
                         </div>
                     </form>
                 </div>

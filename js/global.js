@@ -90,8 +90,9 @@ function loadjQuery(){
 
 contentLoaded(loadjQuery)
 
-
-/* ---------- Hamburger Menu ----------*/
+// ---------------------------------------------------
+/* ------------------ Hamburger Menu ----------------*/
+// ---------------------------------------------------
 contentLoaded(hamburgerToggle);
 
 function hamburgerToggle(){
@@ -119,3 +120,12 @@ function hamburgerToggle(){
 
 // get pop-up fade speed from variables.css
 let popupFadeSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Popup-Fade-Speed"));
+
+
+// ---------------------------------------------------
+// --------------- Category Dropdown -----------------
+// ---------------------------------------------------
+
+document.querySelector(".category-label").addEventListener("click", () => {
+  document.querySelector(".category-list").classList.toggle("show");
+});
