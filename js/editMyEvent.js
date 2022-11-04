@@ -4,14 +4,6 @@ import {getFirestore, query,collection,where,getDocs,getDoc,doc} from 'https://w
 
 
 
-// ***** If use date input *****
-// eventDate.addEventListener('change', function (){
-//     console.log(new Date(eventDate.value));
-// })
-
-// ***** If use time input *****
-
-
 let testEventId = "GM7n7SlsJTYiUZecZsUX";
 //this page's event id 
 let targetEventId = testEventId;
@@ -59,40 +51,72 @@ if (currentUser) {
 
 
 
+// ---------------------------------------------------
+// --------------- Category Dropdown -----------------
+// ---------------------------------------------------
 
+document.querySelector(".category-field").addEventListener("click", () => {
+    document.querySelector(".list").classList.toggle("show");
+});
 
-eventDate.addEventListener('change', function (){
-    const datetime = eventDate.value;
-    const date= datetime.split("T")[0];
-    const time = datetime.split("T")[1];
-
-    console.log(datetime)
-    console.log(`Date_${date}, Time_${time}`)
-})
-
-eventEndTime.addEventListener('change', function (){
-    const time = eventEndTime.value;
-    const hours = time.split(":")[0];
-    const minutes = time.split(":")[1];
-
-    console.log(time)
-    console.log(`Hour_${hours}, Minutes_${minutes}`)
-})
 
 // ---------------------------------------------------
+// ------------------ DATE / TIME---------------------
+// ---------------------------------------------------
+// ***** If use date input *****
+// eventDate.addEventListener('change', function (){
+//     console.log(new Date(eventDate.value));
+// })
+
+// ***** If use time input *****
+// eventDate.addEventListener('change', function (){
+//     const datetime = eventDate.value;
+//     const date= datetime.split("T")[0];
+//     const time = datetime.split("T")[1];
+
+//     console.log(datetime)
+//     console.log(`Date_${date}, Time_${time}`)
+// })
+
+// eventEndTime.addEventListener('change', function (){
+//     const time = eventEndTime.value;
+//     const hours = time.split(":")[0];
+//     const minutes = time.split(":")[1];
+
+//     console.log(time)
+//     console.log(`Hour_${hours}, Minutes_${minutes}`)
+// })
+
+// --------------------------------------------------------
 const submitBtn = document.getElementById('submit')
 
 submitBtn.addEventListener('click', () => {
+    // --------------------------------------------------------
+    // ---------------------- CATEGORY ------------------------
+    // --------------------------------------------------------
+    let tagValues = [];
+    let checkboxes = document.getElementsByName("categoryList");
+    
+    for (let i=0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            tagValues.push(checkboxes[i].value)
+        }
+    }
+    // ----------------------------------------------------
+
+
     const eventName = document.getElementById('eventName').value;
     const eventLocation = document.getElementById('eventLocation').value;
     const numberOfParticipants = document.getElementById('eventNumOfPeople').value;
     const eventPrice = document.getElementById('eventPrice').value;
     const eventDesc = document.getElementById('eventDesc').value;
-    const category = document.getElementById('category').value;
+    const category = tagValues;
     const date = document.getElementById('eventDate').value.split("T")[0];
     const startTime = document.getElementById('eventDate').value.split("T")[1];
     const endTime = document.getElementById('eventEndTime').value;
      
+
+
     
     console.log({
     eventName,

@@ -68,7 +68,7 @@
 
                             <div class="input-fields price">
                                 <label for="eventPrice">Price : </label>
-                                <input type="text" name="eventPrice" id="eventPrice" value="" placeholder="$28">
+                                <input type="number" name="eventPrice" id="eventPrice" value="" placeholder="$28">
                             </div>
 
                         </div>
@@ -76,21 +76,56 @@
 
                         <div class="input-fields numOfPeople">
                             <label for="eventNumOfPeople">Number of participants : </label>
-                            <input type="text" name="eventNumOfPeople" id="eventNumOfPeople" value="" placeholder="2 people">
+                            <input type="number" name="eventNumOfPeople" id="eventNumOfPeople" value="" placeholder="2 people">
                         </div>
 
                         <div class="input-fields category">
-                            <select class="drop-down" name="category" id="category">
-                                <option value="category">Category</option>
-                                <option value="food-and-drinks">Food & Drinks</option>
-                                <option value="travel">Travel</option>
-                                <option value="sports">Sport</option>
-                                <option value="music">Music</option>
-                                <option value="performing">Performing</option>
-                                <option value="business">Business</option>
-                                <option value="free">Free Events</option>
-                                <option value="online">Online Events</option>
-                            </select>
+
+                            <div class="category-field">
+                                <label>Category </label>
+                                <span class="arrow">&blacktriangledown;</span>
+                            </div>
+                            <!-- list of checkboxes -->
+
+                            <div class="list">
+
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="categoryList" value="food-and-drinks">
+                                    Food & Drinks
+                                </label> 
+
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="categoryList" value="travel">
+                                    Travel
+                                </label> 
+
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="categoryList" value="sports">
+                                    Sport
+                                </label> 
+
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="categoryList" value="music">
+                                    Music
+                                </label> 
+
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="categoryList" value="performing">
+                                    Performing
+                                </label> 
+
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="categoryList" value="business">
+                                    Business
+                                </label> 
+
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="categoryList" value="online">
+                                    Online
+                                </label> 
+
+                            </div>
+
                         </div>        
 
                         <div class="input-fields desc">

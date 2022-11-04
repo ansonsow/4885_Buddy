@@ -89,6 +89,30 @@ input:focus, textarea:focus {
     outline: none;
 }
 
+/* ----------- Category ----------- */
+
+.category {
+    display: block;
+}
+
+.checkbox-option {
+    font-weight: 400;
+    margin: 0 3rem 0 1rem;
+}
+
+.arrow {
+    color: var(--Text-Color);
+    cursor: pointer;
+}
+
+.list {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
 /* ----------- Upload Image Area ----------- */
 
 .right-container {
@@ -290,6 +314,17 @@ input:focus, textarea:focus {
     input, ::placeholder {
         width: 90%;
         padding-left: 1rem;
+    }
+
+    .flex-layout{
+        display: block;
+    }
+
+    /* ----------- Category ----------- */
+    .checkbox-option > input {
+        display: inline;
+        width: 1rem;
+        margin: 0;
     }
 
     /* ------ Buttons ------- */

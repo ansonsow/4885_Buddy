@@ -61,39 +61,74 @@
                     <input type="text" name="" id="" value="" placeholder="Name of the event &ast;">
                 </div>
 
-                <div class="input-fields">
-                    <input type="text" name="" id="" value="" placeholder="Number of participants &ast;">
-                </div>
-
-                <div class="input-fields">
-                    <input type="text" name="" id="" value="" placeholder="Price &ast;">
-                </div>
-
                 <div class="input-fields location">
                     <input type="text" name="" id="" value="" placeholder="Location &ast;">
                 </div>
 
                 <div class="input-fields date">
-                    <input type="date" name="" id="" value="" placeholder="Date">
+                    <input type="datetime-local" name="" id="" value="" placeholder="Date">
                 </div>
 
                 <div class="input-fields time">
                     <input type="time" name="" id="createEventTime" value="" placeholder="Time">
                 </div>
 
-                <div class="input-fields category">
-                    <select class="drop-down" name="category" id="">
-                        <option value="category">Category</option>
-                        <option value="food-and-drinks">Food & Drinks</option>
-                        <option value="travel">Travel</option>
-                        <option value="sports">Sport</option>
-                        <option value="music">Music</option>
-                        <option value="performing">Performing</option>
-                        <option value="business">Business</option>
-                        <option value="free">Free Events</option>
-                        <option value="online">Online Events</option>
-                    </select>
+                <div class="input-fields">
+                    <input type="number" name="" id="" value="" placeholder="Price &ast;">
                 </div>
+
+                <div class="input-fields">
+                    <input type="number" name="" id="" value="" placeholder="Number of participants &ast;">
+                </div>
+
+                <div class="input-fields category">
+
+                    <div class="category-field">
+                        <label>Category </label>
+                        <span class="arrow">&blacktriangledown;</span>
+                    </div>
+                    <!-- list of checkboxes -->
+
+                    <div class="list options">
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="food-and-drinks">
+                            Food & Drinks
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="travel">
+                            Travel
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="sports">
+                            Sport
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="music">
+                            Music
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="performing">
+                            Performing
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="business">
+                            Business
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="online">
+                            Online
+                        </label> 
+
+                    </div>
+
+                </div>  
 
                 <div class="input-fields desc">
                     <label for="eventDesc">Description</label>

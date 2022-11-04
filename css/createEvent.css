@@ -79,6 +79,43 @@ input:focus, textarea:focus, .drop-down{
     border-radius: 10px;
 }
 
+
+/* ----------- Category ----------- */
+
+.category {
+    display: block;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.category-field > label {
+    font-size: 1rem;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-option > input{
+    display: inline;
+    width: 1rem;
+    font-weight: 400;
+    margin: 0 0 0 3rem;
+}
+
+.arrow {
+    color: var(--Text-Color);
+    cursor: pointer;
+}
+
+.list {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
 /* --------- RIGHT Container --------- */
 input[type="file"] {
     display: none;
@@ -155,7 +192,7 @@ label.upload-img {
 }
 
 .btn {
-    margin: 1rem 2rem 1.5rem 2rem;
+    margin: 0rem 2rem 1.5rem 2rem;
     padding: 1rem 4rem;
     border-radius: 30px;
     cursor: pointer;
@@ -316,6 +353,26 @@ label.upload-img {
     .desc textarea {
         background-color: var(--White);
         color: var(--Text-Color);
+    }
+
+    .flex-layout{
+        display: block;
+    }
+
+    /* ----------- Category ----------- */
+
+    .arrow {
+        color: var(--White);
+    }
+
+    .checkbox-option > input {
+        display: inline;
+        font-weight: 400;
+        margin: 0 0.2rem 0 2.5rem;
+    }
+
+    .checkbox-option {
+        font-size: 1rem;
     }
 
     /* ----------Buttons----------- */
