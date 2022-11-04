@@ -1,4 +1,4 @@
-import * as dbf from "./app.js"
+import {db} from "./app.js"
 // import * as mapf from "./tomtom.js"
 import $ from "./jquery.module.js";
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
@@ -10,7 +10,7 @@ import '../node_modules/regenerator-runtime/runtime.js'
 // console.log("aaa");
 let allSearch = [];
 
-let e = query(collection(dbf.db, "events"));
+let e = query(collection(db, "events"));
 const starSnapshot = await getDocs(e);
 starSnapshot.forEach((doc)=>{
     displayResult(doc.data(),doc.id);
@@ -32,7 +32,7 @@ function displayResult(doc,id){
     
     clonedEvent.addEventListener("click",()=>{
         localStorage.setItem(targetEventId, id);
-        console.log(id);
+        // console.log(id);
         console.log(localStorage.getItem(targetEventId));
     })
 
@@ -53,7 +53,7 @@ function displayResult(doc,id){
         }
     },0);
 
-    clonedEvent.querySelector(".card-content.image.search-page").src = doc.coverImage;
+    clonedEvent.querySelector(".card-content.image.search-page").src = doc.images[0];
     clonedEvent.querySelector(".card-content.event-name").innerHTML = doc.name;
 
     function reverseGeo(l){
@@ -124,7 +124,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
         if(textSearch == "" && tagSearch == "category" && userCoord.length == 0){
             alert("please fill up at lease one field");
             for(let i=0;i<allSearch.length;i++){
-                displayResult(allSearch[i].data())
+                displayResult(allSearch[i].data(), allSearch[i].data)
             }
 
             break;
@@ -223,7 +223,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
     }
     // console.log(searchResult);
     for(let i=0;i<searchResult.length;i++){
-        displayResult(searchResult[i].data())
+        displayResult(searchResult[i].data(),searchResult[i].id)
     }
 })
 
@@ -311,7 +311,7 @@ document.getElementById("resetButton").addEventListener("click",async()=>{
         event.replaceChildren();
     });
     for(let i=0;i<allSearch.length;i++){
-        displayResult(allSearch[i])
+        displayResult(allSearch[i].data(),allSearch[i].id)
     }
 })
 
@@ -394,10 +394,3 @@ document.getElementById("radiusInput").addEventListener("keyup",()=>{
         moveMap(userCoord[0],userCoord[1])
     }
 })
-
-
-
-
-
-
-
