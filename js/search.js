@@ -34,7 +34,7 @@ function displayResult(doc,id){
         localStorage.setItem(targetEventId, id);
         // console.log(id);
         console.log(localStorage.getItem(targetEventId));
-        window.location = "../html/eventDetail.html";
+        window.location = "../html/eventDetail.html#" + localStorage.getItem(targetEventId);
     })
 
 
