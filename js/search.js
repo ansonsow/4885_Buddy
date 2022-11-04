@@ -116,13 +116,20 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
     })
 
     let textSearch = document.getElementById("textSearch").value;
-    let tagSearch = document.getElementById("tagSearch").value;
+    let tagSearch = [];
+    let tags = document.getElementsByName("categoryList");
+    for (let i=0; i < tags.length; i++) {
+        if (tags[i].checked) {
+            tagSearch.push(tags[i].value)
+        }
+    }
+
 
 
     console.log(tagSearch);
     for(let i=0;i<allSearch.length;i++){
 
-        if(textSearch == "" && tagSearch == "category" && userCoord.length == 0){
+        if(textSearch == "" && tagSearch.length == 0 && userCoord.length == 0){
             alert("please fill up at lease one field");
             for(let i=0;i<allSearch.length;i++){
                 displayResult(allSearch[i].data(), allSearch[i].data)
@@ -188,13 +195,13 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
             }
 
             // tag search
-            if(tagSearch != "category"){
+            if(tagSearch.length != 0){
                 if(searchResult.length!=0){
                     // if(!searchResult.includes(allSearch[i])){
                     //     searchResult.push(allSearch[i])
                     // }
                     for(let j=0;j<searchResult.length;j++){
-                        if(!searchResult[j].data().tags.includes(tagSearch)){
+                        if(!searchResult[j].data().tags.includes(tagSearch.toString())){
                             console.log("slice "+searchResult[j].name);
                             searchResult.splice(j,1)
                         }
@@ -202,7 +209,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
                 }
 
-                    if(allSearch[i].data().tags.includes(tagSearch)){
+                    if(allSearch[i].data().tags.includes(tagSearch.toString())){
                         if(!searchResult.includes(allSearch[i])){
                             console.log("push "+allSearch[i].data().name);
                             searchResult.push(allSearch[i])

@@ -145,7 +145,7 @@ if(currentUser){
             $("[dummy-area]").children().unwrap();
         }
 
-        generateUnsplash();
+        // generateUnsplash();
 
         /********************************************************************** */
         /******* TEST: ADD CATS AS EVENTS ************************************* */
