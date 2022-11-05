@@ -369,7 +369,11 @@ $(document).ready(function(){
         setTimeout(() => {
             $(".join-event").each(function(){
                 $(this).addClass("joined");
-                $(this).html(`Event Joined <i class="fa-solid fa-check"></i>`)
+                if($(".popup-msg").hasClass("delete-mode")){
+                    //
+                } else if($(".popup-msg").hasClass("congrats-mode")){
+                    $(this).html(`Event Joined <i class="fa-solid fa-check"></i>`)
+                }                
             })
 
             $(".popup-msg").removeClass("congrats-mode delete-mode")

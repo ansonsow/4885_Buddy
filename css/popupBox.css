@@ -103,3 +103,10 @@
     border-color:var(--Secondary);
     background:var(--Secondary-Light);
 }
+
+@media(max-width:600px){
+    :root {
+        --Popup-Box-Width:80vw;
+        --Popup-Box-Padding:2.6rem;
+    }
+}
