@@ -2,10 +2,6 @@ import {db, addUserEvent, removeUserEvent, addUserFavEvent, removeUserFavEvent} 
 import * as dbf from "./app.js"; // used to get current user
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
-let temporary_image = "https://cdn.discordapp.com/attachments/382037367940448256/1037544194497052672/unsplash_fireworks_c5_eQi4rrjA.jpeg";
-
-document.querySelector(".event-image").setAttribute("style",`background-image:url("${temporary_image}")`);
-
 let joinStatus;
 
 /*----------- INSERT ACTUAL EVENT DETAILS -----------*/
@@ -199,6 +195,9 @@ let currentUser = dbf.auth.currentUser;
 // get email from user authentication
 let currentUserEmail = currentUser.email;
 
+let joinEvent;
+let leaveEvent;
+
 // if user IS logged in
 if(currentUser){
 
@@ -228,6 +227,14 @@ if(currentUser){
         // if user HASN'T JOINED the event
         else if(checkExisting == -1){
             joinStatus = "not joined";
+        }
+
+        joinEvent = function(){
+            addUserEvent(thisUser.id,chosenEvent.id);
+        }
+
+        leaveEvent = function(){
+            removeUserEvent(thisUser.id,chosenEvent.id);
         }
     });
     
@@ -275,50 +282,99 @@ if(currentUser){
 }//end if(currentUser)
 
 $(document).ready(function(){
-    let someButton = $(".join-event"); // change this to whatever you're binding your popup trigger to
 
-    someButton.click(function(){
-        // remove existing <h3> text
-        $(".del-popup h3").empty();
+    /********************************************************************** */
+    /************* JOIN EVENT BUTTON CLICK (activate popup) *************** */
+    /********************************************************************** */
+    $(".join-event").click(function(){
+        if(joinStatus == "not joined"){    
+            // remove existing <h3> text
+            $(".del-popup h3").empty();
 
-        if(joinStatus == "not joined"){
-            alert("not joined")
+            // <h3> text
+            $(".del-popup h3").html("Way to go, Buddy!<br><small>We added you to the event list!</small>");
+
+            $(".popup-msg").addClass("congrats-mode")
+
+            // button text
+            $("#popup_action_2").text("Dismiss");
+
+            $(".congrats-svg").insertAfter($(".del-popup h3"));
+            $(".congrats-svg").show();
+            $(".congrats-svg svg").css("display","block");
+            
+            $("#popup_action_1").hide();
+
+            // fade in the pop-up
+            $(".del-popup").fadeIn(popupFadeSpeed);
+
+            // join the event ⭐⭐⭐
+            joinEvent();
+
+            joinStatus = "joined";
         }
-
+        
         else {
-            alert("joined")
+            // remove existing <h3> text
+            $(".del-popup h3").empty();
+
+            // <h3> text
+            $(".del-popup h3").html("Are you sure you want to leave this event?");
+
+            $(".popup-msg").addClass("delete-mode");
+
+            $("#popup_action_1").show();
+            $("#popup_action_1").text("Leave");
+            $("#popup_action_2").text("Cancel");
+
+            // fade in the pop-up
+            $(".del-popup").fadeIn(popupFadeSpeed);
         }
-
-        // customize your <h3> text
-        $(".del-popup h3").text("Hello :)");
-
-        // customize your button 1 text
-        $("#popup_action_1").text("I'm button 1");
-
-        // customize your button 2 text
-        $("#popup_action_2").text("I'm button 2");
-
-        // fade in the pop-up
-        $(".del-popup").fadeIn(popupFadeSpeed);
     })
-    
-    /********************************************************************** */
-    /******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
-    /********************************************************************** */
 
-    $(document).on("click", "#popup_action_1", function(){
+    /********************************************************************** */
+    /*********** DISMISS POPUP (user just left the event) ***************** */
+    /********************************************************************** */
+    $(document).on("click", ".delete-mode #popup_action_1", function(){
         let that = this; // don't touch this line
 
-        // do stuff
+        // fade out the pop-up
+        $(".del-popup").fadeOut(popupFadeSpeed);
+
+        // leave the event ⭐⭐⭐
+        leaveEvent();
+
+        setTimeout(() => {
+            $(".join-event").each(function(){
+                $(this).removeClass("joined");
+                $(this).html(`Join the Event`)
+            })
+
+            $(".popup-msg").removeClass("delete-mode");
+        },popupFadeSpeed);
+
+        joinStatus = "not joined";
     });
 
     /********************************************************************** */
-    /******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
+    /******** DISMISS CONGRATS POPUP (user just joined the event) ********* */
     /********************************************************************** */
     $(document).on("click", "#popup_action_2", function(){
         let that = this; // don't touch this line
 
         // fade out the pop-up
         $(".del-popup").fadeOut(popupFadeSpeed);
+
+        // change "JOIN EVENT" button text to "JOINED"
+        setTimeout(() => {
+            $(".join-event").each(function(){
+                $(this).addClass("joined");
+                $(this).html(`Event Joined <i class="fa-solid fa-check"></i>`)
+            })
+
+            $(".popup-msg").removeClass("congrats-mode delete-mode")
+        },popupFadeSpeed)
+
+        
     });
 })//end ready

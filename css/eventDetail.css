@@ -373,3 +373,31 @@ body {
         text-align:center;
     }
 }
+
+/*------ POPUP (JOIN CONFIRMATION) ------*/
+.popup-msg.congrats-mode {
+    background:var(--Primary)!important;
+    color:var(--White)!important;
+}
+
+.delete-mode .congrats-svg {
+    display:none!important;
+}
+
+.congrats-svg, .congrats-svg svg {
+    display:none;
+}
+
+.congrats-svg {
+    width:100%;
+    height:100%;
+}
+
+/* transparent background */
+.congrats-svg svg .cls-25 {
+    display:none;
+}
+
+#popup_action_1 {
+    display:none;
+}
