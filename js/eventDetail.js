@@ -378,3 +378,11 @@ $(document).ready(function(){
         
     });
 })//end ready
+
+/********************************************************************** */
+/************************** MESSAGE BOARD ***************************** */
+/********************************************************************** */
+let aa = document.createElement("div");
+aa.setAttribute("js-include-html","../svg/Q&A_bubble.svg");
+document.querySelector(".question-bubble").append(aa);
+jsIncludeHTML();
