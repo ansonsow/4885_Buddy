@@ -6,11 +6,13 @@ import {getFirestore, query,collection,where,getDocs,getDoc,doc} from 'https://w
 
 
 
-let testEventId = "GM7n7SlsJTYiUZecZsUX";
+let testEventId = "mvSF9RKBBnOPY0kcuQ8R";
 //this page's event id 
 let targetEventId = testEventId;
 let currentUser = dbf.auth.currentUser;
 let currentUserEmail;
+let eventData;
+
 
 if (currentUser) {
     // const currentUser = dbf.auth.currentUser.email;
@@ -31,8 +33,30 @@ if (currentUser) {
 
 
     const eventJson = await getDoc(doc(dbf.db, "events", targetEventId));
-    const eventData = eventJson.data()
+    eventData = eventJson.data()
     console.log(eventData);
+
+    /*************************** EVENT DATE ******************************* */
+
+    let eventDateNum = eventData.dateOfEvent;
+    let eventYear = eventDateNum.slice(0,4);
+    let eventMonth = eventDateNum.substring(eventDateNum.length-12).slice(0,2);
+    let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
+
+    // if first number of eventDay is a 0, remove that
+    let dayFirstChara = eventDay.slice(0,1);
+    if(dayFirstChara == "0"){
+        eventDay = eventDay.slice(1,2);
+    }
+
+    /*************************** EVENT TIME ******************************* */
+
+    let eventTimeStart_Hour = eventDateNum.substring(eventDateNum.length-8).slice(0,2);
+    let eventTimeStart_Minutes = eventDateNum.substring(eventDateNum.length-6).slice(0,2);
+
+    let eventTimeEnd_Hour = eventDateNum.substring(eventDateNum.length-4).slice(0,2);
+    let eventTimeEnd_Minutes = eventDateNum.substring(eventDateNum.length-2);
+
 
     if(eventData.hostId != currentUserId){
         alert("u shall not pass")
@@ -40,10 +64,12 @@ if (currentUser) {
         console.log("hi "+ userData.firstName);
         document.getElementById("eventName").placeholder=eventData.name
         // location need tomtom
-        // datetime not sure yet
+
+        document.querySelector("#eventStartDateTime").setAttribute("placeholder", `${eventDay}-${eventMonth}-${eventYear} , ${eventTimeStart_Hour} : ${eventTimeStart_Minutes}`);
+        document.querySelector("#eventEndTime").setAttribute("placeholder", `${eventTimeEnd_Hour} : ${eventTimeEnd_Minutes}`);
         document.getElementById("eventPrice").placeholder=eventData.price
         document.getElementById("eventNumOfPeople").placeholder=eventData.maxCapacity
-        // category needs overhall
+        // category ??
         document.getElementById("eventDesc").placeholder=eventData.description
 
 
@@ -51,37 +77,6 @@ if (currentUser) {
 
 }
 
-
-
-
-// ---------------------------------------------------
-// ------------------ DATE / TIME---------------------
-// ---------------------------------------------------
-// ***** If use date input *****
-// eventDate.addEventListener('change', function (){
-//     console.log(new Date(eventDate.value));
-// })
-
-// ***** If use time input *****
-// eventDate.addEventListener('change', function (){
-//     const datetime = eventDate.value;
-//     const date= datetime.split("T")[0];
-//     const time = datetime.split("T")[1];
-
-//     console.log(datetime)
-//     console.log(`Date_${date}, Time_${time}`)
-// })
-
-// eventEndTime.addEventListener('change', function (){
-//     const time = eventEndTime.value;
-//     const hours = time.split(":")[0];
-//     const minutes = time.split(":")[1];
-
-//     console.log(time)
-//     console.log(`Hour_${hours}, Minutes_${minutes}`)
-// })
-
-// --------------------------------------------------------
 
 /*---------- GET ALL EVENTS ----------*/
 let allEvents = [];
@@ -116,9 +111,8 @@ $(document).ready(function(){
             }
         }
 
-        // --------------------------------------------------------
         // ---------------------- CATEGORY ------------------------
-        // --------------------------------------------------------
+
         let tagValues = [];
         let checkboxes = document.getElementsByName("categoryList");
         
@@ -136,8 +130,8 @@ $(document).ready(function(){
         const eventPrice = document.getElementById('eventPrice').value;
         const eventDesc = document.getElementById('eventDesc').value;
         const category = tagValues;
-        const date = document.getElementById('eventDate').value.split("T")[0];
-        const startTime = document.getElementById('eventDate').value.split("T")[1];
+        const date = document.getElementById('eventStartDateTime').value.split("T")[0];
+        const startTime = document.getElementById('eventStartDateTime').value.split("T")[1];
         const endTime = document.getElementById('eventEndTime').value;
         
 

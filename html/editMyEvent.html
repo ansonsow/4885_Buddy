@@ -49,25 +49,25 @@
                     <form class="form" action="">
                         <div class="input-fields name">
                             <label for="eventName">Event Name : </label>
-                            <input type="text" name="eventName" id="eventName" placeholder="Lorem Ipsum">
+                            <input type="text" name="eventName" id="eventName" placeholder="">
                         </div>
 
                         <div class="input-fields location">
                             <label for="eventLacation">Location : </label>
-                            <input type="text" name="eventLacation" id="eventLocation" placeholder="100 W 49th Ave,Vancouver, BC V5Y 2Z6">
+                            <input type="text" name="eventLacation" id="eventLocation" placeholder="">
                         </div>
 
                         <!-- Use datetime-local bacause by defalt date input splits out UTC time zone -->
                         <div class="input-fields datetime">
-                            <label for="eventDate">Date and Start Time : </label>
-                            <input type="datetime-local" name="eventDate" id="eventDate" placeholder="">
+                            <label for="eventStartDateTime">Date and Start Time : </label>
+                            <input type="text" name="eventStartDateTime" id="eventStartDateTime" placeholder="" onfocus="(this.type='datetime-local')">
                         </div>
 
                         <div class="flex-layout"> 
     
                             <div class="input-fields time">
                                 <label for="eventEndTime">End Time : </label>
-                                <input type="time" name="eventEndTime" id="eventEndTime" placeholder="">
+                                <input type="text" name="eventEndTime" id="eventEndTime" placeholder="" onfocus="(this.type='time')">
                             </div>
 
                             <div class="input-fields price">
