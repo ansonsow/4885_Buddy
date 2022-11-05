@@ -6,3 +6,6 @@ $(document).ready(function(){
     });
 });
 
+document.getElementById("findButton").addEventListener("click",()=>{
+    window.location="../html/search.html"
+})
