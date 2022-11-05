@@ -28,11 +28,34 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app); 
 export const storage = getStorage(app); //Created a const to store
-export const StorageRef = ref(storage);
+export const StorageRef = ref(storage, 'some.jpg');
 // export const storageRef = ref(storage, 'some-child');
 // export const toUpload =  uploadBytes(storageRef).then((snapshot)=>{
 //   console.log("File Uploaded!");
 // }); //Reference to storage
+
+export function toUpload(file){
+    uploadBytes(StorageRef, file)
+    .then((snapshot) => {
+      console.log(snapshot);
+      console.log('Uploaded a blob or file!');
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+}
+
+export function uploadImage(file){
+  let storageRef = ref(storage, file.name);
+  uploadBytes(StorageRef, file)
+  .then((snapshot) => {
+    console.log(snapshot);
+    console.log('Uploaded a blob or file!');
+  })
+  .catch((error)=>{
+    console.log(error);
+  });
+}
 
 export const db = getFirestore();
 export const auth = getAuth(app);

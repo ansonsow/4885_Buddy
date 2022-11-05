@@ -1,5 +1,8 @@
 
-import {storageRef} from './app.js'
+import {StorageRef,toUpload,uploadImage} from './app.js'
+import { getStorage, ref, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js";
+
+
 
 // files.addEventListener("click", async() =>{
 
@@ -43,30 +46,70 @@ import {storageRef} from './app.js'
 
 //To Handle files
   
-    document.getElementById('files').addEventListener('onclick', () => {
-        // e.preventDefault();
-    var file = evt.target.files[0];
+    document.getElementById('files').addEventListener('click', (e) => {
+        e.preventDefault();
+        // console.log("aaaaaa");
+    // var file = e.target.files[0];
+    // var file = "../images/badges_01.png"
+    // var f = new File([""], "/Application/MAMP/htdocs/4885-Buddys/images/badges_01.png");
+    // console.log(f);
 
-    var metadata = {
-      'contentType': file.type
-    };
 
-    // Push to child path.
-    storageRef.child('images/' + file.name).put(file, metadata).then(function(snapshot) {
-    //  To check the size of the file
-    //   console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-         console.log('File metadata:', snapshot.metadata);
-    // To get a download URL for the file.
-      snapshot.ref.getDownloadURL().then(function(url) {
-        console.log('File is available at : ', url);
-    });
-    }).catch(function(error) {
-      console.error('Upload failed:', error);
+    // var metadata = {
+    //   'contentType': file.type
+    // };
+
+    // // Push to child path.
+    // StorageRef.child('images/' + file.name).put(file, metadata).then(function(snapshot) {
+    // //  To check the size of the file
+    // //   console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+    //      console.log('File metadata:', snapshot.metadata);
+    // // To get a download URL for the file.
+    //   snapshot.ref.getDownloadURL().then(function(url) {
+    //     console.log('File is available at : ', url);
+    // });
+    // }).catch(function(error) {
+    //   console.error('Upload failed:', error);
+
+
+
+
+
+
+
+      const file = document.getElementById("upload").files[0];
+            console.log(file);
+
+        const name = new Date() + '-' + file.name ;
+            console.log(name);
+
+        const metadata = {
+            contentType:file.type
+        }
+        // const storage = getStorage(app); //Created a const to store
+        // const StorageRef = ref(storage);
+
+        //  = ref('img/'+file.name); //The problem is in this line...
+
+        //  const imageUpload = StorageRef.uploadBytes('img/'+file.name).then((snapshot)=>{
+        //     console.log("File Uploaded!");
+        //   });
+
+        const task = StorageRef.uploadBytesResumable(file,metadata);
+        console.log(task);
+        task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+            console.log(url);
+            alert("Image is uploaded successfully!");
+        })
+
+
+    // uploadImage(file);
+
     });
   
-    })
     
-
 
 //For Validating users-------
 
