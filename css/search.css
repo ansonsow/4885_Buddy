@@ -322,3 +322,18 @@ h3.card-content{
     
 }
 
+/* ---- Custom Radius ----- */
+#customRadiusSection {
+    margin:1rem auto;
+}
+
+#customRadiusSection label {
+    margin-right:9px;
+}
+
+#customRadiusSection input {
+    outline:none;
+    border:1px solid rgba(var(--Text-Color-RGB),0.2);
+    border-radius:30px;
+    padding:1rem 1.3rem;
+}

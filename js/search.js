@@ -336,7 +336,7 @@ $(document).ready(function(){
     $(".popup-msg").append("<div id='map'></div>");
     map();
 
-    $(".popup-msg").append("<input id='radiusInput'type='number'>");
+    $(".popup-msg").append("<div id='customRadiusSection'><label for='radiusInput'>Search radius:</label><input id='radiusInput' name='radiusInput' type='number'></div>");
 
 
     // push buttons under the map
