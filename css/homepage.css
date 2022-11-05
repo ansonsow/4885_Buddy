@@ -5,7 +5,7 @@
     height: var(--Header-Height);
     background-size:cover;
     background-position:center;
-    background-image:url("../images/unsplash_paint_I9j8Rk-JYFM.jpeg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/unsplash_paint_I9j8Rk-JYFM.jpeg");
 }
 
 .top-container {
@@ -16,12 +16,14 @@
 }
 
 .hero-text {
+    display:flex;
     position:relative;
 }
 
 /* "Immerse yourself" */
 .hero-text h1 {
-    margin:0;
+    width: 31vw;
+    margin:0 2rem;
     font-family: var(--Body-Font);
     font-weight: 500;
     font-size: var(--Hero-Title-Size);
@@ -33,12 +35,13 @@
 }
 
 .hero-text .cta {
-    display:block;
-    margin-top:var(--Hero-CTA-Top-Gap);
+    display:flex;
+    /* margin-top:var(--Hero-CTA-Top-Gap); */
+    margin: auto;
 }
 
 .hero-text .cta a {
-    display:inline-block;
+    /* display:inline-block; */
     font-family: var(--Body-Font);
     font-weight: 700;
     font-size: var(--Hero-CTA-Size);
@@ -50,10 +53,31 @@
     width: var(--Hero-CTA-Width);
     height: var(--Hero-CTA-Height);
 
-    background: var(--Secondary-Light);
-    border: 2px dashed var(--Text-Color);
+    /* background: var(--Secondary-Light); */
+    /* border: 2px dashed var(--Text-Color); */
     border-radius: var(--Hero-CTA-Roundness);
     text-align: center;
+    margin: 0 2rem 0 2rem;
+}
+
+.createBtn {
+    background-color: var(--White);
+    color: var(--Primary);
+}
+
+.createBtn:hover {
+    background-color: var(--Secondary-Light);
+    color: var(--Text-Color);
+}
+
+.findBtn {
+    background-color: var(--Primary);
+    color: var(--White);
+}
+
+.findBtn:hover {
+    background-color: var(--Secondary-Light);
+    color: var(--Text-Color);
 }
 
 /*
@@ -72,10 +96,20 @@
         height: 50vh;
     }
 
+    .top-container {
+        margin-left:10vw;
+    }
+
+    .hero-text {
+        display: block;
+    }
+
     .hero-text h1{
-        max-width:60vw;
+        /* max-width:200vw; */
+        width: 50vw;
         font-size: var(--Mobile-Hero-Title-Size);
         white-space:normal;
+        margin-bottom: 3rem;
     }
 
     .hero-text .cta a {
