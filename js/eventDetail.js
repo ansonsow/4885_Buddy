@@ -382,7 +382,11 @@ $(document).ready(function(){
 /********************************************************************** */
 /************************** MESSAGE BOARD ***************************** */
 /********************************************************************** */
-let aa = document.createElement("div");
-aa.setAttribute("js-include-html","../svg/Q&A_bubble.svg");
-document.querySelector(".question-bubble").append(aa);
+
+document.querySelectorAll(".bubble").forEach(bubbly => {
+    let beBubble = document.createElement("div");
+    beBubble.setAttribute("js-include-html","../svg/Q&A_bubble.svg");
+    bubbly.append(beBubble);
+})
+
 jsIncludeHTML();
