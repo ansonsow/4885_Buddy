@@ -126,6 +126,10 @@ let popupFadeSpeed = parseInt(getComputedStyle(document.documentElement).getProp
 // --------------- Category Dropdown -----------------
 // ---------------------------------------------------
 
-document.querySelector(".category-label").addEventListener("click", () => {
-  document.querySelector(".category-list").classList.toggle("show");
-});
+let categoryLabel = document.querySelector(".category-label");
+
+if(typeof(categoryLabel) != "undefined" && categoryLabel != null){
+  document.querySelector(".category-label").addEventListener("click", () => {
+    document.querySelector(".category-list").classList.toggle("show");
+  });
+}

@@ -220,17 +220,10 @@ export async function addUserEvent(id,event){
 export async function removeUserEvent(id,event){
   
   const db = getFirestore();
-
-  const snapShot = await getDoc(doc(db, "users", id));
-  if(snapShot.data().event.includes(event)){
-    const userRef = doc(db, "users", id);
-    await updateDoc(userRef, {
-      events: arrayRemove(event)
-    });
-  }
-  else{
-    console.log("event do not exist in the user's list");
-  }
+  const userRef = doc(db, "users", id);
+  await updateDoc(userRef, {
+    events: arrayRemove(event)
+  });
 }
 
 // removeUserEvent("hPJQxUZYKQLKVWqkHxou","new event2")
@@ -521,18 +514,10 @@ export async function addEventTag(id,tag){
 
 export async function removeEventTag(id,tag){
   const db = getFirestore();
-
-  const snapShot = await getDoc(doc(db, "events", id));
-  if(snapShot.data().tags.includes(tag)){
-    const userRef = doc(db, "events", id);
-    await updateDoc(userRef, {
-      tags: arrayRemove(tag)
-    });
-  }else{
-    console.log("tag do not exist");
-  }
-  // const db = getFirestore();
-
+  const userRef = doc(db, "events", id);
+  await updateDoc(userRef, {
+    tags: arrayRemove(tag)
+  });
 }
 
 // removeEventTag("92RaEQhxmyG3xJLl82KM","tag1")
