@@ -427,7 +427,9 @@ function reviewStars(){
 
 reviewStars()
 
-//***************************************************************//
+/********************************************************************** */
+/**************** CLONE REVIEWS (testing purposes) ******************** */
+/********************************************************************** */
 
 function cloneReview(clones){
     let reviewBlock = document.querySelector(".review-block");
@@ -438,7 +440,7 @@ function cloneReview(clones){
     }
 }
 
-cloneReview(8);
+cloneReview(7);
 
 //***************************************************************//
 
@@ -450,6 +452,9 @@ let reviewsGap = parseInt(getComputedStyle(document.documentElement)
 
 let howManyReviews = document.querySelectorAll(".review-block").length;
 
+let swipeSpeed = parseInt(getComputedStyle(document.documentElement)
+                .getPropertyValue("--Reviews-Slide-Speed"));
+
 let slidesNeeded = Math.ceil(howManyReviews / reviewsPerRow);
 let currentSlide = 1;
 
@@ -459,14 +464,8 @@ let reviewStretchWidth;
 
 //***************************************************************//
 
-document.querySelectorAll(".review-block").forEach((dd) => {
-    dd.addEventListener("click", () => {
-        // alert('clicked')
-        // dd.style.display = "none";
-    })
-})
-
 $(document).ready(function(){
+    // random avatar
     $(".review-avatar").each(function(e){
         if(e !== 0){
             let rando = Math.floor(Math.random() * (420 - 69 + 1) + 69);
@@ -474,19 +473,23 @@ $(document).ready(function(){
         }
     })
 
+    // if multiple slides are NOT needed,
+    // hide the slider arrows
     if(slidesNeeded == "1"){
         $(".reviews-slider-arrows").hide();
     } else {
         // on initial load, auto set slide 1
         $(".reviews-cont-b").attr("current-slide","1");
         $(".reviews-cont-b").attr("slides-needed",slidesNeeded);
-    }
-    
+    }    
 
+    // get reviews container width,
+    // and make sure that each review has its fixed column width
     function reformatReviews(){
         rvContA_Width = $(".reviews-cont-a").width();
         $(".reviews-cont-a").attr("cont-width",rvContA_Width);
 
+        // desktop
         if(window.innerWidth > 1000){
             reviewBlockWidth = Math.floor((rvContA_Width - (reviewsGap * (reviewsPerRow - 1))) / reviewsPerRow);
             $(".review-block").width(reviewBlockWidth);
@@ -514,11 +517,11 @@ $(document).ready(function(){
             $(".reviews-cont-b").removeClass("single-col")
         }
 
+        // mobile
         else {
             $(".reviews-cont-b, .review-block").css("width","");
             $(".reviews-cont-b").addClass("single-col")
-        }
-             
+        }             
     }
 
     reformatReviews()
@@ -528,19 +531,40 @@ $(document).ready(function(){
     })
 
     $("[class^='reviews-flick']").click(function(){
-        /*********************/
+
+        /********************************************************************** */
+        /*************************** PREV BUTTON ****************************** */
+        /********************************************************************** */
         if($(this).hasClass("reviews-flick-prev")){
-            //
+            // if: user CAN'T keep going back
+            if(currentSlide == "2"){
+                $(".reviews-flick-prev").addClass("arrow-disabled").removeClass("arrow-enabled");
+                currentSlide = 1;
+                $(".reviews-cont-b").attr("current-slide",currentSlide);
+                $(".reviews-cont-b").css("margin-left","");
+                $(".reviews-flick-next").addClass("arrow-enabled").removeClass("arrow-disabled");
+            }
+
+            // if: user CAN keep going back
+            else if(currentSlide > 2){
+                currentSlide -= 1;
+                $(".reviews-cont-b").attr("current-slide",currentSlide);
+                $(".reviews-cont-b").css("margin-left",`calc((0px - (var(--temporary-review-block-width) * ${reviewsPerRow}) - (var(--Reviews-Box-Spacing) * ${reviewsPerRow})) * (${currentSlide} - 1))`)
+            }
         }
 
-        /*********************/
+        /********************************************************************** */
+        /*************************** NEXT BUTTON ****************************** */
+        /********************************************************************** */
         else if($(this).hasClass("reviews-flick-next")){
+            // if: user CAN keep going next
             if(Math.floor(currentSlide + 1) < slidesNeeded){
                 currentSlide += 1;
                 $(".reviews-cont-b").attr("current-slide",currentSlide);
                 $(".reviews-cont-b").css("margin-left",`calc((0px - (var(--temporary-review-block-width) * ${reviewsPerRow}) - (var(--Reviews-Box-Spacing) * ${reviewsPerRow})) * (${currentSlide} - 1))`)
             }
-
+            
+            // if: user CAN'T keep going next
             else if(Math.floor(currentSlide + 1) == slidesNeeded){
                 currentSlide += 1;
                 $(".reviews-cont-b").attr("current-slide",currentSlide);
@@ -548,12 +572,22 @@ $(document).ready(function(){
                 $(".reviews-flick-next").addClass("arrow-disabled").removeClass("arrow-enabled");
                 $(".reviews-flick-prev").addClass("arrow-enabled").removeClass("arrow-disabled");
             }
+
+            // allow user to go back
+            // if currentSlide isn't 1
+            if(currentSlide > 1){
+                $(".reviews-flick-prev").addClass("arrow-enabled").removeClass("arrow-disabled");
+            }
         }
 
         /*********************/
 
+        // temporarily disable transition during window resize
         $(window).resize(function(){
-            // if(window.innerHeight)
+            $(".reviews-cont-b").addClass("no-transition");
+            setTimeout(() => {
+                $(".reviews-cont-b").removeClass("no-transition")
+            },swipeSpeed)
         })
     })//end click
-})
+})//end docready

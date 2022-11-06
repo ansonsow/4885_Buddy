@@ -146,7 +146,7 @@
     --Reviews-Slider-Arrows-Size:var(--H3-Size);
     --Reviews-Slider-Arrows-Spacing:30px;
 
-    --Reviews-Slide-Speed:500ms;
+    --Reviews-Slide-Speed:500ms; /* ms only */
     --Reviews-Slide-Method:cubic-bezier(0.14, 0, 0.14, 1);
 
     /*************************************************************/
@@ -757,6 +757,10 @@ body {
     display:block;
     font-size:var(--Reviews-Slider-Arrows-Size);
     color:rgba(var(--Text-Color-RGB), 0.7);
+}
+
+.no-transition {
+    transition-duration:0s!important;
 }
 
 @media(max-width:1000px){
