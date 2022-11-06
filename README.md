@@ -16,7 +16,7 @@ You need to remove the `4885_Buddy` folder from your *local* computer first, and
 
 5. Start MAMP.
 
-6. Go to `localhost:8888/4885_Buddy`. You should see this:  
+6. Go to `localhost:8888/4885_Buddy/html`. You should see this:  
 
 ![image](https://user-images.githubusercontent.com/25330392/193746250-e9d4949f-3f10-45db-9b79-fd78e87c3ca1.png)  
 
