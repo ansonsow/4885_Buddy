@@ -2,6 +2,8 @@
 import {storage, auth, db, writeEventData,getStorageRef,uploadFile,getFileLink} from './app.js'
 import {query,collection, getDocs} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import {ref, uploadBytes,getDownloadURL} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js'
+import $ from "./jquery.module.js";
+
 
 import '../node_modules/regenerator-runtime/runtime.js'
 
@@ -10,8 +12,11 @@ function createEvent(name, currentUserId, price, img , location, formattedDate, 
   writeEventData(name, currentUserId, price, img , location, formattedDate, desc, number , capacity, eventStatus , category, [])
 }
 
+
+
 // if(bool == true){
 // }
+let img = [];
 
 let currentUser = auth.currentUser;
 if (currentUser) {
@@ -137,60 +142,88 @@ searchBox()
       let formattedDate = (String(newEvent.date)+ String(newEvent.endTime))
       formattedDate =formattedDate.replaceAll(':','').replace('T', '').replace(',', '').replaceAll('-', '')
 
-      let file = document.getElementById("upload").files;
-      console.log(file.length);
-      let img = [];
-      let bool = false;
+      // let file = document.getElementById("upload").files;
+      // console.log(file.length);
+      // let bool = false;
   
   
-      for(let i=0;i<file.length;i++){
-        let storageRef = ref(storage, currentUserId+Date.now()+file[i].name);
-        console.log(storageRef);
+      // for(let i=0;i<file.length;i++){
+      //   let storageRef = ref(storage, currentUserId+Date.now()+file[i].name);
+      //   console.log(storageRef);
   
-        const metadata = {
-          contentType: file[i].type,
-        };
+      //   const metadata = {
+      //     contentType: file[i].type,
+      //   };
   
-        await uploadBytes(storageRef,file[i],metadata)
-        .then((snapshot)=>{
-          console.log(snapshot);
-          getDownloadURL(storageRef)
-          .then((url)=>{
-            img.push(url);
-            console.log(img);
-            bool = true;
-          })
-          .catch((error=>{
-            console.log(error);
-          }))
-        })
-        .catch((error)=>{
-          console.log(error);
-        });
-      }
+      //   await uploadBytes(storageRef,file[i],metadata)
+      //   .then((snapshot)=>{
+      //     console.log(snapshot);
+      //     getDownloadURL(storageRef)
+      //     .then((url)=>{
+      //       img.push(url);
+      //       console.log(img);
+      //       bool = true;
+      //     })
+      //     .catch((error=>{
+      //       console.log(error);
+      //     }))
+      //   })
+      //   .catch((error)=>{
+      //     console.log(error);
+      //   });
+      // }
 
-      setTimeout(() => {
-        createEvent(newEvent.name, currentUserId, newEvent.price, img , newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, [])
-          
-      }, 1000);
-
-
+      // setTimeout(() => {
+        createEvent(newEvent.name, currentUserId, newEvent.price, img , newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, []) 
+      // }, 500);
 
     }
-
-
-
 
   });
 
 
+  $('input[type=file]').change(async function () {
+    // console.log(this.files[0].mozFullPath);
+    let file = document.getElementById("upload").files;
+
+    let storageRef = ref(storage, currentUserId+Date.now()+file[0].name);
+    console.log(storageRef);
+
+    const metadata = {
+      contentType: file[0].type,
+    };
+
+    await uploadBytes(storageRef,file[0],metadata)
+    .then((snapshot)=>{
+      console.log(snapshot);
+      getDownloadURL(storageRef)
+      .then((url)=>{
+        img.push(url);
+        console.log(img);
 
 
-  document.getElementById("upload").addEventListener("click",()=>{
-    console.log(document.getElementById("upload").files);
-  })
+        let eventBlock = document.querySelector(".image-wrap");
+        let clonedEvent = eventBlock.cloneNode(true);
+        clonedEvent.removeAttribute("hidden");
+        clonedEvent.querySelector(".image").src = url;
+        document.querySelector(".images-container").append(clonedEvent);
+
+
+
+
+      })
+      .catch((error=>{
+        console.log(error);
+      }))
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+  });
+
   
 }else{
   console.log("not login");
 }
+
 
