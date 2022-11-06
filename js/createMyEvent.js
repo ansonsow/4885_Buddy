@@ -105,8 +105,8 @@ searchBox()
       focus(document.getElementById('name'));
       document.getElementById('name').style.borderBottom = 'red solid 0.5px'
     }else if(!newEvent.date){
-      focus(document.getElementById('date'));
-      document.getElementById('date').style.borderBottom = 'red solid 0.5px'
+      focus(document.getElementById('datetime'));
+      document.getElementById('datetime').style.borderBottom = 'red solid 0.5px'
     }else if(!newEvent.endTime){
       focus(document.getElementById('endTime'));
       document.getElementById('endTime').style.borderBottom = 'red solid 0.5px'
