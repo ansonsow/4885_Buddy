@@ -5,7 +5,8 @@ import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
 import {Firestore, getFirestore, collection, doc, updateDoc, getDocs,getDoc, addDoc, deleteDoc, arrayUnion, arrayRemove, setDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, connectAuthEmulator, signOut} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-import {getStorage,ref, uploadBytes} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js' //importaed firebase storage 
+import {getStorage,ref, uploadBytes,getDownloadURL} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js' //importaed firebase storage 
+
 
 
 
@@ -28,35 +29,11 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app); 
 export const storage = getStorage(app); //Created a const to store
-export const StorageRef = ref(storage, 'some.jpg');
+
 // export const storageRef = ref(storage, 'some-child');
 // export const toUpload =  uploadBytes(storageRef).then((snapshot)=>{
 //   console.log("File Uploaded!");
 // }); //Reference to storage
-
-export function toUpload(file){
-    uploadBytes(StorageRef, file)
-    .then((snapshot) => {
-      console.log(snapshot);
-      console.log('Uploaded a blob or file!');
-    })
-    .catch((error)=>{
-      console.log(error);
-    });
-}
-
-export function uploadImage(file){
-  let storageRef = ref(storage, file.name);
-  uploadBytes(StorageRef, file)
-  .then((snapshot) => {
-    console.log(snapshot);
-    console.log('Uploaded a blob or file!');
-  })
-  .catch((error)=>{
-    console.log(error);
-  });
-}
-
 export const db = getFirestore();
 export const auth = getAuth(app);
 
@@ -72,6 +49,51 @@ export const auth = getAuth(app);
 // retriving data from event collection and id uGfj5SGWqdBIdFsM7Lie document's description field
 const querySnapshot = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
 // safsdf.innerHTML = querySnapshot.data().description;
+
+// ==========================================================================================================
+// ============================================== storage ===================================================
+// ==========================================================================================================
+
+export function getStorageRef(filename){
+  return ref(storage, filename);
+}
+
+
+
+
+export async function uploadFile(storageRef, file , metadata){
+  await uploadBytes(storageRef,file,metadata)
+  .then((snapshot)=>{
+    console.log(snapshot);
+    // getDownload(storageRef)
+  })
+  .catch((error)=>{
+    console.log(error);
+  });
+}
+
+export async function getFileLink (storageRef){
+  getDownloadURL(storageRef)
+  .then((url)=>{
+    // console.log(url);
+    // document.getElementById("testimg").src = url;
+    // img.push(url);
+    return url;
+  })
+  .catch((error=>{
+    console.log(error);
+  }))
+}
+
+
+
+
+
+
+
+
+
+
 
 // ============================================== add new user ==============================================
 export async function writeUserData(userName, fname, lname, email, eventId, pfpURL, favEvent){
@@ -303,7 +325,6 @@ export async function writeEventData(name, hostId, price,pfpURL, location, dateO
     name: name,
     hostId: hostId,
     price: price,
-
     images: pfpURL,
     location: location,
     dateCreated: new Date(),

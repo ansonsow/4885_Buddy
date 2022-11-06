@@ -1,12 +1,21 @@
 
-import {storage, auth, db, writeEventData} from './app.js'
+import {storage, auth, db, writeEventData,getStorageRef,uploadFile,getFileLink} from './app.js'
 import {query,collection, getDocs} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
-import {getStorage,ref, uploadBytes} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js'
+import {ref, uploadBytes,getDownloadURL} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js'
+
 import '../node_modules/regenerator-runtime/runtime.js'
 
 
+function createEvent(name, currentUserId, price, img , location, formattedDate, desc , number ,capacity, eventStatus , category, []){
+  writeEventData(name, currentUserId, price, img , location, formattedDate, desc, number , capacity, eventStatus , category, [])
+}
+
+// if(bool == true){
+// }
+
 let currentUser = auth.currentUser;
 if (currentUser) {
+
   // logged in
   let currentUserId;
   let allUser = [];
@@ -69,7 +78,8 @@ async function searchBox(){
     searchPlugIn.appendChild(searchBoxHTML)
     ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
         console.log(data);
-        newEvent.location = [data.result.lng, data.result.lat];
+        console.log(data.data.result);
+        newEvent.location = [data.data.result.position.lng, data.data.result.position.lat];
     });
 }
 
@@ -122,33 +132,70 @@ searchBox()
       // document.getElementById('location').style.borderBottom = 'red solid 0.5px'
     }else{
 
+
+
+      let file = document.getElementById("upload").files;
+      console.log(file.length);
+      let img = [];
+      let bool = false;
+  
+  
+      for(let i=0;i<file.length;i++){
+        let storageRef = ref(storage, currentUserId+Date.now()+file[i].name);
+        console.log(storageRef);
+  
+        const metadata = {
+          contentType: file[i].type,
+        };
+  
+        await uploadBytes(storageRef,file[i],metadata)
+        .then((snapshot)=>{
+          console.log(snapshot);
+          getDownloadURL(storageRef)
+          .then((url)=>{
+            img.push(url);
+            console.log(img);
+            bool = true;
+            console.log(bool);
+            createEvent(newEvent.name, currentUserId, newEvent.price, img , newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, [])
+          })
+          .catch((error=>{
+            console.log(error);
+          }))
+        })
+        .catch((error)=>{
+          console.log(error);
+        });
+      }
+
+
+
+
+
       // writeEventData(name, hostId, price,pfpURL, location, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag, review){
       console.log(newEvent.date);
 
       let formattedDate = (String(newEvent.date)+ String(newEvent.endTime))
       formattedDate =formattedDate.replaceAll(':','').replace('T', '').replace(',', '').replaceAll('-', '')
-      // writeEventData(newEvent.name, currentUserId, newEvent.price,[], newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, [])
-      file = document.getElementById("upload").files;
 
+
+  
 
     }
 
 
 
 
-    // let file = document.getElementById("upload").files;
-    // console.log(file[0].name);
-    // console.log(file[0].name);
-    // let storageRef = ref(storage, file[0].name);
-    // uploadBytes(storageRef,file)
-    // .then((snapshot)=>{
-    //   console.log(snapshot);
-    // })
-    // .catch((error)=>{
-    //   console.log(error);
-    // });
   });
+
+
+
+
+  document.getElementById("upload").addEventListener("click",()=>{
+    console.log(document.getElementById("upload").files);
+  })
   
 }else{
   console.log("not login");
 }
+
