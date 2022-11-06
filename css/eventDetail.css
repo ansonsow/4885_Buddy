@@ -96,12 +96,62 @@
     --Q-A-Set-Spacing:2.3rem;
     --Q-A-Divider-Width:calc(100% - (var(--Q-A-Bubble-Size) * 2) - (var(--Q-A-Bubble-Gap) * 2));
 
+    /*----- Message Board - "Leave a Question" -----*/
+    --LeaveAQuestion-Button-Font-Size:calc(var(--H3-Size) * 0.9);
+    --LeaveAQuestion-Button-Padding:0.9rem 2rem;
+    --LeaveAQuestion-Button-Roundness:30px;
+    --LeaveAQuestion-Button-Hover-Speed:0.25s;
+    --LeaveAQuestion-Button-Hover-Method:ease-in-out;
+
     /*************************************************************/
 
-    --Mobile-Message-Board-Padding:8vmin 10vmin 8vmin 10vmin;
+    --Mobile-Message-Board-Padding:8vmin 10vmin 9vmin 10vmin;
 
     --Mobile-Question-Text-Font-Size:var(--Mobile-Body-Font-Size);
     --Mobile-Question-Text-Single-Row-Height:calc(var(--Question-Text-Font-Size) * var(--Question-Text-LineHeight));
+
+    --Mobile-LeaveAQuestion-Button-Margin:2.5rem;
+    --Mobile-LeaveAQuestion-Button-Width:69%;
+    --Mobile-LeaveAQuestion-Button-Padding:1.2rem 1.6rem;
+
+    /*************************************************************/
+
+    /*----- Reviews -----*/
+    --Reviews-Container-Padding:10vmin 18vmin;
+
+    /*----- Reviews Heading -----*/
+    --Reviews-Heading-Size:var(--H2-Size);
+    --Reviews-Heading-Bottom-Gap:2.2rem;
+    
+    --Reviews-Per-Row:3;
+    --Reviews-Box-Roundness:35px;
+    --Reviews-Box-Padding:40px;
+
+    --Reviews-Avatar-Size:60px;
+    --Reviews-Avatar-Gap:15px;
+
+    --Reviews-Username-Font-Size:1rem;
+    --Reviews-Username-Bottom-Gap:4px;
+
+    --Reviews-Star-Size:18px;
+    --Reviews-Star-Spacing:2px;
+
+    --Review-Text-Top-Gap:16px;
+    --Review-Text-MaxHeight:none;
+    --Review-Text-Size:1.1rem;
+
+    --Reviews-Box-Spacing:30px; /* px only */
+
+    --Reviews-Slider-Top-Gap:2rem;
+    --Reviews-Slider-Arrows-Size:var(--H3-Size);
+    --Reviews-Slider-Arrows-Spacing:30px;
+
+    --Reviews-Slide-Speed:500ms;
+    --Reviews-Slide-Method:cubic-bezier(0.14, 0, 0.14, 1);
+
+    /*************************************************************/
+
+    --Mobile-Reviews-Container-Padding:8vmin 10vmin 8vmin 10vmin;
 }/* end root */
 
 /*-------- SHARED STYLING (both desktop & mobile --------*/
@@ -437,7 +487,9 @@ body {
     display:none;
 }
 
-/*------ MESSAGE BOARD ------*/
+/********************************************************************** */
+/************************** MESSAGE BOARD ***************************** */
+/********************************************************************** */
 .message-board-cont {
     padding:var(--Message-Board-Padding);
     background:var(--Light-Gray);
@@ -533,9 +585,33 @@ body {
     font-size:var(--Answer-Text-Font-Size);
 }
 
+/*------ "LEAVE A QUESTION" ------*/
+.leave-a-question {
+    margin-top:var(--Q-A-Set-Spacing);
+    text-align:center;
+}
+
+.leave-a-question a {
+    display:inline-block;
+    padding:var(--LeaveAQuestion-Button-Padding);
+    background:var(--Text-Color);
+    border:1px solid transparent;
+    border-radius:var(--LeaveAQuestion-Button-Roundness);
+    font-size:var(--LeaveAQuestion-Button-Font-Size);
+    font-weight:500;
+    color:var(--White);
+    line-height:1em;
+    transition:all var(--LeaveAQuestion-Button-Hover-Speed) var(--LeaveAQuestion-Button-Hover-Method);
+    cursor:pointer;
+}
+
+.leave-a-question a:hover {
+    background:var(--Primary);
+}
+
 @media(max-width:600px){
     .message-board-cont {
-        padding:var(--Mobile-Message-Board-Padding)
+        padding:var(--Mobile-Message-Board-Padding);
     }
 
     .question-row .bubble-wrap {
@@ -544,5 +620,161 @@ body {
 
     .question-text {
         font-size:var(--Mobile-Question-Text-Font-Size);
+    }
+
+    .leave-a-question {
+        margin-top:calc(var(--Q-A-Set-Spacing) / 2);
+    }
+
+    .leave-a-question a {
+        width:var(--Mobile-LeaveAQuestion-Button-Width);
+        padding:var(--Mobile-LeaveAQuestion-Button-Padding);
+    }
+}
+
+/********************************************************************** */
+/***************************** REVIEWS ******************************** */
+/********************************************************************** */
+.reviews-section {
+    padding:var(--Reviews-Container-Padding);
+}
+
+.reviews-heading {
+    font-size:var(--Reviews-Heading-Size);
+    margin-bottom:var(--Reviews-Heading-Bottom-Gap);
+    text-align:center;
+}
+
+.reviews-cont-a {
+    overflow:hidden;
+}
+
+.reviews-cont-b {
+    display:grid;
+    grid-template-columns:repeat(var(--Reviews-Per-Row), 1fr);
+    grid-gap:var(--Reviews-Box-Spacing);
+    transition:margin-left var(--Reviews-Slide-Speed) var(--Reviews-Slide-Method);
+}
+
+.single-col {
+    --Reviews-Per-Row:1!important;
+    margin-left:0!important;
+    transition-duration:0s!important;
+}
+
+.review-block {
+    padding:var(--Reviews-Box-Padding);
+    background:#fff;
+    border-radius:var(--Reviews-Box-Roundness);
+}
+
+.rv-flex {
+    display:grid;
+    grid-template-columns:var(--Reviews-Avatar-Size) auto;
+    grid-template-rows:repeat(2,1fr);
+    grid-gap:var(--Reviews-Username-Bottom-Gap) var(--Reviews-Avatar-Gap);
+}
+
+.review-avatar {
+    grid-area:1/1/3/2;
+    width:var(--Reviews-Avatar-Size);
+    height:var(--Reviews-Avatar-Size);
+    border-radius:100%;
+    object-fit:cover;
+    flex-shrink:0;
+}
+
+.review-username {
+    grid-area:1/2/2/3;
+    align-self:end;
+    font-weight:500;
+}
+
+.review-rating {
+    display:flex;
+    align-items:center;
+    grid-area:2/2/3/3;
+    align-self:baseline;
+}
+
+.review-rating i {
+    display:block;
+    font-size:var(--Reviews-Star-Size);
+}
+
+.review-rating i + i {
+    margin-left:var(--Reviews-Star-Spacing);
+}
+
+.review-rating i.fill {
+    color:var(--Primary);
+}
+
+.review-rating i.empty {
+    color:var(--Secondary-Light);
+}
+
+.review-text-cont {
+    margin-top:var(--Review-Text-Top-Gap);
+    max-height:var(--Review-Text-MaxHeight);
+    overflow-y:auto;
+}
+
+.review-text {
+    font-size:var(--Review-Text-Size);
+    hyphens:auto;
+    color:rgba(var(--Text-Color-RGB), 0.9);
+}
+
+.reviews-slider-arrows {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:var(--Reviews-Slider-Top-Gap);
+}
+
+[class^="reviews-flick"]{
+    margin:0 calc(var(--Reviews-Slider-Arrows-Spacing) / 2);
+    cursor:pointer;
+}
+
+.reviews-flick-prev {
+    opacity:0.4;
+    cursor:not-allowed;
+}
+
+.arrow-enabled {
+    opacity:1;
+    cursor:pointer;
+}
+
+.arrow-disabled {
+    opacity:0.4;
+    cursor:not-allowed;
+}
+
+.reviews-slider-arrows i {
+    display:block;
+    font-size:var(--Reviews-Slider-Arrows-Size);
+    color:rgba(var(--Text-Color-RGB), 0.7);
+}
+
+@media(max-width:1000px){
+    :root {
+        --Reviews-Per-Row:1;
+        --Reviews-Container-Padding:var(--Mobile-Reviews-Container-Padding);
+    }
+
+    .reviews-cont-a {
+        overflow:hidden;
+    }
+
+    .review-block {
+        flex-shrink:0;
+        width:100%;
+    }
+
+    .reviews-slider-arrows {
+        display:none;
     }
 }

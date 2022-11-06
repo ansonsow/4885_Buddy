@@ -1,5 +1,6 @@
 import {db, addUserEvent, removeUserEvent, addUserFavEvent, removeUserFavEvent} from "./app.js";
 import * as dbf from "./app.js"; // used to get current user
+import $ from "./jquery.module.js";
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 let joinStatus;
@@ -394,3 +395,165 @@ document.querySelectorAll(".bubble").forEach(bubbly => {
 })
 
 jsIncludeHTML();
+
+/********************************************************************** */
+/***************************** REVIEWS ******************************** */
+/********************************************************************** */
+
+let rvContA = document.querySelector(".reviews-cont-a");
+let rvContB = document.querySelector(".reviews-cont-b");
+
+function reviewStars(){
+    let starCont = document.querySelector(".review-rating");
+
+    let howManyStars = Number(starCont.textContent.trim());
+    let maxStars = 5;
+    let emptyStars = Math.floor(maxStars - howManyStars);
+
+    starCont.replaceChildren();
+
+    for(let i=0; i<howManyStars; i++){
+        let createFillStar = document.createElement("i");
+        createFillStar.setAttribute("class", "fa-solid fa-star fill");
+        starCont.prepend(createFillStar);
+    }
+
+    for(let i=0; i<emptyStars; i++){
+        let createEmptyStar = document.createElement("i");
+        createEmptyStar.setAttribute("class", "fa-solid fa-star empty");
+        starCont.append(createEmptyStar);
+    }
+}
+
+reviewStars()
+
+//***************************************************************//
+
+function cloneReview(clones){
+    let reviewBlock = document.querySelector(".review-block");
+
+    for(let i=0; i<Number(clones); i++){
+        let clonedReview = reviewBlock.cloneNode(true);
+        rvContB.append(clonedReview)
+    }
+}
+
+cloneReview(8);
+
+//***************************************************************//
+
+let reviewsPerRow = parseInt(getComputedStyle(document.documentElement)
+                   .getPropertyValue("--Reviews-Per-Row"));
+
+let reviewsGap = parseInt(getComputedStyle(document.documentElement)
+                .getPropertyValue("--Reviews-Box-Spacing"));
+
+let howManyReviews = document.querySelectorAll(".review-block").length;
+
+let slidesNeeded = Math.ceil(howManyReviews / reviewsPerRow);
+let currentSlide = 1;
+
+let rvContA_Width;
+let reviewBlockWidth;
+let reviewStretchWidth;
+
+//***************************************************************//
+
+document.querySelectorAll(".review-block").forEach((dd) => {
+    dd.addEventListener("click", () => {
+        // alert('clicked')
+        // dd.style.display = "none";
+    })
+})
+
+$(document).ready(function(){
+    $(".review-avatar").each(function(e){
+        if(e !== 0){
+            let rando = Math.floor(Math.random() * (420 - 69 + 1) + 69);
+            $(this).attr("src",`//source.unsplash.com/${rando}x${rando}`);
+        }
+    })
+
+    if(slidesNeeded == "1"){
+        $(".reviews-slider-arrows").hide();
+    } else {
+        // on initial load, auto set slide 1
+        $(".reviews-cont-b").attr("current-slide","1");
+        $(".reviews-cont-b").attr("slides-needed",slidesNeeded);
+    }
+    
+
+    function reformatReviews(){
+        rvContA_Width = $(".reviews-cont-a").width();
+        $(".reviews-cont-a").attr("cont-width",rvContA_Width);
+
+        if(window.innerWidth > 1000){
+            reviewBlockWidth = Math.floor((rvContA_Width - (reviewsGap * (reviewsPerRow - 1))) / reviewsPerRow);
+            $(".review-block").width(reviewBlockWidth);
+
+            $(".reviews-cont-a").attr("style",`--temporary-review-block-width:${reviewBlockWidth}px;`);
+
+            reviewStretchWidth = Math.floor((reviewBlockWidth * howManyReviews) + (reviewsGap * (howManyReviews - 1)));
+            $(".reviews-cont-b").width(reviewStretchWidth);
+
+            let existingBStyle;
+
+            if($(".reviews-cont-b").is("[style]")){
+                existingBStyle = $(".reviews-cont-b").attr("style");
+                if(existingBStyle !== ""){
+                    if(existingBStyle.substring(existingBStyle.length-1) !== ";"){
+                        existingBStyle += ";"
+                    }
+                }
+            }
+
+            if(existingBStyle.indexOf("--Reviews-Per-Row") < 0){
+                $(".reviews-cont-b").attr("style",`${existingBStyle}--Reviews-Per-Row:${howManyReviews};`)
+            }
+            
+            $(".reviews-cont-b").removeClass("single-col")
+        }
+
+        else {
+            $(".reviews-cont-b, .review-block").css("width","");
+            $(".reviews-cont-b").addClass("single-col")
+        }
+             
+    }
+
+    reformatReviews()
+
+    $(window).resize(function(){
+        reformatReviews()
+    })
+
+    $("[class^='reviews-flick']").click(function(){
+        /*********************/
+        if($(this).hasClass("reviews-flick-prev")){
+            //
+        }
+
+        /*********************/
+        else if($(this).hasClass("reviews-flick-next")){
+            if(Math.floor(currentSlide + 1) < slidesNeeded){
+                currentSlide += 1;
+                $(".reviews-cont-b").attr("current-slide",currentSlide);
+                $(".reviews-cont-b").css("margin-left",`calc((0px - (var(--temporary-review-block-width) * ${reviewsPerRow}) - (var(--Reviews-Box-Spacing) * ${reviewsPerRow})) * (${currentSlide} - 1))`)
+            }
+
+            else if(Math.floor(currentSlide + 1) == slidesNeeded){
+                currentSlide += 1;
+                $(".reviews-cont-b").attr("current-slide",currentSlide);
+                $(".reviews-cont-b").css("margin-left",`calc((0px - (var(--temporary-review-block-width) * ${reviewsPerRow}) - (var(--Reviews-Box-Spacing) * ${reviewsPerRow})) * (${currentSlide} - 1))`);
+                $(".reviews-flick-next").addClass("arrow-disabled").removeClass("arrow-enabled");
+                $(".reviews-flick-prev").addClass("arrow-enabled").removeClass("arrow-disabled");
+            }
+        }
+
+        /*********************/
+
+        $(window).resize(function(){
+            // if(window.innerHeight)
+        })
+    })//end click
+})
