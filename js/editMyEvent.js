@@ -62,14 +62,15 @@ if (currentUser) {
         alert("u shall not pass")
     }else{
         console.log("hi "+ userData.firstName);
-        document.getElementById("eventName").placeholder=eventData.name
+        document.getElementById("eventName").value=eventData.name
         // location need tomtom
 
-        document.querySelector("#eventStartDateTime").setAttribute("placeholder", `${eventDay}-${eventMonth}-${eventYear} , ${eventTimeStart_Hour} : ${eventTimeStart_Minutes}`);
-        document.querySelector("#eventEndTime").setAttribute("placeholder", `${eventTimeEnd_Hour} : ${eventTimeEnd_Minutes}`);
-        document.getElementById("eventPrice").placeholder=eventData.price
-        document.getElementById("eventNumOfPeople").placeholder=eventData.maxCapacity
-        document.getElementById("eventDesc").placeholder=eventData.description
+        document.getElementById("eventStartDateTime").setAttribute("value", `${eventYear}-${eventMonth}-${eventDay} , ${eventTimeStart_Hour} : ${eventTimeStart_Minutes}`);
+        document.getElementById("eventEndTime").setAttribute("value", `${eventTimeEnd_Hour} : ${eventTimeEnd_Minutes}`);
+
+        document.getElementById("eventPrice").value=eventData.price
+        document.getElementById("eventNumOfPeople").value=eventData.maxCapacity
+        document.getElementById("eventDesc").value=eventData.description
         // category
         eventData.tags.forEach((tag) => {
             document.getElementById(`check-${tag}`).setAttribute("checked", true)
@@ -135,14 +136,14 @@ $(document).ready(function(){
         const endTime = document.getElementById('eventEndTime').value;
         
         let formattedDate = (String(startDateTime )+ String(endTime))
-        formattedDate =formattedDate.replaceAll(':','').replace('T', '').replaceAll('-', '')
+        formattedDate =formattedDate.replaceAll(':','').replace('T', '').replace(',', '').replaceAll('-', '')
 
         dbf.replaceEvent(theEventID, {
             ...eventData,
             tags: tagValues,
             name: eventName,
             // location: eventLocation,
-            numOfPeople: numberOfParticipants,
+            maxCapacity: numberOfParticipants,
             price: eventPrice,
             description: eventDesc,
             dateOfEvent: formattedDate
