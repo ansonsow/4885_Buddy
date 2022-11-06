@@ -69,9 +69,11 @@ if (currentUser) {
         document.querySelector("#eventEndTime").setAttribute("placeholder", `${eventTimeEnd_Hour} : ${eventTimeEnd_Minutes}`);
         document.getElementById("eventPrice").placeholder=eventData.price
         document.getElementById("eventNumOfPeople").placeholder=eventData.maxCapacity
-        // category ??
         document.getElementById("eventDesc").placeholder=eventData.description
-
+        // category
+        eventData.tags.forEach((tag) => {
+            document.getElementById(`check-${tag}`).setAttribute("checked", true)
+        });
 
     }
 
@@ -125,47 +127,47 @@ $(document).ready(function(){
 
         // get "checked" box values
         const eventName = document.getElementById('eventName').value;
-        const eventLocation = document.getElementById('eventLocation').value;
+        // const eventLocation = document.getElementById('eventLocation').value;
         const numberOfParticipants = document.getElementById('eventNumOfPeople').value;
         const eventPrice = document.getElementById('eventPrice').value;
         const eventDesc = document.getElementById('eventDesc').value;
-        const category = tagValues;
-        const date = document.getElementById('eventStartDateTime').value.split("T")[0];
-        const startTime = document.getElementById('eventStartDateTime').value.split("T")[1];
+        const startDateTime = document.getElementById('eventStartDateTime').value;
         const endTime = document.getElementById('eventEndTime').value;
         
+        let formattedDate = (String(startDateTime )+ String(endTime))
+        formattedDate =formattedDate.replaceAll(':','').replace('T', '').replaceAll('-', '')
 
-        for(let i=0; i<category.length; i++){
-            let checkExistingTag = currentEventTags.findIndex(scanTag => {
-                return scanTag === category[i]
-            })
+        dbf.replaceEvent(theEventID, {
+            ...eventData,
+            tags: tagValues,
+            name: eventName,
+            // location: eventLocation,
+            numOfPeople: numberOfParticipants,
+            price: eventPrice,
+            description: eventDesc,
+            dateOfEvent: formattedDate
+        });
 
-            // if tag doesn't exist,
-            // add the tag to the event
-            if(checkExistingTag > -1){
-                // alert(theEventID + " :" + category[i])
-                removeEventTag(theEventID,category[i].toString())
-            }
+        // for(let i=0; i<category.length; i++){
+        //     let checkExistingTag = currentEventTags.findIndex(scanTag => {
+        //         return scanTag === category[i]
+        //     })
+
+        //     // if tag doesn't exist,
+        //     // add the tag to the event
+        //     if(checkExistingTag > -1){
+        //         // alert(theEventID + " :" + category[i])
+        //         removeEventTag(theEventID,category[i].toString())
+        //     }
             
-            // if tag ALREADY exists,
-            // REMOVE the tag from the event
-            else if(checkExistingTag == -1){      
-                // alert(theEventID + " :" + category[i])      
-                addEventTag(theEventID,category[i].toString())
-            }
-        }
+        //     // if tag ALREADY exists,
+        //     // REMOVE the tag from the event
+        //     else if(checkExistingTag == -1){      
+        //         // alert(theEventID + " :" + category[i])      
+        //         addEventTag(theEventID,category[i].toString())
+        //     }
+        // }
         
-        // console.log({
-        // eventName,
-        // eventLocation,
-        // numberOfParticipants,
-        // eventPrice,
-        // eventDesc,
-        // category,
-        // date,
-        // startTime,
-        // endTime
-        // })
 
         // remove existing <h3> text
         $(".del-popup h3").empty();

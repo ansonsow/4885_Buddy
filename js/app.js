@@ -3,7 +3,7 @@
 // Import the functions you need from the SDKs
 import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
-import {Firestore, getFirestore, collection, doc, updateDoc, getDocs,getDoc, addDoc, deleteDoc, arrayUnion, arrayRemove} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import {Firestore, getFirestore, collection, doc, updateDoc, getDocs,getDoc, addDoc, deleteDoc, arrayUnion, arrayRemove, setDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, connectAuthEmulator, signOut} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import {getStorage,ref, uploadBytes} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js' //importaed firebase storage 
 
@@ -523,8 +523,13 @@ export async function removeEventTag(id,tag){
 // removeEventTag("92RaEQhxmyG3xJLl82KM","tag1")
 // removeEventTag("92RaEQhxmyG3xJLl82KM","tag2")
 
-
-
+// ========== use in editMyEvent page ===========
+export async function replaceEvent(id,event){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+  await setDoc(userRef, event);
+}
+// ==============================================
 
 export async function addEventReview(id,review){
   const db = getFirestore();
