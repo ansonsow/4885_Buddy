@@ -66,27 +66,27 @@
             <form action="">
     
                 <div class="input-fields">
-                    <input type="text" name="" id="" value="" placeholder="Name of the event &ast;">
+                    <input type="text" name="" id="name" value="" placeholder="Name of the event &ast;" required>
                 </div>
 
                 <div class="input-fields location">
-                    <input type="text" name="" id="" value="" placeholder="Location &ast;">
+                    <input type="text" name="" id="location" value="" placeholder="Location &ast;" required>
                 </div>
 
                 <div class="input-fields date">
-                    <input type="datetime-local" name="" id="" value="" placeholder="Date">
+                    <input type="datetime-local" name="" id="datetime" value="" placeholder="Date" required>
                 </div>
 
                 <div class="input-fields time">
-                    <input type="time" name="" id="createEventTime" value="" placeholder="Time">
+                    <input type="time" name="" id="endTime" value="" placeholder="Time" required>
                 </div>
 
                 <div class="input-fields">
-                    <input type="number" name="" id="" value="" placeholder="Price &ast;">
+                    <input type="number" name="" id="price" value="" placeholder="Price &ast;" required>
                 </div>
 
                 <div class="input-fields">
-                    <input type="number" name="" id="" value="" placeholder="Number of participants &ast;">
+                    <input type="number" name="" id="number" value="" placeholder="Number of participants &ast;" required>
                 </div>
 
                 <div class="input-fields category">
@@ -140,7 +140,7 @@
 
                 <div class="input-fields desc">
                     <label for="eventDesc">Description</label>
-                    <textarea name="eventDesc" id="" placeholder=""></textarea>
+                    <textarea name="eventDesc" id="desc" placeholder=""></textarea>
                 </div>
 
             </form>
@@ -196,7 +196,7 @@
         
         <div class="btn-wrap">
             <button class="btn btn-cancel">Cancel</button>
-            <button type="button" class="btn btn-submit" id="files" >Submit</button>
+            <button type="button" class="btn btn-submit" id="submit" >Submit</button>
         </div>
 
     </div> <!-- End Main Container-->
