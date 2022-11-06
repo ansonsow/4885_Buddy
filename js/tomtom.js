@@ -2,8 +2,8 @@
 import * as dbf from "./app.js"
 // import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
 import '../node_modules/regenerator-runtime/runtime.js'
-import {storageRef} from"./app.js"
-console.log(storageRef);
+
+
 
 let tomtomApiKey = "xcVSGa6cCt3p8cdaJHKnUCMSWesW8tzc"
 //default to vancouver 

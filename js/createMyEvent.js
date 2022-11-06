@@ -2,6 +2,7 @@
 import {storage, auth, db, writeEventData} from './app.js'
 import {query,collection, getDocs} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import {getStorage,ref, uploadBytes} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js'
+import '../node_modules/regenerator-runtime/runtime.js'
 
 
 let currentUser = auth.currentUser;
@@ -39,7 +40,42 @@ if (currentUser) {
   let newEvent = new EVENT;
   
   // no location yet
-  newEvent.location = [0,0];
+
+
+
+  var options = {
+    searchOptions: {
+        key: tomtomApiKey,
+        language: 'en-GB',
+        limit: 5
+    },
+    autocompleteOptions: {
+        key: tomtomApiKey,
+        language: 'en-GB'
+    }
+};
+
+
+async function searchBox(){
+    var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
+    var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+    searchBoxHTML.style.borderWidth = "0px";
+
+    searchBoxHTML.style.borderBottom = "#CCCCCC solid 1px";
+
+    let span = document.createElement("span");
+    span.append("Location");
+    searchPlugIn.appendChild(span);
+    searchPlugIn.appendChild(searchBoxHTML)
+    ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
+        console.log(data);
+        newEvent.location = [data.result.lng, data.result.lat];
+    });
+}
+
+
+searchBox()
+
 
  
 
@@ -81,9 +117,9 @@ if (currentUser) {
       focus(document.getElementById('number'));
       document.getElementById('number').style.borderBottom = 'red solid 0.5px'
     }else if(!newEvent.location){
-      // need to do location later
-      focus(document.getElementById('location'));
-      document.getElementById('location').style.borderBottom = 'red solid 0.5px'
+      document.querySelector('.tt-search-box-input').focus();
+      document.querySelector('.tt-search-box-input-container').style.borderBottom = 'red solid 0.5px'
+      // document.getElementById('location').style.borderBottom = 'red solid 0.5px'
     }else{
 
       // writeEventData(name, hostId, price,pfpURL, location, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag, review){
@@ -91,7 +127,7 @@ if (currentUser) {
 
       let formattedDate = (String(newEvent.date)+ String(newEvent.endTime))
       formattedDate =formattedDate.replaceAll(':','').replace('T', '').replace(',', '').replaceAll('-', '')
-      writeEventData(newEvent.name, currentUserId, newEvent.price,[], newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, [])
+      // writeEventData(newEvent.name, currentUserId, newEvent.price,[], newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, [])
       file = document.getElementById("upload").files;
 
 
