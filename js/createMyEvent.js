@@ -1,7 +1,7 @@
 
-import {storage, auth, db, writeEventData,getStorageRef,uploadFile,getFileLink} from './app.js'
+import {storage, auth, db, writeEventData} from './app.js'
 import {query,collection, getDocs} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
-import {ref, uploadBytes,getDownloadURL} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js'
+import {ref, uploadBytes,getDownloadURL,deleteObject} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js'
 import $ from "./jquery.module.js";
 
 
@@ -200,12 +200,26 @@ searchBox()
       .then((url)=>{
         img.push(url);
         console.log(img);
+        let position = img.length;
+        console.log(position);
 
 
         let eventBlock = document.querySelector(".image-wrap");
         let clonedEvent = eventBlock.cloneNode(true);
         clonedEvent.removeAttribute("hidden");
         clonedEvent.querySelector(".image").src = url;
+        clonedEvent.querySelector(".delete-upload-img").addEventListener('click',()=>{
+          deleteObject(storageRef).then(() => {
+            const index = img.indexOf(url);
+            if (index > -1) { 
+              img.splice(index, 1); 
+            }
+            clonedEvent.remove()
+            console.log(img);
+          }).catch((error) => {
+            
+          });
+        })
         document.querySelector(".images-container").append(clonedEvent);
 
 
