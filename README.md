@@ -1,6 +1,5 @@
 # 4885_Buddy
 
-<!--
 **Firebase update:**  
 You need to remove the `4885_Buddy` folder from your *local* computer first, and reopen it through MAMP.  
 
@@ -26,7 +25,6 @@ You need to remove the `4885_Buddy` folder from your *local* computer first, and
 <img src="https://user-images.githubusercontent.com/25330392/196013655-38b8754a-3504-4d1d-93f4-85e61de824fa.png" width="420">  
 
 ---
--->
 
 **Oct 30th update:**  
 `search.html` &mdash; We're now using a tomtom plugin that helps with automated suggestions as the user types their query into the searchbox:  
