@@ -134,6 +134,9 @@ searchBox()
 
 
 
+      let formattedDate = (String(newEvent.date)+ String(newEvent.endTime))
+      formattedDate =formattedDate.replaceAll(':','').replace('T', '').replace(',', '').replaceAll('-', '')
+
       let file = document.getElementById("upload").files;
       console.log(file.length);
       let img = [];
@@ -156,8 +159,6 @@ searchBox()
             img.push(url);
             console.log(img);
             bool = true;
-            console.log(bool);
-            createEvent(newEvent.name, currentUserId, newEvent.price, img , newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, [])
           })
           .catch((error=>{
             console.log(error);
@@ -168,18 +169,12 @@ searchBox()
         });
       }
 
+      setTimeout(() => {
+        createEvent(newEvent.name, currentUserId, newEvent.price, img , newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, [])
+          
+      }, 1000);
 
 
-
-
-      // writeEventData(name, hostId, price,pfpURL, location, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag, review){
-      console.log(newEvent.date);
-
-      let formattedDate = (String(newEvent.date)+ String(newEvent.endTime))
-      formattedDate =formattedDate.replaceAll(':','').replace('T', '').replace(',', '').replaceAll('-', '')
-
-
-  
 
     }
 
