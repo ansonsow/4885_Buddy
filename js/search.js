@@ -75,22 +75,35 @@ function formatTime(d){
 }
 
 
-function getDate(d,i){
+function getDate(d){
     let eventDateNum = d.replace(/[^\d\.]*/g,"");
-    console.log(eventDateNum);
+    // console.log(eventDateNum);
     let eventYear = eventDateNum.slice(0,4);
     // 8 6
-    let eventMonth = eventDateNum.substring(eventDateNum.length - i).slice(0,2);
-    console.log(i);
-    let eventDay = eventDateNum.substring(eventDateNum.length-(i-2)).slice(0,2);
-    console.log(eventYear);
-    console.log(eventMonth);
-    console.log(eventDay);
+    let eventMonth = eventDateNum.substring(eventDateNum.length - 12).slice(0,2);
+    let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
+    // console.log(eventYear);
+    // console.log(eventMonth);
+    // console.log(eventDay);
     return (`${eventYear}${eventMonth}${eventDay}`);
 }
 
-function formatDateSearch(searchDate, docDate){
-    if(getDate(searchDate, 8)<getDate(docDate , 12)){
+function getDateShort(d){
+    let eventDateNum = d.replace(/[^\d\.]*/g,"");
+    // console.log(eventDateNum);
+    let eventYear = eventDateNum.slice(0,4);
+    // 8 6
+    let eventMonth = eventDateNum.substring(eventDateNum.length - 8).slice(0,2);
+    let eventDay = eventDateNum.substring(eventDateNum.length-6).slice(0,2);
+    // console.log(eventYear);
+    // console.log(eventMonth);
+    // console.log(eventDay);
+    return (`${eventYear}${eventMonth}${eventDay}`);
+}
+
+function formatDateSearch(searchDate, docDate , n){
+    console.log(n);
+    if(getDateShort(searchDate)<getDate(docDate)){
         return true;
     }else{
         return false;
@@ -205,8 +218,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
     }
 
 
-    console.log(dateSearch);
-    console.log(getDate(dateSearch));
+
     for(let i=0;i<allSearch.length;i++){
         console.log(getDate(allSearch[i].data().dateOfEvent));
         if(textSearch == "" && tagSearch.length == 0 && userCoord.length == 0 && dateSearch == ""){
@@ -222,7 +234,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                 if(searchResult.length!=0){
                     for(let j=0;j<searchResult.length;j++){
                         if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
-                            // console.log("slice "+searchResult[j].name);
+                            console.log("slicing " + searchResult[j].data().name +" because doesn't contain name");
                             searchResult.splice(j,1)
                         }
                     }
@@ -230,6 +242,8 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                 if(allSearch[i].data().name.toUpperCase().includes(textSearch.toUpperCase())){
                     if(!searchResult.includes(allSearch[i])){
                         // console.log(allSearch[i].name);
+                        console.log("pushing " +allSearch[i].data().name +" because contain name");
+
                         searchResult.push(allSearch[i])
                     }
                 }
@@ -243,8 +257,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
                         for(let j=0;j<searchResult.length;j++){
                             if(calculateDistance(userCoord,allSearch[i].data().location)>radius){
-                            console.log("slice "+searchResult[j].name);
-
+                                
                                 searchResult.splice(j,1)
                             }
                         }
@@ -253,7 +266,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                         
                         if(calculateDistance(userCoord,allSearch[i].data().location)<radius){
                             if(!searchResult.includes(allSearch[i])){
-                                console.log("push "+allSearch[i].data().name);
+
                                 searchResult.push(allSearch[i])
                             }
                         }
@@ -261,25 +274,43 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
             }
             // function formatDateSearch(searchDate, docDate){
 
-// date search
-            if(dateSearch!=""){
-                if(searchResult.lenth!=0){                    
-                        for(let j=0;j<searchResult.length;j++){
-                            if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent)){
-                            console.log("slice "+searchResult[j].name);
-                                searchResult.splice(j,1)
-                            }
-                        }
+            // date search
+            // if(dateSearch!=""){
+            //     if(searchResult.length!=0){                    
+            //         for(let j=0;j<searchResult.length;j++){
+            //             if(!formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent , allSearch[i].data().name)){
+            //                 console.log("slice "+searchResult[j].name);
+            //                 searchResult.splice(j,1)
+            //             }
+            //         }
+            //     }
                         
-                    }
-                        
-                        if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent)){
-                            if(!searchResult.includes(allSearch[i])){
-                                console.log("push "+allSearch[i].data().name);
-                                searchResult.push(allSearch[i])
-                            }
-                        }
+            //     if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent, allSearch[i].data().name)){
+            //         if(!searchResult.includes(allSearch[i])){
+            //             console.log("push "+allSearch[i].data().name);
+            //             searchResult.push(allSearch[i])
+            //         }
+            //     }
                     
+            // }
+            if(dateSearch!=""){
+                if(searchResult.length!=0){
+                    console.log("something in the search");
+                    for(let j =0;j<searchResult.length;j++){
+                        if(!formatDateSearch(dateSearch, searchResult[j].data().dateOfEvent , searchResult[j].data().name)){
+
+                            console.log("slicing " + searchResult[j].data().name +" because the date of event is bigger");
+                            searchResult.splice(j,1)
+                        }
+                    }
+                }
+                if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent , allSearch[i].data().name)){
+                    if(!searchResult.includes(allSearch[i])){
+                        console.log("pushing "+ allSearch[i].data().name + " beacause the event date is bigger");
+                        searchResult.push(allSearch[i])
+                    }
+
+                }
             }
 
             // tag search
@@ -308,7 +339,7 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
 
 
-
+            console.log(searchResult);
             
 
             
@@ -356,18 +387,18 @@ async function searchBox(){
 }
 
 // searchbox2 is the one in the search.js
-async function searchBox2(){
-    var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
-    var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-    searchBoxPlugin.appendChild(searchBoxHTML)
-    // document.getElementsByClassName("popup-msg")[0].prepend(searchBoxHTML)
+// async function searchBox2(){
+//     var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
+//     var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+//     searchBoxPlugin.appendChild(searchBoxHTML)
+//     // document.getElementsByClassName("popup-msg")[0].prepend(searchBoxHTML)
 
-    ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
-        moveMap(data.data.result.position.lng,data.data.result.position.lat)
-        userCoord = [data.data.result.position.lng,data.data.result.position.lat]
-    });
-}
-searchBox2()
+//     ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
+//         moveMap(data.data.result.position.lng,data.data.result.position.lat)
+//         userCoord = [data.data.result.position.lng,data.data.result.position.lat]
+//     });
+// }
+// searchBox2()
 
 
 console.log(document.getElementsByClassName("popup-msg"));
