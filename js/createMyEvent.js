@@ -181,7 +181,7 @@ searchBox()
 
   });
 
-
+  // upload image
   $('input[type=file]').change(async function () {
     // console.log(this.files[0].mozFullPath);
     let file = document.getElementById("upload").files;
@@ -193,6 +193,8 @@ searchBox()
       contentType: file[0].type,
     };
 
+
+    
     await uploadBytes(storageRef,file[0],metadata)
     .then((snapshot)=>{
       console.log(snapshot);

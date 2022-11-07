@@ -19,10 +19,86 @@ starSnapshot.forEach((doc)=>{
 })
 
 
+// ================= functions to format time and date from eventDetail ==============================
+function formatDate(d){
+    let eventDateNum = d.replace(/[^\d\.]*/g,"");
+    let eventYear = eventDateNum.slice(0,4);
+    let eventMonth = eventDateNum.substring(eventDateNum.length-12).slice(0,2);
+    let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
+
+    // if first number of eventDay is a 0, remove that
+    let dayFirstChara = eventDay.slice(0,1);
+    if(dayFirstChara == "0"){
+        eventDay = eventDay.slice(1,2);
+    }
+
+    let suffixes = ["st", "nd", "rd"];
+    let numExceptions = [11, 12, 13];
+    let nth = suffixes[(eventDay % 10) - 1] == undefined || numExceptions.includes(eventDay % 100) ? "th" : suffixes[(eventDay % 10) - 1];
+
+    let daySuffix = nth;
+
+    // format eventMonth
+    eventMonth =
+        eventMonth == "01" ? "Jan" :
+        eventMonth == "02" ? "Feb" :
+        eventMonth == "03" ? "Mar" :
+        eventMonth == "04" ? "Apr" :
+        eventMonth == "05" ? "May" :
+        eventMonth == "06" ? "Jun" :
+        eventMonth == "07" ? "Jul" :
+        eventMonth == "08" ? "Aug" :
+        eventMonth == "09" ? "Sept" :
+        eventMonth == "10" ? "Oct" :
+        eventMonth == "11" ? "Nov" :
+        eventMonth == "12" ? "Dec" :
+        eventMonth;
+
+    return(`${eventDay}${daySuffix} ${eventMonth} ${eventYear}`);
+    
+    // document.querySelector(".event-date").textContent = `${eventDay}${daySuffix} ${eventMonth} ${eventYear}`;
+}
 
 
 
-// TODO add onclick to change target event so that event detail can know what event the user clicked
+
+function formatTime(d){
+    let eventDateNum = d.replace(/[^\d\.]*/g,"");
+
+    let eventTimeStart_Hour = eventDateNum.substring(eventDateNum.length-8).slice(0,2);
+    let eventTimeStart_Minutes = eventDateNum.substring(eventDateNum.length-6).slice(0,2);
+
+    let eventTimeEnd_Hour = eventDateNum.substring(eventDateNum.length-4).slice(0,2);
+    let eventTimeEnd_Minutes = eventDateNum.substring(eventDateNum.length-2);
+
+    return(`${eventTimeStart_Hour}:${eventTimeStart_Minutes} &ndash; ${eventTimeEnd_Hour}:${eventTimeEnd_Minutes}`);
+}
+
+
+function getDate(d,i){
+    let eventDateNum = d.replace(/[^\d\.]*/g,"");
+    console.log(eventDateNum);
+    let eventYear = eventDateNum.slice(0,4);
+    // 8 6
+    let eventMonth = eventDateNum.substring(eventDateNum.length - i).slice(0,2);
+    console.log(i);
+    let eventDay = eventDateNum.substring(eventDateNum.length-(i-2)).slice(0,2);
+    console.log(eventYear);
+    console.log(eventMonth);
+    console.log(eventDay);
+    return (`${eventYear}${eventMonth}${eventDay}`);
+}
+
+function formatDateSearch(searchDate, docDate){
+    if(getDate(searchDate, 8)<getDate(docDate , 12)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+// =========================== function to clear out the last result and display new results (takes the data and id as para)=========================
 function displayResult(doc,id){
 
     let eventBlock = document.querySelector(".event-container");
@@ -70,12 +146,16 @@ function displayResult(doc,id){
     reverseGeo(doc.location)
 
     // card-content location
-    clonedEvent.querySelector(".card-content.time").innerHTML = "not sure yet";
+    clonedEvent.querySelector(".card-content.date").innerHTML =  formatDate(doc.dateOfEvent);
+    clonedEvent.querySelector(".card-content.time").innerHTML =  formatTime(doc.dateOfEvent);
+
+
 
 }
 
 
 // movable-type.co.uk/scripts/latlong.html
+// ========================== function to calculate distance between two coordinate =========================
 function calculateDistance(locationA, locationB){
     let lon1 = locationA[0]
     let lat1 = locationA[1]
@@ -102,18 +182,18 @@ function calculateDistance(locationA, locationB){
 let searchResult = [];
 let userCoord = [];
 
-
+// ======================== searchButton on click ========================================================
 document.getElementById("searchButton").addEventListener("click",async()=>{
     document.querySelectorAll(".cloned-events-container").forEach(event => {
         event.replaceChildren();
     });
     searchResult=[];
 
+    let dateSearch = document.getElementById("dateTime").value;
+    // console.log(dateSearch);
 
-    const searchSnapshot = await getDocs(e);
-    searchSnapshot.forEach((doc)=>{
-        // console.log(doc.data());
-    })
+
+
 
     let textSearch = document.getElementById("textSearch").value;
     let tagSearch = [];
@@ -125,11 +205,11 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
     }
 
 
-
-    console.log(tagSearch);
+    console.log(dateSearch);
+    console.log(getDate(dateSearch));
     for(let i=0;i<allSearch.length;i++){
-
-        if(textSearch == "" && tagSearch.length == 0 && userCoord.length == 0){
+        console.log(getDate(allSearch[i].data().dateOfEvent));
+        if(textSearch == "" && tagSearch.length == 0 && userCoord.length == 0 && dateSearch == ""){
             alert("please fill up at lease one field");
             for(let i=0;i<allSearch.length;i++){
                 displayResult(allSearch[i].data(), allSearch[i].data)
@@ -137,20 +217,6 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
             break;
         }else{
-
-            // if(textSearch!=""&&tagSearch!="category"&&userCoord.length!=0){
-            //     let search = allSearch.filter(element =>{
-            //         // if(element.name.toUpperCase().includes(textSearch.toUpperCase()) &&
-            //         //    element.tags.includes(tagSearch)&&
-            //         //    calculateDistance(userCoord,element.location)>radius)
-            //         //    {
-            //         //     searchResult.push(element)
-            //         //    }
-            //         console.log(element);
-            //         return element.name.toUpperCase().includes(textSearch.toUpperCase()) && element.tags.includes(tagSearch)&&calculateDistance(userCoord,element.location)>radius
-            //     })
-            //     console.log(search);
-            // }else{
             // text search
             if(textSearch != ""){
                 if(searchResult.length!=0){
@@ -169,12 +235,12 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                 }
             }
 
+
+
+            // location search
             if(userCoord.length!=0){
                 if(searchResult.lenth!=0){                    
-                        // if(!searchResult.includes(allSearch[i])){
-                        //     searchResult.push(allSearch[i])
-                        // }
-                        
+
                         for(let j=0;j<searchResult.length;j++){
                             if(calculateDistance(userCoord,allSearch[i].data().location)>radius){
                             console.log("slice "+searchResult[j].name);
@@ -186,6 +252,28 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                     }
                         
                         if(calculateDistance(userCoord,allSearch[i].data().location)<radius){
+                            if(!searchResult.includes(allSearch[i])){
+                                console.log("push "+allSearch[i].data().name);
+                                searchResult.push(allSearch[i])
+                            }
+                        }
+                    
+            }
+            // function formatDateSearch(searchDate, docDate){
+
+// date search
+            if(dateSearch!=""){
+                if(searchResult.lenth!=0){                    
+                        for(let j=0;j<searchResult.length;j++){
+                            if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent)){
+                            console.log("slice "+searchResult[j].name);
+                                searchResult.splice(j,1)
+                            }
+                        }
+                        
+                    }
+                        
+                        if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent)){
                             if(!searchResult.includes(allSearch[i])){
                                 console.log("push "+allSearch[i].data().name);
                                 searchResult.push(allSearch[i])
@@ -227,9 +315,9 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
 
         }
         
-        // TODO: location search and date/time search
+        // TODO: date/time search
     }
-    // console.log(searchResult);
+
     for(let i=0;i<searchResult.length;i++){
         displayResult(searchResult[i].data(),searchResult[i].id)
     }
