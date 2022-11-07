@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Events for Users</title>
-
-    <link rel="shortcut icon" href="../favicon.ico">
+    <title>Give Review</title>
     
     <!-- firebase -->
     <script type="module" src="../js/app.js"></script>
@@ -24,12 +22,13 @@
     <!-- page-specific assets -->
     <link href="../css/topBar.css" rel="stylesheet">
     <link href="../css/leftPanel.css" rel="stylesheet">
-    <link href="../css/myEventsUsers.css" rel="stylesheet">
+    <link href="../css/giveReview.css" rel="stylesheet">
+    <link href="../css/popupBox.css" rel="stylesheet">
     <link href="../css/footer.css" rel="stylesheet">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     <script src="../js/leftPanel.js" defer></script>
-    <!-- <script src="../js/myEvents.js" defer></script> -->
+    <script src="../js/giveReview.js" defer></script>
 
 </head>
 
@@ -40,10 +39,13 @@
     <!------ LEFT PANEL ------>
     <div js-include-html="../html/leftPanel.html" status="closed"></div>
 
+    <!------ POPUP ------>
+    <div js-include-html="../html/popupBox.html"></div>
+
 
     <!------ MAIN CONTENT ------>
 
-    <div class="container">
+    <div class="container forWeb">
 
         <div class="left-container">
 
@@ -218,6 +220,58 @@
         </div> <!-- End Right Container-->
 
     </div> <!-- End Container-->
+
+<!-- ---------------------------------------------------------------------------------------------- -->
+<!-- --------- The Top Part is the same as My Events for User page ( in the background ) ---------- -->
+<!-- ---------------------------------------------------------------------------------------------- -->
+<!-- ----------------------------------- ( POP UP is in js file) ---------------------------------- -->
+<!-- ---------------------------------------------------------------------------------------------- -->
+<!-- ----------------------------- The Bottom Part is for Mobile size  -------------------––------- -->
+
+    <div class="mobile">
+
+        <div class="illustration">
+            <img src="../svg/give_review.svg" alt="">
+        </div>
+        
+        <!-- card -->
+        <div class="event-container">
+            <div class="card-container" id="">
+                <div>
+                    <!-- <a href="#"></a> -->
+                    <a href="#"><img class="card-content image search-page" src="../images/unsplash_hiking_view_T22nibt5XvI.jpeg" alt=""></a>
+                </div>
+                <div class="card-description">
+                    <h3 class="card-content">Event name</h3>
+                    <p class="card-content"><b>Location: </b><span>Lorem Ipsum </span></p>
+                    <p class="card-content"><b>Date: </b><span>Lorem Ipsum</span></p>
+                    <p class="card-content"><b>Time: </b><span>Lorem Ipsum</span></p>
+                </div>
+            </div>
+        </div> <!-- End Card -->
+
+        <!-- Review Area -->
+        <div class="review-wrap">
+            <h4>Your Review</h4>
+            <hr>
+            <textarea class="review-box" placeholder="Message..."></textarea>
+            <h4>Rate the Overview for This Event</h4>
+            <hr>
+            <div class="star-rating">
+                <i class="fa-solid fa-star fill"></i>
+                <i class="fa-solid fa-star fill"></i>
+                <i class="fa-solid fa-star fill"></i>
+                <i class="fa-solid fa-star fill"></i>
+                <i class="fa-solid fa-star empty"></i>
+            </div>
+        </div> <!-- End Review -->
+
+        <button type="submit" class="mobile-btn">Send</button>
+
+    </div> <!-- End Mobile --> 
+
+
+
 
 
 

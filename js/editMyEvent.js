@@ -136,7 +136,7 @@ $(document).ready(function(){
         const endTime = document.getElementById('eventEndTime').value;
         
         let formattedDate = (String(startDateTime )+ String(endTime))
-        formattedDate =formattedDate.replaceAll(':','').replace('T', '').replace(',', '').replaceAll('-', '')
+        formattedDate = formattedDate.replaceAll(':','').replace('T', '').replace(',', '').replaceAll('-', '').replaceAll(' ', '')
 
         dbf.replaceEvent(theEventID, {
             ...eventData,
