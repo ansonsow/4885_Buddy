@@ -132,6 +132,7 @@ input[type="file"] {
 .upload-content-wrap {
     border: 2px solid var(--Text-Color);
     margin: 0 2rem;
+    width: 580px;
 }   
 
 /* ----------- Images Area ----------- */
@@ -140,7 +141,7 @@ input[type="file"] {
     justify-content: flex-start;
     flex-wrap: wrap;
     padding: 1rem 0.5rem;
-    height: 350px;
+    height: 310px;
 }
 
 .images-container img {
@@ -153,15 +154,15 @@ input[type="file"] {
     position: relative;
     width: 170px;
     height: 140px;
-    margin: 0 7px;
+    margin: 0 7px 13px;
  }
 
-.fa-trash-can{
+.fa-trash-can, .delete-upload-img{
     position: absolute;   
     margin: 0;  
     font-weight: 400;
-    bottom: 10px; 
-    right: 10px; 
+    bottom: 5px; 
+    right: 5px; 
     color: var(--White);
     font-size: 1.2rem;
     background-color: transparent;
@@ -186,7 +187,7 @@ label.upload-img {
 .btn-wrap {
     grid-area: 3 / 1 / 4 / 3;
     width: 100%;
-    margin: auto;
+    margin: 3rem auto;
     display: flex;
     justify-content: center;
 }
@@ -289,6 +290,7 @@ label.upload-img {
     .upload-content-wrap {
         border: 2px solid var(--White);
         border-radius: 15px;
+        width: 440px;
     }   
 
     .images-container {

@@ -13,7 +13,7 @@ $(document).ready(function(){
         
         $(".popup-title").after("<div class='popup-content'></div>");
     
-        $(".popup-content").append("<p class='greeting'>How was your experience? We'd love to hear from you.<p>");
+        $(".popup-content").append("<p class='greeting'>How was your experience? We'd love to hear from you.</p>");
         $(".popup-content").append("<h4 class='rate-title'>Rate the Overview for This Event</h4>");
         // Star Rating
         $(".popup-content").append("<div class='star-rating'></div>")
