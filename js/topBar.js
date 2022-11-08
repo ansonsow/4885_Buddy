@@ -4,8 +4,7 @@ import {query,collection, getDocs} from 'https://www.gstatic.com/firebasejs/9.10
 
 let currentUser = auth.currentUser;
 let currentUserEmail = currentUser.email;
-console.log("haha");
-console.log(currentUserEmail);
+
 
 // let currentUserId;
 // let allUser = [];
@@ -36,7 +35,7 @@ document.querySelector(".fa-regular.fa-circle-user").addEventListener("click", a
         currentUserId = allUser[i].id;
       }
     }
-    console.log(currentUserId);
+
     localStorage.setItem(targetUserId, currentUserId);
     window.location = "../html/profile.html";
 

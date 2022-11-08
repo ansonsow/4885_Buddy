@@ -10,6 +10,7 @@ const db = getFirestore();
 
 
 let slideshowIMGArray = [];
+let eventArray = [];
 // if(currentUserId=""){
 //     let q = query(collection(db, "events"));
 //     const querySnapshot = await getDocs(q);
@@ -25,7 +26,22 @@ let q = query(collection(db, "events"));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
     slideshowIMGArray.push(doc.data().images[0]);
+    eventArray.push(doc);
 });
+let randomNumber = []
+
+while(randomNumber.length<4){
+    let j = Math.floor(Math.random() * eventArray.length);
+    if(!randomNumber.includes(j)){
+        randomNumber.push(j)
+    }
+}
+
+let selectedDoc = []
+for(let i=0;i<randomNumber.length;i++){
+    selectedDoc.push(eventArray[randomNumber[i]])
+}
+console.log(selectedDoc);
 
 /* ---------- Add Images from DB to Carousel ----------*/
 // add image from each event array into homepage carousel
