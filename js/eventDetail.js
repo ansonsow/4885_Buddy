@@ -145,11 +145,12 @@ document.querySelector(".host-profile-link").setAttribute("host-id",chosenEvent.
 
 // convert host ID into host name
 // (find host ID in the USERS, then find their username)
+let yoozaName;
 let getUsers = query(collection(db, "users"));
 const userData = await getDocs(getUsers);
 userData.forEach((yoozah) => {
     if(yoozah.id == chosenEvent.host){
-        let yoozaName = yoozah.data().username;
+        yoozaName = yoozah.data().username;
         document.querySelector(".host-profile-link").textContent = yoozaName;
     }
 });
@@ -591,3 +592,13 @@ $(document).ready(function(){
         })
     })//end click
 })//end docready
+
+
+
+
+document.querySelector(".host-profile-link").addEventListener("click", async ()=>{
+    // yoozaName
+    localStorage.setItem(targetUserId, document.querySelector(".host-profile-link").getAttribute("host-id"))
+    console.log(localStorage.getItem(targetUserId));
+    window.location = "../html/profile.html";
+})

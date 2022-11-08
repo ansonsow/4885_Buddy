@@ -42,7 +42,7 @@ if (currentUser) {
         let reviews = [];
         let eventStar = 0;
         // find all the events the currentUser hosted
-        let e = query(collection(dbf.db, "events"), where("hostId", "==", currentUserId));
+        let e = query(collection(dbf.db, "events"), where("hostId", "==", localStorage.getItem(targetUserId)));
         const starSnapshot = await getDocs(e);
         starSnapshot.forEach((doc)=>{
             // find all the reviews of events
@@ -99,7 +99,7 @@ if (currentUser) {
     let b = query(collection(dbf.db, "badges"));
     const badgeQuerySnapshot = await getDocs(b);
     badgeQuerySnapshot.forEach((doc) => {
-        if(!doc.data().userId.includes(currentUserId)){
+        if(!doc.data().userId.includes(localStorage.getItem(targetUserId))){
             // console.log(doc.data().name);
             let badgeName = doc.data().name.toString()
             document.getElementById(badgeName).style.filter = "grayscale(100%)";
