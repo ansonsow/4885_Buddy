@@ -10,7 +10,7 @@ let currentUser = dbf.auth.currentUser;
 let currentUserEmail;
 
 console.log(localStorage.getItem(targetUserId));
-console.log("haha");
+// console.log("haha");
 
 if (currentUser) {
     // const currentUser = dbf.auth.currentUser.email;
@@ -23,9 +23,10 @@ if (currentUser) {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         currentUserId = doc.id;
-        console.log(doc.id);
+        console.log("currentUser "+doc.id);
     });
     targetUserId = localStorage.getItem(targetUserId)
+    console.log("targetUser "+targetUserId);
     const userDb = await getDoc(doc(dbf.db, "users",targetUserId));
 
     document.getElementById("profile-picture").src= userDb.data().pfpURL;
@@ -112,7 +113,7 @@ if (currentUser) {
 
     let firstHostFlag = false;
     for(let i=0;i<events.length;i++){
-        console.log(events[i].data().hostId);
+        // console.log(events[i].data().hostId);
         if(events[i].data().hostId==currentUserId){
             firstHostFlag = true;
         }
@@ -124,7 +125,7 @@ if (currentUser) {
                 if(!badges[i].data().userId.includes(currentUserId)){
                     dbf.addBadgeUser(badges[i].id, currentUserId);
                     // popUp()
-                    popUp("https://github.com/ansonsow/4885_Buddy/blob/main/images/badges_01.png?raw=true", "You have obtain the first hosting badge!!")
+                    popUp("https://github.com/ansonsow/4885_Buddy/blob/main/images/badges_01.png?raw=true", "first hosting")
 
                 }
             }
@@ -147,6 +148,7 @@ if (currentUser) {
             
     //     }
     // }
+
 } else {
     alert("you are not logged in")
     setTimeout(()=>{
@@ -221,13 +223,14 @@ function popUp(img, text){
             $(".popup-msg").append("<br>");
             $(".popup-msg").append("<br>");
 
+            // <span class="popup-event-name">${trashEventName}</span>
 
             $(" #popup_action_2").each(function(){
                 $(this).appendTo($(this).parents(".popup-msg"));
             })
         
             // customize your <h3> text
-            $(".del-popup h3").text(text);
+            $(".del-popup h3").html(`You have obtain the <span class="popup-event-name">${text}</span> badge!!`);
             // $(".popup-msg img").src(img)
             $(".popup-msg img").attr("src",img)
 
