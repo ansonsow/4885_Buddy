@@ -64,6 +64,8 @@
     <!------ MAIN CONTENT ------>
 
 
+    <div class="outer-cont-a">
+    <div class="outer-cont-b">
     <div class="main-container">
         <!-- Heading -->
         <div class="heading-wrap">
@@ -96,11 +98,11 @@
                 </div>
 
                 <div class="input-fields">
-                    <input type="number" name="" id="price" value="" placeholder="Price &ast;" required>
+                    <input type="number" name="" id="price" value="" placeholder="Price &ast;" min="0" required>
                 </div>
 
                 <div class="input-fields">
-                    <input type="number" name="" id="number" value="" placeholder="Number of participants &ast;" required>
+                    <input type="number" name="" id="number" value="" placeholder="Number of participants &ast;" min="0" required>
                 </div>
 
                 <div class="input-fields category">
@@ -195,7 +197,7 @@
                 </div>
 
                 <!-- Add Photo Buttons -->
-                <div>
+                <div class="span-flex">
                     <label class="upload-img" for="upload"><i class="fa-solid fa-folder-plus"></i>&nbsp;&nbsp;Add Photo</label>
                     <input type="file" id="upload"  accept=".jpg, .jpeg, .png"  >
                     <!-- multiple onchange="chooseFile(event)" -->
@@ -214,6 +216,8 @@
         </div>
 
     </div> <!-- End Main Container-->
+    </div><!--outer-cont-b-->
+    </div><!--outer-cont-a-->
 
 
     <!------ FOOTER ------>

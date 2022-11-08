@@ -1,3 +1,17 @@
+:root {
+    --Create-Event-Heading-Size:var(--H1-Size);
+    --Create-Event-Heading-Bottom-Gap:2.5rem;
+
+    --Left-Column-Width:35vw;
+    --Right-Column-Width:40vw;
+    --Center-Column-Gap:4vw;
+
+    --Checkbox-Size:20px;
+    --Checkbox-Gap:9px;
+}
+
+/* ----------------------------------------- */
+
 /*---- Top Bar ----*/
 nav {
     grid-template-columns:1fr 1fr;
@@ -16,34 +30,60 @@ nav {
 }
 /* ----------------------------------------- */
 /* Heading Text */
+
 .main-container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    margin: 0 4rem 0 6rem;
+    position:relative;
+    display:grid;
+    grid-template-columns:var(--Left-Column-Width) var(--Right-Column-Width);
+    grid-template-rows:repeat(3, auto);
+    grid-column-gap:var(--Center-Column-Gap);
+    grid-row-gap:0;
+    text-align:initial;
+    font-size:var(--Body-Font-Size)
 }
 
 .heading-wrap {
+    grid-area: 1 / 1 / 2 / 3;
     margin: 5rem auto 1rem;
-    grid-area: 1 / 1 / 2 / 3; 
+    /* grid-area: 1 / 1 / 2 / 3; */
 }
 
 .heading {
     margin: 0;
-    font-size: 3rem;
+    margin-bottom:var(--Create-Event-Heading-Bottom-Gap);
+    font-size: var(--Create-Event-Heading-Size);
     text-align: center;
     display: block;
 }
 
+/* ----- Container ----- */
+@media(min-width:600px){
+    .outer-cont-a {
+        position:absolute;
+        top:0;left:0;right:0;
+        margin:0 auto;
+        text-align:center;
+    }
+
+    .outer-cont-b {
+        display:inline-block;
+        margin-left:calc(var(--Panel-CLOSED-Width) - var(--Tray-Arrow-Size));
+    }
+}
+
 /* ----- Form Inputs ----- */
 .left-container {
-    width: 80% ;
-    margin: 0 3rem 0 5rem;
+    grid-area:2 / 1 / 3 / 2;
+    width:var(--Left-Column-Width);
 }
 
 .input-fields {
-    margin: 1.3rem auto;
     color: var(--Text-Color);
     display: block;
+}
+
+.input-fields + .input-fields {
+    margin-top:1.5rem;
 }
 
 input, select, textarea {
@@ -52,7 +92,7 @@ input, select, textarea {
     color: var(--Text-Color);
     font-family: var(--Body-Font);
     border-bottom: 1px solid #CCCCCC;
-    font-size: 1rem;
+    font-size:var(--Body-Font-Size);
     display: block;
     width: 100%;
 }
@@ -65,8 +105,12 @@ input:focus, textarea:focus, .drop-down{
     outline: none;
 }
 
+input::-webkit-calendar-picker-indicator {
+    opacity:0.69;
+}
+
 .desc label {
-    font-size: 1rem;
+    font-size:var(--Body-Font-Size);
 }
 
 .desc textarea {
@@ -75,7 +119,7 @@ input:focus, textarea:focus, .drop-down{
     border: 1px solid #CCCCCC; 
     padding: 0.5rem;
     font-family: var(--Body-Font);
-    font-size: 1rem;
+    font-size:var(--Body-Font-Size);
     border-radius: 10px;
 }
 
@@ -88,7 +132,7 @@ input:focus, textarea:focus, .drop-down{
 }
 
 .category-label > label {
-    font-size: 1rem;
+    font-size:var(--Body-Font-Size);
 }
 
 .options {
@@ -96,11 +140,13 @@ input:focus, textarea:focus, .drop-down{
     flex-wrap: wrap;
 }
 
+.checkbox-option {
+    margin-right:calc(var(--Checkbox-Size) + var(--Checkbox-Gap))
+}
+
 .checkbox-option > input{
     display: inline;
-    width: 1rem;
-    font-weight: 400;
-    margin: 0 0 0 3rem;
+    width: 0;
 }
 
 .arrow {
@@ -110,10 +156,63 @@ input:focus, textarea:focus, .drop-down{
 
 .category-list {
     display: none;
+    margin-left:calc(var(--Checkbox-Size) + var(--Checkbox-Gap));
 }
 
-.show {
-    display: block;
+.category-list.show {
+    display:grid;
+    grid-template-columns:repeat(2, auto);
+    grid-row-gap:4px;
+    margin-top:0.8rem;
+    padding-bottom:0.8rem;
+}
+
+/*----- CUSTOM CHECKBOXES (DESKTOP) -----*/
+.category-list input[type="checkbox"]{
+    position:relative;
+    z-index:0;
+}
+
+.category-list input[type="checkbox"]:before {
+    content:"";
+    position:absolute;
+    display:block;
+    margin-left:calc(0px - var(--Checkbox-Size) - var(--Checkbox-Gap));
+    top:50%;transform:translateY(-50%);
+    width:var(--Checkbox-Size);
+    height:var(--Checkbox-Size);
+    border-radius:3px;
+    border:1px solid rgba(var(--Text-Color-RGB),0.15);
+    background:var(--White);
+}
+
+.category-list input[type="checkbox"]:checked:before {
+    border-color:var(--Primary);
+    background:rgba(var(--Primary-RGB),0.7);
+}
+
+.category-list input[type="checkbox"]:checked:after {
+    content:"\2713";
+    position:absolute;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-left:calc(0px - var(--Checkbox-Size) - var(--Checkbox-Gap));
+    top:50%;transform:translateY(-50%);
+    margin-top:1px;
+    width:var(--Checkbox-Size);
+    height:var(--Checkbox-Size);
+    border:1px solid transparent;
+    font-size:calc(var(--Checkbox-Size) - 4px);
+    color:var(--White);
+    line-height:100%;
+    z-index:2;
+}
+
+@media(max-width:800px){
+    .category-list {
+        grid-template-columns:1fr;
+    }
 }
 
 /* --------- RIGHT Container --------- */
@@ -122,26 +221,32 @@ input[type="file"] {
  }
  
 .right-container {
-     margin: 1rem auto 0;
- }
- 
-.upload-text{
-    margin: 0 2rem 0.5rem 2rem;
+    grid-area: 2 / 2 / 3 / 3;
+    width:var(--Right-Column-Width);
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:auto 1fr;
+    width:100%;
+    height:100%;
+    align-self:center;
+}
+
+.upload-text {
+    display:table-row;
+    padding-bottom:13px;
 }
 
 .upload-content-wrap {
-    border: 2px solid var(--Text-Color);
-    margin: 0 2rem;
-    width: 580px;
+    display:table;
+    border: 2px solid rgba(var(--Text-Color-RGB),0.4);
+    width: 100%;
 }   
 
 /* ----------- Images Area ----------- */
 .images-container {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    padding: 1rem 0.5rem;
-    height: 310px;
+    display: table-row;
+    padding: 1.5rem;
+    height: 100%;
 }
 
 .images-container img {
@@ -171,12 +276,16 @@ input[type="file"] {
 }
 
 /* Add Photo Button */
+.span-flex {
+    display:flex;
+    justify-content:center;
+}
+
 label.upload-img {
      background-color: var(--Light-Gray);
      padding: 0.5rem 1rem;
      border-radius: 2rem;
      font-size: 1.2rem;
-     width: 30%;
      margin: 1rem auto;
      display: block;
      cursor: pointer;
@@ -194,8 +303,11 @@ label.upload-img {
 
 .btn {
     margin: 0rem 2rem 1.5rem 2rem;
-    padding: 1rem 4rem;
+    padding: 0.8rem 3rem;
     border-radius: 30px;
+    font-family: var(--Body-Font);
+    font-size:var(--H3-Font-Size);
+    font-weight:500;
     cursor: pointer;
 }
 
@@ -264,7 +376,7 @@ label.upload-img {
     .left-panel {
         display:none;
     }
-/*-------------------------------------------*/
+    /*-------------------------------------------*/
 
     .heading {
         display: none;
@@ -280,22 +392,25 @@ label.upload-img {
         margin: 0;
         padding: 0;
         background-color: var(--Primary);
+        padding-bottom:1rem;
     }
 
     /* ----------- Images Area ----------- */
     .right-container {
-        margin-top: 7rem;
+        margin-top: calc(var(--TopBar-Height) + 2.75rem);
+        margin-bottom:2.5rem;
     }
 
     .upload-content-wrap {
         border: 2px solid var(--White);
         border-radius: 15px;
-        width: 440px;
+        width: 80%;
+        margin:auto;
     }   
 
     .images-container {
         margin: auto;
-        padding: 1rem 0.4rem;
+        padding: 1rem;
         height: 250px;
     }
 
@@ -315,12 +430,12 @@ label.upload-img {
     .fa-trash-can {
         bottom: 10px; 
         right: 5px; 
-        font-size: 1rem;
+        font-size:var(--Body-Font-Size);
     }
 
     /* Add Photo Button */
     label.upload-img {
-        font-size: 0.7rem;
+        font-size: calc(var(--Mobile-Body-Font-Size) * 0.9);
         margin: 1rem auto;
     }     
 
@@ -333,28 +448,35 @@ label.upload-img {
     }
 
     .input-fields {
-        margin: 1.3rem auto;
         color: var(--White);
         display: block;
+    }
+
+    .input-fields + .input-fields {
+        margin-top:1.5rem;
     }
 
     input::placeholder {
         color: var(--White);
     }
 
-    input, select, textarea {
-        color: var(--White);
-        background-color: var(--Primary);
-        border-bottom: 1px solid #CCCCCC;
+    input::-webkit-calendar-picker-indicator {
+        font-size:var(--Body-Font-Size);
+        filter:invert(1);
+        opacity:1;
     }
 
-    ::-webkit-calendar-picker-indicator {
-        filter: invert(100%);
+    input, select, textarea, .category {
+        color: var(--White);
+        background-color: var(--Primary);
+        border-bottom: 1px solid rgba(var(--White-RGB), 0.8);
     }
 
     .desc textarea {
         background-color: var(--White);
         color: var(--Text-Color);
+        border:0px solid transparent;
+        min-height:169px;
     }
 
     .flex-layout{
@@ -367,14 +489,28 @@ label.upload-img {
         color: var(--White);
     }
 
+    /*----- CUSTOM CHECKBOXES (MOBILE) -----*/
     .checkbox-option > input {
         display: inline;
-        font-weight: 400;
-        margin: 0 0.2rem 0 2.5rem;
+        width:0;
     }
 
     .checkbox-option {
-        font-size: 1rem;
+        font-size:var(--Body-Font-Size);
+    }
+    
+    .category-list input[type="checkbox"]:before {
+        border-color:var(--Light-Gray);
+        background:var(--Light-Gray);
+    }
+
+    .category-list input[type="checkbox"]:checked:before {
+        border-color:rgba(var(--White-RGB),0.69);
+        background:var(--Primary);
+    }
+
+    .category-list input[type="checkbox"]:checked:after {
+        color:var(--White);
     }
 
     /* ----------Buttons----------- */
@@ -382,6 +518,8 @@ label.upload-img {
         width: 100%;
         margin: 0 auto;
         position: absolute;
+        bottom:0;
+        margin-bottom: -0.5rem;
     }
 
     .btn {
