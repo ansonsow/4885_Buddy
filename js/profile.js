@@ -1,4 +1,5 @@
 import * as dbf from "./app.js";
+import $ from "./jquery.module.js";
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 
 // loader fade-out speed
@@ -16,16 +17,16 @@ if (currentUser) {
     // TODO change to targetUser in the future
     // const user = "ryaniscool@gmail.com"
 
-    // currentUserEmail = currentUser.email;
+    currentUserEmail = currentUser.email;
     
-    // let q = query(collection(dbf.db, "users"), where("email", "==", user));
-    // const querySnapshot = await getDocs(q);
-    // querySnapshot.forEach((doc) => {
-    //     currentUserId = doc.id;
-    //     console.log(doc.id);
-    // });
-
-    const userDb = await getDoc(doc(dbf.db, "users",localStorage.getItem(targetUserId)));
+    let q = query(collection(dbf.db, "users"), where("email", "==", currentUser.email));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        currentUserId = doc.id;
+        console.log(doc.id);
+    });
+    targetUserId = localStorage.getItem(targetUserId)
+    const userDb = await getDoc(doc(dbf.db, "users",targetUserId));
 
     document.getElementById("profile-picture").src= userDb.data().pfpURL;
     document.getElementById("username").innerHTML = userDb.data().username;
@@ -42,7 +43,7 @@ if (currentUser) {
         let reviews = [];
         let eventStar = 0;
         // find all the events the currentUser hosted
-        let e = query(collection(dbf.db, "events"), where("hostId", "==", localStorage.getItem(targetUserId)));
+        let e = query(collection(dbf.db, "events"), where("hostId", "==", targetUserId));
         const starSnapshot = await getDocs(e);
         starSnapshot.forEach((doc)=>{
             // find all the reviews of events
@@ -95,20 +96,57 @@ if (currentUser) {
         return r;
     }
 
+    let badges = [];
     //  badge color
     let b = query(collection(dbf.db, "badges"));
     const badgeQuerySnapshot = await getDocs(b);
     badgeQuerySnapshot.forEach((doc) => {
-        if(!doc.data().userId.includes(localStorage.getItem(targetUserId))){
-            // console.log(doc.data().name);
+        badges.push(doc)
+    });
+    let events = []
+    let e = query(collection(dbf.db,"events"));
+    const eventQuerySnapshot = await getDocs(e);
+    eventQuerySnapshot.forEach((doc)=>{
+        events.push(doc)
+    })
+
+    let firstHostFlag = false;
+    for(let i=0;i<events.length;i++){
+        console.log(events[i].data().hostId);
+        if(events[i].data().hostId==currentUserId){
+            firstHostFlag = true;
+        }
+    }
+
+    if(firstHostFlag == true){
+        for(let i=0;i<badges.length;i++){
+            if(badges[i].data().name=="firstHosting"){
+                if(!badges[i].data().userId.includes(currentUserId)){
+                    dbf.addBadgeUser(badges[i].id, currentUserId);
+                    // popUp()
+                    popUp("https://github.com/ansonsow/4885_Buddy/blob/main/images/badges_01.png?raw=true", "You have obtain the first hosting badge!!")
+
+                }
+            }
+        }
+    }
+
+
+    badgeQuerySnapshot.forEach((doc) => {
+        if(!doc.data().userId.includes(targetUserId)){
             let badgeName = doc.data().name.toString()
             document.getElementById(badgeName).style.filter = "grayscale(100%)";
         }else{
-            // console.log("dont have "+doc.data().name);
 
         }
-    });
+    })
 
+
+    // for(let i=0;i<badges.length;i++){
+    //     if(badges[i].data().name="firstHosting"){
+            
+    //     }
+    // }
 } else {
     alert("you are not logged in")
     setTimeout(()=>{
@@ -170,3 +208,64 @@ function numbersToStars(){
     }
 }
 
+
+
+function popUp(img, text){
+    $(document).ready(function(){
+        // let someButton = $(".oddly_specific_class"); // change this to whatever you're binding your popup trigger to
+    
+
+            // remove existing <h3> text
+            $(".del-popup h3").empty();
+            $(".popup-msg").append("<img />");
+            $(".popup-msg").append("<br>");
+            $(".popup-msg").append("<br>");
+
+
+            $(" #popup_action_2").each(function(){
+                $(this).appendTo($(this).parents(".popup-msg"));
+            })
+        
+            // customize your <h3> text
+            $(".del-popup h3").text(text);
+            // $(".popup-msg img").src(img)
+            $(".popup-msg img").attr("src",img)
+
+            // var image = $("<img />", { 
+                
+            //     src: img,
+            //     alt: "badgeimg"
+            // });
+            // image.appendTo($(".del-popup"));
+
+            // customize your button 1 text
+            $("#popup_action_1").attr("hidden",true)
+    
+            // customize your button 2 text
+            $("#popup_action_2").text("close");
+    
+            // fade in the pop-up
+            $(".del-popup").fadeIn(popupFadeSpeed);
+
+        
+        /********************************************************************** */
+        /******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
+        /********************************************************************** */
+    
+        $(document).on("click", "#popup_action_1", function(){
+            let that = this; // don't touch this line
+    
+            // do stuff
+        });
+    
+        /********************************************************************** */
+        /******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
+        /********************************************************************** */
+        $(document).on("click", "#popup_action_2", function(){
+            let that = this; // don't touch this line
+    
+            // fade out the pop-up
+            $(".del-popup").fadeOut(popupFadeSpeed);
+        });
+    })//end ready
+}

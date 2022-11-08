@@ -600,5 +600,5 @@ document.querySelector(".host-profile-link").addEventListener("click", async ()=
     // yoozaName
     localStorage.setItem(targetUserId, document.querySelector(".host-profile-link").getAttribute("host-id"))
     console.log(localStorage.getItem(targetUserId));
-    window.location = "../html/profile.html";
+    window.location = "../html/profile.html#"+document.querySelector(".host-profile-link").getAttribute("host-id");
 })
