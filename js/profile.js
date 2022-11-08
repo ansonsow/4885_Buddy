@@ -8,21 +8,24 @@ let loaderFadeSpeed = parseInt(getComputedStyle(document.documentElement).getPro
 let currentUser = dbf.auth.currentUser;
 let currentUserEmail;
 
+console.log(localStorage.getItem(targetUserId));
+console.log("haha");
+
 if (currentUser) {
     // const currentUser = dbf.auth.currentUser.email;
     // TODO change to targetUser in the future
-    const user = "ryaniscool@gmail.com"
+    // const user = "ryaniscool@gmail.com"
 
-    currentUserEmail = currentUser.email;
+    // currentUserEmail = currentUser.email;
     
-    let q = query(collection(dbf.db, "users"), where("email", "==", user));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-        currentUserId = doc.id;
-        console.log(doc.id);
-    });
+    // let q = query(collection(dbf.db, "users"), where("email", "==", user));
+    // const querySnapshot = await getDocs(q);
+    // querySnapshot.forEach((doc) => {
+    //     currentUserId = doc.id;
+    //     console.log(doc.id);
+    // });
 
-    const userDb = await getDoc(doc(dbf.db, "users",currentUserId));
+    const userDb = await getDoc(doc(dbf.db, "users",localStorage.getItem(targetUserId)));
 
     document.getElementById("profile-picture").src= userDb.data().pfpURL;
     document.getElementById("username").innerHTML = userDb.data().username;
