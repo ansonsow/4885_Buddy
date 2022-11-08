@@ -24,12 +24,14 @@ document.querySelector(".fa-regular.fa-circle-user").addEventListener("click", a
 
     localStorage.setItem(targetUserId, currentUserId);
     targetUserId = localStorage.getItem(targetUserId);
-    console.log(currentUserId);
+    console.log(localStorage.getItem(targetUserId));
     console.log(targetUserId);
     // console.log(document.URL);
     if(document.URL.includes("profile.html")){
       window.location.reload();
     }else{
-      window.location = "../html/profile.html#"+targetUserId;
+    window.location = "../html/profile.html#"+targetUserId;
+
     }
+
 })

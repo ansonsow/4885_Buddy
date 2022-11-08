@@ -9,7 +9,9 @@ let loaderFadeSpeed = parseInt(getComputedStyle(document.documentElement).getPro
 let currentUser = dbf.auth.currentUser;
 let currentUserEmail;
 
-console.log(localStorage.getItem(targetUserId));
+// let targetUser = localStorage.getItem(targetUserId)
+
+// console.log("localStorage "+targetUser);
 // console.log("haha");
 
 if (currentUser) {
