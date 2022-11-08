@@ -1,9 +1,10 @@
-import firbase from 'firebase/app';
+import{logout} from "./app.js";
+// import * as dbf from "./app.js"
 
-export const signOut = async () => {
-    try {
-        await firbase.auth().signOut();
-    } catch(e) {
-        throw new Error ('Error while signing out');
-    }
-}
+//Check lins from 795 in app.js
+//Created a function to perform singout operation using Firebase's singOut() method
+document.getElementById("signout").addEventListener('onclick', (e)=>{
+    e.preventDefault();
+    console("Button is clicked!");
+    logout();
+    });

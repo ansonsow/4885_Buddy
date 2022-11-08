@@ -6,8 +6,7 @@ import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-
 import {Firestore, getFirestore, collection, doc, updateDoc, getDocs,getDoc, addDoc, deleteDoc, arrayUnion, arrayRemove, setDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, connectAuthEmulator, signOut} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import {getStorage,ref, uploadBytes,getDownloadURL} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js' //importaed firebase storage 
-
-
+// import firbase from 'firebase/app';
 
 
 
@@ -793,53 +792,14 @@ export async function createAccount (email,password){
     }
 }
 
-// const auth = getAuth();
-// export async function login (email,password){
-//   try{  
-//     // await signInWithEmailAndPassword(auth, email, password)
-    
-//     // signInWithEmailAndPassword(auth, email, password)
-//     // .then((userCredential) => {
-//     //   const user = userCredential.user;
-//     // })
-//     // .catch((error) => {
-//     //   console.log(error.message);
-//     //   return error.message
-//     //   const errorCode = error.code;
-//     //   const errorMessage = error.message;
-//     // });
-//   }
-//   catch(error){
-//     console.log(error);
-//   }
-
-// }
-
-
-
-
-//To change UI
-// const toMonitorAuthState  = async() => {
-//   onAuthStateChanged(auth, user => {
-//     if(user){
-//       console.log(user);
-//       showApp();
-//       showLoginState(user);
-
-//       hideLoginError();
-//     }
-//     else{
-//       showLoginForm();
-//       noteToUser.innerHTML = "You are not loggin in";
-//     }
-//   });
-// }
-// toMonitorAuthState();
-
-//To logout 
-// const logout = async()=>{
-//   await signOut(auth);
-
-// }
-// document.getElementById("btnLogout").addEventListener("click", logout);
-//---------------------------------------------------------------------------------
+//Code to signout user
+export async function logout(){
+    try {
+        await auth.signOut().then(()=>{
+          alert("Logged Out!");
+          console.log("User logged out!");
+        });      
+    } catch(e) {
+        throw new Error ('Error while signing out');
+    }
+}
