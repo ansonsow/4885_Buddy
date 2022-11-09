@@ -20,13 +20,23 @@ if(currentUser){
 
     let allSearch = [];
 
-    let e = query(collection(db, "events"), where("hostId", "==", currentUserId));
-    const starSnapshot = await getDocs(e);
-    starSnapshot.forEach((doc)=>{
-        displayResult(doc.data(),doc.id);
-        allSearch.push(doc)
+    // let e = query(collection(db, "events"), where("hostId", "==", currentUserId));
+    // const starSnapshot = await getDocs(e);
+    // starSnapshot.forEach((doc)=>{
+    //     displayResult(doc.data(),doc.id);
+    //     allSearch.push(doc)
     
-    })
+    // })
+    // let u = query(collection(db, "users", currentUserId))
+    const querySnapshot2 = await getDoc(doc(db, "users", currentUserId));
+    let eventId = querySnapshot2.data().events;
+    console.log(eventId);
+    for(let i=0;i<eventId.length;i++){
+        const querySnapshotEvents = await getDoc(doc(db,"events",eventId[i]));
+        displayResult(querySnapshotEvents.data(),querySnapshotEvents.id);
+        allSearch.push(querySnapshotEvents);
+    }
+
 
 
 // ================= functions to format time and date from eventDetail ==============================
@@ -148,16 +158,17 @@ function displayResult(doc,id){
         } else {
             if(typeof jQuery !== "undefined"){
                 clearInterval(load_jQuery);
-                
-                let eachEvent = ".event-container:not([hidden])";
 
-                $(eachEvent).each(function(){
-                    $(this).not(eachEvent +"+"+ eachEvent).each(function(){
-                        $(this).nextUntil(":not(" + eachEvent + ")").andSelf().wrapAll("<div class='cloned-events-container'></div>");
+                document.querySelector(".web-cloned-events-container").append(clonedEvent);
+                document.querySelector(".web-cloned-events-container").removeAttribute("hidden");
+
+                $(document).ready(function(){
+                    $(".web-cloned-events-container").each(function(){
+                        let haachoo = $(this).children(".event-container").clone();
+                        haachoo.appendTo($(".mobile-cloned-events-container"));
+                        $(".mobile-cloned-events-container").removeAttr("hidden")
                     })
                 })
-
-                document.querySelector(".cloned-events-container").append(clonedEvent);
             }		
         }
     },0);
@@ -175,7 +186,9 @@ function displayResult(doc,id){
         // console.log(result.addresses[0].address.freeformAddress);
     });
     }
-    reverseGeo(doc.location)
+    setTimeout(() => {
+        reverseGeo(doc.location)
+        }, 500);
 
     // card-content location
     clonedEvent.querySelector(".card-content.date").innerHTML =  formatDate(doc.dateOfEvent);

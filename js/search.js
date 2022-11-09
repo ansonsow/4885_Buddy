@@ -158,7 +158,6 @@ function displayResult(doc,id){
     }
     setTimeout(() => {
     reverseGeo(doc.location)
-        
     }, 500);
 
     // card-content location
