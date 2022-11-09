@@ -64,40 +64,27 @@ function formatDate(d){
 
 function formatTime(d){
     let eventDateNum = d.replace(/[^\d\.]*/g,"");
-
     let eventTimeStart_Hour = eventDateNum.substring(eventDateNum.length-8).slice(0,2);
     let eventTimeStart_Minutes = eventDateNum.substring(eventDateNum.length-6).slice(0,2);
-
     let eventTimeEnd_Hour = eventDateNum.substring(eventDateNum.length-4).slice(0,2);
     let eventTimeEnd_Minutes = eventDateNum.substring(eventDateNum.length-2);
-
     return(`${eventTimeStart_Hour}:${eventTimeStart_Minutes} &ndash; ${eventTimeEnd_Hour}:${eventTimeEnd_Minutes}`);
 }
 
 
 function getDate(d){
     let eventDateNum = d.replace(/[^\d\.]*/g,"");
-    // console.log(eventDateNum);
     let eventYear = eventDateNum.slice(0,4);
-    // 8 6
     let eventMonth = eventDateNum.substring(eventDateNum.length - 12).slice(0,2);
     let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
-    // console.log(eventYear);
-    // console.log(eventMonth);
-    // console.log(eventDay);
     return (`${eventYear}${eventMonth}${eventDay}`);
 }
 
 function getDateShort(d){
     let eventDateNum = d.replace(/[^\d\.]*/g,"");
-    // console.log(eventDateNum);
     let eventYear = eventDateNum.slice(0,4);
-    // 8 6
     let eventMonth = eventDateNum.substring(eventDateNum.length - 8).slice(0,2);
     let eventDay = eventDateNum.substring(eventDateNum.length-6).slice(0,2);
-    // console.log(eventYear);
-    // console.log(eventMonth);
-    // console.log(eventDay);
     return (`${eventYear}${eventMonth}${eventDay}`);
 }
 
@@ -158,7 +145,7 @@ function displayResult(doc,id){
     }
     setTimeout(() => {
     reverseGeo(doc.location)
-    }, 500);
+    }, 1000);
 
     // card-content location
     clonedEvent.querySelector(".card-content.date").innerHTML =  formatDate(doc.dateOfEvent);

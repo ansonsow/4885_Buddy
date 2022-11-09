@@ -20,6 +20,66 @@ if(currentUser){
     //         console.log(result.addresses[0].address.freeformAddress);
     //     });
     // }
+    function formatDate(d){
+        let eventDateNum = d.replace(/[^\d\.]*/g,"");
+        let eventYear = eventDateNum.slice(0,4);
+        let eventMonth = eventDateNum.substring(eventDateNum.length-12).slice(0,2);
+        let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
+    
+        // if first number of eventDay is a 0, remove that
+        let dayFirstChara = eventDay.slice(0,1);
+        if(dayFirstChara == "0"){
+            eventDay = eventDay.slice(1,2);
+        }
+    
+        let suffixes = ["st", "nd", "rd"];
+        let numExceptions = [11, 12, 13];
+        let nth = suffixes[(eventDay % 10) - 1] == undefined || numExceptions.includes(eventDay % 100) ? "th" : suffixes[(eventDay % 10) - 1];
+    
+        let daySuffix = nth;
+    
+        // format eventMonth
+        eventMonth =
+            eventMonth == "01" ? "Jan" :
+            eventMonth == "02" ? "Feb" :
+            eventMonth == "03" ? "Mar" :
+            eventMonth == "04" ? "Apr" :
+            eventMonth == "05" ? "May" :
+            eventMonth == "06" ? "Jun" :
+            eventMonth == "07" ? "Jul" :
+            eventMonth == "08" ? "Aug" :
+            eventMonth == "09" ? "Sept" :
+            eventMonth == "10" ? "Oct" :
+            eventMonth == "11" ? "Nov" :
+            eventMonth == "12" ? "Dec" :
+            eventMonth;
+    
+        return(`${eventDay}${daySuffix} ${eventMonth} ${eventYear}`);
+        
+        // document.querySelector(".event-date").textContent = `${eventDay}${daySuffix} ${eventMonth} ${eventYear}`;
+    }
+    
+    
+    
+    
+    function formatTime(d){
+        let eventDateNum = d.replace(/[^\d\.]*/g,"");
+        let eventTimeStart_Hour = eventDateNum.substring(eventDateNum.length-8).slice(0,2);
+        let eventTimeStart_Minutes = eventDateNum.substring(eventDateNum.length-6).slice(0,2);
+        let eventTimeEnd_Hour = eventDateNum.substring(eventDateNum.length-4).slice(0,2);
+        let eventTimeEnd_Minutes = eventDateNum.substring(eventDateNum.length-2);
+        return(`${eventTimeStart_Hour}:${eventTimeStart_Minutes} &ndash; ${eventTimeEnd_Hour}:${eventTimeEnd_Minutes}`);
+    }
+    
+    
+    function getDate(d){
+        let eventDateNum = d.replace(/[^\d\.]*/g,"");
+        let eventYear = eventDateNum.slice(0,4);
+        let eventMonth = eventDateNum.substring(eventDateNum.length - 12).slice(0,2);
+        let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
+        return (`${eventYear}${eventMonth}${eventDay}`);
+    }
+    
 
     let currentUserEmail = currentUser.email;
     let q = query(collection(dbf.db, "users"), where("email", "==", currentUserEmail));
@@ -59,15 +119,6 @@ if(currentUser){
             document.querySelector("footer").classList.add("show-footer")
         }
     
-        // let reverse = tt.services.reverseGeocode({
-        //     key:tomtomApiKey,
-        //     position:doc.data().location
-        // }).then(r=>{
-        //     clonedEvent.querySelector(".location").innerHTML = r.addresses[0].address.freeformAddress);
-        // })
-        // .catch(err=>{
-        //     console.log(err);
-        // });
     
         function reverseGeo(l){
             tt.services.reverseGeocode({
@@ -76,20 +127,27 @@ if(currentUser){
         })
         .then(result=>{
             clonedEvent.querySelector(".location-xyz").innerHTML = result.addresses[0].address.freeformAddress
-            // console.log(result.addresses[0].address.freeformAddress);
         });
         }
         reverseGeo(doc.data().location)
-        // date-published
-        // clonedEvent.querySelector(".location").innerHTML = 
         clonedEvent.querySelector(".date-published").innerHTML = doc.data().dateCreated.toDate().toDateString().slice(4)
-        // console.log(doc.data().dateCreated.toDate().toDateString());
+        clonedEvent.querySelector(".date-xyz").innerHTML = formatDate(doc.data().dateOfEvent)
+        clonedEvent.querySelector(".time-xyz").innerHTML = formatTime(doc.data().dateOfEvent)
+
+
+        clonedEvent.querySelector(".fa-regular.fa-pen-to-square").addEventListener("click",()=>{
+            localStorage.setItem(targetEventId, doc.id)
+            window.location = "../html/editMyEvent.html#"+localStorage.getItem(targetEventId);
+            
+        })
+
+
         
         /*---- 🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️ ----*/
         popup_action_2.addEventListener("click", () => {
             let trashEventID = popup_action_2.getAttribute("event-id");
             // comment this to NOT delete the event from the database
-            // dbf.deleteEvent(trashEventID)
+            dbf.deleteEvent(trashEventID)
         })
 
     })

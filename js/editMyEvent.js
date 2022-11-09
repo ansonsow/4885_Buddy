@@ -8,7 +8,7 @@ import {getFirestore, query,collection,where,getDocs,getDoc,doc} from 'https://w
 
 let testEventId = "mvSF9RKBBnOPY0kcuQ8R";
 //this page's event id 
-let targetEventId = testEventId;
+targetEventId = localStorage.getItem(targetEventId);
 let currentUser = dbf.auth.currentUser;
 let currentUserEmail;
 let eventData;

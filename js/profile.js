@@ -134,15 +134,19 @@ if (currentUser) {
         }
     }
 
+    function giveBadge(){
+        badgeQuerySnapshot.forEach((doc) => {
+            if(!doc.data().userId.includes(targetUserId)){
+                let badgeName = doc.data().name.toString()
+                document.getElementById(badgeName).style.filter = "grayscale(100%)";
+            }else{
 
-    badgeQuerySnapshot.forEach((doc) => {
-        if(!doc.data().userId.includes(targetUserId)){
-            let badgeName = doc.data().name.toString()
-            document.getElementById(badgeName).style.filter = "grayscale(100%)";
-        }else{
+            }
+        })
+    }
 
-        }
-    })
+    giveBadge();
+
 
 
     // for(let i=0;i<badges.length;i++){
@@ -268,7 +272,7 @@ function popUp(img, text){
         /********************************************************************** */
         $(document).on("click", "#popup_action_2", function(){
             let that = this; // don't touch this line
-    
+            giveBadge();
             // fade out the pop-up
             $(".del-popup").fadeOut(popupFadeSpeed);
         });
