@@ -1,10 +1,7 @@
 # 4885_Buddy
 
-**Firebase update:**  
-You need to remove the `4885_Buddy` folder from your *local* computer first, and reopen it through MAMP.  
-
 ### Steps:
-1. Open where the `4885_Buddy` folder is on your computer, e.g. `User > Documents > GitHub > 4885_Buddy`, and trash it.
+1. If you already have `4885_Buddy` folder installed, e.g. `User > Documents > GitHub > 4885_Buddy`, please trash it.
 2. If you open GitHub Desktop, you should get a "Can't find 4885_Buddy" message. You can click `Remove`.
 3. Clone the repository again:  
 <img src="https://user-images.githubusercontent.com/25330392/193745183-dc7e8f9a-d549-4a80-ab34-6703b35cc960.png" width="420">
@@ -49,6 +46,12 @@ When it's done, hard-refresh `search.html`. If you can see the events, congrats!
 
 ### Credits:
 
+<details>
+  
+<summary>Click to view credits...</summary>
+  
+<br>
+
 Images used:  
 [github.com/ansonsow/4885_Buddy/tree/main/images](https://github.com/ansonsow/4885_Buddy/tree/main/images)  
 
@@ -66,3 +69,5 @@ Images used:
 
 **Login page:**
 * [unsplash.com/photos/2LhCDvS_7xs](https://unsplash.com/photos/2LhCDvS_7xs)
+  
+</details>
