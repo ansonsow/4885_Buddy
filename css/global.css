@@ -28,6 +28,10 @@ img, iframe, figure {
     vertical-align:middle;
 }
 
+img {
+    object-fit:cover;
+}
+
 blockquote {
     margin-right:0;
 }
