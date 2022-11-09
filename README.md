@@ -1,9 +1,10 @@
 # 4885_Buddy
 
 ### Steps:
-1. If you already have `4885_Buddy` folder installed, e.g. `User > Documents > GitHub > 4885_Buddy`, please trash it.
-2. If you open GitHub Desktop, you should get a "Can't find 4885_Buddy" message. You can click `Remove`.
-3. Clone the repository again:  
+1. If you do not have [GitHub Desktop](https://desktop.github.com/) installed, please go ahead and install that first.
+2. If you already have `4885_Buddy` folder installed, e.g. `User > Documents > GitHub > 4885_Buddy`, please trash it.
+3. If you open GitHub Desktop, you should get a "Can't find 4885_Buddy" message. You can click `Remove`.
+4. Clone the repository again:  
 <img src="https://user-images.githubusercontent.com/25330392/193745183-dc7e8f9a-d549-4a80-ab34-6703b35cc960.png" width="420">
 
 4. For the folder destination, **make sure you put it inside your MAMP folder's `htdocs`**:  
@@ -20,6 +21,11 @@
 7. Click `main.html` and you should see the homepage:  
 [[prev ver, old](https://user-images.githubusercontent.com/25330392/193746578-638558d0-f450-4fb2-bece-32f6f802ea94.png)]  
 <img src="https://user-images.githubusercontent.com/25330392/196013655-38b8754a-3504-4d1d-93f4-85e61de824fa.png" width="420">  
+
+8. To get the latest version of our work, please remember to **Pull Origin**! You can do this by clicking this button:  
+
+![Screenshot 2022-11-08 at 20 51 35](https://user-images.githubusercontent.com/25330392/200741621-6d2f8c56-77c5-411f-9ea2-31b2baeae4cd.png)  
+Sometimes it says **Pull Origin**, sometimes it says **Fetch Origin**.
 
 ---
 
