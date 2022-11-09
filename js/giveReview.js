@@ -139,7 +139,7 @@ function displayResult(doc,id){
 
     clonedEvent.removeAttribute("hidden");
     
-    clonedEvent.addEventListener("click",()=>{
+    clonedEvent.querySelector(".card-content.image.search-page").addEventListener("click",()=>{
         localStorage.setItem(targetEventId, id);
         // console.log(id);
         console.log(localStorage.getItem(targetEventId));
@@ -176,19 +176,19 @@ function displayResult(doc,id){
     clonedEvent.querySelector(".card-content.image.search-page").src = doc.images[0];
     clonedEvent.querySelector(".card-content.event-name").innerHTML = doc.name;
 
-    function reverseGeo(l){
-        tt.services.reverseGeocode({
-        key: tomtomApiKey,
-        position: l
-    })
-    .then(result=>{
-        clonedEvent.querySelector(".card-content.location").innerHTML = result.addresses[0].address.freeformAddress
-        // console.log(result.addresses[0].address.freeformAddress);
-    });
-    }
-    setTimeout(() => {
-        reverseGeo(doc.location)
-        }, 500);
+    // function reverseGeo(l){
+    //     tt.services.reverseGeocode({
+    //     key: tomtomApiKey,
+    //     position: l
+    // })
+    // .then(result=>{
+    //     clonedEvent.querySelector(".card-content.location").innerHTML = result.addresses[0].address.freeformAddress
+    //     // console.log(result.addresses[0].address.freeformAddress);
+    // });
+    // }
+    // setTimeout(() => {
+    //     reverseGeo(doc.location)
+    // }, 500);
 
     // card-content location
     clonedEvent.querySelector(".card-content.date").innerHTML =  formatDate(doc.dateOfEvent);
@@ -392,31 +392,31 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
     /********************************************************************** */
     /******* Tomtom Searchbox plugin  ************************************* */
     /********************************************************************** */
-var options = {
-    searchOptions: {
-        key: tomtomApiKey,
-        language: 'en-GB',
-        limit: 5
-    },
-    autocompleteOptions: {
-        key: tomtomApiKey,
-        language: 'en-GB'
-    }
-};
+// var options = {
+//     searchOptions: {
+//         key: tomtomApiKey,
+//         language: 'en-GB',
+//         limit: 5
+//     },
+//     autocompleteOptions: {
+//         key: tomtomApiKey,
+//         language: 'en-GB'
+//     }
+// };
 
 
-// searchbox is the one in popup
-async function searchBox(){
-    var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
-    var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-    // searchBoxPlugin.appendChild(searchBoxHTML)
-    document.getElementsByClassName("popup-msg")[0].prepend(searchBoxHTML)
+// // searchbox is the one in popup
+// async function searchBox(){
+//     var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
+//     var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+//     searchBoxPlugin.appendChild(searchBoxHTML)
+//     document.getElementsByClassName("popup-msg")[0].prepend(searchBoxHTML)
 
-    ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
-        moveMap(data.data.result.position.lng,data.data.result.position.lat)
-        userCoord = [data.data.result.position.lng,data.data.result.position.lat]
-    });
-}
+//     ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
+//         moveMap(data.data.result.position.lng,data.data.result.position.lat)
+//         userCoord = [data.data.result.position.lng,data.data.result.position.lat]
+//     });
+// }
 
 // searchbox2 is the one in the search.js
 // async function searchBox2(){
@@ -435,33 +435,33 @@ async function searchBox(){
 
 console.log(document.getElementsByClassName("popup-msg"));
 
-searchBox()
+// searchBox()
 
 
 
 /********************************************************************** */
 /******* Tomtom Map  ************************************************** */
 /********************************************************************** */
-let location = [ -123.1207,49.2827];
-let mapo;
-let zoom = 10;
+// let location = [ -123.1207,49.2827];
+// let mapo;
+// let zoom = 10;
 
-function map(){
-    mapo = tt.map({
-        key: tomtomApiKey,
-        container: "map",
-        zoom: zoom,
-        center: location
-    });
-}
+// function map(){
+//     mapo = tt.map({
+//         key: tomtomApiKey,
+//         container: "map",
+//         zoom: zoom,
+//         center: location
+//     });
+// }
 
-function moveMap(lng,lat){
-    location = [lng,lat]
-    mapo.flyTo({
-        center: location,
-        zoom: zoom
-    })
-}
+// function moveMap(lng,lat){
+//     location = [lng,lat]
+//     mapo.flyTo({
+//         center: location,
+//         zoom: zoom
+//     })
+// }
 
 
 // reset button
@@ -485,7 +485,7 @@ $(document).ready(function(){
 
     // add map
     $(".popup-msg").append("<div id='map'></div>");
-    map();
+    // map();
 
     $(".popup-msg").append("<div id='customRadiusSection'><label for='radiusInput'>Search radius:</label><input id='radiusInput' name='radiusInput' type='number'></div>");
 
@@ -543,15 +543,15 @@ const circumference = 40075017
 document.getElementById("radiusInput").addEventListener("keyup",()=>{
     radius = radiusInput.value*1000;
     console.log(radius);
-    zoom = Math.log2(circumference/(radius*2))
-    // zoom = Math.log2(circumference/radius*2)
+    // zoom = Math.log2(circumference/(radius*2))
+    // // zoom = Math.log2(circumference/radius*2)
 
-    console.log(zoom);
-    if(userCoord.length==0){
-        moveMap(location[0],location[1])
-    }else{
-        moveMap(userCoord[0],userCoord[1])
-    }
+    // console.log(zoom);
+    // if(userCoord.length==0){
+    //     moveMap(location[0],location[1])
+    // }else{
+    //     moveMap(userCoord[0],userCoord[1])
+    // }
 })
 }
 
@@ -603,9 +603,9 @@ $(document).ready(function(){
     $(document).on("click", "#popup_action_1", function(){
         let that = this; // don't touch this line
 
-        setTimeout(() => {
-            location.reload(true)
-        },100)
+        // setTimeout(() => {
+        //     location.reload(true)
+        // },100)
 
         // do stuff
     });
@@ -619,9 +619,9 @@ $(document).ready(function(){
         // fade out the pop-up
         $(".del-popup").fadeOut(popupFadeSpeed);
 
-        setTimeout(() => {
-            location.reload(true)
-        },100)
+        // setTimeout(() => {
+        //     location.reload(true)
+        // },100)
         
     });
 })//end ready
