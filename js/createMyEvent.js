@@ -142,6 +142,54 @@ searchBox()
       let formattedDate = (String(newEvent.date)+ String(newEvent.endTime))
       formattedDate =formattedDate.replaceAll(':','').replace('T', '').replace(',', '').replaceAll('-', '')
 
+      let jqDateNow = Date.now();
+      let jqStop = 1000;
+      
+      let load_jQuery = setInterval(() => {
+          if(Date.now() - jqDateNow > jqStop){
+              clearInterval(load_jQuery);
+          } else {
+              if(typeof jQuery !== "undefined"){
+                  clearInterval(load_jQuery);
+
+                  // remove existing <h3> text
+                  $(".del-popup h3").empty();
+
+                  // customize your <h3> text
+                  $(".del-popup h3").text("Event successfully created!");
+
+                  // customize your button 1 text
+                  $("#popup_action_1").text("Back to home");
+
+                  // customize your button 2 text
+                  $("#popup_action_2").text("Check it!");
+
+                  // fade in the pop-up
+                  $(".del-popup").fadeIn(popupFadeSpeed);
+                  
+                  /********************************************************************** */
+                  /******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
+                  /********************************************************************** */
+
+                  $(document).on("click", "#popup_action_1", function(){
+                      let that = this; // don't touch this line
+
+                      location.href = '../html/main.html'
+                  });
+
+                  /********************************************************************** */
+                  /******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
+                  /********************************************************************** */
+                  $(document).on("click", "#popup_action_2", function(){
+                      let that = this; // don't touch this line
+
+                      // fade out the pop-up
+                      $(".del-popup").fadeOut(popupFadeSpeed);
+                  });
+              }		
+          }
+      },0);
+
       // let file = document.getElementById("upload").files;
       // console.log(file.length);
       // let bool = false;
