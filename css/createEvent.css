@@ -27,7 +27,20 @@
 
 /*---- Top Bar ----*/
 nav {
+    position:relative;
     grid-template-columns:1fr 1fr;
+    z-index:2;
+}
+
+nav:after {
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    margin-left:var(--Panel-CLOSED-Width);
+    width:100%;
+    height:100%;
+    background:#fff;
+    z-index:-1;
 }
 
 .searchbar {
