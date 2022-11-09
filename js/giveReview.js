@@ -148,6 +148,15 @@ function displayResult(doc,id){
         } else {
             if(typeof jQuery !== "undefined"){
                 clearInterval(load_jQuery);
+                
+                let eachEvent = ".event-container:not([hidden])";
+
+                $(eachEvent).each(function(){
+                    $(this).not(eachEvent +"+"+ eachEvent).each(function(){
+                        $(this).nextUntil(":not(" + eachEvent + ")").andSelf().wrapAll("<div class='cloned-events-container'></div>");
+                    })
+                })
+
                 document.querySelector(".cloned-events-container").append(clonedEvent);
             }		
         }
