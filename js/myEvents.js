@@ -1,22 +1,32 @@
-import {db} from "./app.js"
+import {db,auth} from "./app.js"
 // import * as mapf from "./tomtom.js"
 import $ from "./jquery.module.js";
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import '../node_modules/regenerator-runtime/runtime.js'
 
 
+let currentUser = auth.currentUser;
+let currentUserEmail = currentUser.email
 
+if(currentUser){
+    currentUserEmail = currentUser.email;
+    
+    let q = query(collection(db, "users"), where("email", "==", currentUser.email));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        currentUserId = doc.id;
+        console.log("currentUser "+doc.id);
+    });
 
-// console.log("aaa");
-let allSearch = [];
+    let allSearch = [];
 
-let e = query(collection(db, "events"));
-const starSnapshot = await getDocs(e);
-starSnapshot.forEach((doc)=>{
-    displayResult(doc.data(),doc.id);
-    allSearch.push(doc)
-
-})
+    let e = query(collection(db, "events"), where("hostId", "==", currentUserId));
+    const starSnapshot = await getDocs(e);
+    starSnapshot.forEach((doc)=>{
+        displayResult(doc.data(),doc.id);
+        allSearch.push(doc)
+    
+    })
 
 
 // ================= functions to format time and date from eventDetail ==============================
@@ -521,3 +531,8 @@ document.getElementById("radiusInput").addEventListener("keyup",()=>{
         moveMap(userCoord[0],userCoord[1])
     }
 })
+}
+
+// console.log("aaa");
+
+
