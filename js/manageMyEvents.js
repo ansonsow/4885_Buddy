@@ -144,8 +144,8 @@ if(currentUser){
 
         
         /*---- 🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️ ----*/
-        popup_action_2.addEventListener("click", () => {
-            let trashEventID = popup_action_2.getAttribute("event-id");
+        popup_action_1.addEventListener("click", () => {
+            let trashEventID = popup_action_1.getAttribute("event-id");
             // comment this to NOT delete the event from the database
             dbf.deleteEvent(trashEventID)
         })
@@ -203,7 +203,7 @@ if(currentUser){
             $("[dummy-area]").children().unwrap();
         }
 
-        // generateUnsplash();
+        generateUnsplash();
 
         /********************************************************************** */
         /******* TEST: ADD CATS AS EVENTS ************************************* */
