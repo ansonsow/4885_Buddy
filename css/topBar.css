@@ -176,6 +176,7 @@ nav .logo svg {
 
 .account-icon i {
     font-size:calc(var(--TopBar-Links-Size) * 1.5);
+    cursor:pointer;
 }
 
 .mobile-links {
