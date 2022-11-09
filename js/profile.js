@@ -273,6 +273,7 @@ function popUp(img, text){
         $(document).on("click", "#popup_action_2", function(){
             let that = this; // don't touch this line
             giveBadge();
+            location.reload();
             // fade out the pop-up
             $(".del-popup").fadeOut(popupFadeSpeed);
         });
