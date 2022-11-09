@@ -146,8 +146,8 @@ function displayResult(doc,id){
     clonedEvent.querySelector(".card-content.image.search-page").src = doc.images[0];
     clonedEvent.querySelector(".card-content.event-name").innerHTML = doc.name;
 
-    function reverseGeo(l){
-        tt.services.reverseGeocode({
+    async function reverseGeo(l){
+        await tt.services.reverseGeocode({
         key: tomtomApiKey,
         position: l
     })
@@ -156,7 +156,10 @@ function displayResult(doc,id){
         // console.log(result.addresses[0].address.freeformAddress);
     });
     }
+    setTimeout(() => {
     reverseGeo(doc.location)
+        
+    }, 500);
 
     // card-content location
     clonedEvent.querySelector(".card-content.date").innerHTML =  formatDate(doc.dateOfEvent);
