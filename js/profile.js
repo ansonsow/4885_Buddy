@@ -116,6 +116,7 @@ if (currentUser) {
     let firstHostFlag = false;
     for(let i=0;i<events.length;i++){
         // console.log(events[i].data().hostId);
+        console.log("haha");
         if(events[i].data().hostId==currentUserId){
             firstHostFlag = true;
         }
@@ -123,6 +124,8 @@ if (currentUser) {
 
     if(firstHostFlag == true){
         for(let i=0;i<badges.length;i++){
+            console.log("haha");
+            
             if(badges[i].data().name=="firstHosting"){
                 if(!badges[i].data().userId.includes(currentUserId)){
                     dbf.addBadgeUser(badges[i].id, currentUserId);
@@ -146,6 +149,7 @@ if (currentUser) {
     }
 
     giveBadge();
+    // popUp("https://github.com/ansonsow/4885_Buddy/blob/main/images/badges_01.png?raw=true", "first hosting")
 
 
 
@@ -263,6 +267,7 @@ function popUp(img, text){
     
         $(document).on("click", "#popup_action_1", function(){
             let that = this; // don't touch this line
+            console.log("aaa");
     
             // do stuff
         });
@@ -272,8 +277,9 @@ function popUp(img, text){
         /********************************************************************** */
         $(document).on("click", "#popup_action_2", function(){
             let that = this; // don't touch this line
-            giveBadge();
-            location.reload();
+            // giveBadge();
+            console.log("bbb");
+            window.location.reload();
             // fade out the pop-up
             $(".del-popup").fadeOut(popupFadeSpeed);
         });
