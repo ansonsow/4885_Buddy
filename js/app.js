@@ -796,7 +796,7 @@ export async function createAccount (email,password){
 export async function logout(){
     try {
         await auth.signOut().then(()=>{
-          alert("Logged Out!");
+          alert("You are Successfuly Logged Out!");
           console.log("User logged out!");
         });      
     } catch(e) {
