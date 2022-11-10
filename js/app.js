@@ -4,7 +4,7 @@
 import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
 import { getAnalytics} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
 import {Firestore, getFirestore, collection, doc, updateDoc, getDocs,getDoc, addDoc, deleteDoc, arrayUnion, arrayRemove, setDoc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, connectAuthEmulator, signOut} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, connectAuthEmulator, signOut, verifyPasswordResetCode, confirmPasswordReset} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import {getStorage,ref, uploadBytes,getDownloadURL} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js' //importaed firebase storage 
 // import firbase from 'firebase/app';
 
@@ -56,9 +56,6 @@ const querySnapshot = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
 export function getStorageRef(filename){
   return ref(storage, filename);
 }
-
-
-
 
 export async function uploadFile(storageRef, file , metadata){
   await uploadBytes(storageRef,file,metadata)
@@ -112,6 +109,18 @@ export async function writeUserData(userName, fname, lname, email, eventId, pfpU
     console.error("Error adding document: ", e);
   }
 }
+// export const statevalue =  onAuthStateChanged(auth, (user) => {
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+//     // const uid = user.uid;
+//     let emailaddress = writeUserData().addDoc(email);
+//     // ...
+//   } else {
+//     // User is signed out
+//     // ...
+//   }
+// });
 
 
 
@@ -803,3 +812,85 @@ export async function logout(){
         throw new Error ('Error while signing out');
     }
 }
+
+
+// ------------To Reset Password
+// import { initializeApp } from "firebase/app";
+// import { getAuth } from "firebase/auth";
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   // TODO: Implement getParameterByName()
+
+//   // Get the action to complete.
+//   const mode = getParameterByName('mode');
+//   // Get the one-time code from the query parameter.
+//   const actionCode = getParameterByName('oobCode');
+//   // (Optional) Get the continue URL from the query parameter if available.
+//   const continueUrl = getParameterByName('continueUrl');
+//   // (Optional) Get the language code if available.
+//   const lang = getParameterByName('lang') || 'en';
+
+  // Configure the Firebase SDK.
+  // This is the minimum configuration required for the API to be used.
+  // const config = {
+  //   'apiKey': "YOU_API_KEY" // Copy this key from the web initialization
+  //                           // snippet found in the Firebase console.
+  // };
+//   // const app = initializeApp(config);
+//   // const auth = getAuth(app);
+
+//   // Handle the user management action.
+//   switch (mode) {
+//     case 'resetPassword':
+//       // Display reset password handler and UI.
+//       handleResetPassword(auth, actionCode, continueUrl, lang);
+//       break;
+//     case 'recoverEmail':
+//       // Display email recovery handler and UI.
+//       handleRecoverEmail(auth, actionCode, lang);
+//       break;
+//     case 'verifyEmail':
+//       // Display email verification handler and UI.
+//       handleVerifyEmail(auth, actionCode, continueUrl, lang);
+//       break;
+//     default:
+//       // Error: invalid mode.
+//   }
+// }, false);
+
+/////For Password Reset
+
+// import { verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
+
+// function handleResetPassword(auth, actionCode, continueUrl, lang) {
+//   // Localize the UI to the selected language as determined by the lang
+//   // parameter.
+
+//   // Verify the password reset code is valid.
+//   verifyPasswordResetCode(auth, actionCode).then((email) => {
+//     const accountEmail = email;
+
+//     // TODO: Show the reset screen with the user's email and ask the user for
+//     // the new password.
+//     const newPassword = "...";
+
+//     // Save the new password.
+//     confirmPasswordReset(auth, actionCode, newPassword).then((resp) => {
+//       // Password reset has been confirmed and new password updated.
+
+//       // TODO: Display a link back to the app, or sign-in the user directly
+//       // if the page belongs to the same domain as the app:
+//       // auth.signInWithEmailAndPassword(accountEmail, newPassword);
+
+//       // TODO: If a continue URL is available, display a button which on
+//       // click redirects the user back to the app via continueUrl with
+//       // additional state determined from that URL's parameters.
+//     }).catch((error) => {
+//       // Error occurred during confirmation. The code might have expired or the
+//       // password is too weak.
+//     });
+//   }).catch((error) => {
+//     // Invalid or expired action code. Ask user to try to reset the password
+//     // again.
+//   });
+// }
