@@ -1,208 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Your Event</title>
 
-        <title>Edit My Event</title>
+    <link rel="shortcut icon" href="../favicon.ico">
+    
+    <!-- firebase -->
+    <!-- <script type="module" src="../js/app.js"></script> -->
+    <!-- <script type="module" src="../js/appCall.js"></script> -->
 
-        <link rel="shortcut icon" href="../favicon.ico">
-
-        <!-- fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Inter:400,700|Manrope:800" rel="stylesheet">
-
-        <!-- firebase -->
-        <script type="module" src="../js/app.js" defer></script>
-        <!-- <script type="module" src="../js/maindb.js" defer></script> -->
-        <!-- <script type="module" src="../js/login.js"></script> -->
-
-        <!-- required assets -->
-        <link href="../css/variables.css" rel="stylesheet">
-        <link href="../css/global.css" rel="stylesheet">
-        <script src="../js/global.js" defer></script>
-        <script type="module" src="../js/topBar.js" defer></script>
+    <!-- required assets -->
+    <link href="../css/variables.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <script src="../js/global.js" defer></script>
+    <script type="module" src="../js/topBar.js" defer></script>
 
 
-        <!-- icon font: fontawesome -->
-        <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+    <!-- icon font: fontawesome -->
+    <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+    <!-- <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet"> -->
+    
+    <!-- page-specific assets -->
+    <link href="../css/topBar.css" rel="stylesheet">
+    <link href="../css/leftPanel.css" rel="stylesheet">
+    <link href="../css/editMyEvent.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
 
-        <!-- page-specific assets -->
-        <link href="../css/topBar.css" rel="stylesheet">
-        <link href="../css/editMyEvent.css" rel="stylesheet">
-        <link href="../css/footer.css" rel="stylesheet">
-        <link href="../css/popupBox.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="../js/leftPanel.js" defer></script>
+    <script type="module" src="../js/editMyEvent.js"></script>
+
+    <!-- tomtom -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/services/services-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
+    <!-- <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css'/> 
+        -->
+    <link href="../css/tomtomSearchBox.css" rel="stylesheet">
+
+    <link href="../css/popupBox.css" rel="stylesheet">
+
+
+    <!-- The below files are for Cloud storage -->
+    <!-- <script src="/__/firebase/9.13.0/firebase-app-compat.js"></script>
+    <script src="/__/firebase/9.13.0/firebase-auth-compat.js"></script>
+    <script src="/__/firebase/9.13.0/firebase-storage-compat.js"></script>
+    <script src="/__/firebase/init.js"></script>  -->
+    
+    
     
 
-        <script type="module" src="../js/editMyEvent.js"></script>
-        
-    </head>
-    <body>
-        <!------ TOP BAR ------>
-        <div js-include-html="../html/topBar.html"></div>
+</head>
 
-        <!------ POPUP ------>
-        <div js-include-html="../html/popupBox.html"></div>
+<body>
+
+    <!------ TOP BAR ------>
+    <div js-include-html="../html/topBar.html"></div>
+
+    <!------ POPUP ------>
+    <div js-include-html="../html/popupBox.html"></div>
+
+    <!------ LEFT PANEL ------>
+    <div js-include-html="../html/leftPanel.html" status="closed"></div>
 
 
-        <div class="containers-wrap">
+    <!------ MAIN CONTENT ------>
 
-            <!-- Left Content -->
-            <div class="left-container">
-                <div class="event-content">
-                    <form class="form" action="">
-                        <div class="input-fields name">
-                            <label for="eventName">Event Name : </label>
-                            <input type="text" name="eventName" id="eventName" placeholder="">
-                        </div>
 
-                        <div class="input-fields location">
-                            <label for="eventLacation">Location : </label>
-                            <input type="text" name="eventLacation" id="eventLocation" placeholder="">
-                        </div>
+    <div class="outer-cont-a">
+    <div class="outer-cont-b">
+    <div class="main-container">
+        <!-- Heading -->
+        <div class="heading-wrap">
+            <p class="heading">Edit Your Event</p>
+        </div>
 
-                        <!-- Use datetime-local bacause by defalt date input splits out UTC time zone -->
-                        <div class="input-fields datetime">
-                            <label for="eventStartDateTime">Date and Start Time : </label>
-                            <input type="text" name="eventStartDateTime" id="eventStartDateTime" placeholder="" onfocus="(this.type='datetime-local')">
-                        </div>
+        <!-- Left -->
+        <div class="left-container">
 
-                        <div class="flex-layout"> 
+            <!-- Form Inputs -->
+            <form action="">
     
-                            <div class="input-fields time">
-                                <label for="eventEndTime">End Time : </label>
-                                <input type="text" name="eventEndTime" id="eventEndTime" placeholder="" onfocus="(this.type='time')">
-                            </div>
-
-                            <div class="input-fields price">
-                                <label for="eventPrice">Price : </label>
-                                <input type="number" name="eventPrice" id="eventPrice" value="" placeholder="">
-                            </div>
-
-                        </div>
-                        
-
-                        <div class="input-fields numOfPeople">
-                            <label for="eventNumOfPeople">Number of participants : </label>
-                            <input type="number" name="eventNumOfPeople" id="eventNumOfPeople" value="" placeholder="">
-                        </div>
-
-                        <div class="input-fields category">
-
-                            <div class="category-label">
-                                <label>Category </label>
-                                <span class="arrow">&blacktriangledown;</span>
-                            </div>
-                            
-                            <!-- list of checkboxes -->
-                            <div class="category-list options">
-
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="categoryList" value="food-and-drinks"
-                                    id="check-food-and-drinks">
-                                    Food & Drinks
-                                </label> 
-
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="categoryList" value="travel"
-                                    id="check-travel">
-                                    Travel
-                                </label> 
-
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="categoryList" value="sports"
-                                    id="check-sports">
-                                    Sport
-                                </label> 
-
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="categoryList" value="music"
-                                    id="check-music">
-                                    Music
-                                </label> 
-
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="categoryList" value="performing"
-                                    id="check-performing">
-                                    Performing
-                                </label> 
-
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="categoryList" value="business"
-                                    id="check-business">
-                                    Business
-                                </label> 
-
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="categoryList" value="online"
-                                    id="check-online">
-                                    Online
-                                </label> 
-
-                            </div>
-
-                        </div>        
-
-                        <div class="input-fields desc">
-                            <label for="eventDesc">Description : </label>
-                            <textarea name="eventDesc" id="eventDesc" value="" placeholder=""></textarea>
-                        </div>
-                    </form>
+                <div class="input-fields">
+                    <input type="text" name="" id="name" value="" placeholder="Name of the event &ast;" required>
                 </div>
-            </div>
+
+                <div class="input-fields" id="searchPlugIn"></div>
+
+                <!-- <div class="input-fields location">
+                    <input type="text" name="" id="location" value="" placeholder="Location &ast;" required>
+                </div> -->
 
 
-            <!-- Right Content -->
-            <div class="right-container">
+                <div class="input-fields date">
+                    <input type="datetime-local" name="" id="datetime" value="" placeholder="Date" required>
+                </div>
 
-                <div class="images-container-wrap">
-                    <div class="images-container">
+                <div class="input-fields time">
+                    <input type="time" name="" id="endTime" value="" placeholder="Time" required>
+                </div>
 
-                        <!-- Image 1 -->
-                       <div class="image-wrap">
-                           <img class="image" src="../images/unsplash_concert_hTv8aaPziOQ.jpeg" alt="">
-                           <button <i class="fa-regular fa-trash-can"></i></button>
-                       </div>
-   
-                        <!-- Image 2 -->
-                       <div class="image-wrap">
-                           <img class="image" src="../images/unsplash_concert_hTv8aaPziOQ.jpeg" alt="">
-                           <button <i class="fa-regular fa-trash-can"></i></button>
-                       </div>
-   
-                        <!-- Image 3 -->
-                       <div class="image-wrap">
-                           <img class="image" src="../images/unsplash_concert_hTv8aaPziOQ.jpeg" alt="">
-                           <button <i class="fa-regular fa-trash-can"></i></button>
-                       </div>
-   
-                   </div>
-   
-                    <!-- Add Photo Buttons -->
-                    <div>
-                        <label class="upload-img" for="upload"><i class="fa-solid fa-folder-plus"></i>&nbsp;&nbsp;Add Photo</label>
-                        <input type="file" id="upload"  accept=".jpg, .jpeg, .png"  >
+                <div class="input-fields">
+                    <input type="number" name="" id="price" value="" placeholder="Price &ast;" min="0" required>
+                </div>
+
+                <div class="input-fields">
+                    <input type="number" name="" id="number" value="" placeholder="Number of participants &ast;" min="0" required>
+                </div>
+
+                <div class="input-fields category">
+
+                    <div class="category-label">
+                        <label>Category </label>
+                        <span class="arrow">&blacktriangledown;</span>
+                    </div>
+                    
+                    <!-- list of checkboxes -->
+                    <div class="category-list options">
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="food-and-drinks">
+                            Food & Drinks
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="travel">
+                            Travel
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="sports">
+                            Sport
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="music">
+                            Music
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="performing">
+                            Performing
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="business">
+                            Business
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="online">
+                            Online
+                        </label> 
 
                     </div>
 
-                </div> <!-- End Images Wrap -->
+                </div>  
 
-                <!-- illustration -->
-                <div class="illustration">
-                    <img src="../svg/edit_my_event.svg" alt="">  
+                <div class="input-fields desc">
+                    <label for="eventDesc">Description</label>
+                    <textarea name="eventDesc" id="desc" placeholder=""></textarea>
                 </div>
-                
+
+            </form>
+           
+        </div> <!-- End left container-->
+
+        <!-- Right Container -->
+        <div class="right-container">
+
+            <div class="upload-text">
+                <span>Upload Photo &nbsp;</span>
+                <i class="fa-solid fa-cloud-arrow-up"></i>
             </div>
-            
-        </div>
 
+            <div class="upload-content-wrap">
+
+                <div class="images-outer-cont">
+                    <div class="images-container">
+
+                    <!-- Image 1 -->
+                    <div class="image-wrap" hidden>
+                        <img id="testimg" class="image" src="../images/unsplash_concert_hTv8aaPziOQ.jpeg" alt="">
+                        <button class="delete-upload-img"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+
+                    <!-- Image 2 -->
+                    <!-- <div class="image-wrap">
+                        <img class="image" src="../images/unsplash_dance_group_Nwc-Z3_aEvw.jpeg" alt="">
+                        <button class="delete-upload-img"><i class="fa-regular fa-trash-can"></i></button>
+                    </div> -->
+
+                    <!-- Image 3 -->
+                    <!-- <div class="image-wrap">
+                        <img class="image" src="../images/unsplash_concert_hTv8aaPziOQ.jpeg" alt="">
+                        <button class="delete-upload-img"><i class="fa-regular fa-trash-can"></i></button>
+                    </div> -->
+
+                    </div><!--images-outer-cont-->
+
+
+                </div>
+
+                <!-- Add Photo Buttons -->
+                <div class="span-flex">
+                    <label class="upload-img" for="upload"><i class="fa-solid fa-folder-plus"></i>&nbsp;&nbsp;Add Photo</label>
+                    <input type="file" id="upload"  accept=".jpg, .jpeg, .png">
+                    <!-- multiple onchange="chooseFile(event)" -->
+
+                    <!-- I wrote the below line to test -->
+                    <!-- <input type="file" onchange="uploadFile()" id="files" name="files[]" multiple /> -->
+                </div>
+
+            </div>
+
+        </div> <!-- End Right Container--> 
+        
         <div class="btn-wrap">
-            <button class="btn cancel-btn">Cancel</button>
-            <button class="btn save-btn" id="submit">Save</button>
+            <button class="btn btn-cancel">Cancel</button>
+            <button type="button" class="btn btn-submit" id="submit" >Submit</button>
         </div>
 
-        <!------ FOOTER ------>
-        <div js-include-html="../html/footer.html"></div>
+    </div> <!-- End Main Container-->
+    </div><!--outer-cont-b-->
+    </div><!--outer-cont-a-->
 
-    </body>
+
+    <!------ FOOTER ------>
+    <div js-include-html="../html/footer.html"></div>
+
+</body>
 </html>
