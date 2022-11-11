@@ -1,8 +1,11 @@
 /*----------- SHARED STYLING -----------*/
 :root {
+    --Loading-Icon-Spin-Speed:1.5s;
+    --Loading-Icon-Spin-Method:linear;
+    --Loading-Dismiss-Delay:699; /* ms only */
     --Loading-Fade-Speed:400ms; /* ms only */
     --Categories-Dropdown-Speed:400ms; /* ms only */
-    --Search-Buttons-Transition-Speed:200ms;
+    --Search-Buttons-Transition-Speed:0.2s;
 }
 
 .dont-show {
@@ -20,7 +23,7 @@
     justify-content:center;
 }
 
-.input-field {
+.input-field, .search-controls {
     transition:filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     backface-visibility:hidden;
 }
@@ -154,22 +157,41 @@ input::placeholder, input::-webkit-input-placeholder {
     color:var(--Text-Color);
 }
 
-/*----------- ALL EVENTS -----------*/
+/*----------- PAGE FADE-IN / LOADING -----------*/
 .cover-up {
-    position:absolute;
-    top:0;left:0;
-    width:100%;
-    height:100%;
     background:#fff;
     opacity:1;
     transition:opacity var(--Loading-Fade-Speed) ease-in-out;
     z-index:2;
 }
 
+.cover-up i {
+    display:block;
+    line-height:100%;
+    color:var(--Primary);
+    animation-name:loaderSpin;
+    animation-duration:var(--Loading-Icon-Spin-Speed);
+    animation-direction:normal;
+    animation-timing-function:var(--Loading-Icon-Spin-Method);
+    animation-iteration-count:infinite;
+    transform-origin:center;
+}
+
+@keyframes loaderSpin {
+    from {
+        transform:rotate(0deg)
+    }
+
+    to {
+        transform:rotate(360deg)
+    }
+}
+
 .fade-out {
     opacity:0;
 }
 
+/*----------- ALL EVENTS -----------*/
 .event-container {
     display:grid;
     background-color:var(--Light-Gray);

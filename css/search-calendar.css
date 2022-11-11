@@ -15,8 +15,9 @@
     overflow:initial!important;
 }
 
-[datepicker-display='on'] .input-field {
-    filter:blur(4px)
+[datepicker-display='on'] .input-field,
+[datepicker-display='on'] .search-controls {
+    filter:blur(4px);
 }
 
 .dcalendarpicker .dudp__wrapper {

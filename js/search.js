@@ -172,13 +172,22 @@ querySnapshot.forEach((doc) => {
 let loadFadeSpeed = parseInt(getComputedStyle(document.documentElement)
                     .getPropertyValue("--Loading-Fade-Speed"));
 
+let cancelLoadDelay = parseInt(getComputedStyle(document.documentElement)
+                     .getPropertyValue("--Loading-Dismiss-Delay"));
+
 setTimeout(() => {
     document.querySelector(".cover-up").classList.add("fade-out");
 
     setTimeout(() => {
         document.querySelector(".cover-up").style.display = "none";
+        document.querySelector("footer").style.display = "block";
+
+        setTimeout(() => {
+            window.removeEventListener("wheel", blockScroll);
+        },loadFadeSpeed)
+        
     },loadFadeSpeed)
-},699)
+},cancelLoadDelay)
 
 
 document.querySelector(".reset-search").addEventListener("click",async()=>{

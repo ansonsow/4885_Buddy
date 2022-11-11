@@ -18,6 +18,8 @@
     --Mobile-Search-Buttons-Font-Size:calc(var(--Mobile-Body-Font-Size) * 0.85);
     --Mobile-Search-Buttons-Spacing:1rem;
 
+    --Mobile-Loading-Icon-Size:10vw;
+
     --Mobile-Events-Container-Top-Gap:calc(var(--TopBar-Height) * 0.5);
     --Mobile-Events-Container-Width:85vw;
 
@@ -183,9 +185,26 @@
         font-size:var(--Mobile-Search-Buttons-Font-Size);
     }
 
+    /*----------- PAGE FADE-IN / LOADING -----------*/
+
+    .cover-up {
+        position:absolute;
+        top:0;left:0;
+        display:flex;
+        align-items:baseline;
+        justify-content:center;
+        width:100%;
+        height:100%;
+    }
+
+    .cover-up i {
+        font-size:var(--Mobile-Loading-Icon-Size)
+    }
+
     /*----------- ALL EVENTS -----------*/
 
     .all-events {
+        position:relative;
         margin:auto;
         margin-top:var(--Mobile-Events-Container-Top-Gap);
         margin-bottom:var(--Mobile-Events-Container-Top-Gap);
@@ -206,6 +225,7 @@
     .card-description {
         padding:var(--Mobile-Event-Details-Padding);
         padding-right:var(--Mobile-Event-Details-Padding-Right);
+        max-height:100%;
     }
 
     .event-name {
@@ -228,6 +248,12 @@
 
     .event-container + .event-container {
         margin-top:var(--Mobile-Events-Spacing);
+    }
+
+    /*-------------------------*/
+
+    footer {
+        display:none;
     }
 }
 

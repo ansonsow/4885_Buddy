@@ -17,6 +17,8 @@
     --Search-Buttons-Font-Size:var(--Body-Font-Size);
     --Search-Buttons-Spacing:1.4rem;
 
+    --Loading-Icon-Size:4vw;
+
     --Events-Container-Width:52vw;
 
     --Event-Image-Width:calc(var(--Events-Container-Width) * 0.45);
@@ -218,6 +220,23 @@
         font-size:var(--Search-Buttons-Font-Size);
     }
 
+    /*----------- PAGE FADE-IN / LOADING -----------*/
+    
+    .cover-up {
+        position:absolute;
+        top:0;left:0;
+        width:100%;
+        height:100vh;
+    }
+
+    .cover-up i {
+        position:absolute;
+        top:50%;left:50%;
+        transform:translate(-50%,-50%);
+        margin-top:calc(var(--TopBar-Height) * -1);
+        font-size:var(--Loading-Icon-Size);
+    }
+
     /*----------- ALL EVENTS -----------*/
 
     .all-events {
@@ -256,6 +275,6 @@
     /*-------------------------*/
 
     footer {
-        display:none;
+        display:none!important;
     }
 }
