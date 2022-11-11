@@ -24,6 +24,10 @@ nav {
     color:var(--Main-Text);
 }
 
+.arrow-container {
+    display:none!important;
+}
+
 /* mobile adjustments for TOP BAR */
 @media(max-width:600px){
     header {

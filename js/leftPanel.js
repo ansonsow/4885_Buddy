@@ -1,8 +1,7 @@
-function jQueryActions(){
-    detectLeftPanel();
-}
 
-function detectLeftPanel(){
+contentLoaded(awaitjQ)
+
+function awaitjQ(){
     let lpDateNow = Date.now();
     let lpStop = 2500;
     
@@ -10,15 +9,15 @@ function detectLeftPanel(){
         if(Date.now() - lpDateNow > lpStop){
             clearInterval(checkLeftPanel);
         } else {
-            // check if .left-panel exists
-            // then proceed with jQuery tasks for that
-            if($(".left-panel").length){
-                clearInterval(checkLeftPanel);
-                leftPanel();
+            if(typeof jQuery !== undefined){
+                if($(".left-panel").length){
+                    clearInterval(checkLeftPanel);
+                    leftPanel();
+                }                
             }	
         }
     },0);
-}//end detectLeftPanel()
+}
 
 function leftPanel(){
 

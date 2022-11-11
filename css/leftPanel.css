@@ -29,6 +29,16 @@
         z-index:3;
     }
 
+    header:after {
+        content:"";
+        position:absolute;
+        top:0;left:0;
+        width:100%;
+        height:95%;
+        background:#fff;
+        z-index:-1;
+    }
+
     nav[status="closed"] .logo [vector-part="buddy_bu"] path,
     nav[status="closed"] .logo [vector-part="buddy_y"] path {
         fill:var(--Primary);
@@ -47,7 +57,27 @@
         border-radius:0 var(--Left-Panel-Rounding) var(--Left-Panel-Rounding) 0;
         background:var(--Primary);
         overflow:hidden;
-        z-index:2;
+        z-index:5;
+    }
+
+    /*---- MOCK Top Bar Logo ----*/
+    .tb-logo {
+        position:absolute;
+        top:0;left:0;
+        margin-left:var(--TopBar-Padding);
+        width:var(--Logo-Container-Width);
+        height:var(--TopBar-Height);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        z-index:1;
+    }
+
+    .tb-logo svg {
+        display:block;
+        margin:auto;
+        width:var(--Logo-Width);
+        height:var(--Logo-Height);
     }
 
     /*---- Quick Links ----*/
@@ -157,5 +187,11 @@
 
     .left-panel[status-change="proc"]{
         transition:width var(--Tray-Transition-Speed) var(--Tray-Transition-Method);
+    }
+}
+
+@media(max-width:600px){
+    .tb-logo {
+        display:none;
     }
 }
