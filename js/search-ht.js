@@ -6,6 +6,178 @@ import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.
 /**************************************************************************/
 /**************************************************************************/
 
+function formatDate(d){
+    let eventDateNum = d.replace(/[^\d\.]*/g,"");
+    let eventYear = eventDateNum.slice(0,4);
+    let eventMonth = eventDateNum.substring(eventDateNum.length-12).slice(0,2);
+    let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
+
+    // if first number of eventDay is a 0, remove that
+    let dayFirstChara = eventDay.slice(0,1);
+    if(dayFirstChara == "0"){
+        eventDay = eventDay.slice(1,2);
+    }
+
+    let suffixes = ["st", "nd", "rd"];
+    let numExceptions = [11, 12, 13];
+    let nth = suffixes[(eventDay % 10) - 1] == undefined || numExceptions.includes(eventDay % 100) ? "th" : suffixes[(eventDay % 10) - 1];
+
+    let daySuffix = nth;
+
+    // format eventMonth
+    eventMonth =
+        eventMonth == "01" ? "Jan" :
+        eventMonth == "02" ? "Feb" :
+        eventMonth == "03" ? "Mar" :
+        eventMonth == "04" ? "Apr" :
+        eventMonth == "05" ? "May" :
+        eventMonth == "06" ? "Jun" :
+        eventMonth == "07" ? "Jul" :
+        eventMonth == "08" ? "Aug" :
+        eventMonth == "09" ? "Sept" :
+        eventMonth == "10" ? "Oct" :
+        eventMonth == "11" ? "Nov" :
+        eventMonth == "12" ? "Dec" :
+        eventMonth;
+
+    return(`${eventDay}${daySuffix} ${eventMonth} ${eventYear}`);
+    
+    // document.querySelector(".event-date").textContent = `${eventDay}${daySuffix} ${eventMonth} ${eventYear}`;
+}
+
+
+
+
+function formatTime(d){
+    let eventDateNum = d.replace(/[^\d\.]*/g,"");
+    let eventTimeStart_Hour = eventDateNum.substring(eventDateNum.length-8).slice(0,2);
+    let eventTimeStart_Minutes = eventDateNum.substring(eventDateNum.length-6).slice(0,2);
+    let eventTimeEnd_Hour = eventDateNum.substring(eventDateNum.length-4).slice(0,2);
+    let eventTimeEnd_Minutes = eventDateNum.substring(eventDateNum.length-2);
+    return(`${eventTimeStart_Hour}:${eventTimeStart_Minutes} &ndash; ${eventTimeEnd_Hour}:${eventTimeEnd_Minutes}`);
+}
+
+function getDate(d){
+    let eventDateNum = d.replace(/[^\d\.]*/g,"");
+    let eventYear = eventDateNum.slice(0,4);
+    let eventMonth = eventDateNum.substring(eventDateNum.length - 12).slice(0,2);
+    let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
+    return (`${eventYear}${eventMonth}${eventDay}`);
+}
+
+function getEndTime(d){
+    let eventDateNum = d.replace(/[^\d\.]*/g,"");
+
+    let eventTimeEnd_Hour = eventDateNum.substring(eventDateNum.length-4).slice(0,2);
+    let eventTimeEnd_Minutes = eventDateNum.substring(eventDateNum.length-2);
+    return(`${eventTimeEnd_Hour}${eventTimeEnd_Minutes}`)
+}
+
+function getFullDate(d){
+    let eventDateNum = d.replace(/[^\d\.]*/g,"");
+    let eventYear = eventDateNum.slice(0,4);
+    let eventMonth = eventDateNum.substring(eventDateNum.length - 12).slice(0,2);
+    let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
+    let eventTimeStart_Hour = eventDateNum.substring(eventDateNum.length-8).slice(0,2);
+    let eventTimeStart_Minutes = eventDateNum.substring(eventDateNum.length-6).slice(0,2);
+    return(`${eventYear}${eventMonth}${eventDay}${eventTimeStart_Hour}${eventTimeStart_Minutes}`)
+}
+
+
+
+
+function displayResult(doc,id){
+
+    let eventBlock = document.querySelector(".event-container");
+    let clonedEvent = eventBlock.cloneNode(true);
+
+    clonedEvent.removeAttribute("hidden");
+    
+    clonedEvent.addEventListener("click",()=>{
+        localStorage.setItem(targetEventId, id);
+        // console.log(id);
+        console.log(localStorage.getItem(targetEventId));
+        window.location = "../html/eventDetail.html#" + localStorage.getItem(targetEventId);
+    })
+
+
+    eventBlock.after(clonedEvent)
+
+    let jqDateNow = Date.now();
+    let jqStop = 1000;
+    
+    let load_jQuery = setInterval(() => {
+        if(Date.now() - jqDateNow > jqStop){
+            clearInterval(load_jQuery);
+        } else {
+            if(typeof jQuery !== "undefined"){
+                clearInterval(load_jQuery);
+                document.querySelector(".cloned-events-container").append(clonedEvent);
+            }		
+        }
+    },0);
+
+    clonedEvent.querySelector(".card-image").src = doc.images[0];
+    clonedEvent.querySelector(".event-name").innerHTML = doc.name;
+
+    async function reverseGeo(l){
+        await tt.services.reverseGeocode({
+        key: tomtomApiKey,
+        position: l
+    })
+    .then(result=>{
+        clonedEvent.querySelector(".card-row .location").innerHTML = result.addresses[0].address.freeformAddress
+        // console.log(result.addresses[0].address.freeformAddress);
+    });
+    }
+    setTimeout(() => {
+    reverseGeo(doc.location)
+    }, 1000);
+
+    // card-content location
+    clonedEvent.querySelector(".card-row .date").innerHTML =  formatDate(doc.dateOfEvent);
+    clonedEvent.querySelector(".card-row .time").innerHTML =  formatTime(doc.dateOfEvent);
+
+}
+
+function formatDateSearch(searchDate, docDate , n){
+    console.log("formated date Search "+getFullDate(searchDate));
+    console.log("formated fullDate "+ getFullDate(docDate));
+    console.log(n, getDate(docDate));
+    if(getFullDate(searchDate)<getFullDate(docDate)){
+        return true;
+    }else if(getFullDate(searchDate)==getFullDate(docDate)){
+        if(getEndTime(searchDate)>=getEndTime(docDate)){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
+
+
+let allSearch = [];
+
+let q = query(collection(db, "events"));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+    // console.log(doc.id);
+    allSearch.push(doc)
+    displayResult(doc.data(),doc.id)
+});
+
+document.querySelector(".reset-search").addEventListener("click",async()=>{
+    document.querySelectorAll(".cloned-events-container").forEach(event => {
+        event.replaceChildren();
+    });
+    querySnapshot.forEach((doc) => {
+        // console.log(doc.id);
+        allSearch.push(doc)
+        displayResult(doc.data(),doc.id)
+    });
+})
 // ======================== searchButton on click ========================================================
 document.querySelector(".search-button").addEventListener("click",async()=>{
     document.querySelectorAll(".cloned-events-container").forEach(event => {
@@ -13,8 +185,9 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
     });
 
     // searchResult=[];
-
+    let searchResults = [];
     let searchResult = [];
+
 
     // "search for anything"
     let textSearch = search_text.value;
@@ -28,10 +201,16 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
     // starting time of event
     // i.e. if 3am: 0300
     let timeStart = time_start.getAttribute("data-timepicki-tim") + time_start.getAttribute("data-timepicki-mini");
+    if(timeStart == "0"){
+        timeStart = "0000"
+    }
 
     // end time of event
     // i.e. if 6pm: 1800
-    let timeEnd = time_end.getAttribute("data-timepicki-tim") + time_end.getAttribute("data-timepicki-mini");    
+    let timeEnd = time_end.getAttribute("data-timepicki-tim") + time_end.getAttribute("data-timepicki-mini");
+    if(timeEnd == "0"){
+        timeEnd = "2359"
+    }
 
     let tagSearch = [];
     let tags = document.getElementsByName("categoryList");
@@ -41,9 +220,110 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
         }
     }
 
-    searchResult.push(textSearch, addressSearch, dateSearch, timeStart, timeEnd, tagSearch);
+    searchResults.push(textSearch, addressSearch, dateSearch, timeStart, timeEnd, tagSearch);
+    console.log(searchResults)
+    if(dateSearch==""){
+        
+    }else{
+        dateSearch = dateSearch + timeStart + timeEnd; 
+    }
+    console.log(getFullDate(dateSearch));
 
-    console.log(searchResult)
+
+    for(let i=0;i<allSearch.length;i++){
+        if(textSearch == "" && tagSearch.length == 0  && dateSearch == ""){
+            alert("please fill up at lease one field");
+            for(let i=0;i<allSearch.length;i++){
+                displayResult(allSearch[i].data(), allSearch[i].data)
+            }
+
+            break;
+        }else{
+            if(textSearch != ""){
+                if(searchResult.length!=0){
+                    for(let j=0;j<searchResult.length;j++){
+                        if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
+                            console.log("slicing " + searchResult[j].data().name +" because doesn't contain name");
+                            searchResult.splice(j,1)
+                        }
+                    }
+                }
+                if(allSearch[i].data().name.toUpperCase().includes(textSearch.toUpperCase())){
+                    if(!searchResult.includes(allSearch[i])){
+                        // console.log(allSearch[i].name);
+                        console.log("pushing " +allSearch[i].data().name +" because contain name");
+        
+                        searchResult.push(allSearch[i])
+                    }
+                }
+            }
+            if(dateSearch!=""){
+                console.log("object");
+                if(searchResult.length!=0){
+                    
+                    for(let j =0;j<searchResult.length;j++){
+                        if(!formatDateSearch(dateSearch, searchResult[j].data().dateOfEvent , searchResult[j].data().name)){
+    
+                            console.log("slicing " + searchResult[j].data().name +" because the date of event is bigger");
+                            searchResult.splice(j,1)
+                        }
+                    }
+                }
+                if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent , allSearch[i].data().name)){
+    
+                    if(!searchResult.includes(allSearch[i])){
+                        console.log("pushing "+ allSearch[i].data().name + " beacause the event date is bigger");
+                        searchResult.push(allSearch[i])
+                    }
+    
+                }
+            }
+    
+            if(tagSearch.length != 0){
+                if(searchResult.length!=0){
+    
+                    for(let j=0;j<searchResult.length;j++){
+                        if(!searchResult[j].data().tags.includes(tagSearch.toString())){
+                            console.log("slice "+searchResult[j].name);
+                            searchResult.splice(j,1)
+                        }
+                    }
+    
+                }
+    
+                // only one tag
+                if(allSearch[i].data().tags.includes(tagSearch.toString())){
+                    if(!searchResult.includes(allSearch[i])){
+                        console.log("push "+allSearch[i].data().name);
+                        searchResult.push(allSearch[i])
+                    }
+                }
+    
+    
+                // multiple tag search
+                // for(let j =0;j<tagSearch.length;j++){
+                //     // console.log(object);
+                //     if(allSearch[i].data().tags.includes(tagSearch[j])){
+                //         if(!searchResult.includes(allSearch[i])){
+                //             console.log("push "+allSearch[i].data().name);
+                //             searchResult.push(allSearch[i])
+                //         }
+                //     }   
+                // }
+    
+    
+                
+            }
+        }
+        
+    }
+    // console.log(searchResult);
+
+
+    for(let i=0;i<searchResult.length;i++){
+        displayResult(searchResult[i].data(),searchResult[i].id)
+
+    }
 })
 
 /**************************************************************************/
@@ -160,7 +440,7 @@ $(document).ready(function(){
         }
     }
 
-    addEvents(4)
+    // addEvents(4)
     
     /*-------- OTHER --------*/
     $(window).load(function(){

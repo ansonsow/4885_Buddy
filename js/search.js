@@ -316,13 +316,15 @@ document.getElementById("searchButton").addEventListener("click",async()=>{
                     }
 
                 }
-
-                    if(allSearch[i].data().tags.includes(tagSearch.toString())){
-                        if(!searchResult.includes(allSearch[i])){
-                            console.log("push "+allSearch[i].data().name);
-                            searchResult.push(allSearch[i])
+                    for(let j =0;j<tagSearch.length;j++){
+                        if(allSearch[i].data().tags.includes(tagSearch[j])){
+                            if(!searchResult.includes(allSearch[i])){
+                                console.log("push "+allSearch[i].data().name);
+                                searchResult.push(allSearch[i])
+                            }
                         }
                     }
+
                 
             }
 
