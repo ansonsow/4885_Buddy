@@ -1,270 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <title>Search</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buddy - Find Events</title>
 
-        <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
 
-        <!-- fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Inter:400,700|Manrope:800" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <!-- required assets -->
+    <link href="../css/variables.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <script src="../js/global.js" defer></script>
 
-        <!-- <script type="module" src="../js/app.js" defer></script> -->
-        <!-- <script type="module" src="../js/maindb.js" defer></script> -->
+    <script src="../js/leftPanel.js" defer></script>
+    <script type="module" src="../js/topBar.js" defer></script>
 
-        <!-- tomtom -->
-        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/maps/maps-web.min.js"></script>
-        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/services/services-web.min.js"></script>
-        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
-        <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css'/>    
-        
+    <!-- icon font: fontawesome -->
+    <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
 
+    <!-- date picker -->
+    <!-- src: https://github.com/dmuy/duDatepicker -->
+    <link href="https://unpkg.com/@dmuy/datepicker@latest/dist/duDatepicker.css" rel="stylesheet">
+    <script src="https://unpkg.com/@dmuy/datepicker@latest/dist/duDatepicker.js"></script>
 
-        <!-- required assets -->
-        <link href="../css/variables.css" rel="stylesheet">
-        <link href="../css/global.css" rel="stylesheet">
-        <script src="../js/global.js" defer></script>
-
-        <!-- firebase -->
-        <script src="../js/searchWrap.js" defer></script>
-
-        <script type="module" src="../js/search.js" defer></script>
-        <script type="module" src="../js/topBar.js" defer></script>
-
-
-
-
-        <!-- icon font: fontawesome -->
-        <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
-
-        <!-- page-specific assets -->
-        <link href="../css/topBar.css" rel="stylesheet">
-        <link href="../css/search.css" rel="stylesheet">
-        <link href="../css/footer.css" rel="stylesheet">
-
-        <!-- jQuery -->
-
-        <link href="../css/popupBox.css" rel="stylesheet">
-
-
-        
-    </head>
-
-    <body>
-        <!------ TOP BAR ------>
-        <div js-include-html="../html/topBar.html"></div>
-
-        <!------ POPUP ------>
-        <div js-include-html="../html/popupBox.html"></div>
-       
-        <div class="container">
-             <!-- Left Column Content -->
-            <div class="left-container">
-                
-                <div class="content">
+    <!-- time picker -->
+    <!-- src: https://github.com/senthilraj/TimePicki -->
+    <link href="https://cdn.jsdelivr.net/gh/senthilraj/TimePicki@master/css/timepicki.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/senthilraj/TimePicki@master/js/timepicki.js"></script>
     
-                    <form class="form" action="#" method="post">
+    <!-- page-specific assets -->
+    <link href="../css/topBar.css" rel="stylesheet">
+    <link href="../css/leftPanel.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">    
 
-                        <div class="text-field-wrap">
+    <link href="../css/popupBox.css" rel="stylesheet">
+    <link href="../css/search.css" rel="stylesheet">
+    <link href="../css/search-desktop.css" rel="stylesheet">
+    <link href="../css/search-mobile.css" rel="stylesheet">
 
-                            <div class="text-field">
-                                <input type="text" placeholder="Search For Anything" name="" value="" id="textSearch">
-                            </div>
-                            
-                            <div class="text-field" id="searchBoxPlugin">
-                                <input type="text" placeholder="Postal Code / Address" name="" value="">
-                            </div>
+    <link href="../css/search-calendar.css" rel="stylesheet">
+    <script type="module" src="../js/search.js" defer></script>
 
-
-                            <button class="ctn" id="locationButton" type="button">Search by location</button>
-
-                            <div class="text-field date-time">
-                                <input type="text" id="dateTime" placeholder="Date and Start Time" name="" value="" onfocus="(this.type='datetime-local')">
-                            </div>
-
-                            <div class="text-field time">
-                                <input type="text" placeholder="End Time" name="" value="" onfocus="(this.type='time')">
-                            </div>
+    <link rel="preload" href="//rhizo.gitlab.io/random/arrows_inverted.png" as="image">
 
 
-                            <div class="text-field category">
-
-                                <div class="category-label">
-                                    <label>Category </label>
-                                    <span class="arrow">&blacktriangledown;</span>
-                                </div>
-
-                                <!-- list of checkboxes -->
-
-                                <div class="category-list options">
-
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="categoryList" value="food-and-drinks">
-                                        Food & Drinks
-                                    </label> 
-
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="categoryList" value="travel">
-                                        Travel
-                                    </label> 
-
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="categoryList" value="sports">
-                                        Sport
-                                    </label> 
-
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="categoryList" value="music">
-                                        Music
-                                    </label> 
-
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="categoryList" value="performing">
-                                        Performing
-                                    </label> 
-
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="categoryList" value="business">
-                                        Business
-                                    </label> 
-
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="categoryList" value="online">
-                                        Online
-                                    </label> 
-
-                                </div>  <!-- End list of checkboxes -->
-
-                            </div> <!-- End category field-->
-
-                        </div>  <!-- End text fields wrap -->
-                        
-                
-                        <div class="btn-wrap">
-                            <button class="ctn" type="button" id="resetButton">Reset</button><br>
-                            <button class="ctn" type="button" id="searchButton">Search</button>
-                        </div>
-
-                    </form>
-
-                </div> 
-            </div>
+    <!-- tomtom -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/maps/maps-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/services/services-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css'/>    
         
-            <!-- Right Column Content -->
-            <div class="event-wraper">
+    
 
+</head>
+<body>
+
+    <!------ TOP BAR ------>
+    <div js-include-html="../html/topBar.html"></div>
+
+    <!------ POPUP ------>
+    <div js-include-html="../html/popupBox.html"></div>
+
+    <!------ MAIN CONTAINER ------>
+    <div class="container-wrap">
+        <a class="tb-logo" href="../html/main.html">
+            <div js-include-html="../svg/buddy_logo_grayscale.svg"></div>
+        </a>
+        
+        <div class="sidebar">
+
+            <!-- "search for anything" -->
+            <div class="input-field field-query">
+                <input id="search_text" name="search_text" placeholder="Search for Anything">
             </div>
 
-            <div class="all-events">
-                <!-- For Testing -->
-                <!-- card 1-->
-                <div class="event-container" hidden>
-                    <div class="card-container" id="">
-                        <div>
-                            <a href="javascript:void(0)"></a>
-                            <a href="javascript:void(0)"><img class="card-content image search-page" src="../images/unsplash_seaside_2LhCDvS_7xs.jpg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content  event-name">Event name</h3>
-                            <p class="card-content"><b>Location: </b> <span class="card-content location"></span></p>
-                            <p class="card-content"><b>Date: </b><span class="card-content date">still not sure</span></p>
-                            <p class="card-content"><b>Time: </b><span class="card-content time">not sure yet</span></p> 
-                        </div>
+            <!-- "postal code / address" -->
+            <div class="input-field field-address">
+                <input id="search_address" name="search_address" placeholder="Postal Code / Address *" required>
+            </div>
+
+            <!-- "search by location" (map) -->
+            <div class="input-field field-map">
+                <input id="locationButton" name="locationButton" placeholder="Search by location" readonly>
+            </div>
+
+            <!-- "date" -->
+            <div class="input-field field-date">
+                <!-- <input id="date_picker" name="date_picker" type="text" placeholder="Date:"> -->
+                <input type="text" id="date_picker" name="date_picker" data-theme="orange" data-mindate="today" placeholder="Date *" required>
+            </div>
+
+            <!-- "time" -->
+            <div class="input-field field-time">
+                <label for="time_start">Time</label>
+                <input id="time_start" name="time_start" placeholder="Start *" required>
+                <span>to</span>
+                <input id="time_end" name="time_end" placeholder="End">
+            </div>
+
+            <!-- "category" -->
+            <div class="input-field field-category">
+                <label class="category-heading">Category * <i class="dd-arrow fa-solid fa-caret-down"></i></label>
+
+                <!-- list of checkboxes -->
+                <div class="category-list">
+                    <div class="category-grid options">
+
+                        <label class="checkbox-option">
+                            <input type="radio" name="categoryList" value="food-and-drinks">
+                            Food & Drinks
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="radio" name="categoryList" value="travel">
+                            Travel
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="radio" name="categoryList" value="sports">
+                            Sport
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="radio" name="categoryList" value="music">
+                            Music
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="radio" name="categoryList" value="performing">
+                            Performing
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="radio" name="categoryList" value="business">
+                            Business
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="radio" name="categoryList" value="online">
+                            Online
+                        </label>
+                    </div><!--category-grid-->
+                </div><!--category-list-->
+            </div><!--end categories-->
+
+            <div class="search-controls">
+                <button class="reset-search">Reset</button>
+                <button class="search-button">Search</button>
+            </div>
+        </div><!--end sidebar-->
+
+        <div class="all-events">
+            <div class="cover-up"></div>
+            <div class="cloned-events-container"></div>
+
+            <div class="event-container" hidden>
+                <img class="card-image" src="//source.unsplash.com/random/300x300">
+                <div class="card-description">
+                    <h3 class="event-name"><!--worm?--></h3>
+
+                    <div class="card-row">
+                        <label>Location:</label>
+                        <div class="location">Click to see the details!</div>
                     </div>
-                </div>
-            </div>    
 
-
-
-
-
-                <!-- card 2 -->
-                <!-- <div class="event-container">
-                    <div class="card-container" id="">
-                        <div>
-                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_book_fair_cPgUiIos-q0.jpeg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content event-name" id="event-name">Event name</h3>
-                            <p class="card-content">Location: Lorem Ipsum</p>
-                            <p class="card-content">Date: Lorem Ipsum</p>
-                            <p class="card-content">Time: 10:00 am</p>
-                        </div>
-                    </div>    
-                </div> -->
-
-                <!-- card 3 -->
-                <!-- <div class="event-container">
-                    <div class="card-container" id="">
-                        <div>
-                            <a href="#"><img class="card-content image search-page" id="test123" src="../images/unsplash_dance_group_Nwc-Z3_aEvw.jpeg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content">Event name</h3>
-                            <p class="card-content">Location: Lorem Ipsum</p>
-                            <p class="card-content">Date: Lorem Ipsum</p>
-                            <p class="card-content">Time: 10:00 am</p>
-                        </div>
+                    <div class="card-row">
+                        <label>Date:</label>
+                        <div class="date"><!--21st May 2023--></div>
                     </div>
-                </div> -->
 
-                <!-- card 4 -->
-                <!-- <div class="event-container">
-                    <div class="card-container" id="">
-                        <div>
-                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_gallery_event_cuKJre3nyYc.jpeg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content">Event name</h3>
-                            <p class="card-content">Location: Lorem Ipsum</p>
-                            <p class="card-content">Date: Lorem Ipsum</p>
-                            <p class="card-content">Time: 10:00 am</p>
-                        </div>
+                    <div class="card-row">
+                        <label>Time:</label>
+                        <div class="time"><!--09:00 &ndash; 15:00--></div>
                     </div>
-                </div> -->
+                </div><!--end card desc-->
+            </div><!--end one event-->
+        </div><!--end all events-->
+    </div><!--end container wrap-->
 
-                <!-- card 5 -->
-                <!-- <div class="event-container">
-                    <div class="card-container" id="">
-                        <div>
-                            <a href="#"><img class="card-content image search-page" id="test123" src="../images/unsplash_dance_group_Nwc-Z3_aEvw.jpeg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content">Event name</h3>
-                            <p class="card-content">Location: Lorem Ipsum</p>
-                            <p class="card-content">Date: Lorem Ipsum</p>
-                            <p class="card-content">Time: 10:00 am</p>
-                        </div>
-                    </div>
-                </div> -->
+    
+    <!------ FOOTER ------>
+    <div js-include-html="../html/footer.html"></div>
 
-                <!-- card 6 -->
-                <!-- <div class="event-container">
-                    <div class="card-container" id="">
-                        <div>
-                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_gallery_event_cuKJre3nyYc.jpeg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content">Event name</h3>
-                            <p class="card-content">Location: Lorem Ipsum</p>
-                            <p class="card-content">Date: Lorem Ipsum</p>
-                            <p class="card-content">Time: 10:00 am</p>
-                        </div>
-                    </div>
-                </div> -->
+    <div class="dont-show"><img src="//rhizo.gitlab.io/random/arrows_inverted.png"></div>
+    
 
-
-
-                
-        </div> <!-- End Container -->
-
-        <!------ FOOTER ------>
-        <div js-include-html="../html/footer.html"></div>
-        
-    </body>
+</body>
 </html>

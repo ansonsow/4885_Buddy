@@ -44,6 +44,7 @@
         position:fixed;
         top:0;left:0;
         width:100%;
+        z-index:5;
     }
 
     /*----------- CONTAINER -----------*/
@@ -116,7 +117,7 @@
         content:"";
         display:block;
         width:100%;
-        height:calc(var(--Mobile0Search-Fields-Padding) * 1.2);
+        height:calc(var(--Mobile-Search-Fields-Padding) * 1.2);
     }
 
     label.checkbox-option {
@@ -126,14 +127,14 @@
         margin-right:calc(var(--Mobile-Checkbox-Size) + var(--Mobile-Checkbox-Gap));
     }
 
-    .category-list input[type="checkbox"]{
+    .category-list input[type="radio"]{
         position:relative;
         padding-bottom:0;
         border:none;
         z-index:0;
     }
 
-    .category-list input[type="checkbox"]:before {
+    .category-list input[type="radio"]:before {
         content:"";
         position:absolute;
         display:block;
@@ -143,14 +144,14 @@
         height:var(--Mobile-Checkbox-Size);
         background:var(--Light-Gray);
         border:1px solid var(--Light-Gray);
-        border-radius:3px;
+        border-radius:100%;
     }
 
-    .category-list input[type="checkbox"]:checked:after {
+    .category-list input[type="radio"]:checked:after {
         margin-left:calc(0px - var(--Mobile-Checkbox-Size) - var(--Mobile-Checkbox-Gap));
         width:var(--Mobile-Checkbox-Size);
         height:var(--Mobile-Checkbox-Size);
-        font-size:calc(var(--Mobile-Checkbox-Size) - 4px);
+        font-size:calc(var(--Mobile-Checkbox-Size) - 6px);
     }
 
     /*----------- CALENDAR POPUP -----------*/

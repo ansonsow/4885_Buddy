@@ -139,7 +139,7 @@
         content:"";
         display:block;
         width:100%;
-        height:calc(var(--Search-Fields-Padding) * 1.2);
+        height:0.8rem;
     }
 
     .checkbox-option {
@@ -148,6 +148,7 @@
     }
 
     .category-grid {
+        padding-top:0.8rem;
         margin-left:calc(var(--Checkbox-Size) + var(--Checkbox-Gap));
         grid-gap:0.5rem calc(var(--Checkbox-Size) + var(--Checkbox-Gap));
     }
@@ -157,14 +158,14 @@
         align-items:center;
     }
 
-    .category-list input[type="checkbox"]{
+    .category-list input[type="radio"]{
         position:relative;
         padding-bottom:0;
         border:none;
         z-index:0;
     }
 
-    .category-list input[type="checkbox"]:before {
+    .category-list input[type="radio"]:before {
         content:"";
         position:absolute;
         display:block;
@@ -174,14 +175,14 @@
         height:var(--Checkbox-Size);
         background:var(--Light-Gray);
         border:1px solid var(--Light-Gray);
-        border-radius:3px;
+        border-radius:100%;
     }
 
-    .category-list input[type="checkbox"]:checked:after {
+    .category-list input[type="radio"]:checked:after {
         margin-left:calc(0px - var(--Checkbox-Size) - var(--Checkbox-Gap));
         width:var(--Checkbox-Size);
         height:var(--Checkbox-Size);
-        font-size:calc(var(--Checkbox-Size) - 4px);
+        font-size:calc(var(--Checkbox-Size) - 6px);
     }
 
     /*----------- CALENDAR POPUP -----------*/
