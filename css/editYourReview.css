@@ -1,4 +1,53 @@
-/* top bar adjustments for Give Review PAGE */
+/*------ VARIABLES FOR Edit Review PAGE ------*/
+:root {
+    --left-content-margin-full:12rem auto 0;
+
+    --text-area-width-full: 350px;
+    --text-area-height-full: 200px;
+
+    --stars-rating-margin-full: 1rem 0 2rem 0;
+
+    --buttons-width-full: 8rem;
+    --buttons-margin-full: 1rem 0;
+    --buttons-padding-full: 0.5rem;
+
+    --right-container-width-full: 55vw;
+    --right-container-margin-full: 0 0 0 43%;
+
+    --event-name-padding-full: 5rem 1rem 1rem 0;
+    --content-detail-margin-full: 0.5rem auto;
+
+    --event-image-width-full: 300px;
+    --event-decs-margin-full: 1rem 3rem 0 0;
+
+    --illustration-margin-full: 5% 20% 0%;
+    --illustration-width-full: 25rem;
+
+    /* Mobile */
+    --illustration-margin-mobile: 7rem 0 0 0;
+    --illustration-padding-mobile: 0% 15%;
+    --illustration-width-mobile: 100vw;
+
+    --card-container-width-mobile: 90%;
+    --card-containergrid-template-columns-mobile: 45% 55%;
+    --card-content-image-width-mobile: 12rem;
+    --card-content-image-height-mobile: 9rem;
+
+    --card-description-padding-mobile: 1.2rem 0 0 1rem;
+    --card-description-font-size-mobile: 0.9rem;
+
+    --left-content-width-mobile: 80%;
+    --left-content-margin-mobile: 2rem auto;
+
+    --textarea-width-mobile: 100%;
+    --textarea-height-mobile: 200px;
+
+    --starts-rating-margin-mobile: 1rem 0 2rem 0;
+    --buttons-margin-mobile: 1rem auto;
+}  
+/*----------------------------------------------*/
+
+/* top bar adjustments for Edit Review PAGE */
 header {
     background:transparent;
     position:fixed;
@@ -44,12 +93,12 @@ nav {
 
 .left-content {
     justify-items: center;
-    margin: 12rem auto 0;
+    margin: var(--left-content-margin-full);
 }
 
 textarea {
-    width: 350px;
-    height: 200px;
+    width: var(--text-area-width-full);
+    height: var(--text-area-height-full);
     font-family: var(--Body-Font);
     font-size: 1rem;
     padding: 0.5rem;
@@ -70,7 +119,7 @@ hr {
 
 /* ------- Stars Section-------- */
 .rating{
-    margin: 1rem 0 2rem 0;
+    margin: var(--stars-rating-margin-full);
 }
 
 .star-rating i.fill {
@@ -84,11 +133,11 @@ hr {
 
 /* ------- Buttons Section-------- */
 .btn {
-    width: 8rem;
+    width: var(--buttons-width-full);
     display: block;
     font-size: 1rem;
-    padding: 2%;
-    margin: 1rem 0;
+    padding: var(--buttons-padding-full);
+    margin: var(--buttons-margin-full);
     border-radius: 2rem;
     cursor: pointer;
     font-family: var(--Body-Font-Size);
@@ -122,12 +171,12 @@ hr {
 /* ------------ RIGHT Container ------------------- */
 
 .right-container{
-    width: 55vw;
-    margin: 0 0 0 43%;
+    width: var(--right-container-width-full);
+    margin: var(--right-container-margin-full);
 }
 
 .event-name {
-    padding: 5rem 1rem 1rem 0;
+    padding: var(--event-name-padding-full);
 }
 
 .event-content {
@@ -135,7 +184,7 @@ hr {
 }
 
 .content-detail {
-    margin: 0.5rem auto;
+    margin: var(--content-detail-margin-full);
 }
 
 .link {
@@ -148,22 +197,22 @@ hr {
 }
 
 .event-image img {
-    width: 300px;
+    width: var(--event-image-width-full);
     border-radius: 2rem;
     object-fit:cover;
 }
 
 .descriptions-wrap {
-    margin: 1rem 3rem 0 0;
+    margin: var(--event-decs-margin-full);
 }
 
 /* ----------- illustration ---------- */
 .illustration {
-    margin: 5% 20% 0%;
+    margin: var(--illustration-margin-full);
 }
 
 .illustration img {
-    width: 25rem;
+    width: var(--illustration-width-full);
 }
 
 /* ------------ Footer ------------ */
@@ -209,9 +258,9 @@ hr {
     }
 
     .top-illustration img {
-        margin: 7rem 0 0 0;
-        padding: 0% 15%;
-        width: 100vw;
+        margin: var(--illustration-margin-mobile);
+        padding: var(--illustration-padding-mobile);
+        width: var(--illustration-width-mobile);
     }
 
 /* -------- Event Card - Mobile --------- */
@@ -227,25 +276,25 @@ hr {
     }
 
     .card-container {
-        width: 90%;
+        width: var(--card-container-width-mobile);
         display: grid;
-        grid-template-columns: 45% 55%;
+        grid-template-columns: var(--card-containergrid-template-columns-mobile);
         border-radius: 0 20px 20px 0;
         background-color: #f0f0f0;
         margin: auto;
     }
 
     .card-content.image {
-        width: 12rem;
-        height: 9rem;
+        width: var(--card-content-image-width-mobile);
+        height: var(--card-content-image-height-mobile);
         border-radius: 0 20px 20px 0;
         object-fit:cover;
     }
 
     .card-description {
-        padding: 1.2rem 0 0 1rem;
+        padding: var(--card-description-padding-mobile);
         line-height: 1rem;
-        font-size: 0.9rem;
+        font-size: var(--card-description-font-size-mobile);
     }
 
     h3.card-content {
@@ -265,26 +314,21 @@ hr {
         height: 100%;
         color: #090909;
         background-color: transparent;
-        margin: 0 0 0 0;
     }
 
     .left-content {
-        width: 80%;
-        margin: 2rem auto;
-    }
-
-    .review {
-        margin: 0 auto;
+        width: var(--left-content-width-mobile);
+        margin: var(--left-content-margin-mobile);
     }
 
     textarea {
-        width: 100%;
-        height: 200px;
+        width: var(--textarea-width-mobile);
+        height: var(--textarea-height-mobile);
     }
 
     /* ------- Stars Section-------- */
     .rating{
-        margin: 1rem 0 2rem 0;
+        margin: var(--starts-rating-margin-mobile);
     }
     
     .star-rating i.fill {
@@ -298,7 +342,7 @@ hr {
     /* ------- Buttons Section-------- */
 
     .btn {
-        margin: 1rem auto;
+        margin: var(--buttons-margin-mobile);
     }
 
     .btn-update {

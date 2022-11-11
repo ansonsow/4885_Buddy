@@ -1,3 +1,30 @@
+/*------ VARIABLES FOR Account Setting PAGE ------*/
+:root {
+    --left-container-width-full: 100%;
+    --left-container-margin-full: 0 3rem 0 5rem;
+    
+    --input-fields-margin-full: 1.1rem auto;
+    --input-font-size-full: 1rem;
+
+    --update-btn-wrap-margin-full: 3rem 0 0 0;
+    --update-btn-padding-full: 0.5rem 2rem;
+    --update-btn-font-weight-full: 500;
+
+    --changepws-signout-width-full: 12rem;
+    --changepws-signout-padding-full: 0.7rem;
+    --changepws-signout-margin-full: 1rem auto;
+    --changepws-signout-font-size-full: 1rem;
+
+    --illustration-width-full: 25rem;
+    --illustration-width-mobile: 20rem;
+
+    --left-container-width-mobile: 80vw;
+    --left-container-margin-mobile: 3rem 3rem 0 3rem;
+    --input-fields-padding-mobile: 0.5rem;
+
+}  
+/*----------------------------------------------*/
+
 /*---- Top Bar ----*/
 nav {
     grid-template-columns:1fr 1fr;
@@ -57,13 +84,13 @@ nav {
 
 /* ----- Form Inputs ----- */
 .left-container {
-    width: 100%;
-    margin: 0 3rem 0 5rem;
+    width: var(--left-container-width-full);
+    margin: var(--left-container-margin-full);
 }
 
 .input-fields {
     border-bottom: 1px solid var(--Light-Gray);
-    margin: 1.1rem auto;
+    margin: var(--input-fields-margin-full);
     color: var(--Text-Color);
     display: block;
 }
@@ -73,7 +100,7 @@ input {
     border: none;
     color: var(--Text-Color);
     font-family: var(--Body-Font);
-    font-size: 1rem;
+    font-size: var(--input-font-size-full);
 }
 
 input::placeholder {
@@ -89,22 +116,26 @@ input:focus, textarea:focus {
     outline: none;
 }
 
+.input-fields>label {
+    font-size: var(--input-font-size-full);
+}
+
 .desc textarea {
     width: 100%;
     height: 5rem;
     border: 1px solid var(--Light-Gray); 
     padding: 0.5rem;
     font-family: var(--Body-Font);
-    font-size: 1rem;
+    font-size: var(--input-font-size-full);
 }
 
 .btn-update-wrap {
-    margin-top: 3rem;
+    margin: var(--update-btn-wrap-margin-full);
     text-align: center;
 }
 
 .btn-update {
-    padding: 0.5rem 2rem;
+    padding: var(--update-btn-padding-full);
     border-radius: 20rem;
     background-color: #CCCCCC;
     border: none;
@@ -124,15 +155,15 @@ input:focus, textarea:focus {
 }
 
 .changePsw, .AccSignOut {
-    width: 12rem;
-    padding: 0.7rem;
+    width: var(--changepws-signout-width-full);
+    padding: var(--changepws-signout-padding-full);
     border-radius: 20rem;
     background-color: var(--White);
     border: 2px solid var(--Text-Color);
     font-family: var(--Body-Font);
-    font-size: 1rem;
+    font-size: var(--changepws-signout-font-size-full);
     display: block;
-    margin: 1rem auto;
+    margin: var(--changepws-signout-margin-full);
 }
 
 .changePsw:hover, .AccSignOut:hover  {
@@ -144,7 +175,7 @@ input:focus, textarea:focus {
 }
 
 .illustration img {
-    width: 25rem;
+    width: var(--illustration-width-full);
 }
 
 /* Leave Message */
@@ -189,7 +220,7 @@ input:focus, textarea:focus {
     }
 
     .top-navlinks {
-        color: var(--White);
+        color: var(--White); 
     }
 
     /* LEFT panel */
@@ -205,8 +236,8 @@ input:focus, textarea:focus {
     }
 
     .left-container {
-        width: 80vw;
-        margin: 3rem 3rem 0 3rem;
+        width: var(--left-container-width-mobile);
+        margin: var(--left-container-margin-mobile);
     }
 
     .heading-wrap {
@@ -225,7 +256,7 @@ input:focus, textarea:focus {
     }
 
     .illustration img {
-        width: 20rem;
+        width: var(--illustration-width-mobile);
         margin: 0 26%;
     }
 
@@ -237,7 +268,7 @@ input:focus, textarea:focus {
 
     .input-fields {
         border: 1px solid #D9D9D9;
-        padding: 0.5rem;
+        padding: var(--input-fields-padding-mobile);
         border-radius: 8px;
     }
 
