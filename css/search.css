@@ -161,8 +161,11 @@ input::placeholder, input::-webkit-input-placeholder {
 .cover-up {
     background:#fff;
     opacity:1;
-    transition:opacity var(--Loading-Fade-Speed) ease-in-out;
     z-index:2;
+}
+
+.cover-up, .event-container {
+    transition:opacity var(--Loading-Fade-Speed) ease-in-out;
 }
 
 .cover-up i {

@@ -6,6 +6,53 @@ import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.
 /**************************************************************************/
 /**************************************************************************/
 
+let createAlertPopup, alertPopup;
+
+let loadFadeSpeed = parseInt(getComputedStyle(document.documentElement)
+                    .getPropertyValue("--Loading-Fade-Speed"));
+
+let cancelLoadDelay = parseInt(getComputedStyle(document.documentElement)
+                     .getPropertyValue("--Loading-Dismiss-Delay"));
+
+/*----- add/remove cover on button click(s) -----*/
+// just for smoother UX
+function addCoverUp(param){
+    if(param == "parent"){
+        document.querySelector(".cover-up").style.display = "block";
+
+        setTimeout(() => {
+            document.querySelector(".cover-up").classList.remove("fade-out")
+        },10)
+    }
+    
+    else {
+        document.querySelectorAll(".event-container").forEach(aaa => {
+            aaa.classList.add("fade-out")
+        })
+    }
+    
+}
+
+function removeCoverUp(param){
+    if(param == "parent"){
+        document.querySelector(".cover-up").classList.add("fade-out");
+
+        setTimeout(() => {
+            document.querySelector(".cover-up").style.display = "none";
+        },loadFadeSpeed)
+    }
+    
+    else {
+        document.querySelectorAll(".event-container").forEach(aaa => {
+            aaa.classList.remove("fade-out")
+        })
+    }
+}
+
+/**************************************************************************/
+/**************************************************************************/
+/**************************************************************************/
+
 function formatDate(d){
     let eventDateNum = d.replace(/[^\d\.]*/g,"");
     let eventYear = eventDateNum.slice(0,4);
@@ -169,21 +216,17 @@ querySnapshot.forEach((doc) => {
 });
 
 /*----- page fade-in -----*/
-let loadFadeSpeed = parseInt(getComputedStyle(document.documentElement)
-                    .getPropertyValue("--Loading-Fade-Speed"));
-
-let cancelLoadDelay = parseInt(getComputedStyle(document.documentElement)
-                     .getPropertyValue("--Loading-Dismiss-Delay"));
-
 setTimeout(() => {
     document.querySelector(".cover-up").classList.add("fade-out");
 
     setTimeout(() => {
         document.querySelector(".cover-up").style.display = "none";
+        document.querySelector(".cover-up i").remove();
         document.querySelector("footer").style.display = "block";
 
         setTimeout(() => {
             window.removeEventListener("wheel", blockScroll);
+            document.querySelector(".cover-up").style.height = "100%";
         },loadFadeSpeed)
         
     },loadFadeSpeed)
@@ -191,15 +234,6 @@ setTimeout(() => {
 
 
 document.querySelector(".reset-search").addEventListener("click",async()=>{
-    document.querySelectorAll(".cloned-events-container").forEach(event => {
-        event.replaceChildren();
-    });
-    querySnapshot.forEach((doc) => {
-        // console.log(doc.id);
-        allSearch.push(doc)
-        displayResult(doc.data(),doc.id)
-    });
-
     // reset search query
     search_text.value = "";
 
@@ -224,12 +258,32 @@ document.querySelector(".reset-search").addEventListener("click",async()=>{
     for(var i=0;i<radioz.length;i++){
         radioz[i].checked = false;
     }
-})
+    
+    addCoverUp("parent");
+
+    setTimeout(() => {
+        document.querySelectorAll(".cloned-events-container").forEach(event => {
+            event.replaceChildren();
+        });
+
+        querySnapshot.forEach((doc) => {
+            // console.log(doc.id);
+            allSearch.push(doc)
+            displayResult(doc.data(),doc.id)
+        });
+
+        setTimeout(() => {
+            removeCoverUp("parent");
+        },loadFadeSpeed)
+    },loadFadeSpeed)
+    
+    
+})//end reset click
 // ======================== searchButton on click ========================================================
 document.querySelector(".search-button").addEventListener("click",async()=>{
-    document.querySelectorAll(".cloned-events-container").forEach(event => {
-        event.replaceChildren();
-    });
+    // document.querySelectorAll(".cloned-events-container").forEach(event => {
+    //     event.replaceChildren();
+    // });
 
     // searchResult=[];
     let searchResults = [];
@@ -279,13 +333,16 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
 
     for(let i=0;i<allSearch.length;i++){
         if(textSearch == "" && tagSearch.length == 0  && dateSearch == ""){
-            alert("please fill up at lease one field");
-            for(let i=0;i<allSearch.length;i++){
-                displayResult(allSearch[i].data(), allSearch[i].data)
-            }
+            alertPopup(); // alert("please fill up at lease one field");
+
+            addCoverUp("item")
 
             break;
         }else{
+            document.querySelectorAll(".cloned-events-container").forEach(event => {
+                event.replaceChildren();
+            });
+            
             if(textSearch != ""){
                 if(searchResult.length!=0){
                     for(let j=0;j<searchResult.length;j++){
@@ -399,11 +456,41 @@ function moveMap(lng,lat){
 }
 
 $(document).ready(function(){
+    
+    /*-------- ALERT POPUP - create --------*/
+    createAlertPopup = function(){
+        let puppet = $(".del-popup:first").clone();
+        puppet.attr("popup-type","alert");
+        $(".del-popup h3, .del-popup button", puppet).empty();
+        $("#popup_action_2", puppet).remove();
+        $("body").prepend(puppet);
+
+        // customize your <h3> text
+        $("h3",puppet).text("Please fill in at least one field!");
+
+        // customize your button 1 text
+        $("#popup_action_1",puppet).text("OK");
+    }
+
+    createAlertPopup()
+
+    /*-------- ALERT POPUP - run --------*/
+    alertPopup = function(){
+        // fade in the pop-up
+        $("[popup-type='alert']").fadeIn(popupFadeSpeed);
+
+        $(document).on("click", "[popup-type='alert'] #popup_action_1", function(){
+            // fade out the pop-up
+            $("[popup-type='alert']").fadeOut(popupFadeSpeed);
+            removeCoverUp("item")
+        });
+    }
+
+    /*-------- MAP POPUP --------*/
     // add map
     $(".popup-msg").append("<div id='map'></div>");
     // map();
 
-    /*-------- MAP POPUP --------*/
     $("#locationButton").click(function(){
         // remove existing <h3> text
         $(".del-popup h3").empty();
