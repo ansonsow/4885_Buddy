@@ -1,0 +1,203 @@
+/*----------- CALENDAR -----------*/
+:root {
+    --Calendar-Top-Padding:10px;
+    --Calendar-Roundness:30px;
+    
+
+    --Calendar-Years-Selection-Size:var(--Body-Font-Size);
+    --Calendar-Months-Selection-Size:calc(var(--Body-Font-Size) * 0.8);
+    --Calendar-Grid-Top-Gap:10px;
+    --Calendar-Weekdays-Words-Size:calc(var(--Body-Font-Size) * 0.7);
+    --Calendar-Days-Size:calc(var(--Body-Font-Size) * 0.8);
+}
+
+[datepicker-display='on']{
+    overflow:initial!important;
+}
+
+[datepicker-display='on'] .input-field {
+    filter:blur(4px)
+}
+
+.dcalendarpicker .dudp__wrapper {
+    bottom:auto!important;
+    box-shadow:none!important;
+    border-radius:var(--Calendar-Roundness);
+}
+
+.dudp__calendar-header {
+    display:none;
+    background:var(--Primary)!important;
+    color:var(--White)!important;
+}
+
+.dudp__sel-year, .dudp__cal-container {
+    font-family:var(--Body-Font)!important;
+}
+
+.dcp_sel-date {
+    font-family:var(--Heading-Font)!important;
+}
+
+/* "OK" text */
+.dcalendarpicker .dudp__cal-container .dudp__buttons .dudp__button.clear,
+.dudp__wrapper[data-theme='orange'] .dudp__buttons .dudp__button,
+.dudp__wrapper[data-theme='orange'] .dudp__months-view .dudp__month.selected,
+.dudp__wrapper[data-theme='orange'] .dudp__years-view .dudp__year.selected {
+    color:var(--Primary)!important;
+}
+
+/* clicked, not hover */
+.dcalendarpicker .dudp__cal-container .dudp__calendar .dudp__cal-week .dudp__date.selected,
+.dudp__date.selected {
+    background:transparent!important;
+    color:var(--White)!important;
+}
+
+.dcalendarpicker .dudp__cal-container .dudp__calendar .dudp__cal-week .dudp__date.selected:before, .dcalendarpicker .dudp__cal-container .dudp__calendar .dudp__cal-week .dudp__date.range-from:before, .dcalendarpicker .dudp__cal-container .dudp__calendar .dudp__cal-week .dudp__date.range-to:before {
+    background:var(--Primary);
+}
+
+/* today's day */
+.dcalendarpicker .dudp__cal-container .dudp__calendar .dudp__cal-week .dudp__date.current {
+    color:var(--Primary)
+}
+
+/* e.g. September 2024 */
+.dudp__btn-cal-prev {
+    margin-top:calc(var(--Calendar-Top-Padding) - 1px)!important;
+}
+
+.dudp__cal-month-year {
+    padding-top:var(--Calendar-Top-Padding)!important;
+    font-size:var(--Body-Font-Size)!important;
+}
+
+.dudp__btn-cal-next {
+    margin-top:calc(var(--Calendar-Top-Padding) - 1px)!important;
+}
+
+/* mon, tue, wed, thu... */
+.dudp__weekdays {
+    padding-top:var(--Calendar-Top-Padding);
+}
+
+.dudp__weekdays span {
+    font-size:var(--Calendar-Weekdays-Words-Size)!important;
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+/* year selection */
+.dudp__year {
+    font-size:var(--Calendar-Years-Selection-Size)!important;
+}
+
+.dudp__year.selected {
+    font-size:calc(var(--Calendar-Years-Selection-Size) + 3px)!important;
+    font-weight:500;
+}
+
+/* month selection */
+.dudp__month {
+    font-size:var(--Calendar-Months-Selection-Size)!important;
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+/* calendar weeks */
+.dudp__dates-holder {
+    margin-top:var(--Calendar-Grid-Top-Gap);
+}
+
+/* calendar days */
+.dudp__cal-week .dudp__date {
+    font-size:var(--Calendar-Days-Size);
+    letter-spacing:1px;
+}
+
+/* ok button */
+.dudp__buttons {
+    text-align:center!important;
+}
+
+/*----------------------------------------------*/
+:root {
+    --TimePicker-Width:192px;
+    --TimePicker-Padding:1.5rem 1rem;
+    --TimePicker-Roundness:30px;
+    --TimePicker-Font-Size:var(--Body-Font-Size);
+    --TimePicker-Reset-Size:calc(var(--Body-Font-Size) * 0.8);
+}
+
+.timepicker_wrap {
+    margin-top:0.5rem;
+    margin-left:calc(0px - var(--TimePicker-Roundness));
+    padding:var(--TimePicker-Padding);
+    border-radius:var(--TimePicker-Roundness);
+    background:var(--White);
+    width:var(--TimePicker-Width);
+    border:none;
+}
+
+.timepicker_wrap .arrow_top {
+    margin-top:1px;
+    margin-left:var(--TimePicker-Roundness);
+    filter:brightness(200%);
+}
+
+.timepicki-input {
+    display:block!important;
+    width:100%!important;
+    background:transparent!important;
+    font-size:var(--TimePicker-Font-Size)!important;
+    color:var(--Text-Color)!important;
+}
+
+.timepicki-input::selection {
+    background:transparent;
+}
+
+.timepicki-input::-moz-selection {
+    background:transparent;
+}
+
+.timepicker_wrap .prev,
+.timepicker_wrap .next {
+    display:block;
+    transform:scale(0.9);
+    transition:all 0.2s ease-in-out;
+}
+
+.timepicker_wrap .prev:hover {
+    background-position:50% -50%;
+}
+
+.timepicker_wrap .next:hover {
+    background-position:50% 150%;
+}
+
+.timepicker_wrap .prev:hover,
+.timepicker_wrap .next:hover {
+    background-color:var(--Primary);
+    background-image:url("https://rhizo.gitlab.io/random/arrows_inverted.png");
+    border-color:var(--Primary);
+}
+
+/* top gap for RESET TIME */
+.time, .mins, .meridian {
+    padding-bottom:0.6rem;
+}
+
+.reset_time {
+    float:initial!important;
+    display:block;
+    font-size:var(--TimePicker-Reset-Size);
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    color:var(--Primary)!important;
+    text-align:center;
+}

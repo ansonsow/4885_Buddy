@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buddy - Find Events</title>
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+    <!-- required assets -->
+    <link href="../css/variables.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <script src="../js/global.js" defer></script>
+
+    <script src="../js/leftPanel.js" defer></script>
+    <script type="module" src="../js/topBar.js" defer></script>
+
+    <!-- icon font: fontawesome -->
+    <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+
+    <!-- date picker -->
+    <!-- src: https://github.com/dmuy/duDatepicker -->
+    <link href="https://unpkg.com/@dmuy/datepicker@latest/dist/duDatepicker.css" rel="stylesheet">
+    <script src="https://unpkg.com/@dmuy/datepicker@latest/dist/duDatepicker.js"></script>
+
+    <!-- time picker -->
+    <!-- src: https://github.com/senthilraj/TimePicki -->
+    <link href="https://cdn.jsdelivr.net/gh/senthilraj/TimePicki@master/css/timepicki.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/senthilraj/TimePicki@master/js/timepicki.js"></script>
+    
+    <!-- page-specific assets -->
+    <link href="../css/topBar.css" rel="stylesheet">
+    <link href="../css/leftPanel.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">    
+
+    <link href="../css/popupBox.css" rel="stylesheet">
+    <link href="../css/search-ht.css" rel="stylesheet">
+    <link href="../css/search-desktop.css" rel="stylesheet">
+    <link href="../css/search-mobile.css" rel="stylesheet">
+
+    <link href="../css/search-calendar.css" rel="stylesheet">
+    <script type="module" src="../js/search-ht.js" defer></script>
+
+    <link rel="preload" href="//rhizo.gitlab.io/random/arrows_inverted.png" as="image">
+    
+
+</head>
+<body>
+
+    <!------ TOP BAR ------>
+    <div js-include-html="../html/topBar.html"></div>
+
+    <!------ POPUP ------>
+    <div js-include-html="../html/popupBox.html"></div>
+
+    <!------ MAIN CONTAINER ------>
+    <div class="container-wrap">
+        <a class="tb-logo" href="../html/main.html">
+            <div js-include-html="../svg/buddy_logo_grayscale.svg"></div>
+        </a>
+        
+        <div class="sidebar">
+
+            <!-- "search for anything" -->
+            <div class="input-field field-query">
+                <input id="search_text" name="search_text" placeholder="Search for Anything">
+            </div>
+
+            <!-- "postal code / address" -->
+            <div class="input-field field-address">
+                <input id="search_address" name="search_address" placeholder="Postal Code / Address *" required>
+            </div>
+
+            <!-- "search by location" (map) -->
+            <div class="input-field field-map">
+                <input id="locationButton" name="locationButton" placeholder="Search by location" readonly>
+            </div>
+
+            <!-- "date" -->
+            <div class="input-field field-date">
+                <!-- <input id="date_picker" name="date_picker" type="text" placeholder="Date:"> -->
+                <input type="text" id="date_picker" name="date_picker" data-theme="orange" data-mindate="today" placeholder="Date *" required>
+            </div>
+
+            <!-- "time" -->
+            <div class="input-field field-time">
+                <label for="time_start">Time</label>
+                <input id="time_start" name="time_start" placeholder="Start *" required>
+                <span>to</span>
+                <input id="time_end" name="time_end" placeholder="End">
+            </div>
+
+            <!-- "category" -->
+            <div class="input-field field-category">
+                <label class="category-heading">Category * <i class="dd-arrow fa-solid fa-caret-down"></i></label>
+
+                <!-- list of checkboxes -->
+                <div class="category-list">
+                    <div class="category-grid options">
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="food-and-drinks">
+                            Food & Drinks
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="travel">
+                            Travel
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="sports">
+                            Sport
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="music">
+                            Music
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="performing">
+                            Performing
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="business">
+                            Business
+                        </label> 
+
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="categoryList" value="online">
+                            Online
+                        </label>
+                    </div><!--category-grid-->
+                </div><!--category-list-->
+            </div><!--end categories-->
+
+            <div class="search-controls">
+                <button class="reset-search">Reset</button>
+                <button class="search-button">Search</button>
+            </div>
+        </div><!--end sidebar-->
+
+        <div class="all-events">
+            <div class="cloned-events-container"></div>
+
+            <div class="event-container">
+                <img class="card-image" src="//source.unsplash.com/random/300x300">
+                <div class="card-description">
+                    <h3 class="event-name">worm?</h3>
+
+                    <div class="card-row">
+                        <label>Location:</label>
+                        <div class="location">6969 Drive, Main St.</div>
+                    </div>
+
+                    <div class="card-row">
+                        <label>Date:</label>
+                        <div class="date">21st May 2023</div>
+                    </div>
+
+                    <div class="card-row">
+                        <label>Time:</label>
+                        <div class="time">09:00 &ndash; 15:00</div>
+                    </div>
+                </div><!--end card desc-->
+            </div><!--end one event-->
+        </div><!--end all events-->
+    </div><!--end container wrap-->
+
+    
+    <!------ FOOTER ------>
+    <div js-include-html="../html/footer.html"></div>
+
+    <div class="dont-show"><img src="//rhizo.gitlab.io/random/arrows_inverted.png"></div>
+    
+
+</body>
+</html>
