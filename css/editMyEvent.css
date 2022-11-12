@@ -24,6 +24,10 @@
 }
 
 /* ----------------------------------------- */
+/* popup styling */
+.popup-msg h3 span {
+    color:var(--Primary)
+}
 
 /*---- Top Bar ----*/
 nav {

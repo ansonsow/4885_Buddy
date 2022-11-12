@@ -1,5 +1,5 @@
 import $ from "./jquery.module.js";
-import {db, addEventTag, removeEventTag} from "./app.js";
+import {db, updateEventName, updateEventDate, addEventTag, removeEventTag} from "./app.js";
 import * as dbf from "./app.js"
 import {getFirestore, query,collection,where,getDocs,getDoc,doc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 // const db = getFirestore();
@@ -14,6 +14,10 @@ let currentUser = dbf.auth.currentUser;
 let currentUserId;
 let currentUserEmail;
 let eventData;
+
+let nothingsChanged;
+let cantBeEmpty;
+let saveOK;
 
 
 if (currentUser) {
@@ -98,7 +102,8 @@ if (currentUser) {
 
     if(eventData.hostId != currentUserId){
         alert("u shall not pass")
-    }else{
+    } else {
+        /**************** DISPLAY EXISTING EVENT INFO ****************/
         console.log("hi "+ userData.firstName);
 
         document.getElementById("name").value = eventName;
@@ -139,124 +144,75 @@ if (currentUser) {
             document.querySelector(".images-container").append(cloneIMG)
         }
 
-    }
+        /*****************************************************************/
+        /**************** GET UPDATED EVENT INFO (UI) ********************/
+        /*****************************************************************/
 
-}
+        document.getElementById("submit").addEventListener("click", () => {
 
+            //*********** get UPDATED NAME ***********//
+            let editedEventName = document.getElementById("name").value;
+            if(editedEventName == eventName){
+                // nothingsChanged("event name");
+            } else if(editedEventName == ""){
+                cantBeEmpty("Event name")
+            } else {
+                updateEventName(targetEventId,editedEventName);
+                saveOK();
+            }
 
-/*---------- GET ALL EVENTS ----------*/
-let allEvents = [];
-let theEventID;
+            //********* get UPDATED DATE & TIME *********//
+            let editedEventDT = document.getElementById("datetime").value;
+            editedEventDT = editedEventDT.replaceAll("-","").replaceAll("T","").replaceAll(":","");
+            // alert(editedEventDT)
 
-let q = query(collection(db, "events"));
-const querySnapshot = await getDocs(q);
+            let editedEventENDT = document.getElementById("endTime").value.replaceAll(":","");
+            // alert(editedEventENDT)
 
-querySnapshot.forEach((doc) => {
-    let eventOBJ = {};
-    
-    eventOBJ.id = doc.id;
-    eventOBJ.tags = doc.data().tags;
+            let comboUEventDT = "" + editedEventDT + editedEventENDT;
 
-    theEventID = doc.id;
+            if(comboUEventDT == eventTimestamp){
+                // nothingsChanged("event date/time");
+            } else {
+                updateEventDate(targetEventId,comboUEventDT);
+                saveOK();
+            }
 
-    allEvents.push(eventOBJ);
-});
-
-/*---------- "SAVE/SUBMIT" BUTTON CLICK ----------*/
-const submitBtn = document.getElementById('submit')
+        })//end SUBMIT click
+    }//end: check if user IS THE HOST
+}//end if:currentUser
 
 $(document).ready(function(){
-    $("#popup_action_2").remove();
-
-    $("#submit").click(function(){
-        let currentEventTags;
-        for(let i=0; i<allEvents.length; i++){
-            // temporary event ID
-            if(allEvents[i].id == "mvSF9RKBBnOPY0kcuQ8R"){
-                currentEventTags = allEvents[i].tags;
-            }
-        }
-
-        // ---------------------- CATEGORY ------------------------
-
-        let tagValues = [];
-        let checkboxes = document.getElementsByName("categoryList");
-        
-        for (let i=0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                tagValues.push(checkboxes[i].value)
-            }
-        }
-        // ----------------------------------------------------
-
-        // get "checked" box values
-        const eventName = document.getElementById('eventName').value;
-        // const eventLocation = document.getElementById('eventLocation').value;
-        const numberOfParticipants = document.getElementById('eventNumOfPeople').value;
-        const eventPrice = document.getElementById('eventPrice').value;
-        const eventDesc = document.getElementById('eventDesc').value;
-        const startDateTime = document.getElementById('eventStartDateTime').value;
-        const endTime = document.getElementById('eventEndTime').value;
-        
-        let formattedDate = (String(startDateTime )+ String(endTime))
-        formattedDate = formattedDate.replaceAll(':','').replace('T', '').replace(',', '').replaceAll('-', '').replaceAll(' ', '')
-
-        dbf.replaceEvent(theEventID, {
-            ...eventData,
-            tags: tagValues,
-            name: eventName,
-            // location: eventLocation,
-            maxCapacity: numberOfParticipants,
-            price: eventPrice,
-            description: eventDesc,
-            dateOfEvent: formattedDate
-        });
-
-        // for(let i=0; i<category.length; i++){
-        //     let checkExistingTag = currentEventTags.findIndex(scanTag => {
-        //         return scanTag === category[i]
-        //     })
-
-        //     // if tag doesn't exist,
-        //     // add the tag to the event
-        //     if(checkExistingTag > -1){
-        //         // alert(theEventID + " :" + category[i])
-        //         removeEventTag(theEventID,category[i].toString())
-        //     }
-            
-        //     // if tag ALREADY exists,
-        //     // REMOVE the tag from the event
-        //     else if(checkExistingTag == -1){      
-        //         // alert(theEventID + " :" + category[i])      
-        //         addEventTag(theEventID,category[i].toString())
-        //     }
-        // }
-        
-
-        // remove existing <h3> text
-        $(".del-popup h3").empty();
-
-        // customize your <h3> text
-        $(".del-popup h3").text("Changes applied successfully!");
-
-        // customize your button 1 text
+    nothingsChanged = function(customText){
+        $("#popup_action_2").hide();
+        $(".del-popup h3").html(`Your <span>${customText}</span> is the same.`);
         $("#popup_action_1").text("OK");
-
-        // fade in the pop-up
         $(".del-popup").fadeIn(popupFadeSpeed);
-    })//end "save/submit" click
-    
-    /********************************************************************** */
-    /******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
-    /********************************************************************** */
 
-    $(document).on("click", "#popup_action_1", function(){
-        let that = this; // don't touch this line
+        $(document).on("click", "#popup_action_1", function(){
+            $(".del-popup").fadeOut(popupFadeSpeed);
+        });
+    }
 
-        setTimeout(() => {
-            location.reload(true)
-        },100)
+    cantBeEmpty = function(customText){
+        $("#popup_action_2").hide();
+        $(".del-popup h3").html(`<span>${customText}</span> cannot be empty!`);
+        $("#popup_action_1").text("OK");
+        $(".del-popup").fadeIn(popupFadeSpeed);
 
-        // do stuff
-    });
-})//end ready
+        $(document).on("click", "#popup_action_1", function(){
+            $(".del-popup").fadeOut(popupFadeSpeed);
+        });
+    }
+
+    saveOK = function(){
+        $("#popup_action_2").hide();
+        $(".del-popup h3").text("Changes saved successfully!");
+        $("#popup_action_1").text("OK");
+        $(".del-popup").fadeIn(popupFadeSpeed);
+
+        $(document).on("click", "#popup_action_1", function(){
+            location.reload(true);
+        });
+    }
+})
