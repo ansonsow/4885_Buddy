@@ -8,8 +8,10 @@ import {getFirestore, query,collection,where,getDocs,getDoc,doc} from 'https://w
 
 let testEventId = "mvSF9RKBBnOPY0kcuQ8R";
 //this page's event id 
+let targetEventId;
 targetEventId = localStorage.getItem(targetEventId);
 let currentUser = dbf.auth.currentUser;
+let currentUserId;
 let currentUserEmail;
 let eventData;
 
@@ -20,6 +22,7 @@ if (currentUser) {
 
     currentUserEmail = currentUser.email;
     
+    // get user ID
     let q = query(collection(dbf.db, "users"), where("email", "==", currentUserEmail));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -27,18 +30,53 @@ if (currentUser) {
         console.log(doc.id);
     });
 
-
+    // gets the user's info (e.g. events, favs)
     const userJson = await getDoc(doc(dbf.db, "users", currentUserId));
-    const userData = userJson.data()
+    const userData = userJson.data();
+    // console.log(userData);
 
+    // get user's EVENTS
+    // console.log(userData.events);
+
+    // pick first event (CHANGE LATER, this is just for testing);
+    targetEventId = userData.events[0];
+    document.querySelector(".heading").append(`: ${targetEventId}`);
 
     const eventJson = await getDoc(doc(dbf.db, "events", targetEventId));
-    eventData = eventJson.data()
+    eventData = eventJson.data();
     console.log(eventData);
+
+    // get event name
+    let eventName = eventData.name;
+    console.log(`EVENT NAME: ${eventName}`);
+
+    // get event timestamp
+    let eventTimestamp = eventData.dateOfEvent;
+    console.log(`EVENT TIMESTAMP: ${eventTimestamp}`);
+
+    // get event price
+    let eventPrice = eventData.price;
+    console.log(`EVENT PRICE: ${eventPrice}`);
+
+    // get event participants
+    let eventParticipants = eventData.maxCapacity;
+    console.log(`EVENT MAX PARTICIPANTS: ${eventParticipants}`);
+
+    // get event categories
+    let eventTags = eventData.tags;
+    console.log(`EVENT TAGS: ${eventTags}`);
+
+    // get event description
+    let eventDesc = eventData.description;
+    console.log(`EVENT DESC: ${eventDesc}`);
+
+    // get event images
+    let eventIMGs = eventData.images;
+    console.log(`EVENT IMAGES: ${eventIMGs}`);
 
     /*************************** EVENT DATE ******************************* */
 
-    let eventDateNum = eventData.dateOfEvent;
+    let eventDateNum = eventTimestamp;
     let eventYear = eventDateNum.slice(0,4);
     let eventMonth = eventDateNum.substring(eventDateNum.length-12).slice(0,2);
     let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
@@ -62,19 +100,44 @@ if (currentUser) {
         alert("u shall not pass")
     }else{
         console.log("hi "+ userData.firstName);
-        document.getElementById("eventName").value=eventData.name
+
+        document.getElementById("name").value = eventName;
+
         // location need tomtom
 
-        document.getElementById("eventStartDateTime").setAttribute("value", `${eventYear}-${eventMonth}-${eventDay} , ${eventTimeStart_Hour} : ${eventTimeStart_Minutes}`);
-        document.getElementById("eventEndTime").setAttribute("value", `${eventTimeEnd_Hour} : ${eventTimeEnd_Minutes}`);
+        // display event date & start time
+        document.getElementById("datetime").setAttribute("value",`${eventYear}-${eventMonth}-${eventDay}T${eventTimeStart_Hour}:${eventTimeStart_Minutes}`)
 
-        document.getElementById("eventPrice").value=eventData.price
-        document.getElementById("eventNumOfPeople").value=eventData.maxCapacity
-        document.getElementById("eventDesc").value=eventData.description
-        // category
-        eventData.tags.forEach((tag) => {
-            document.getElementById(`check-${tag}`).setAttribute("checked", true)
-        });
+        // display event end time
+        document.getElementById("endTime").setAttribute("value", `${eventTimeEnd_Hour}:${eventTimeEnd_Minutes}`);
+
+        // display event price
+        document.getElementById("price").value = eventPrice;
+
+        // display event max participants
+        document.getElementById("number").value = eventParticipants;
+
+        // go through list of event's applied tags (array)
+        for(let i=0; i<eventTags.length; i++){
+            // go through each checkbox
+            // if it matches a tag from the array, check it
+            document.getElementsByName("categoryList").forEach(aa => {
+                if(aa.getAttribute("value") == eventTags[i]){
+                    aa.setAttribute("checked","")
+                }
+            })
+        }
+
+        // display event description
+        document.getElementById("desc").value = eventDesc;
+
+        // display event images
+        for(let i=0; i<eventIMGs.length; i++){
+            let cloneIMG = document.querySelector(".image-wrap").cloneNode(true);
+            cloneIMG.querySelector(".image").setAttribute("src",eventIMGs[i]);
+            cloneIMG.removeAttribute("hidden");
+            document.querySelector(".images-container").append(cloneIMG)
+        }
 
     }
 

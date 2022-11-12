@@ -246,9 +246,10 @@
     .all-events {
         position:absolute;
         margin-top:var(--TopBar-Height);
+        padding-top:var(--Events-Spacing);
         left:0;
         margin-left:calc(var(--Sidebar-Width) + ((100% - var(--Sidebar-Width) - var(--Events-Container-Width)) / 2));
-        padding-bottom:calc(var(--Events-Spacing) * 1.25);
+        padding-bottom:calc(var(--Events-Spacing) * 1.5);
         width:var(--Events-Container-Width);
     }
 

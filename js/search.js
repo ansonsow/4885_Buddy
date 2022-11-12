@@ -532,38 +532,8 @@ $(document).ready(function(){
 
     /*-------- MAP POPUP --------*/
     // add map
-    $(".popup-msg").append("<div id='map'></div>");
+    // $(".popup-msg").append("<div id='map'></div>");
     // map();
-
-    $("#locationButton").click(function(){
-        // remove existing <h3> text
-        $(".del-popup h3").empty();
-
-        // customize your <h3> text
-        $(".del-popup h3").text("Find your location:");
-
-        // customize your button 1 text
-        $("#popup_action_1").text("I'm button 1");
-
-        // customize your button 2 text
-        $("#popup_action_2").text("I'm button 2");
-
-        // fade in the pop-up
-        $(".del-popup").fadeIn(popupFadeSpeed);
-    })
-
-    $(document).on("click", "#popup_action_1", function(){
-        let that = this; // don't touch this line
-
-        // do stuff
-    });
-
-    $(document).on("click", "#popup_action_2", function(){
-        let that = this; // don't touch this line
-
-        // fade out the pop-up
-        $(".del-popup").fadeOut(popupFadeSpeed);
-    });
 
     /*-------- CALENDAR POPUP --------*/
     duDatepicker("#date_picker", {format: "yyyy-mm-dd"});
