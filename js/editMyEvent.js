@@ -1,5 +1,5 @@
 import $ from "./jquery.module.js";
-import {db, updateEventName, updateEventDate, updateEventPrice, updateEventMax, addEventTag, removeEventTag} from "./app.js";
+import {db, updateEventName, updateEventDate, updateEventPrice, updateEventMax, addEventTag, removeEventTag, updateEventDesc, addEventImage, removeEventImage} from "./app.js";
 import * as dbf from "./app.js"
 import {getFirestore, query,collection,where,getDocs,getDoc,doc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 // const db = getFirestore();
@@ -17,6 +17,7 @@ let eventData;
 
 let nothingsChanged;
 let cantBeEmpty;
+let areYouSure;
 let saveOK;
 
 
@@ -229,7 +230,9 @@ if (currentUser) {
                 }
             }
 
-            console.log("TO BE ADDED: " + tagsToAdd)
+            if(tagsToAdd.length > 0){
+                console.log("TO BE ADDED: " + tagsToAdd)
+            }
 
             for(let i=0; i<tagsToAdd.length; i++){
                 addEventTag(targetEventId,tagsToAdd[i])
@@ -254,15 +257,42 @@ if (currentUser) {
                 }
             }
 
-            console.log("TO BE KILLED: " + tagsToKill)
+            if(tagsToKill.length > 0){
+                console.log("TO BE KILLED: " + tagsToKill)
+            }            
 
             for(let i=0; i<tagsToKill.length; i++){
                 removeEventTag(targetEventId,tagsToKill[i])
             }
 
-            saveOK();
+            // only save changes [tags] if stuff needs to be added/removed
+            if(tagsToAdd.length > 0 || tagsToKill.length > 0){
+                saveOK()
+            }
+
+            //********* get UPDATED DESCRIPTION *********//
+            let editedEventDesc = document.getElementById("desc").value;
+            // alert(editedEventDesc)
+
+            if(editedEventDesc == eventDesc){
+                // nothingsChanged("event desc");
+            } else if(editedEventDesc == ""){
+                cantBeEmpty("Event description", "blank")
+            } else {
+                updateEventDesc(targetEventId,editedEventDesc);
+                saveOK();
+            }
 
         })//end SUBMIT click
+        
+        document.querySelectorAll(".delete-upload-img i").forEach(vvv => {
+            vvv.addEventListener("click", () => {
+                let imgTBD = vvv.parentNode.previousElementSibling.getAttribute("src");
+                // alert(imgTBD)
+
+                areYouSure("this image", imgTBD);
+            })
+        })
     }//end: check if user IS THE HOST
 }//end if:currentUser
 
@@ -285,6 +315,22 @@ $(document).ready(function(){
         $(".del-popup").fadeIn(popupFadeSpeed);
 
         $(document).on("click", "#popup_action_1", function(){
+            $(".del-popup").fadeOut(popupFadeSpeed);
+        });
+    }
+
+    areYouSure = function(customText, whatURL){
+        $(".del-popup h3").html(`Are you sure you want to delete ${customText}?`);
+        $("#popup_action_1").text("Delete");
+        $("#popup_action_2").text("Cancel");
+        $(".del-popup").fadeIn(popupFadeSpeed);
+
+        $(document).on("click", "#popup_action_1", function(){
+            removeEventImage(targetEventId,whatURL);
+            location.reload(true)
+        });
+
+        $(document).on("click", "#popup_action_2", function(){
             $(".del-popup").fadeOut(popupFadeSpeed);
         });
     }
