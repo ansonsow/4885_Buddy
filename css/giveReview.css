@@ -1,3 +1,98 @@
+/*------ VARIABLES FOR Give Review PAGE ------*/
+:root {
+    --container-grid-template-full: 45% 55%;
+    --container-width-full: 100%;
+    --container-height-full: 100%;
+    --container-padding-top-full: 6rem;
+    --left-container-margin-full: 7rem 0 0 10rem;
+
+    --text-field-margin-full: 0 0 5% 0;
+    --text-field-width-full: 350px;
+
+    /* ---- Category ---- */
+    --category-label-margin-full: 0 0 0.9rem 0;
+    --category-options-margin-full: 0 0 5% 0;
+    --category-options-width-full: 350px;
+
+    --checkbox-option-margin-full: 0 2rem 0 0;
+    --checkbox-option-input-margin-full: 0;
+    --checkbox-option-input-width-full: 20px;
+
+    /* ---- Event Card ---- */
+    --event-container-width-full: 90%;
+    --event-container-margin-full: 1% auto 3% 0;
+    --event-border-radius-full: 0 30px 30px 0;
+
+    --card-container-grid-template-full: 40% 60%;
+    --card-content-image-width-full: 17rem;
+    --card-content-image-height-full: 12rem;
+
+    --card-description-padding-full: 1.5rem 0 0.5rem 1rem;
+    --card-description-line-height-full: 1rem;
+    --card-content-eventname-padding-full: 0.2rem 0 0.5rem;
+    --card-hr-width-full: 90%;
+
+    /* --- Leave Review / Coming Label--- */
+    --leave-review-label-padding-full: 0.5rem 0 0 0;
+
+    /* ---- Buttons ---- */
+    --buttons-width-full: 7rem;
+    --buttons-padding-full:0.5rem 0;
+    --buttons-margin-full: 2rem 1rem;
+
+    /*  ---- POP UP ----  */
+    --popup-background-color-full: #ABABAB;
+    --popup-content-margin-full: 0 0 2rem 0;
+
+    --star-rating-margin-full: 0.2rem 0;
+    --star-rating-font-size-full: 1.5rem;
+    --rating-title-margin-full: 2rem 0 0 0;
+    --rating-title-font-size-full: 1.1rem;
+
+    --desc-title-margin-full: 2rem 0 0.9rem 0;
+    --desc-title-font-size-full: 1.1rem;
+    --desc-box-width-full: 100%;
+    --desc-box-height-full: 200px;
+    --desc-box-padding-full: 10px;
+
+
+    /*  ---- MOBILE ----  */
+    --illustration-padding-mobile: 8rem 7rem 2rem;
+    
+    /* ---- Event Card ---- */
+    --event-container-width-mobile: 90vw; 
+    --event-container-margin-mobile: 1rem auto 1rem; 
+    
+    --card-content-image-width-mobile: 12rem;
+    --card-content-image-height-mobile: 10rem;
+
+    --card-description-padding-mobile: 0.7rem 0 0.5rem 2rem;
+    --card-description-font-size-mobile: 0.9rem;
+    
+    --card-event-name-padding-mobile: 0 0 0.2rem 0;
+    --card-event-name-font-size-mobile: 1.1rem;
+
+    --leave-review-label-padding-mobile: 0;
+
+    /* ---------- Review Area ---------- */
+    --review-wrap-width-mobile: 90vw;
+    --review-wrap-margin-mobile: 3rem auto 0;
+
+    --review-box-width-mobile: 100%;
+    --review-box-height-mobile: 150px;
+    --review-box-padding-mobile: 10px;
+
+    --review-hr-margin-mobile: 0.5rem 0 0.5rem;
+    --start-rating-font-size-mobile: 1.2rem;
+
+    /* ---- Button ----- */
+    --button-width-mobile: 7rem;
+    --button-padding-mobile: 0.5rem 0;
+    --button-margin-mobile: 2rem;
+
+}
+/*----------------------------------------------*/
+
 /*---- Top Bar ----*/
 nav {
     grid-template-columns:1fr 1fr;
@@ -24,19 +119,18 @@ nav {
 /* ------------ LEFT Column ---------------- */
 .container {
     display: grid;
-    grid-template-columns: 45% 55%;
-    width:100%;
-    height:100%;
+    grid-template-columns: var(--container-grid-template-full);
+    width:var(--container-width-full);
+    height:var(--container-height-full);
     top: 0;
     bottom:0;
     overflow-y:scroll;
     overflow-x:hidden;
-    padding-top: 6rem;
+    padding-top: var(--container-padding-top-full);
 }
 
 .left-container{
-    margin-left: 10rem;
-    margin-top: 7rem;
+    margin: var(--left-container-margin-full);
 }
 
 /* --------- Text fields ---------- */
@@ -46,8 +140,8 @@ nav {
 }
 
 .text-field input {
-    margin: 0 0 5% 0;
-    width: 350px;
+    margin: var(--text-field-margin-full);
+    width: var(--text-field-width-full);
     border:none;
     outline:none;
     background: none;
@@ -63,7 +157,6 @@ nav {
 
 
 /* ----------- Category ----------- */
-
 .category {
     display: inline;
 }
@@ -71,21 +164,21 @@ nav {
 .category-label {
     display: block;
     border-bottom: 1px solid var(--Text-Color);
-    margin-bottom: 0.9rem;
+    margin: var(--category-label-margin-full);
 }
 
 .options {
-    margin: 0 0 5% 0;
-    width: 350px;
+    margin: var(--category-options-margin-full);
+    width: var(--category-options-width-full);
 }
 
 .checkbox-option {
-    margin-right: 2rem;
+    margin: var(--checkbox-option-margin-full);
 }
 
 .checkbox-option > input {
-    width: 20px;
-    margin: 0;
+    width: var(--checkbox-option-input-width-full);
+    margin: var(--checkbox-option-input-margin-full);
 }
 
 .arrow {
@@ -113,38 +206,37 @@ nav {
 }
 
 .event-container {
-    width: 90%;
-    margin: 1% auto 3% 0;
+    width: var(--event-container-width-full);
+    margin: var(--event-container-margin-full);
 }
 
 .card-container {
-    width: 100%;
     display: grid;
-    grid-template-columns: 40% 60%;
-    border-radius: 0 30px 30px 0;
+    grid-template-columns: var(--card-container-grid-template-full);
+    border-radius: var(--event-border-radius-full);
     background-color: #F0F0F0;
     margin: auto;
 }
 
 .card-content.image {
-    width: 17rem;
-    height: 100%;
-    border-radius: 0 30px 30px 0;
+    width: var(--card-content-image-width-full);
+    height: var(--card-content-image-height-full);
+    border-radius: var(--event-border-radius-full);
     object-fit:cover;
 }
 
 .card-description {
-    padding: 1rem 0 0.5rem 1rem;
-    line-height: 1rem;
+    padding: var(--card-description-padding-full);
+    line-height: var(--card-description-line-height-full);
 }
 
 h3.card-content{
-    padding: 0.2rem 0 0.5rem;
+    padding:var(--card-content-eventname-padding-full);
     font-size: var(--H3-Size);
 }
 
 .card-description hr {
-    width: 90%;
+    width: var(--card-hr-width-full);
 }
 
 /* ----- Leave Review / Coming Event ----- */
@@ -152,7 +244,7 @@ h3.card-content{
 .action {
     border: none;
     font-weight: 900;
-    padding-top: 0.5rem;
+    padding: var(--leave-review-label-padding-full);
     font-family: var(--Body-Font);
     font-size: var(--Body-Font-Size);
     cursor: pointer;
@@ -173,9 +265,9 @@ h3.card-content{
 }
 
 .btn {
-    width: 7rem;
-    padding: 0.5rem 0;
-    margin: 2rem 1rem;
+    width: var(--buttons-width-full);
+    padding: var(--buttons-padding-full);
+    margin: var(--buttons-margin-full);
     border-radius: 25px;
     border: 1px solid var(--Text-Color);
     font-family: var(--Body-Font);
@@ -212,7 +304,7 @@ h3.card-content{
 
 /*  --------------- POP UP ----------------  */
 .popup-msg {
-    background-color: #ABABAB;
+    background-color: var(--popup-background-color-full);
 }
 
 .popup-title {
@@ -221,17 +313,17 @@ h3.card-content{
 
 .popup-content{
     text-align: left;
-    margin-bottom: 2rem;
+    margin: var(--popup-content-margin-full);
 }
 
 .star-rating {
-    margin: 0.2rem 0;
-    font-size: 1.5rem;
+    margin: var(--star-rating-margin-full);
+    font-size: var(--star-rating-font-size-full);
 }
 
 .rate-title {
-    margin: 2rem 0 0 0;
-    font-size: 1.1rem;
+    margin: var(--rating-title-margin-full);
+    font-size: var(--rating-title-font-size-full);
 }
 
 .fa-star.fill {
@@ -243,17 +335,17 @@ h3.card-content{
 }
 
 .desc-title {
-    font-size: 1.1rem;
-    margin: 2rem 0 0.9rem 0;
+    margin: var(--desc-title-margin-full);
+    font-size: var(--desc-title-font-size-full);
 }
 
 .desc-box {
     border: 1px solid var(--Text-Color);
     border-radius: 20px;
     font-family: var(--Body-Font);
-    width: 100%;
-    height: 200px;
-    padding: 10px;
+    width: var(--desc-box-width-full);
+    height: var(--desc-box-height-full);
+    padding: var(--desc-box-padding-full);
 }
 
 ::placeholder {
@@ -309,48 +401,52 @@ h3.card-content{
     /* ------------------------------------ */
 
     .illustration {
-        padding: 8rem 7rem 2rem;
+        padding: var(--illustration-padding-mobile);
     }
-    /* --------- Event Card ---------- */
 
+    /* --------- Event Card ---------- */
     .event-container {
-        width: 90vw;
-        margin: 1rem auto 1rem;
+        width: var(--event-container-width-mobile);
+        margin: var(--event-container-margin-mobile);
     }
 
     .card-content.image {
-        width: 12rem;
-        height: 100%;
+        width: var(--card-content-image-width-mobile);
+        height: var(--card-content-image-height-mobile);
     }
 
     .card-description {
-        padding: 0.7rem 0 0.5rem 2rem;
-        font-size: 0.9rem;
+        padding: var(--card-description-padding-mobile);
+        font-size: var(--card-description-font-size-mobile);
     }
     
     h3.card-content{
-        padding-bottom: 0.2rem;
-        font-size: 1.1rem;
+        padding: var(--card-event-name-padding-mobile);
+        font-size: var(--card-event-name-font-size-mobile);
+    }
+
+    .action {
+        padding: var(--leave-review-label-padding-mobile);
     }
 
     /* ---------- Review Area ---------- */
     .review-wrap {
-        width: 90vw;
-        margin: 3rem auto 0;
+        width: var(--review-wrap-width-mobile);
+        margin: var(--review-wrap-margin-mobile);
     }
 
     .review-box {
-        width: 100%;
-        height: 150px;
-        padding: 10px;
+        width: var(--review-box-width-mobile);
+        height: var(--review-box-height-mobile);
+        padding: var(--review-box-padding-mobile);
     }
 
     hr {
-        margin: 0.5rem 0 0.5rem;
+        margin: var(--review-hr-margin-mobile);
     }
 
     .fa-star {
-        font-size: 1.2rem;
+        font-size: var(--start-rating-font-size-mobile);
     }
 
     .fa-star.empty {
@@ -359,9 +455,9 @@ h3.card-content{
 
      /* ---- Button ----- */
     .mobile-btn {
-        width: 7rem;
-        padding: 0.5rem 0;
-        margin: 2rem;
+        width: var(--button-width-mobile);
+        padding: var(--button-padding-mobile);
+        margin: var(--button-margin-mobile);
         border-radius: 25px;
         border: 1px solid var(--Text-Color);
         background-color: var(--Text-Color);
