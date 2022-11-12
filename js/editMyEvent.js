@@ -1,10 +1,9 @@
 import $ from "./jquery.module.js";
-import {db, updateEventName, updateEventDate, updateEventPrice, updateEventMax, addEventTag, removeEventTag, updateEventDesc, addEventImage, removeEventImage} from "./app.js";
+import {db, updateEventName, updateEventDate, updateEventPrice, updateEventMax, addEventTag, removeEventTag, updateEventDesc, addEventImage, removeEventImage, storage} from "./app.js";
 import * as dbf from "./app.js"
 import {getFirestore, query,collection,where,getDocs,getDoc,doc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import {ref, uploadBytes,getDownloadURL} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js'
 // const db = getFirestore();
-
-
 
 let testEventId = "mvSF9RKBBnOPY0kcuQ8R";
 //this page's event id 
@@ -19,6 +18,8 @@ let nothingsChanged;
 let cantBeEmpty;
 let areYouSure;
 let saveOK;
+
+let img = [];
 
 
 if (currentUser) {
@@ -283,8 +284,16 @@ if (currentUser) {
                 saveOK();
             }
 
+            //********* ADD AN EVENT IMAGE *********//
+            // console.log(img)
+            for(let i=0; i<img.length; i++){
+                addEventImage(targetEventId,img[i]);
+                saveOK();
+            }
+
         })//end SUBMIT click
         
+        //********* DELETE AN EVENT IMAGE *********//
         document.querySelectorAll(".delete-upload-img i").forEach(vvv => {
             vvv.addEventListener("click", () => {
                 let imgTBD = vvv.parentNode.previousElementSibling.getAttribute("src");
@@ -293,6 +302,43 @@ if (currentUser) {
                 areYouSure("this image", imgTBD);
             })
         })
+
+        // upload image
+        $("input[type='file']").change(async function(){
+            // console.log(this.files[0].mozFullPath);
+            let file = document.getElementById("upload").files;
+
+            let storageRef = ref(storage, currentUserId+Date.now()+file[0].name);
+            console.log(storageRef);
+
+            const metadata = {
+                contentType: file[0].type,
+            };
+            
+            await uploadBytes(storageRef,file[0],metadata)
+            .then((snapshot)=>{
+                console.log(snapshot);
+                getDownloadURL(storageRef)
+            .then((url)=>{
+                img.push(url);
+                console.log(img);
+                let position = img.length;
+                console.log(position);
+
+                let eventBlock = document.querySelector(".image-wrap[hidden]");
+                let clonedEvent = eventBlock.cloneNode(true);
+                clonedEvent.removeAttribute("hidden");
+                clonedEvent.querySelector(".image").src = url;
+                document.querySelector(".images-container").append(clonedEvent);
+            })
+            .catch((error=>{
+                console.log(error);
+            }))
+            })
+            .catch((error)=>{
+                console.log(error);
+            });
+        });
     }//end: check if user IS THE HOST
 }//end if:currentUser
 
@@ -326,8 +372,14 @@ $(document).ready(function(){
         $(".del-popup").fadeIn(popupFadeSpeed);
 
         $(document).on("click", "#popup_action_1", function(){
+            let that = this;
             removeEventImage(targetEventId,whatURL);
-            location.reload(true)
+
+            $(that).text("Please wait...")
+
+            setTimeout(() => {
+                location.reload(true)
+            },1000)
         });
 
         $(document).on("click", "#popup_action_2", function(){
