@@ -1,5 +1,5 @@
 import $ from "./jquery.module.js";
-import {db, updateEventName, updateEventDate, addEventTag, removeEventTag} from "./app.js";
+import {db, updateEventName, updateEventDate, updateEventPrice, updateEventMax, addEventTag, removeEventTag} from "./app.js";
 import * as dbf from "./app.js"
 import {getFirestore, query,collection,where,getDocs,getDoc,doc} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 // const db = getFirestore();
@@ -155,7 +155,7 @@ if (currentUser) {
             if(editedEventName == eventName){
                 // nothingsChanged("event name");
             } else if(editedEventName == ""){
-                cantBeEmpty("Event name")
+                cantBeEmpty("Event name", "empty")
             } else {
                 updateEventName(targetEventId,editedEventName);
                 saveOK();
@@ -178,6 +178,90 @@ if (currentUser) {
                 saveOK();
             }
 
+            //********* get UPDATED PRICE *********//
+            let editedEventPrice = document.getElementById("price").value;
+            if(editedEventPrice == eventPrice){
+                // nothingsChanged("event price");
+            } else if(editedEventPrice == ""){
+                cantBeEmpty("Event price","empty")
+            } else {
+                updateEventPrice(targetEventId,editedEventPrice);
+                saveOK();
+            }
+
+            //********* get UPDATED MAX PARTICIPANTS *********//
+            let editedEventParticipants = document.getElementById("number").value;
+            // not sure why for this field, "check if empty" has to
+            // come BEFORE "if maxCapacity hasn't changed"
+
+            if(editedEventParticipants == ""){
+                cantBeEmpty("Number of participants","0")
+            } else if(editedEventParticipants == "0"){
+                cantBeEmpty("Number of participants","0")
+            } else if(editedEventParticipants == eventParticipants){
+                // nothingsChanged("event max participants");
+            } else {
+                updateEventMax(targetEventId,editedEventParticipants);
+                saveOK();
+            }
+
+            //********* get UPDATED CATEGORIES/TAGS *********//
+
+            let tagsToKill = [];
+            let tagsToAdd = [];
+
+            //------------ CHECKED ------------//
+            let updCHECKED = document.querySelectorAll("input[name='categoryList']:checked");
+            let updCHECKED_List = [];
+
+            for(let i=0; i<updCHECKED.length; i++){
+                updCHECKED_List.push(updCHECKED[i].value)
+            }
+            
+            for(let z=0; z<updCHECKED_List.length; z++){
+                let checkExisting = eventTags.findIndex(uwu => {
+                    return uwu === updCHECKED_List[z]
+                });
+
+                // ADD THESE TAGS TO DB
+                if(checkExisting < 0){
+                    tagsToAdd.push(updCHECKED_List[z])
+                }
+            }
+
+            console.log("TO BE ADDED: " + tagsToAdd)
+
+            for(let i=0; i<tagsToAdd.length; i++){
+                addEventTag(targetEventId,tagsToAdd[i])
+            }
+
+            //------------ UN-CHECKED ------------//
+            let updUNCHECKED = document.querySelectorAll("input[name='categoryList']:not(:checked)");
+            let updUNCHECKED_List = [];
+
+            for(let i=0; i<updUNCHECKED.length; i++){
+                updUNCHECKED_List.push(updUNCHECKED[i].value)
+            }
+
+            for(let z=0; z<updUNCHECKED_List.length; z++){
+                let checkExisting = eventTags.findIndex(uwu => {
+                    return uwu === updUNCHECKED_List[z]
+                });
+
+                // REMOVE THESE TAGS FROM DB
+                if(checkExisting > -1){
+                    tagsToKill.push(updUNCHECKED_List[z])
+                }
+            }
+
+            console.log("TO BE KILLED: " + tagsToKill)
+
+            for(let i=0; i<tagsToKill.length; i++){
+                removeEventTag(targetEventId,tagsToKill[i])
+            }
+
+            saveOK();
+
         })//end SUBMIT click
     }//end: check if user IS THE HOST
 }//end if:currentUser
@@ -194,9 +278,9 @@ $(document).ready(function(){
         });
     }
 
-    cantBeEmpty = function(customText){
+    cantBeEmpty = function(customTextA, customTextB){
         $("#popup_action_2").hide();
-        $(".del-popup h3").html(`<span>${customText}</span> cannot be empty!`);
+        $(".del-popup h3").html(`<span>${customTextA}</span> cannot be ${customTextB}!`);
         $("#popup_action_1").text("OK");
         $(".del-popup").fadeIn(popupFadeSpeed);
 
