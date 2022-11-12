@@ -203,6 +203,10 @@
 
     /*----------- ALL EVENTS -----------*/
 
+    .mobile-events-v-stretch {
+        min-height:100vh;
+    }
+
     .all-events {
         position:relative;
         margin:auto;

@@ -239,6 +239,10 @@
 
     /*----------- ALL EVENTS -----------*/
 
+    .mobile-events-v-stretch {
+        min-height:none;
+    }
+
     .all-events {
         position:absolute;
         margin-top:var(--TopBar-Height);

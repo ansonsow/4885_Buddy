@@ -8,6 +8,10 @@
     --Search-Buttons-Transition-Speed:0.2s;
 }
 
+* {
+    backface-visibility:hidden;
+}
+
 .dont-show {
     position:absolute;
     bottom:0;left:0;
@@ -25,7 +29,6 @@
 
 .input-field, .search-controls {
     transition:filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    backface-visibility:hidden;
 }
 
 input, .sidebar label {
@@ -164,7 +167,7 @@ input::placeholder, input::-webkit-input-placeholder {
     z-index:2;
 }
 
-.cover-up, .event-container {
+.cover-up, .event-container, .cloned-events-container, .fade-out, .all-events {
     transition:opacity var(--Loading-Fade-Speed) ease-in-out;
 }
 

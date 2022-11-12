@@ -6,7 +6,7 @@ import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.
 /**************************************************************************/
 /**************************************************************************/
 
-let createAlertPopup, alertPopup;
+let createAlertPopup, alertPopup, callTheCavalry, rejectTheCavalry;
 
 let loadFadeSpeed = parseInt(getComputedStyle(document.documentElement)
                     .getPropertyValue("--Loading-Fade-Speed"));
@@ -16,37 +16,12 @@ let cancelLoadDelay = parseInt(getComputedStyle(document.documentElement)
 
 /*----- add/remove cover on button click(s) -----*/
 // just for smoother UX
-function addCoverUp(param){
-    if(param == "parent"){
-        document.querySelector(".cover-up").style.display = "block";
-
-        setTimeout(() => {
-            document.querySelector(".cover-up").classList.remove("fade-out")
-        },10)
-    }
-    
-    else {
-        document.querySelectorAll(".event-container").forEach(aaa => {
-            aaa.classList.add("fade-out")
-        })
-    }
-    
+callTheCavalry = function(){
+    document.querySelector(".cloned-events-container").classList.add("fade-out")
 }
 
-function removeCoverUp(param){
-    if(param == "parent"){
-        document.querySelector(".cover-up").classList.add("fade-out");
-
-        setTimeout(() => {
-            document.querySelector(".cover-up").style.display = "none";
-        },loadFadeSpeed)
-    }
-    
-    else {
-        document.querySelectorAll(".event-container").forEach(aaa => {
-            aaa.classList.remove("fade-out")
-        })
-    }
+rejectTheCavalry = function(){
+    document.querySelector(".cloned-events-container").classList.remove("fade-out")
 }
 
 /**************************************************************************/
@@ -139,6 +114,7 @@ function displayResult(doc,id){
     let clonedEvent = eventBlock.cloneNode(true);
 
     clonedEvent.removeAttribute("hidden");
+    clonedEvent.style.visibility = "hidden";
     
     clonedEvent.addEventListener("click",()=>{
         localStorage.setItem(targetEventId, id);
@@ -216,7 +192,13 @@ querySnapshot.forEach((doc) => {
 });
 
 /*----- page fade-in -----*/
+
+
 setTimeout(() => {
+    document.querySelectorAll(".cloned-events-container .event-container").forEach(www => {
+        www.style.visibility = "visible";
+    })
+
     document.querySelector(".cover-up").classList.add("fade-out");
 
     setTimeout(() => {
@@ -233,7 +215,11 @@ setTimeout(() => {
 },cancelLoadDelay)
 
 
+// ======================== reset button on click ========================================================
+// reset click
 document.querySelector(".reset-search").addEventListener("click",async()=>{
+    window.scrollTo(0,0);
+    
     // reset search query
     search_text.value = "";
 
@@ -258,8 +244,12 @@ document.querySelector(".reset-search").addEventListener("click",async()=>{
     for(var i=0;i<radioz.length;i++){
         radioz[i].checked = false;
     }
-    
-    addCoverUp("parent");
+
+    /***********************************************/
+
+    callTheCavalry();
+
+    document.querySelector(".all-events").classList.add("mobile-events-v-stretch");
 
     setTimeout(() => {
         document.querySelectorAll(".cloned-events-container").forEach(event => {
@@ -273,162 +263,207 @@ document.querySelector(".reset-search").addEventListener("click",async()=>{
         });
 
         setTimeout(() => {
-            removeCoverUp("parent");
-        },loadFadeSpeed)
-    },loadFadeSpeed)
-    
+            rejectTheCavalry();
+            document.querySelector(".all-events").classList.remove("mobile-events-v-stretch");
+            document.querySelectorAll(".cloned-events-container .event-container").forEach(www => {
+                www.style.visibility = "visible";
+            })
+        },10)
+    },loadFadeSpeed)    
     
 })//end reset click
+
+
 // ======================== searchButton on click ========================================================
+// search click
+
 document.querySelector(".search-button").addEventListener("click",async()=>{
     // document.querySelectorAll(".cloned-events-container").forEach(event => {
     //     event.replaceChildren();
     // });
 
-    // searchResult=[];
-    let searchResults = [];
-    let searchResult = [];
+    window.scrollTo(0,0);
+
+    document.querySelector(".all-events").classList.add("mobile-events-v-stretch")
+
+    callTheCavalry();
+
+    setTimeout(() => {
+
+        // document.querySelectorAll(".cloned-events-container").forEach(event => {
+        //     event.replaceChildren();
+        // });
+    
+        let searchResults = [];
+        let searchResult = [];
 
 
-    // "search for anything"
-    let textSearch = search_text.value;
+        // "search for anything"
+        let textSearch = search_text.value;
 
-    // "postal code / address"
-    let addressSearch = search_address.value;
+        // "postal code / address"
+        let addressSearch = search_address.value;
 
-    // date of event
-    let dateSearch = date_picker.value;
+        // date of event
+        let dateSearch = date_picker.value;
 
-    // starting time of event
-    // i.e. if 3am: 0300
-    let timeStart = time_start.getAttribute("data-timepicki-tim") + time_start.getAttribute("data-timepicki-mini");
-    if(timeStart == "0"){
-        timeStart = "0000"
-    }
-
-    // end time of event
-    // i.e. if 6pm: 1800
-    let timeEnd = time_end.getAttribute("data-timepicki-tim") + time_end.getAttribute("data-timepicki-mini");
-    if(timeEnd == "0"){
-        timeEnd = "2359"
-    }
-
-    let tagSearch = [];
-    let tags = document.getElementsByName("categoryList");
-    for (let i=0; i < tags.length; i++) {
-        if (tags[i].checked) {
-            tagSearch.push(tags[i].value)
+        // starting time of event
+        // i.e. if 3am: 0300
+        let timeStart = time_start.getAttribute("data-timepicki-tim") + time_start.getAttribute("data-timepicki-mini");
+        if(timeStart == "0"){
+            timeStart = "0000"
         }
-    }
 
-    searchResults.push(textSearch, addressSearch, dateSearch, timeStart, timeEnd, tagSearch);
-    console.log(searchResults)
-    if(dateSearch==""){
-        
-    }else{
-        dateSearch = dateSearch + timeStart + timeEnd; 
-    }
-    console.log(getFullDate(dateSearch));
+        // end time of event
+        // i.e. if 6pm: 1800
+        let timeEnd = time_end.getAttribute("data-timepicki-tim") + time_end.getAttribute("data-timepicki-mini");
+        if(timeEnd == "0"){
+            timeEnd = "2359"
+        }
 
+        let tagSearch = [];
+        let tags = document.getElementsByName("categoryList");
+        for (let i=0; i < tags.length; i++) {
+            if (tags[i].checked) {
+                tagSearch.push(tags[i].value)
+            }
+        }
 
-    for(let i=0;i<allSearch.length;i++){
-        if(textSearch == "" && tagSearch.length == 0  && dateSearch == ""){
-            alertPopup(); // alert("please fill up at lease one field");
-
-            addCoverUp("item")
-
-            break;
-        }else{
-            document.querySelectorAll(".cloned-events-container").forEach(event => {
-                event.replaceChildren();
-            });
+        searchResults.push(textSearch, addressSearch, dateSearch, timeStart, timeEnd, tagSearch);
+        console.log(searchResults)
+        if(dateSearch==""){
             
-            if(textSearch != ""){
-                if(searchResult.length!=0){
-                    for(let j=0;j<searchResult.length;j++){
-                        if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
-                            console.log("slicing " + searchResult[j].data().name +" because doesn't contain name");
-                            searchResult.splice(j,1)
-                        }
-                    }
-                }
-                if(allSearch[i].data().name.toUpperCase().includes(textSearch.toUpperCase())){
-                    if(!searchResult.includes(allSearch[i])){
-                        // console.log(allSearch[i].name);
-                        console.log("pushing " +allSearch[i].data().name +" because contain name");
-        
-                        searchResult.push(allSearch[i])
-                    }
-                }
-            }
-            if(dateSearch!=""){
-                console.log("object");
-                if(searchResult.length!=0){
-                    
-                    for(let j =0;j<searchResult.length;j++){
-                        if(!formatDateSearch(dateSearch, searchResult[j].data().dateOfEvent , searchResult[j].data().name)){
-    
-                            console.log("slicing " + searchResult[j].data().name +" because the date of event is bigger");
-                            searchResult.splice(j,1)
-                        }
-                    }
-                }
-                if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent , allSearch[i].data().name)){
-    
-                    if(!searchResult.includes(allSearch[i])){
-                        console.log("pushing "+ allSearch[i].data().name + " beacause the event date is bigger");
-                        searchResult.push(allSearch[i])
-                    }
-    
-                }
-            }
-    
-            if(tagSearch.length != 0){
-                if(searchResult.length!=0){
-    
-                    for(let j=0;j<searchResult.length;j++){
-                        if(!searchResult[j].data().tags.includes(tagSearch.toString())){
-                            console.log("slice "+searchResult[j].name);
-                            searchResult.splice(j,1)
-                        }
-                    }
-    
-                }
-    
-                // only one tag
-                if(allSearch[i].data().tags.includes(tagSearch.toString())){
-                    if(!searchResult.includes(allSearch[i])){
-                        console.log("push "+allSearch[i].data().name);
-                        searchResult.push(allSearch[i])
-                    }
-                }
-    
-    
-                // multiple tag search
-                // for(let j =0;j<tagSearch.length;j++){
-                //     // console.log(object);
-                //     if(allSearch[i].data().tags.includes(tagSearch[j])){
-                //         if(!searchResult.includes(allSearch[i])){
-                //             console.log("push "+allSearch[i].data().name);
-                //             searchResult.push(allSearch[i])
-                //         }
-                //     }   
-                // }
-    
-    
-                
-            }
+        }else{
+            dateSearch = dateSearch + timeStart + timeEnd; 
         }
+        console.log(getFullDate(dateSearch));
+
+
+        for(let i=0;i<allSearch.length;i++){
+            /*-------------- IF NO FIELDS HAVE BEEN FILLED --------------*/
+            // if search IS empty
+            if(textSearch == "" && tagSearch.length == 0 && dateSearch == ""){
+                alertPopup(); // alert("please fill up at lease one field");
+
+                document.querySelector(".all-events").classList.add("fade-out");
+
+                break;
+            }
+            
+            /*-------------- IF SEARCH *CAN* GO ON --------------*/
+            // if search ISN'T empty
+            else {
+
+                document.querySelectorAll(".cloned-events-container").forEach(event => {
+                    event.replaceChildren();
+                });
+                
+                if(textSearch != ""){
+                    if(searchResult.length!=0){
+                        for(let j=0;j<searchResult.length;j++){
+                            if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
+                                console.log("slicing " + searchResult[j].data().name +" because doesn't contain name");
+                                searchResult.splice(j,1)
+
+                                // setTimeout(() => {
+                                //     searchResult.splice(j,1)
+                                // },loadFadeSpeed);
+                            }
+                        }
+                    }
+                    if(allSearch[i].data().name.toUpperCase().includes(textSearch.toUpperCase())){
+                        if(!searchResult.includes(allSearch[i])){
+                            // console.log(allSearch[i].name);
+                            console.log("pushing " +allSearch[i].data().name +" because contain name");
+                            searchResult.push(allSearch[i])
+
+                            // setTimeout(searchResult.push(allSearch[i]), loadFadeSpeed)
+            
+                            // setTimeout(() => {
+                            // searchResult.push(allSearch[i])
+                            // },loadFadeSpeed);
+                        }
+                    }
+                }
+                if(dateSearch!=""){
+                    console.log("object");
+                    if(searchResult.length!=0){
+                        
+                        for(let j =0;j<searchResult.length;j++){
+                            if(!formatDateSearch(dateSearch, searchResult[j].data().dateOfEvent , searchResult[j].data().name)){
         
-    }
-    // console.log(searchResult);
+                                console.log("slicing " + searchResult[j].data().name +" because the date of event is bigger");
+                                searchResult.splice(j,1)
+                            }
+                        }
+                    }
+                    if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent , allSearch[i].data().name)){
+        
+                        if(!searchResult.includes(allSearch[i])){
+                            console.log("pushing "+ allSearch[i].data().name + " beacause the event date is bigger");
+                            searchResult.push(allSearch[i])
+                        }
+        
+                    }
+                }
+        
+                if(tagSearch.length != 0){
+                    if(searchResult.length!=0){
+        
+                        for(let j=0;j<searchResult.length;j++){
+                            if(!searchResult[j].data().tags.includes(tagSearch.toString())){
+                                console.log("slice "+searchResult[j].name);
+                                searchResult.splice(j,1)
+                            }
+                        }
+        
+                    }
+        
+                    // only one tag
+                    if(allSearch[i].data().tags.includes(tagSearch.toString())){
+                        if(!searchResult.includes(allSearch[i])){
+                            console.log("push "+allSearch[i].data().name);
+                            searchResult.push(allSearch[i])
+                        }
+                    }
+        
+        
+                    // multiple tag search
+                    // for(let j =0;j<tagSearch.length;j++){
+                    //     // console.log(object);
+                    //     if(allSearch[i].data().tags.includes(tagSearch[j])){
+                    //         if(!searchResult.includes(allSearch[i])){
+                    //             console.log("push "+allSearch[i].data().name);
+                    //             searchResult.push(allSearch[i])
+                    //         }
+                    //     }   
+                    // }
+        
+        
+                    
+                }
+            }//end if:search query isn't blank (aka successful search)
+            
+        }
 
+        setTimeout(() => {
+            for(let i=0;i<searchResult.length;i++){
+                displayResult(searchResult[i].data(),searchResult[i].id)
+            }
 
-    for(let i=0;i<searchResult.length;i++){
-        displayResult(searchResult[i].data(),searchResult[i].id)
+            setTimeout(() => {
+                document.querySelector(".all-events").classList.remove("mobile-events-v-stretch");
 
-    }
-})
+                document.querySelectorAll(".cloned-events-container .event-container").forEach(www => {
+                    www.style.visibility = "visible";
+                })
+            },10)
+
+            rejectTheCavalry();
+        },loadFadeSpeed/2)
+
+    },loadFadeSpeed)
+})//end search click
 
 /**************************************************************************/
 /**************************************************************************/
@@ -456,6 +491,14 @@ function moveMap(lng,lat){
 }
 
 $(document).ready(function(){
+
+    // callTheCavalry = function(){
+    //     $(".cloned-events-container").fadeOut(loadFadeSpeed);
+
+    //     setTimeout(() => {
+    //         $(".cloned-events-container").fadeIn(loadFadeSpeed);
+    //     },loadFadeSpeed)
+    // }
     
     /*-------- ALERT POPUP - create --------*/
     createAlertPopup = function(){
@@ -482,7 +525,11 @@ $(document).ready(function(){
         $(document).on("click", "[popup-type='alert'] #popup_action_1", function(){
             // fade out the pop-up
             $("[popup-type='alert']").fadeOut(popupFadeSpeed);
-            removeCoverUp("item")
+
+            // fade out overlays
+            rejectTheCavalry();
+            $(".cloned-events-container .event-container").css("visibility","visible");
+            $(".all-events").removeClass("fade-out")
         });
     }
 
