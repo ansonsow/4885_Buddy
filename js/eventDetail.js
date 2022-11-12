@@ -233,10 +233,12 @@ if(currentUser){
 
         joinEvent = function(){
             addUserEvent(thisUser.id,chosenEvent.id);
+            addEventNum(chosenEvent.id)
         }
 
         leaveEvent = function(){
             removeUserEvent(thisUser.id,chosenEvent.id);
+            minusEventNum(chosenEvent.id)
         }
     });
     

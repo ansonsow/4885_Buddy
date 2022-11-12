@@ -482,12 +482,24 @@ export async function updateEventDesc(id,eventDesc){
 
 
 // number of ppl ++
-export async function updateEventNum(id){
+export async function addEventNum(id){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
 
   const docSnap = await getDoc(userRef);        
   let numb = (num)(docSnap.data().numOfPeople)+1
+  
+  await updateDoc(userRef, {
+    numOfPeople: numb,
+  });
+}
+
+export async function minusEventNum(id){
+  const db = getFirestore();
+  const userRef = doc(db, "events", id);
+
+  const docSnap = await getDoc(userRef);        
+  let numb = (num)(docSnap.data().numOfPeople)-1
   
   await updateDoc(userRef, {
     numOfPeople: numb,
