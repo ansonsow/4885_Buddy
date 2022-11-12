@@ -6,7 +6,7 @@ import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.
 /**************************************************************************/
 /**************************************************************************/
 
-let createAlertPopup, alertPopup, callTheCavalry, rejectTheCavalry;
+let createAlertPopup, alertPopup, fadeOut, fadeIn, checkDuplicateEvents;
 
 let loadFadeSpeed = parseInt(getComputedStyle(document.documentElement)
                     .getPropertyValue("--Loading-Fade-Speed"));
@@ -16,11 +16,11 @@ let cancelLoadDelay = parseInt(getComputedStyle(document.documentElement)
 
 /*----- add/remove cover on button click(s) -----*/
 // just for smoother UX
-callTheCavalry = function(){
+fadeOut = function(){
     document.querySelector(".cloned-events-container").classList.add("fade-out")
 }
 
-rejectTheCavalry = function(){
+fadeIn = function(){
     document.querySelector(".cloned-events-container").classList.remove("fade-out")
 }
 
@@ -219,7 +219,7 @@ setTimeout(() => {
 // reset click
 document.querySelector(".reset-search").addEventListener("click",async()=>{
     window.scrollTo(0,0);
-    
+
     // reset search query
     search_text.value = "";
 
@@ -247,7 +247,7 @@ document.querySelector(".reset-search").addEventListener("click",async()=>{
 
     /***********************************************/
 
-    callTheCavalry();
+    fadeOut();
 
     document.querySelector(".all-events").classList.add("mobile-events-v-stretch");
 
@@ -263,7 +263,7 @@ document.querySelector(".reset-search").addEventListener("click",async()=>{
         });
 
         setTimeout(() => {
-            rejectTheCavalry();
+            fadeIn();
             document.querySelector(".all-events").classList.remove("mobile-events-v-stretch");
             document.querySelectorAll(".cloned-events-container .event-container").forEach(www => {
                 www.style.visibility = "visible";
@@ -286,7 +286,7 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
 
     document.querySelector(".all-events").classList.add("mobile-events-v-stretch")
 
-    callTheCavalry();
+    fadeOut();
 
     setTimeout(() => {
 
@@ -364,10 +364,6 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
                             if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
                                 console.log("slicing " + searchResult[j].data().name +" because doesn't contain name");
                                 searchResult.splice(j,1)
-
-                                // setTimeout(() => {
-                                //     searchResult.splice(j,1)
-                                // },loadFadeSpeed);
                             }
                         }
                     }
@@ -376,12 +372,6 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
                             // console.log(allSearch[i].name);
                             console.log("pushing " +allSearch[i].data().name +" because contain name");
                             searchResult.push(allSearch[i])
-
-                            // setTimeout(searchResult.push(allSearch[i]), loadFadeSpeed)
-            
-                            // setTimeout(() => {
-                            // searchResult.push(allSearch[i])
-                            // },loadFadeSpeed);
                         }
                     }
                 }
@@ -451,6 +441,8 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
                 displayResult(searchResult[i].data(),searchResult[i].id)
             }
 
+            checkDuplicateEvents();
+
             setTimeout(() => {
                 document.querySelector(".all-events").classList.remove("mobile-events-v-stretch");
 
@@ -459,7 +451,7 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
                 })
             },10)
 
-            rejectTheCavalry();
+            fadeIn();
         },loadFadeSpeed/2)
 
     },loadFadeSpeed)
@@ -492,13 +484,18 @@ function moveMap(lng,lat){
 
 $(document).ready(function(){
 
-    // callTheCavalry = function(){
-    //     $(".cloned-events-container").fadeOut(loadFadeSpeed);
-
-    //     setTimeout(() => {
-    //         $(".cloned-events-container").fadeIn(loadFadeSpeed);
-    //     },loadFadeSpeed)
-    // }
+    /*-------- CHECK FOR DUPLICATE EVENTS --------*/
+    // only triggers on "search" button click
+    checkDuplicateEvents = function(){
+        setTimeout(() => {
+            $(".cloned-events-container .event-container").each(function(){
+                let disIMG = $(this).find(".card-image").attr("src");
+                if($(this).prevAll().find(".card-image").attr("src") == disIMG){
+                    $(this).remove();
+                }
+            })
+        },loadFadeSpeed)
+    }
     
     /*-------- ALERT POPUP - create --------*/
     createAlertPopup = function(){
@@ -527,7 +524,7 @@ $(document).ready(function(){
             $("[popup-type='alert']").fadeOut(popupFadeSpeed);
 
             // fade out overlays
-            rejectTheCavalry();
+            fadeIn();
             $(".cloned-events-container .event-container").css("visibility","visible");
             $(".all-events").removeClass("fade-out")
         });
