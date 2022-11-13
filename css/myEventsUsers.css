@@ -1,3 +1,99 @@
+/*------ VARIABLES FOR My Events (for User) PAGE ------*/
+:root {
+
+    --container-grid-template-full: 45% 55%;
+    --container-pdding-full: 6rem 0 0 0;
+    --left-container-margin-full: 7rem 0 0 10rem;
+
+    --text-field-input-margin-full: 0 0 5% 0;
+    --text-field-input-width-full: 350px;   
+
+    /* -- Category Options Full-- */
+    --category-label-margin-full: 0 0 0.9rem 0;
+    --category-label-font-size-full: 1.3rem;
+    --category-label-font-weight-full: 900;
+
+    --category-options-margin-full: 0 0 5% 0;
+    --category-options-width-full: 350px;
+    --category-checkbox-option-margin-full: 0 2rem 0 0;
+    --categor-checkbox-input-width-full: 20px;
+    --categor-checkbox-input-margin-full: 0;
+
+    /* ---- Buttons Full---- */
+    --buttons-width-full: 7rem;
+    --buttons-padding-full:  0.5rem 0;
+    --buttons-margin-full: 2rem 1rem;
+    --buttons-border-radius-full: 25px;
+
+    /* --- Event Card Full --- */
+    --event-wrap-width-full: 100%;
+    --event-wrap-padding-full: 0 0 1rem 0;
+    --event-container-width-full: 90%;
+    --event-container-margin-full: 1% auto 3% 0;
+ 
+    --card-container-width-full: 100%;
+    --card-container-grid-template-full: 40% 60%;
+    --card-container-border-radius-full: 0 20px 20px 0;
+
+    --card-content-image-width-full: 17rem;
+    --card-content-image-height-full: 10rem;
+    --card-content-image-border-radius-full: 0 20px 20px 0;
+    
+    --event-name-padding-full: 0.2rem 0 0.5rem;
+    --card-description-padding-full: 1rem 0 0.5rem 1rem;
+    --card-description-line-height-full: 1rem;
+    --card-description-hr-width-full: 90%;
+
+    --leave-review-padding-full: 0.4rem 0 0 0; 
+
+    /*------- MOBILE  -------*/
+    --container-padding-mobile: 6rem 0 0 0;
+    --left-container-margin-mobile: 0 auto;
+    
+    --form-wrap-margin-mobile: 5% 10% 0 10%;
+    --text-field-input-margin-mobile: 0 0 5% 0;
+    --text-field-input-width-mobile: 400px;
+    --text-field-input-font-size-mobile: 0.9rem;
+
+    /* ---- Category Mobile---- */
+    --category-label-font-weight-mobile: 900;
+    --category-label-font-size-mobile: 1rem;
+
+    --checkbox-option-font-size-mobile: 0.8rem;
+    --checkbox-option-padding-mobile: 0 2rem 0 0;
+    --checkbox-input-width-mobile: 1rem;
+    --checkbox-input-margin-mobile: 0 auto;
+    
+    --checkbox-option-margin-mobile: 0 auto;
+    --checkbox-option-width-mobile: 100%;
+    
+    /* ---- Buttons Mobile ---- */
+    --buttons-width-mobile: 6rem; 
+    --buttons-padding-mobile: 0.5rem 0; 
+    --buttons-margin-mobile: 2rem 1rem 2rem; 
+    --buttons-font-size-mobile: 0.8rem; 
+
+    /* ---- Event Card ---- */
+    --card-container-grid-template-mobile: 45% 55% ;
+
+    --event-container-width-mobile: 90%;
+    --event-container-margin-mobile: 1rem auto 1rem;
+
+    --card-description-padding-mobile: 0.8rem 0 0 0;
+    --card-description-font-size-mobile: 0.9rem;
+    
+    --card-image-width-mobile: 12rem;
+    --card-image-height-mobile: 8rem;
+
+    --card-content-margin-mobile: 0.1rem 0;
+    --event-name-padding-mobile: 0 0 0.5rem 0;
+    --event-name-font-size-mobile: 1rem;
+
+    --leave-review-padding-mobile: 0.1rem 0 0 0; 
+}
+
+/*----------------------------------------------*/
+
 /*---- Top Bar ----*/
 nav {
     grid-template-columns:1fr 1fr;
@@ -18,19 +114,18 @@ nav {
 /* ------------ LEFT Column ---------------- */
 .container {
     display: grid;
-    grid-template-columns: 45% 55%;
+    grid-template-columns: var(--container-grid-template-full);
     width:100%;
     height:100%;
     top: 0;
     bottom:0;
     overflow-y:scroll;
     overflow-x:hidden;
-    padding-top: 6rem;
+    padding: var(--container-pdding-full);
 }
 
 .left-container{
-    margin-left: 10rem;
-    margin-top: 7rem;
+    margin: var(--left-container-margin-full);
 }
 
 /* --------- Text fields ---------- */
@@ -40,8 +135,8 @@ nav {
 }
 
 .text-field input {
-    margin: 0 0 5% 0;
-    width: 350px;
+    margin: var(--text-field-input-margin-full);
+    width: var(--text-field-input-width-full);
     border:none;
     outline:none;
     background: none;
@@ -55,7 +150,6 @@ nav {
     color: var(--Text-Color);
 }
 
-
 /* ----------- Category ----------- */
 
 .category {
@@ -63,28 +157,28 @@ nav {
 }
 
 .category-label {
-        display: block;
-        border-bottom: 1px solid var(--Text-Color);
-        margin-bottom: 0.9rem;
+    display: block;
+    border-bottom: 1px solid var(--Text-Color);
+    margin: var(--category-label-margin-full);
 }
 
 .category-label label{
-    font-weight: 900;
-    font-size: 1.3rem;
+    font-weight: var(--category-label-font-weight-full);
+    font-size: var(--category-label-font-size-full);
 }
 
 .options {
-    margin: 0 0 5% 0;
-    width: 350px;
+    margin: var(--category-options-margin-full);
+    width: var(--category-options-width-full);
 }
 
 .checkbox-option {
-    margin-right: 2rem;
+    margin: var(--category-checkbox-option-margin-full);
 }
 
 .checkbox-option > input {
-    width: 20px;
-    margin: 0;
+    width: var(--categor-checkbox-input-width-full);
+    margin: var(--categor-checkbox-input-margin-full);
 }
 
 .arrow {
@@ -100,17 +194,16 @@ nav {
     display: block;
 }
 
-
 /* --------- Reset / Search Buttons --------- */
 .btn-wrap {
     text-align: center;
 }
 
 .btn {
-    width: 7rem;
-    padding: 0.5rem 0;
-    margin: 2rem 1rem;
-    border-radius: 25px;
+    width: var(--buttons-width-full);
+    padding: var(--buttons-padding-full);
+    margin: var(--buttons-margin-full);
+    border-radius: var(--buttons-border-radius-full);
     border: 1px solid var(--Text-Color);
     font-family: var(--Body-Font);
     font-size: var(--Body-Font-Size);
@@ -137,65 +230,55 @@ nav {
     border: 1px solid var(--Light-Gray);
     color: var(--Text-Color);
 }
-
-/* ---- Footer ----- */
-.home-footer {
-    display: none;
-}
-
-
 /* ----------------------------------------- */
 /* ------------ RIGHT Column ---------------- */
 
 /* --------Event Card---------- */
-
 .event-wrap {
     display: block;
-    width: 100%;
-    padding-bottom: 1rem;
+    width: var(--event-wrap-width-full);
+    padding: var(--event-wrap-padding-full);
 }
 
 .event-container {
-    width: 90%;
-    margin: 1% auto 3% 0;
+    width: var(--event-container-width-full);
+    margin: var(--event-container-margin-full);
 }
 
 .card-container {
-    width: 100%;
+    width: var(--card-container-width-full);
     display: grid;
-    grid-template-columns: 40% 60%;
-    border-radius: 0 20px 20px 0;
+    grid-template-columns: var(--card-container-grid-template-full);
+    border-radius: var(--card-container-border-radius-full);
     background-color: #f0f0f0;
-    margin: auto;
 }
 
 .card-content.image {
-    width: 17rem;
-    height: 100%;
-    border-radius: 0 20px 20px 0;
+    width: var(--card-content-image-width-full);
+    height: var(--card-content-image-height-full);
+    border-radius: var(--card-content-image-border-radius-full);
     object-fit:cover;
 }
 
-.card-description {
-    padding: 1rem 0 0.5rem 1rem;
-    line-height: 1rem;
-}
-
 h3.card-content{
-    padding: 0.2rem 0 0.5rem;
+    padding: var(--event-name-padding-full);
     font-size: var(--H3-Size);
 }
 
+.card-description {
+    padding: var(--card-description-padding-full);
+    line-height: var(--card-description-line-height-full);
+}
+
 .card-description hr {
-    width: 90%;
+    width: var(--card-description-hr-width-full);
 }
 
 /* ----- Leave Review / Coming Event ----- */
-
 .action {
     border: none;
     font-weight: 900;
-    padding-top: 0.5rem;
+    padding: var(--leave-review-padding-full);
     font-family: var(--Body-Font);
     font-size: var(--Body-Font-Size);
     cursor: pointer;
@@ -207,6 +290,11 @@ h3.card-content{
 
 .coming {
     color: var(--Accent);
+}
+
+/* ---- Footer ----- */
+.home-footer {
+    display: none;
 }
 
 /*---------------- MOBILE  ----------------*/
@@ -250,75 +338,85 @@ h3.card-content{
 
     .container {
         display: block;
-        padding-top: 6rem;
+        padding: var(--container-padding-mobile);
     }
     
     .left-container{
-        margin: 0 auto;
+        margin: var(--left-container-margin-mobile);
     }
 
     .form-wrap {
         position: relative;
-        margin: 5% 10% 0 10%;
+        margin: var(--form-wrap-margin-mobile);
     }
 
     .text-field input, .text-field label {
-        margin: 0 0 5% 0;
-        width: 400px;
-        font-size: 0.9rem;
+        margin: var(--text-field-input-margin-mobile);
+        width: var(--text-field-input-width-mobile);
+        font-size: var(--text-field-input-font-size-mobile);
     }
 
     /* ----------- Category ----------- */
-
+    .category-label label{
+        font-weight: var(--category-label-font-weight-mobile);
+        font-size: var(--category-label-font-size-mobile);
+    }
+    
     .checkbox-option {
-        font-size: 0.8rem;
-        padding-right: 2rem;
+        font-size: var(--checkbox-option-font-size-mobile);
+        padding: var(--checkbox-option-padding-mobile);
     }
 
     .checkbox-option > input {
-        width: 1rem;
-        margin: 0 auto;
+        width: var(--checkbox-input-width-mobile);
+        margin: var(--checkbox-input-margin-mobile);
     }
     
     .options {
-        margin: 0 auto;
-        width: 100%;
-    }
-
-    .category-label label{
-        font-weight: 900;
-        font-size: 1rem;
+        margin: var(--checkbox-option-margin-mobile);
+        width: var(--checkbox-option-width-mobile);
     }
 
     /* -------- Buttons -------- */
     .btn {
-        width: 6rem;
-        padding: 0.5rem 0;
-        margin: 2rem 1rem 2rem;
-        font-size: 0.8rem;
+        width: var(--buttons-width-mobile);
+        padding: var(--buttons-padding-mobile);
+        margin: var(--buttons-margin-mobile);
+        font-size: var(--buttons-font-size-mobile);
     }
 
     /* --------Event Card---------- */
-
     .event-container {
-        width: 90%;
-        margin: 1rem auto 1rem;
+        width: var(--event-container-width-mobile);
+        margin: var(--event-container-margin-mobile);
     }
 
-    .card-content.image {
-        width: 12rem;
-        height: 100%;
+    .card-container {
+        grid-template-columns: var(--card-container-grid-template-mobile);
     }
 
     .card-description {
-        padding: 0.6rem 0 0 2rem;
-        font-size: 0.9rem;
+        padding: var(--card-description-padding-mobile);
+        font-size: var(--card-description-font-size-mobile);
+    }
+
+    .card-content.image {
+        width: var(--card-image-width-mobile);
+        height: var(--card-image-height-mobile);
+    }
+
+    p.card-content {
+        margin: var(--card-content-margin-mobile);
     }
     
     h3.card-content{
-        padding-bottom: 0.2rem;
-        font-size: 1.1rem;
+        padding: var(--event-name-padding-mobile);
+        font-size: var(--event-name-font-size-mobile);
     }
+
+    .action {
+        padding: var(--leave-review-padding-mobile);
+    }    
 
     /* ---- Footer ----- */
     .home-footer {
