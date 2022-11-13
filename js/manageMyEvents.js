@@ -133,9 +133,12 @@ if(currentUser){
         clonedEvent.querySelector(".date-published").innerHTML = doc.data().dateCreated.toDate().toDateString().slice(4)
         clonedEvent.querySelector(".date-xyz").innerHTML = formatDate(doc.data().dateOfEvent)
         clonedEvent.querySelector(".time-xyz").innerHTML = formatTime(doc.data().dateOfEvent)
+        
+        // fa-regular fa-pen-to-square
 
 
         clonedEvent.querySelector(".fa-regular.fa-pen-to-square").addEventListener("click",()=>{
+            // console.log(doc.id+ " " + doc.data().name);
             localStorage.setItem(targetEventId, doc.id)
             window.location = "../html/editMyEvent.html#"+localStorage.getItem(targetEventId);
             

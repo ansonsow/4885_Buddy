@@ -7,7 +7,7 @@ import {ref, uploadBytes,getDownloadURL} from 'https://www.gstatic.com/firebasej
 
 let testEventId = "mvSF9RKBBnOPY0kcuQ8R";
 //this page's event id 
-let targetEventId;
+
 targetEventId = localStorage.getItem(targetEventId);
 let currentUser = dbf.auth.currentUser;
 let currentUserId;
@@ -45,7 +45,7 @@ if (currentUser) {
     // console.log(userData.events);
 
     // pick first event (CHANGE LATER, this is just for testing);
-    targetEventId = userData.events[0];
+    // targetEventId = userData.events[0];
     // document.querySelector(".heading").append(`: ${targetEventId}`);
 
     const eventJson = await getDoc(doc(dbf.db, "events", targetEventId));

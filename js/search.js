@@ -531,16 +531,16 @@ $(document).ready(function(){
 
     /*-------- CHECK FOR DUPLICATE EVENTS --------*/
     // only triggers on "search" button click
-    checkDuplicateEvents = function(){
-        setTimeout(() => {
-            $(".cloned-events-container .event-container").each(function(){
-                let disIMG = $(this).find(".card-image").attr("src");
-                if($(this).prevAll().find(".card-image").attr("src") == disIMG){
-                    $(this).remove();
-                }
-            })
-        },3000)
-    }
+    // checkDuplicateEvents = function(){
+    //     setTimeout(() => {
+    //         $(".cloned-events-container .event-container").each(function(){
+    //             let disIMG = $(this).find(".card-image").attr("src");
+    //             if($(this).prevAll().find(".card-image").attr("src") == disIMG){
+    //                 $(this).remove();
+    //             }
+    //         })
+    //     },3000)
+    // }
     
     /*-------- ALERT POPUP - create --------*/
     createAlertPopup = function(){
