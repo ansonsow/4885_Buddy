@@ -218,6 +218,8 @@ setTimeout(() => {
 // ======================== reset button on click ========================================================
 // reset click
 document.querySelector(".reset-search").addEventListener("click",async()=>{
+    searchResult = [];
+
     window.scrollTo(0,0);
 
     // reset search query
@@ -258,7 +260,7 @@ document.querySelector(".reset-search").addEventListener("click",async()=>{
 
         querySnapshot.forEach((doc) => {
             // console.log(doc.id);
-            allSearch.push(doc)
+            // allSearch.push(doc)
             displayResult(doc.data(),doc.id)
         });
 
@@ -276,6 +278,8 @@ document.querySelector(".reset-search").addEventListener("click",async()=>{
 
 // ======================== searchButton on click ========================================================
 // search click
+let searchResult = [];
+
 
 document.querySelector(".search-button").addEventListener("click",async()=>{
     // document.querySelectorAll(".cloned-events-container").forEach(event => {
@@ -295,7 +299,7 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
         // });
     
         let searchResults = [];
-        let searchResult = [];
+        searchResult = [];
 
 
         // "search for anything"
@@ -336,7 +340,7 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
         }else{
             dateSearch = dateSearch + timeStart + timeEnd; 
         }
-        console.log(getFullDate(dateSearch));
+        // console.log(getFullDate(dateSearch));
 
 
         for(let i=0;i<allSearch.length;i++){
@@ -359,34 +363,37 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
                 });
                 
                 if(textSearch != ""){
-                    if(searchResult.length!=0){
-                        for(let j=0;j<searchResult.length;j++){
-                            if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
-                                console.log("slicing " + searchResult[j].data().name +" because doesn't contain name");
-                                searchResult.splice(j,1)
-                            }
-                        }
-                    }
+                    // if(searchResult.length!=0){
+                    //     for(let j=0;j<searchResult.length;j++){
+                    //         if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
+                    //             console.log("slicing " + searchResult[j].data().name +" because doesn't contain name");
+                    //             searchResult.splice(j,1)
+                    //         }
+                    //     }
+                    // }
                     if(allSearch[i].data().name.toUpperCase().includes(textSearch.toUpperCase())){
                         if(!searchResult.includes(allSearch[i])){
                             // console.log(allSearch[i].name);
                             console.log("pushing " +allSearch[i].data().name +" because contain name");
                             searchResult.push(allSearch[i])
+                        }else{
+                            console.log("already has "+ allSearch[i].data().name);
                         }
                     }
                 }
+
                 if(dateSearch!=""){
-                    console.log("object");
-                    if(searchResult.length!=0){
+
+                    // if(searchResult.length!=0){
                         
-                        for(let j =0;j<searchResult.length;j++){
-                            if(!formatDateSearch(dateSearch, searchResult[j].data().dateOfEvent , searchResult[j].data().name)){
+                    //     for(let j =0;j<searchResult.length;j++){
+                    //         if(!formatDateSearch(dateSearch, searchResult[j].data().dateOfEvent , searchResult[j].data().name)){
         
-                                console.log("slicing " + searchResult[j].data().name +" because the date of event is bigger");
-                                searchResult.splice(j,1)
-                            }
-                        }
-                    }
+                    //             console.log("slicing " + searchResult[j].data().name +" because the date of event is bigger");
+                    //             searchResult.splice(j,1)
+                    //         }
+                    //     }
+                    // }
                     if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent , allSearch[i].data().name)){
         
                         if(!searchResult.includes(allSearch[i])){
@@ -398,21 +405,21 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
                 }
         
                 if(tagSearch.length != 0){
-                    if(searchResult.length!=0){
+                    // if(searchResult.length!=0){
         
-                        for(let j=0;j<searchResult.length;j++){
-                            if(!searchResult[j].data().tags.includes(tagSearch.toString())){
-                                console.log("slice "+searchResult[j].name);
-                                searchResult.splice(j,1)
-                            }
-                        }
+                    //     for(let j=0;j<searchResult.length;j++){
+                    //         if(!searchResult[j].data().tags.includes(tagSearch.toString())){
+                    //             console.log("slice "+searchResult[j].name+ " because doesn't have tag");
+                    //             searchResult.splice(j,1)
+                    //         }
+                    //     }
         
-                    }
+                    // }
         
                     // only one tag
                     if(allSearch[i].data().tags.includes(tagSearch.toString())){
                         if(!searchResult.includes(allSearch[i])){
-                            console.log("push "+allSearch[i].data().name);
+                            console.log("push "+allSearch[i].data().name+" because has tag");
                             searchResult.push(allSearch[i])
                         }
                     }
@@ -432,16 +439,54 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
         
                     
                 }
+
+                if(textSearch!=""){
+                    if(searchResult.length!=0){
+                        for(let j=0;j<searchResult.length;j++){
+                            if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
+                                console.log("slicing " + searchResult[j].data().name +" because doesn't contain name");
+                                searchResult.splice(j,1)
+                            }
+                        }
+                    }
+                }
+                if(dateSearch!=""){
+                    if(searchResult.length!=0){
+                        
+                        for(let j =0;j<searchResult.length;j++){
+                            if(!formatDateSearch(dateSearch, searchResult[j].data().dateOfEvent , searchResult[j].data().name)){
+        
+                                console.log("slicing " + searchResult[j].data().name +" because the date of event is bigger");
+                                searchResult.splice(j,1)
+                            }
+                        }
+                    }
+                }
+                if(tagSearch!=""){
+                    if(searchResult.length!=0){
+        
+                        for(let j=0;j<searchResult.length;j++){
+                            if(!searchResult[j].data().tags.includes(tagSearch.toString())){
+                                console.log("slice "+searchResult[j].name+ " because doesn't have tag");
+                                searchResult.splice(j,1)
+                            }
+                        }
+        
+                    }
+                }
             }//end if:search query isn't blank (aka successful search)
+
             
         }
+        
+        // console.log(searchResult);
 
         setTimeout(() => {
             for(let i=0;i<searchResult.length;i++){
                 displayResult(searchResult[i].data(),searchResult[i].id)
             }
 
-            checkDuplicateEvents();
+            // checkDuplicateEvents();
 
             setTimeout(() => {
                 document.querySelector(".all-events").classList.remove("mobile-events-v-stretch");
@@ -494,7 +539,7 @@ $(document).ready(function(){
                     $(this).remove();
                 }
             })
-        },loadFadeSpeed)
+        },3000)
     }
     
     /*-------- ALERT POPUP - create --------*/
