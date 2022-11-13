@@ -1,4 +1,4 @@
-import {db, addUserEvent, removeUserEvent, addUserFavEvent, removeUserFavEvent} from "./app.js";
+import {db, addUserEvent, removeUserEvent, addUserFavEvent, removeUserFavEvent, addEventNum, minusEventNum} from "./app.js";
 import * as dbf from "./app.js"; // used to get current user
 import $ from "./jquery.module.js";
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
