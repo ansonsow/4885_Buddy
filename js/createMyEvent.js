@@ -183,8 +183,7 @@ searchBox()
                   $(document).on("click", "#popup_action_2", function(){
                       let that = this; // don't touch this line
 
-                      // fade out the pop-up
-                      $(".del-popup").fadeOut(popupFadeSpeed);
+                      location.href = '../html/manageMyEvents.html'
                   });
               }		
           }

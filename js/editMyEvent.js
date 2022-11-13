@@ -87,12 +87,6 @@ if (currentUser) {
     let eventMonth = eventDateNum.substring(eventDateNum.length-12).slice(0,2);
     let eventDay = eventDateNum.substring(eventDateNum.length-10).slice(0,2);
 
-    // if first number of eventDay is a 0, remove that
-    let dayFirstChara = eventDay.slice(0,1);
-    if(dayFirstChara == "0"){
-        eventDay = eventDay.slice(1,2);
-    }
-
     /*************************** EVENT TIME ******************************* */
 
     let eventTimeStart_Hour = eventDateNum.substring(eventDateNum.length-8).slice(0,2);
