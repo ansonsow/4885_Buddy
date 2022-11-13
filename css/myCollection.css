@@ -1,3 +1,55 @@
+/*------ VARIABLES FOR My Collection PAGE ------*/
+:root {
+
+    --main-container-padding-full: 6rem 0 0 0;
+    --illustration-width-full: 400px;
+    --illustration-position-top-full: 17rem;
+    --illustration-position-rigth-full: 4rem;
+
+    /* ---- Event Card Full ---- */
+    --event-container-width-full: 55%;
+    --event-container-margin-full: 1% 0 2% 8%;
+
+    --card-container-width-full: 100%; 
+    --card-container-grid-template-full: 39% 55% 6%;
+    --card-container-border-radius-full: 0 40px 40px 0;
+
+    --card-image-width-full: 19rem;
+    --card-image-height-full: 10rem;
+
+    --card-description-padding-full: 1.5rem 0 0 2rem;
+    --card-description-line-height-full: 1.1rem;
+    --card-event-name-padding-full: 0 0 0.5rem 0;
+
+    --trash-icon-margin-full: auto;
+
+    /*------- MOBILE -------*/
+    --illustration-position-top-mobile: 7rem;
+    --illustration-position-rigth-mobile: 0;
+    --illustration-img-width-mobile: 15rem;
+    --illustration-img-margin-mobile: 0 25% 0;
+
+    --container-padding-mobile: 19rem 0 0 0;
+
+    /* ---- Event Card Mobile ---- */
+    --event-container-width-mobile: 85%;
+    --card-content-image-width-mobile: 12rem;
+    --card-content-image-height-mobile: 9rem;
+
+    --card-description-padding-mobile: 1.1rem 0 0 2.5rem;
+    --card-description-font-size-mobile:  0.9rem;
+    --card-content-margin-mobile: 0.1rem 0;
+
+    --event-name-font-size-mobile: 1rem;
+    --event-name-padding-mobile: 0 0 0.5rem 0;
+
+    --trash-icon-margin-mobile: auto 0;
+    --trash-icon-font-size-mobile: 1rem;
+
+}
+
+/*----------------------------------------------*/
+
 /*---- Top Bar ----*/
 nav {
     grid-template-columns:1fr 1fr;
@@ -18,14 +70,14 @@ nav {
 /* ----------------------------------------- */
 
 .container {
-    padding-top: 5rem;
+    padding: var(--main-container-padding-full);
 }
 
 .illustration {
-    width: 400px;
+    width: var(--illustration-width-full);
     position: fixed;
-    top: 17rem;
-    right: 4rem;
+    top: var(--illustration-position-top-full);
+    right: var(--illustration-position-rigth-full);
 }
 
 /* --------Event Card---------- */
@@ -35,38 +87,37 @@ nav {
 }
 
 .event-container {
-    width: 55%;
-    margin: 1% 0 2% 8%;
+    width: var(--event-container-width-full);
+    margin: var(--event-container-margin-full);
 }
 
 .card-container {
-    width: 100%;
+    width: var(--card-container-width-full);
     display: grid;
-    grid-template-columns: 37% 57% 6%;
-    border-radius: 0 20px 20px 0;
+    grid-template-columns: var(--card-container-grid-template-full);
+    border-radius: var(--card-container-border-radius-full);
     background-color: #f0f0f0;
-    margin: auto;
 }
 
 .card-content.image {
-    width: 19rem;
-    height: 9.5rem;
-    border-radius: 0 20px 20px 0;
+    width: var(--card-image-width-full);
+    height: var(--card-image-height-full);
+    border-radius: var(--card-container-border-radius-full);
     object-fit:cover;
 }
 
 .card-description {
-    padding: 1.2rem 0 0 3rem;
-    line-height: 1rem;
+    padding: var(--card-description-padding-full);
+    line-height: var(--card-description-line-height-full);
 }
 
 h3.card-content{
-    padding-bottom: 0.5rem;
+    padding: var(--card-event-name-padding-full);
     font-size: var(--H3-Size);
 }
 
 .delete-event {
-    margin: auto;
+    margin: var(--trash-icon-margin-full);
 }
 
 .delete-event:hover {
@@ -118,53 +169,50 @@ h3.card-content{
 
 /* ------------------------------------ */
     .container {
-        padding-top: 17rem;
+        padding: var(--container-padding-mobile);
     }
     
     .illustration {
         position: absolute;
-        top: 5rem;
-        right: 0;
-        padding: 1rem;
-        background-color: #fff;
+        top: var(--illustration-position-top-mobile);
+        right: var(--illustration-position-rigth-mobile);
         width: 100%;
     }
 
     .illustration img {
-        width: 15rem;
-        margin: 0 25% 0;
+        width: var(--illustration-img-width-mobile);
+        margin: var(--illustration-img-margin-mobile);
     }
 
 
     /* --------Event Card---------- */
 
     .event-container {
-        width: 85%;
-    }
-
-    .card-container {
-        border-radius: 0 25px 25px 0;
+        width: var(--event-container-width-mobile);
     }
 
     .card-content.image {
-        width: 12rem;
-        height: 100%;
-        border-radius: 0 25px 25px 0;
+        width: var(--card-content-image-width-mobile);
+        height: var(--card-content-image-height-mobile);
     }
 
     .card-description {
-        padding: 1.2rem 0 0 3rem;
-        font-size: 0.9rem;
+        padding: var(--card-description-padding-mobile);
+        font-size: var(--card-description-font-size-mobile);
+    }
+
+    .card-content {
+        margin: var(--card-content-margin-mobile);
     }
     
     h3.card-content{
-        padding-bottom: 0.2rem;
-        font-size: 1.1rem;
+        padding: var(--event-name-padding-mobile);
+        font-size: var(--event-name-font-size-mobile);
     }
 
     .delete-event {
-        margin: auto 0;
-        font-size: 1rem;
+        margin: var(--trash-icon-margin-mobile);
+        font-size: var(--trash-icon-font-size-mobile-mobile);
     }
 
     /* ---- Footer ----- */

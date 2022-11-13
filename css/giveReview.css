@@ -25,15 +25,17 @@
 
     --card-container-grid-template-full: 40% 60%;
     --card-content-image-width-full: 17rem;
-    --card-content-image-height-full: 12rem;
+    --card-content-image-height-full: 11rem;
 
-    --card-description-padding-full: 1.5rem 0 0.5rem 1rem;
+    --card-description-padding-full: 0.9rem 0.5rem 0 1rem;
     --card-description-line-height-full: 1rem;
     --card-content-eventname-padding-full: 0.2rem 0 0.5rem;
+
     --card-hr-width-full: 90%;
+    --card-hr-margin-full: 0;
 
     /* --- Leave Review / Coming Label--- */
-    --leave-review-label-padding-full: 0.5rem 0 0 0;
+    --leave-review-label-margin-full: 0;
 
     /* ---- Buttons ---- */
     --buttons-width-full: 7rem;
@@ -57,22 +59,22 @@
 
 
     /*  ---- MOBILE ----  */
-    --illustration-padding-mobile: 8rem 7rem 2rem;
     
+    --illustration-padding-mobile: 8rem 7rem 2rem;
     /* ---- Event Card ---- */
+    --card-container-grid-template-mobile: 45% 55%;
     --event-container-width-mobile: 90vw; 
     --event-container-margin-mobile: 1rem auto 1rem; 
     
-    --card-content-image-width-mobile: 12rem;
-    --card-content-image-height-mobile: 10rem;
+    --card-content-image-width-mobile: 12.7rem;
+    --card-content-image-height-mobile: 9rem;
 
-    --card-description-padding-mobile: 0.7rem 0 0.5rem 2rem;
+    --card-description-padding-mobile: 0.7rem 0.5rem 0.2rem 1rem;
     --card-description-font-size-mobile: 0.9rem;
     
-    --card-event-name-padding-mobile: 0 0 0.2rem 0;
+    --card-event-name-padding-mobile: 0 0 0.4rem 0;
     --card-event-name-font-size-mobile: 1.1rem;
-
-    --leave-review-label-padding-mobile: 0;
+    --card-description-content-margin-mobile: 0.2rem 0;
 
     /* ---------- Review Area ---------- */
     --review-wrap-width-mobile: 90vw;
@@ -237,6 +239,7 @@ h3.card-content{
 
 .card-description hr {
     width: var(--card-hr-width-full);
+    margin: var(--card-hr-margin-full);
 }
 
 /* ----- Leave Review / Coming Event ----- */
@@ -244,7 +247,7 @@ h3.card-content{
 .action {
     border: none;
     font-weight: 900;
-    padding: var(--leave-review-label-padding-full);
+    margin: var(--leave-review-label-margin-full);
     font-family: var(--Body-Font);
     font-size: var(--Body-Font-Size);
     cursor: pointer;
@@ -410,9 +413,17 @@ h3.card-content{
         margin: var(--event-container-margin-mobile);
     }
 
+    .card-container {
+        grid-template-columns: var(--card-container-grid-template-mobile);
+    }
+
     .card-content.image {
         width: var(--card-content-image-width-mobile);
         height: var(--card-content-image-height-mobile);
+    }
+
+    .card-description > p {
+        margin: var(--card-description-content-margin-mobile);
     }
 
     .card-description {
@@ -423,10 +434,6 @@ h3.card-content{
     h3.card-content{
         padding: var(--card-event-name-padding-mobile);
         font-size: var(--card-event-name-font-size-mobile);
-    }
-
-    .action {
-        padding: var(--leave-review-label-padding-mobile);
     }
 
     /* ---------- Review Area ---------- */

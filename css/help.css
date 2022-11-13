@@ -1,3 +1,47 @@
+/*------ VARIABLES FOR HELP PAGE ------*/
+:root {
+
+    --left-content-margin-full: 11rem 6rem 1rem;
+    --faq-margin-full: 1.5rem 0 0 0;
+    --question-font-size-full: 1.2rem;
+    --more-button-margin-full: 1.5rem 0 2.5rem 18rem;
+    
+    /* ---- Contact Form Full---- */
+    --right-container-width-full: 100%;
+    --right-container-margin-full: 10% 13% 1% 53%;
+    --right-content-margin-full: 0 65% 0 0;
+
+    --form-width-full: 500px;
+    --form-margin-full:  1rem 0 0 0;
+    --form-padding-full: 1rem;
+    --form-font-size-full:  1rem;
+    --form-textarea-height-full: 200px;
+
+    --send-button-padding-full: 1rem 3rem;
+    --send-button-margin-full: 2rem auto 0 12rem;
+    --send-button-border-radius-full: 30px;
+
+    /*  ---- MOBILE ----  */
+
+    --left-content-margin-mobile: 5rem 5rem 0 5rem;
+    --left-content-font-size-mobile: 0.9rem;
+    --question-font-size-mobile: 1.1rem;
+
+    --more-button-margin-mobile: 2rem 6.5rem;
+    --more-button-padding-mobile: 1rem 3rem;
+    --more-button-font-wight-mobile: 900;
+
+    /* -- Contact Form Mobile -- */
+    --right-container-width-mobile: 100vw;
+    --right-container-margin-mobile: 3rem 3rem 1.5rem;
+
+    --form-inputs-width-mobile: 400px;
+    --form-inputs-padding-mobile: 0.7rem;
+    --send-button-margin-mobile: 3rem auto 1rem 8.5rem;
+
+}
+/*----------------------------------------------*/
+
 /* top bar adjustments*/
 header {
     background:transparent;
@@ -23,7 +67,6 @@ nav {
 }
 /*------------------------------------------------*/
 
-/* ------------ LEFT Column ------------------- */
 .container {
     display: flex;
     width:100%;
@@ -34,6 +77,7 @@ nav {
     overflow-x:hidden;
 }
 
+/* ------------ LEFT Column ---------- */
 .left-container{
     width: 38vw;
     height: 100%;
@@ -43,24 +87,28 @@ nav {
 }
 
 .left-content {
-    position: relative;
-    margin: 11rem 6rem 1rem;
+    /* position: relative; */
+    margin: var(--left-content-margin-full);
+}
+
+.faq-wrap > hr {
+    border: 1px solid var(--White);
 }
 
 .faq {
-    margin: 1.5rem 0 0 0;
+    margin:var(--faq-margin-full);
 }
 
 .question {
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: var(--question-font-size-full);
 }
 
 button.more {
     color: #0A7AFF;
     border: none;
     background-color: var(--Primary);
-    margin: 1.5rem 0 2.5rem 18rem;
+    margin: var(--more-button-margin-full);
     cursor: pointer;
 }
 
@@ -73,44 +121,44 @@ button.more {
 
 .right-container {
     position: fixed;
-    width: 100%;
-    margin: 10% 13% 1% 53%;
+    width: var(--right-container-width-full);
+    margin: var(--right-container-margin-full);
 }
 
 .right-content {
-    margin: 0 65% 0 0;
+    margin: var(--right-content-margin-full);
 }
 
 .form input, .form textarea{
     display: block;
-    width: 500px;
-    padding: 1rem;
-    border: 2px solid #545454;
+    width: var(--form-width-full);
+    padding: var(--form-padding-full);
+    border: 2px solid var(--Text-Color);
     border-radius: 15px;
-    margin: 1rem 0 0 0;
-    font-size: 1rem;
+    margin: var(--form-margin-full);
+    font-size: var(--form-font-size-full);
     font-family: var(--Body-Font);
 }
 
 .form textarea {
-    height: 200px;
+    height: var(--form-textarea-height-full);
 }
 
 .form button {
-    padding: 1rem 3rem;
-    border-radius: 25px;
-    margin: 2rem auto 0 12rem;
-    background-color: #545454;
-    border: 2px solid #545454;
-    color: #F9F9F9;
+    padding: var(--send-button-padding-full);
+    margin: var(--send-button-margin-full);
+    border-radius: var(--send-button-border-radius-full);
+    background-color: var(--Text-Color);
+    border: 2px solid var(--Text-Color);
+    color: var(--White);
     font-weight: 900;
     cursor: pointer;
 }
 
 .form button:hover {
-    background-color: #F0F0F0;
-    color: #545454;
-    border: 2px solid #F0F0F0;
+    background-color: var(--White);
+    color: var(--Text-Color);
+    border: 2px solid var(--White);
 }
 
 input:focus, textarea:focus {
@@ -163,12 +211,12 @@ input:focus, textarea:focus {
     }
     
     .left-content {
-        margin: 5rem 5rem 1rem 5rem;
-        font-size: 0.9rem;
+        margin: var(--left-content-margin-mobile);
+        font-size: var(--left-content-font-size-mobile);
     }
 
     .question {
-        font-size: 1.1rem;
+        font-size: var(--question-font-size-mobile);
     }
 
     /* Button */
@@ -177,9 +225,9 @@ input:focus, textarea:focus {
         border: 1px solid var(--White);
         background-color: var(--White);
         border-radius: 30px;
-        padding: 1rem 3rem;
-        margin: 2rem 6.5rem 2rem 6.5rem;
-        font-weight: 900;
+        padding: var(--more-button-padding-mobile);
+        margin: var(--more-button-margin-mobile);
+        font-weight: var(--more-button-font-wight-mobile);
     }
 
     button.more:hover {
@@ -190,14 +238,13 @@ input:focus, textarea:focus {
   /* ---------- Contact Form ---------- */
 
     .right-container {
-        width: 100%;
-        margin: 0;
+        width: var(--right-container-width-mobile);
+        margin: var(--right-container-margin-mobile);
         position: relative;
     }
 
     .right-content {
         width: 100%;
-        margin: 2rem 0 1.5rem 2.6rem;
     }
 
     .span-msg{
@@ -205,22 +252,17 @@ input:focus, textarea:focus {
     }
 
     .form input, .form textarea{
-        width: 400px;
-        padding: 0.7rem;
+        width: var(--form-inputs-width-mobile);
+        padding: var(--form-inputs-padding-mobile);
     }
 
     .form button {
-        justify-content: center;
-        margin: 3rem auto 2rem 8.5rem;
+        margin: var(--send-button-margin-mobile);
     }
-
 
     /* ---- Footer ----- */
     .home-footer {
         display: block;
     }
-
-
-
 
 }

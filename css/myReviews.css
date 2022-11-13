@@ -1,3 +1,41 @@
+/*------ VARIABLES FOR My Review PAGE ------*/
+:root {
+
+    --container-margin-full: 0 3rem 0 6rem; 
+    --container-padding-full: 5rem 0 0 0;
+
+    --illustration-margin-full: 1rem 7.7rem 0rem 7.7rem;
+    --illustration-width-full: 400px;
+
+    --card-width-full: 550px;
+    --card-margin-full: 0.7rem 3rem;
+
+    --card-top-section-margin-full: 0 0 5px 0;
+    --profile-pic-width-full: 60px;
+    --profile-pic-border-radius-full: 50%;
+    --user-name-margin-full: 0 0 0 10px;
+    --user-name-font-weight-full: 500;
+    --user-name-font-size-full: 1.4rem;
+    
+    --review-box-padding-full: 0.7rem 1.3rem;
+    --edit-icons-padding-full: 3px;
+    --text-wrap-height-full: 100px;
+
+    /* ---- Mobile ---- */
+    --container-margin-mobile: 0 auto 4rem;
+    --container-padding-mobile: 4rem 0 0 0;
+
+    --illustration-margin-mobile: 1rem auto;
+    --illustration-padding-mobile: 2rem;
+
+    --profile-pic-width-mobile: 50px;
+    --user-name-font-size-mobile: 1.2rem;
+    --star-rating-font-size-mobile: 0.9rem;
+    --review-font-size-mobile: 1rem;
+
+}
+
+/*----------------------------------------------*/
 /*---- Top Bar ----*/
 nav {
     grid-template-columns:1fr 1fr;
@@ -17,13 +55,13 @@ nav {
 /* ----------------------------------------- */
 
 .container {
-    margin: 0 3rem 0 6rem;
-    padding-top: 5rem;
+    margin: var(--container-margin-full);
+    padding: var(--container-padding-full);
 }
 
 .illustration {
-    margin: 1rem 7.7rem 0rem 7.7rem;
-    width: 400px;
+    margin: var(--illustration-margin-full);
+    width: var(--illustration-width-full);
     display: block;
 }
 
@@ -36,32 +74,30 @@ nav {
 }
 
 .card {
-    width: 550px;
-    margin: 0.7rem 3rem;
-    
+    width: var(--card-width-full);
+    margin: var(--card-margin-full);
 }
 
-.top-image {
+.top-section {
     display: flex;
-    margin-bottom: 5px;
+    margin: var(--card-top-section-margin-full);
 }
-
 
 .profile-pic {
-    width: 60px;
-    border-radius: 50%;
+    width: var(--profile-pic-width-full);
+    border-radius: var(--profile-pic-border-radius-full);
 }
 
 .user-name {
     display: flex;
-    margin-left: 10px;
-    font-weight: 500;
-    font-size: 1.4rem;
+    margin: var(--user-name-margin-full);
+    font-weight: var(--user-name-font-weight-full);
+    font-size: var(--user-name-font-size-full);
 }
 
 .star-rating {
     display: flex;
-    margin-left: 10px;
+    margin: var(--user-name-margin-full);
 }
 
 /* ----- Star Rating ----- */
@@ -79,20 +115,19 @@ nav {
     color: var(--White);
     background-color: var(--Text-Color);
     border-radius: 15px;
-    padding: 0.7rem 1.3rem 0.7rem 1.3rem;
+    padding: var(--review-box-padding-full)
 }
 
 .text {
-    height: 100px;
+    height: var(--text-wrap-height-full);
 }
 
 .event-actions {
    text-align: right;
-   margin: 0 5px;
 }
 
-.edit-event {
-    padding: 3px;
+.edit-event, .delete-event{
+    padding: var(--edit-icons-padding-full);
 }
 
 .edit-event:hover {
@@ -152,30 +187,27 @@ nav {
     }
 
     .container {
-        margin: 0 auto 4rem;
-        padding-top: 4rem;
+        margin: var(--container-margin-mobile);
+        padding: var(--container-padding-mobile);
     }
 
     .illustration {
-        margin: 1rem auto;
-        padding: 2rem;
+        margin: var(--illustration-margin-mobile);
+        padding: var(--illustration-padding-mobile);
     }
 
     .profile-pic {
-        width: 50px;
+        width: var(--profile-pic-width-mobile);
     }
 
-    /* Text and Icons */
-    .review-box {
-        color: var(--Text-Color);
-        background-color: var(--White);
-        border-radius: 25px;
-        font-size: 1rem;
+    .user-name {
+        font-size: var(--user-name-font-size-mobile);
+        color: var(--White);
     }
 
-    /* ----- Star Rating ----- */
+    /* -- Star Rating -- */
     .star-rating {
-        font-size: 0.9rem;
+        font-size: var(--star-rating-font-size-mobile);
     }
 
     .star-rating i.fill {
@@ -186,9 +218,12 @@ nav {
         color:var(--Secondary-Light);
     }
 
-    .user-name {
-        font-size: 1.2rem;
-        color: var(--White);
+    /* -- Text and Icons -- */
+    .review-box {
+        color: var(--Text-Color);
+        background-color: var(--White);
+        border-radius: 25px;
+        font-size: var(--review-font-size-mobile);
     }
 
     /* ---- Footer ----- */
