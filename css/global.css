@@ -16,6 +16,7 @@ body {
     font-size:var(--Body-Font-Size);
     color:var(--Text-Color);
     overscroll-behavior-y:none;
+    overflow-x:hidden;
 }
 
 @-moz-document url-prefix(){
