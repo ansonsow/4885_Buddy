@@ -1,28 +1,23 @@
 import{logout} from "./app.js";
-// import $ from "./jquery.module.js";
+import $ from "./jquery.module.js";
 import * as dbf from "./app.js";
 import {storage, auth, db, writeEventData, writeUserData} from './app.js';
+import {sendPasswordResetEmail} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
 
 //To send a password reset email to user
 document.getElementById('changepass').addEventListener('click', (e)=>{
     e.preventDefault();
-    // console.log("Re-directed to forgot passwords page!");
-    // alert("Button is clicked");
     resetPassword();
-
 });
 
 function resetPassword(){
-    // console.log("resetPassword Function is called!");
-
     
         if (auth.currentUser) {
-          console.log(auth.currentUser.email);
           alert("Password reset link is sent to  : " + auth.currentUser.email);
           let emailaddress = auth.currentUser.email;
-          auth.sendPasswordResetEmail(emailaddress) 
+          sendPasswordResetEmail(auth, emailaddress) 
           .then(() =>{
-              console.log("Password reset email has been sent!");
+              console.log("Password reset link is sent to  : " + auth.currentUser.email);
           })
           .catch(error => {
               console.log(error);
@@ -32,17 +27,29 @@ function resetPassword(){
           console.log("User is signed out!");
         }
 }
+//--------------------------------------------------------------------------------------------------------------
+//The below code is to provide the user the ability to go back to the app after the action is completed.
 
 
-
-
-
-
+// var actionCodeSettings = {
+//     url: 'https://www.example.com/?email=' + auth.currentUser.email,
+//     handleCodeInApp: true,
+//     // When multiple custom dynamic link domains are defined, specify which
+//     // one to use.
+//     dynamicLinkDomain: "http://localhost/4885_Buddy/html/login.html"
+//   };
+//   auth.currentUser.sendEmailVerification(actionCodeSettings)
+//     .then(function() {
+//       // Verification email sent.
+//     })
+//     .catch(function(error) {
+//       // Error occurred. Inspect error.code.
+//     });
+//--------------------------------------------------------------------------------------------------------------
 
 //Create a function to perform singout operation using Firebase's singOut() method
 document.getElementById("signout").addEventListener('click', (e)=>{
     e.preventDefault();
-    console.log("Button is clicked!");
     logout();
     });
 
