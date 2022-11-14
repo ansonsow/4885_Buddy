@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>User login</title>
+    <title>Log In to Buddy</title>
 
     <link rel="shortcut icon" href="../favicon.ico">
 
@@ -38,45 +38,43 @@
 
     
     <div class="container">
-        <div class="img-wrap">
-            <img class="side-image" src="../images/unsplash_seaside_2LhCDvS_7xs.jpg" alt="">
-        </div>
+        <div class="img-wrap"></div>
 
         <div class="left-container">
-
-            <a class="buddy-logo" href="../html/main.html">
-                <div js-include-html="../svg/buddy_logo_grayscale.svg"></div>
-            </a>
-
-            
             
             <div class="content">
-                <h1 class="welcome">Welcome! <span class="buddy">Buddy</span></h1>
-
+                <h1 class="welcome">Welcome, <span class="buddy-text">Buddy!</span></h1>
 
                 <form class="form" action="#" method="post">
                     <div class="text_field">
-                        <input type="text" placeholder="Email &ast;" name="" value="" id="email" required>
+                        <input type="text" placeholder="Email *" name="" value="" id="email" required>
                     </div>
+
                     <div class="text_field">
-                        <input type="password" placeholder="Password &ast;" name="" value="" id="password" required>
+                        <input type="password" placeholder="Password *" name="" value="" id="password" required>
                     </div>
-        
-                    <div class="checkbox-wrap">
-                        <div>
-                            <input type="checkbox" name="remember-me"> 
+
+                    <div class="extra-opts">
+                        <div class="remember-wrap">
+                            <input type="checkbox" name="remember-me" id="remember-me">
                             <label for="remember-me">Remember me</label>
                         </div>
-                        <a class="forget-password" href="/html/forgotPassword.html">Forgot Password?</a>
+
+                        <a class="forgot-password" href="/html/forgotPassword.html">Forgot Password?</a>
                     </div>
+
             
                     <div class="btn-wrap">
-                        <button class="ctn logIn" type="button" id="logIn">Log in</button>
+                        <!-- SIGNUP button -->
                         <button class="ctn signUp" onclick="location.href='/html/signUp.html'" type="button">Sign Up</button>
+
+                        <!-- LOGIN button -->
+                        <button class="ctn logIn" type="button" id="logIn">Log in</button>                        
                     </div>
                 </form>
+
+                <p id="noteToUser"></p>
             </div>
-            <p id="noteToUser"></p>
         </div>
     </div>
 
