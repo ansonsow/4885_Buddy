@@ -264,9 +264,9 @@ button.ctn:hover, .push-hovered {
     
     --Mobile-Content-Width:80%;
 
-    ---Mobile-Login-H1-Size:var(--Mobile-H1-Size);
-    ---Mobile-Login-H1-LineHeight:1.5; /* number only */
-    ---Mobile-Login-H1-Bottom-Gap:1.5rem;
+    --Mobile-Login-H1-Size:var(--Mobile-H1-Size);
+    --Mobile-Login-H1-LineHeight:1.5; /* number only */
+    --Mobile-Login-H1-Bottom-Gap:1.5rem;
 
     --Mobile-Form-Top-Gap:2.5rem;
     --Mobile-Input-Fields-Spacing:1.1rem;
@@ -327,10 +327,10 @@ button.ctn:hover, .push-hovered {
 
     h1.welcome {
         position:relative;
-        margin-top:calc(0px - (var(---Mobile-Login-H1-Size) * var(---Mobile-Login-H1-LineHeight) * 2) - var(---Mobile-Login-H1-Bottom-Gap));
-        font-size:var(---Mobile-Login-H1-Size);
+        margin-top:calc(0px - (var(--Mobile-Login-H1-Size) * var(--Mobile-Login-H1-LineHeight) * 2) - var(--Mobile-Login-H1-Bottom-Gap));
+        font-size:var(--Mobile-Login-H1-Size);
         word-spacing:.5px;
-        line-height:var(---Mobile-Login-H1-LineHeight);
+        line-height:var(--Mobile-Login-H1-LineHeight);
         text-shadow:2px 2px 10px rgba(0,0,0,0.420)
     }
 
@@ -339,7 +339,7 @@ button.ctn:hover, .push-hovered {
     }
 
     form {
-        margin-top:calc(var(---Mobile-Login-H1-Bottom-Gap) + var(--Mobile-Form-Top-Gap));
+        margin-top:calc(var(--Mobile-Login-H1-Bottom-Gap) + var(--Mobile-Form-Top-Gap));
     }
 
     .text_field + .text_field {

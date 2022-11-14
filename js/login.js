@@ -84,7 +84,7 @@ function login_success_popup(){
                 $("#popup_action_1").text("OK");
                 
                 setTimeout(() => {
-                    $(".del-popup").fadeIn(popupFadeSpeed);                    
+                    $(".del-popup").fadeIn(popupFadeSpeed);
                 },699)
 
                 $(document).on("click", "#popup_action_1", function(){

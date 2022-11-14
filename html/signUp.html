@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sign Up</title>
+    <title>Sign Up for Buddy</title>
 
     <link rel="shortcut icon" href="../favicon.ico">
 
@@ -23,6 +22,7 @@
     <!-- <script type="module" src="../js/login.js"></script> -->
 
     <!-- required assets -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     <link href="../css/variables.css" rel="stylesheet">
     <link href="../css/global.css" rel="stylesheet">
     <script src="../js/global.js" defer></script>
@@ -35,59 +35,68 @@
     <!-- page-specific assets -->
     <link href="../css/topBar.css" rel="stylesheet">
     <link href="../css/signUp.css" rel="stylesheet">
-
-  </head>
-
-  <body>
-        <!------ TOP BAR ------>
-        <div js-include-html="../html/topBar.html"></div>
+    <link href="../css/popupBox.css" rel="stylesheet">
 
     
-        <div class="container">
-            <div class="img-wrap">
-                <img class="side-image" src="../images/unsplash_welcom_henry-co-X45GyIpjpZc.jpg" alt="">
-            </div>
-    
-            <div class="left-container">
-    
-                <a class="buddy-logo" href="../html/main.html">
-                    <div js-include-html="../svg/buddy_logo_grayscale.svg"></div>
-                </a>
-    
-                <div class="content">
-                    <h1 class="welcome">Welcome! <span class="buddy">Buddy</span></h1>
+</head>
+<body>
+    <!------ TOP BAR ------>
+    <div js-include-html="../html/topBar.html"></div>
 
+    <!------ POPUP ------>
+    <div js-include-html="../html/popupBox.html"></div>
     
-                    <form class="form" action="#" method="post">
-                      <div class="text_field">
-                        <input type="text" placeholder="First Name &ast;" name="fName" id="fName" required>
-                      </div>
-                      <div class="text_field">
-                        <input type="text" placeholder="Last Name &ast;" name="lName" id="lName" required>
-                      </div>
+    <div class="container">
+        <div class="img-wrap"></div>
 
-                      <div class="text_field">
-                        <input type="text" placeholder="Email &ast;" name="email" id="email" required>
-                      </div>
-                      <div class="text_field">
-                        <input type="text" placeholder="Username &ast;" name="username" id="username" required>
-                      </div>
-                      <div class="text_field">
-                        <input type="password" placeholder="Password &ast;" name="psw" id="psw" required>
-                      </div>
-                      <div class="text_field">
-                        <input type="password" placeholder="Confirm Password &ast;" name="pswRepeat" id = "pswRepeat" required> 
-                      </div>
+        <div class="left-container">
+            
+            <div class="content">
+                <h1 class="welcome">Welcome, <span class="buddy-text">Buddy!</span></h1>
 
-                      <div class="btn-wrap">
-                        <!-- <button id="btncancel" type="button" class="ctn">Cancel</button> -->
-                        <button id="btnsignup" type="button" class="ctn">Sign Up</button>
-                      </div>  
+                <form class="form" action="#" method="post">
+                    <!-- FIRST NAME -->
+                    <div class="text_field">
+                        <input type="text" placeholder="First Name *" name="fName" id="fName" required>
+                    </div>
 
-                    </form>
-                </div>
+                    <!-- LAST NAME -->
+                    <div class="text_field">
+                        <input type="text" placeholder="Last Name *" name="lName" id="lName" required>
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div class="text_field">
+                        <input type="text" placeholder="Email *" name="email" id="email" required>
+                    </div>
+
+                    <!-- USERNAME -->
+                    <div class="text_field">
+                        <input type="text" placeholder="Username *" name="username" id="username" required>
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="text_field">
+                        <input type="password" placeholder="Password *" name="psw" id="psw" required>
+                    </div>
+
+                    <!-- CONFIRM PASSWORD -->
+                    <div class="text_field">
+                        <input type="password" placeholder="Confirm Password *" name="pswRepeat" id="pswRepeat" required>
+                    </div>
+
+            
+                    <div class="btn-wrap">
+                        <!-- SIGNUP button -->
+                        <button id="btnsignup" type="button" class="ctn">Sign Up</button>                  
+                    </div>
+                </form>
+
                 <p id="noteToUser"></p>
             </div>
         </div>
-  </body>
+    </div>
+
+    
+</body>
 </html>
