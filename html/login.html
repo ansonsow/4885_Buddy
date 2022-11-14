@@ -18,11 +18,12 @@
     <script type="module" src="../js/login.js"></script>
 
     <!-- required assets -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
     <link href="../css/variables.css" rel="stylesheet">
     <link href="../css/global.css" rel="stylesheet">
     <script src="../js/global.js" defer></script>
     <script type="module" src="../js/topBar.js" defer></script>
-
 
     <!-- icon font: fontawesome -->
     <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
@@ -30,12 +31,16 @@
     <!-- page-specific assets -->
     <link href="../css/topBar.css" rel="stylesheet">
     <link href="../css/login.css" rel="stylesheet">
+
+    <link href="../css/popupBox.css" rel="stylesheet">
     
 </head>
 <body>
     <!------ TOP BAR ------>
     <div js-include-html="../html/topBar.html"></div>
 
+    <!------ POPUP ------>
+    <div js-include-html="../html/popupBox.html"></div>
     
     <div class="container">
         <div class="img-wrap"></div>
@@ -60,13 +65,13 @@
                             <label for="remember-me">Remember me</label>
                         </div>
 
-                        <a class="forgot-password" href="/html/forgotPassword.html">Forgot Password?</a>
+                        <a class="forgot-password" href="../html/forgotPassword.html">Forgot Password?</a>
                     </div>
 
             
                     <div class="btn-wrap">
                         <!-- SIGNUP button -->
-                        <button class="ctn signUp" onclick="location.href='/html/signUp.html'" type="button">Sign Up</button>
+                        <button class="ctn signUp" onclick="location.href='../html/signUp.html'" type="button">Sign Up</button>
 
                         <!-- LOGIN button -->
                         <button class="ctn logIn" type="button" id="logIn">Log in</button>                        

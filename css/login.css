@@ -121,6 +121,13 @@ button.ctn:hover {
     color:var(--Text-Color)
 }
 
+.popup-msg {
+    color:var(--Text-Color)
+}
+
+.popup-msg h3 span {
+    color:var(--Primary)
+}
 
 
 /*----- desktop -----*/
