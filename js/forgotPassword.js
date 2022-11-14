@@ -25,7 +25,6 @@ function awaitjQ(){
 
 function result_popup(){
     $(document).ready(function(){
-        $("#popup_action_1").text("OK");
         $("#popup_action_2").hide();
         
         document.getElementById("reset").onclick=async (e)=>{
@@ -42,8 +41,13 @@ function result_popup(){
             .then(() => {
                 console.log("Email exists, password reset sent to that email.");
                 $(".popup-msg h3").text("Password reset email sent!");
-                $(".del-popup").fadeIn(popupFadeSpeed)
+                $("#popup_action_1").text("Log In");
+                $(".del-popup").fadeIn(popupFadeSpeed);
                 // document.getElementById("noteToUser").innerHTML = "password reset email sent"
+
+                $(document).on("click", "#popup_action_1", function(){
+                    window.location.href="./login.html";
+                });
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -56,14 +60,15 @@ function result_popup(){
                     $(".popup-msg h3").html("Email not found.<br>Please try again.");
                 }
 
+                $("#popup_action_1").text("OK");
                 $(".del-popup").fadeIn(popupFadeSpeed)
                 // document.getElementById("noteToUser").innerHTML = error.message.substring(' ' + 10);
-            });
 
-            $(document).on("click", "#popup_action_1", function(){
-                $(".del-popup").fadeOut(popupFadeSpeed);
-                $("#reset").text("Send");
-                $("#reset").removeClass("push-hovered")
+                $(document).on("click", "#popup_action_1", function(){
+                    $(".del-popup").fadeOut(popupFadeSpeed);
+                    $("#reset").text("Send");
+                    $("#reset").removeClass("push-hovered")
+                });
             });
         }//end button click
     });//end docready
