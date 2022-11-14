@@ -1,12 +1,13 @@
 import {db} from "./app.js"
 // import * as mapf from "./tomtom.js"
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
-
+import '../node_modules/regenerator-runtime/runtime.js'
 /**************************************************************************/
 /**************************************************************************/
 /**************************************************************************/
 
 let createAlertPopup, alertPopup, fadeOut, fadeIn, checkDuplicateEvents;
+let userCoord;
 
 let loadFadeSpeed = parseInt(getComputedStyle(document.documentElement)
                     .getPropertyValue("--Loading-Fade-Speed"));
@@ -108,6 +109,34 @@ function getFullDate(d){
 
 
 
+
+
+// movable-type.co.uk/scripts/latlong.html
+// ========================== function to calculate distance between two coordinate =========================
+function calculateDistance(locationA, locationB){
+    let lon1 = locationA[0]
+    let lat1 = locationA[1]
+    let lon2 = locationB[0]
+    let lat2 = locationB[1]
+    const R = 6371e3; // metres
+    const φ1 = lat1 * Math.PI/180; // φ, λ in radians
+    const φ2 = lat2 * Math.PI/180;
+    const Δφ = (lat2-lat1) * Math.PI/180;
+    const Δλ = (lon2-lon1) * Math.PI/180;
+
+    const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+            Math.cos(φ1) * Math.cos(φ2) *
+            Math.sin(Δλ/2) * Math.sin(Δλ/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    const d = R * c; // in metres
+    return d;
+}
+
+
+
+
+
 function displayResult(doc,id){
 
     let eventBlock = document.querySelector(".event-container");
@@ -192,6 +221,12 @@ querySnapshot.forEach((doc) => {
 });
 
 /*----- page fade-in -----*/
+
+
+
+
+
+
 
 
 setTimeout(() => {
@@ -510,22 +545,7 @@ let location = [ -123.1207,49.2827];
 let mapo;
 let zoom = 10;
 
-function map(){
-    mapo = tt.map({
-        key: tomtomApiKey,
-        container: "map",
-        zoom: zoom,
-        center: location
-    });
-}
 
-function moveMap(lng,lat){
-    location = [lng,lat]
-    mapo.flyTo({
-        center: location,
-        zoom: zoom
-    })
-}
 
 $(document).ready(function(){
 
@@ -541,6 +561,7 @@ $(document).ready(function(){
     //         })
     //     },3000)
     // }
+
     
     /*-------- ALERT POPUP - create --------*/
     createAlertPopup = function(){
@@ -579,6 +600,90 @@ $(document).ready(function(){
     // add map
     // $(".popup-msg").append("<div id='map'></div>");
     // map();
+
+    let createMapPopup = function(){
+
+        function mapo(){
+            mapo = tt.map({
+                key: tomtomApiKey,
+                container: "map",
+                zoom: zoom,
+                center: location
+            });
+        }
+        
+        function moveMap(lng,lat){
+            location = [lng,lat]
+            mapo.flyTo({
+                center: location,
+                zoom: zoom
+            })
+        }
+
+        var options = {
+            searchOptions: {
+                key: tomtomApiKey,
+                language: 'en-GB',
+                limit: 5
+            },
+            autocompleteOptions: {
+                key: tomtomApiKey,
+                language: 'en-GB'
+            }
+        };
+        
+        
+
+        // searchBoxPlugin.appendChild(searchBoxHTML)
+        // searchbox is the one in popup
+        async function searchBox(){
+            console.log("search");
+            var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
+            var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+
+            $("#searchbox").prepend(searchBoxHTML);
+
+            
+            ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
+                moveMap(data.data.result.position.lng,data.data.result.position.lat)
+                userCoord = [data.data.result.position.lng,data.data.result.position.lat]
+            }); 
+        }
+       
+
+        $("[popup-type='alert']").fadeIn(popupFadeSpeed);
+        let map = document.createElement("div");
+        let searchBoxDiv = document.createElement("div");
+        searchBoxDiv.setAttribute("id","searchbox")
+
+        map.setAttribute("id","map");
+        $(".popup-msg").prepend(map);
+        $(".popup-msg").prepend(searchBoxDiv);
+
+
+        searchBox()
+
+
+
+        mapo();
+        
+        $(".del-popup h3, .del-popup button").empty();
+        $("#popup_action_1").text("back");
+        $(document).on("click", "#popup_action_1", function(){
+            let that = this; // don't touch this line
+            $("#map").remove()
+            $("#searchbox").remove()
+
+            $("[popup-type='alert']").fadeOut(popupFadeSpeed);
+
+            // do stuff
+        });
+    }
+
+    document.getElementById("locationButton").addEventListener("click",()=>{
+        console.log("aaa");
+        createMapPopup()
+    })
 
     /*-------- CALENDAR POPUP --------*/
     duDatepicker("#date_picker", {format: "yyyy-mm-dd"});
