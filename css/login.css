@@ -103,10 +103,10 @@ button.ctn {
     cursor:pointer;
 }
 
-button.ctn:hover {
-    background:var(--Secondary-Light);
-    border-color:var(--Secondary);
-    color:var(--Text-Color);
+button.ctn:hover, .push-hovered {
+    background:var(--Secondary-Light)!important;
+    border-color:var(--Secondary)!important;
+    color:var(--Text-Color)!important;
 }
 
 .signUp {

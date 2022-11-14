@@ -35,6 +35,7 @@ function login_success_popup(){
             e.preventDefault;
 
             document.getElementById("logIn").textContent = "Processing...";
+            document.getElementById("logIn").classList.add("push-hovered")
             
             signInWithEmailAndPassword(dbf.auth, email.value, password.value)
             .then((userCredential) => {
@@ -83,12 +84,13 @@ function login_success_popup(){
                 $("#popup_action_1").text("OK");
                 
                 setTimeout(() => {
-                    $(".del-popup").fadeIn(popupFadeSpeed);
-                    $("#logIn").text("Log In");
+                    $(".del-popup").fadeIn(popupFadeSpeed);                    
                 },699)
 
                 $(document).on("click", "#popup_action_1", function(){
-                    $(".del-popup").fadeOut(popupFadeSpeed)
+                    $(".del-popup").fadeOut(popupFadeSpeed);
+                    $("#logIn").removeClass("push-hovered");
+                    $("#logIn").text("Log In");
                 });
 
                 const errorCode = error.code;
