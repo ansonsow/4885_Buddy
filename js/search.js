@@ -7,7 +7,9 @@ import '../node_modules/regenerator-runtime/runtime.js'
 /**************************************************************************/
 
 let createAlertPopup, alertPopup, fadeOut, fadeIn, checkDuplicateEvents;
-let userCoord;
+let userCoord = [];
+let radius = 5000;
+const circumference = 40075017
 
 let loadFadeSpeed = parseInt(getComputedStyle(document.documentElement)
                     .getPropertyValue("--Loading-Fade-Speed"));
@@ -254,7 +256,8 @@ setTimeout(() => {
 // reset click
 document.querySelector(".reset-search").addEventListener("click",async()=>{
     searchResult = [];
-
+    userCoord = [];
+    radius = 5000;
     window.scrollTo(0,0);
 
     // reset search query
@@ -381,7 +384,7 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
         for(let i=0;i<allSearch.length;i++){
             /*-------------- IF NO FIELDS HAVE BEEN FILLED --------------*/
             // if search IS empty
-            if(textSearch == "" && tagSearch.length == 0 && dateSearch == ""){
+            if(textSearch == "" && tagSearch.length == 0 && dateSearch == "" && userCoord.length == 0){
                 alertPopup(); // alert("please fill up at lease one field");
 
                 document.querySelector(".all-events").classList.add("fade-out");
@@ -398,14 +401,6 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
                 });
                 
                 if(textSearch != ""){
-                    // if(searchResult.length!=0){
-                    //     for(let j=0;j<searchResult.length;j++){
-                    //         if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
-                    //             console.log("slicing " + searchResult[j].data().name +" because doesn't contain name");
-                    //             searchResult.splice(j,1)
-                    //         }
-                    //     }
-                    // }
                     if(allSearch[i].data().name.toUpperCase().includes(textSearch.toUpperCase())){
                         if(!searchResult.includes(allSearch[i])){
                             // console.log(allSearch[i].name);
@@ -419,16 +414,6 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
 
                 if(dateSearch!=""){
 
-                    // if(searchResult.length!=0){
-                        
-                    //     for(let j =0;j<searchResult.length;j++){
-                    //         if(!formatDateSearch(dateSearch, searchResult[j].data().dateOfEvent , searchResult[j].data().name)){
-        
-                    //             console.log("slicing " + searchResult[j].data().name +" because the date of event is bigger");
-                    //             searchResult.splice(j,1)
-                    //         }
-                    //     }
-                    // }
                     if(formatDateSearch(dateSearch, allSearch[i].data().dateOfEvent , allSearch[i].data().name)){
         
                         if(!searchResult.includes(allSearch[i])){
@@ -440,20 +425,11 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
                 }
         
                 if(tagSearch.length != 0){
-                    // if(searchResult.length!=0){
-        
-                    //     for(let j=0;j<searchResult.length;j++){
-                    //         if(!searchResult[j].data().tags.includes(tagSearch.toString())){
-                    //             console.log("slice "+searchResult[j].name+ " because doesn't have tag");
-                    //             searchResult.splice(j,1)
-                    //         }
-                    //     }
-        
-                    // }
         
                     // only one tag
                     if(allSearch[i].data().tags.includes(tagSearch.toString())){
                         if(!searchResult.includes(allSearch[i])){
+
                             console.log("push "+allSearch[i].data().name+" because has tag");
                             searchResult.push(allSearch[i])
                         }
@@ -475,48 +451,75 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
                     
                 }
 
-                if(textSearch!=""){
-                    if(searchResult.length!=0){
+                if(userCoord.length!=0){
+                    if(calculateDistance(userCoord,allSearch[i].data().location)<radius){
+                        if(!searchResult.includes(allSearch[i])){
+                            console.log(radius);
+                            console.log(userCoord);
+                            console.log(calculateDistance(userCoord,allSearch[i].data().location)<radius);
+                            console.log("pushing " + allSearch[i].data().name + " because within the raidus");
+                            searchResult.push(allSearch[i])
+                        }
+                    }
+                }
+
+
+                if(searchResult!=0){
+                    if(textSearch!=""){
                         for(let j=0;j<searchResult.length;j++){
                             if(!searchResult[j].data().name.toUpperCase().includes(textSearch.toUpperCase())){
                                 console.log("slicing " + searchResult[j].data().name +" because doesn't contain name");
                                 searchResult.splice(j,1)
                             }
                         }
+
                     }
-                }
-                if(dateSearch!=""){
-                    if(searchResult.length!=0){
-                        
+                    if(dateSearch!=""){
+
+                            
                         for(let j =0;j<searchResult.length;j++){
                             if(!formatDateSearch(dateSearch, searchResult[j].data().dateOfEvent , searchResult[j].data().name)){
-        
+
                                 console.log("slicing " + searchResult[j].data().name +" because the date of event is bigger");
                                 searchResult.splice(j,1)
                             }
                         }
+
                     }
-                }
-                if(tagSearch!=""){
-                    if(searchResult.length!=0){
-        
+                    if(tagSearch!=""){
+
+
                         for(let j=0;j<searchResult.length;j++){
                             if(!searchResult[j].data().tags.includes(tagSearch.toString())){
                                 console.log("slice "+searchResult[j].name+ " because doesn't have tag");
                                 searchResult.splice(j,1)
                             }
                         }
-        
+
+
+                    }
+
+                    if(userCoord.length!=0){
+                        for(let j=0;j<searchResult.length;j++){
+                            if(calculateDistance(userCoord,searchResult[j].data().location)>radius){
+                                console.log(searchResult[j].data());
+                                console.log("slice "+searchResult[j]+" because not within radius");
+                                searchResult.splice(j,1)
+                            }
+                        }
                     }
                 }
+                
             }//end if:search query isn't blank (aka successful search)
 
             
         }
         
         // console.log(searchResult);
+        console.log(searchResult);
 
         setTimeout(() => {
+            // console.log(searchResult);
             for(let i=0;i<searchResult.length;i++){
                 displayResult(searchResult[i].data(),searchResult[i].id)
             }
@@ -549,18 +552,6 @@ let zoom = 10;
 
 $(document).ready(function(){
 
-    /*-------- CHECK FOR DUPLICATE EVENTS --------*/
-    // only triggers on "search" button click
-    // checkDuplicateEvents = function(){
-    //     setTimeout(() => {
-    //         $(".cloned-events-container .event-container").each(function(){
-    //             let disIMG = $(this).find(".card-image").attr("src");
-    //             if($(this).prevAll().find(".card-image").attr("src") == disIMG){
-    //                 $(this).remove();
-    //             }
-    //         })
-    //     },3000)
-    // }
 
     
     /*-------- ALERT POPUP - create --------*/
@@ -637,7 +628,6 @@ $(document).ready(function(){
         // searchBoxPlugin.appendChild(searchBoxHTML)
         // searchbox is the one in popup
         async function searchBox(){
-            console.log("search");
             var ttSearchBox = await new tt.plugins.SearchBox(tt.services, options);
             var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
 
@@ -645,8 +635,9 @@ $(document).ready(function(){
 
             
             ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
-                moveMap(data.data.result.position.lng,data.data.result.position.lat)
-                userCoord = [data.data.result.position.lng,data.data.result.position.lat]
+                moveMap(data.data.result.position.lng,data.data.result.position.lat);
+                userCoord = [data.data.result.position.lng,data.data.result.position.lat];
+                document.getElementById("locationButton").value=data.data.result.address.freeformAddress;
             }); 
         }
        
@@ -654,25 +645,41 @@ $(document).ready(function(){
         $("[popup-type='alert']").fadeIn(popupFadeSpeed);
         let map = document.createElement("div");
         let searchBoxDiv = document.createElement("div");
+        let radiusInput = document.createElement("input")
         searchBoxDiv.setAttribute("id","searchbox")
-
         map.setAttribute("id","map");
+        radiusInput.setAttribute("id","radiusInput");
         $(".popup-msg").prepend(map);
         $(".popup-msg").prepend(searchBoxDiv);
+        $(".popup-msg").append(radiusInput);
+
+        document.getElementById("radiusInput").addEventListener("keyup",()=>{
+            console.log(radius);
+            radius = document.getElementById("radiusInput").value*1000;
+            if(radius >= 0 ){
+                zoom = Math.log2(circumference/(radius*4))
+            }
+            // zoom = Math.log2(circumference/radius*2)
+
+            console.log(zoom);
+            if(userCoord.length==0){
+                moveMap(location[0],location[1])
+            }else{
+                moveMap(userCoord[0],userCoord[1])
+            }
+        })
 
 
         searchBox()
-
-
-
         mapo();
-        
+
         $(".del-popup h3, .del-popup button").empty();
         $("#popup_action_1").text("back");
         $(document).on("click", "#popup_action_1", function(){
             let that = this; // don't touch this line
             $("#map").remove()
             $("#searchbox").remove()
+            $("#radiusInput").remove()
 
             $("[popup-type='alert']").fadeOut(popupFadeSpeed);
 
@@ -681,7 +688,7 @@ $(document).ready(function(){
     }
 
     document.getElementById("locationButton").addEventListener("click",()=>{
-        console.log("aaa");
+
         createMapPopup()
     })
 
