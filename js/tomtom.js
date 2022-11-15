@@ -2,6 +2,8 @@
 import * as dbf from "./app.js"
 // import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
 import '../node_modules/regenerator-runtime/runtime.js'
+import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+
 
 
 
@@ -165,8 +167,34 @@ document.getElementById("changeFlag").addEventListener("click",()=>{
 
 
 if(localStorage.getItem('guideFlag')=="false"){
-    alert("hihi")
+    // alert("hihi")
     // popup
 }else{
     
 }
+
+
+
+
+
+
+let userId;
+let q = query(collection(dbf.db, "users"), where("email", "==", user));
+const querySnapshot = await getDocs(q);
+console.log(querySnapshot);
+querySnapshot.forEach((doc) => {
+    userId = doc.id
+});
+let testEventId = "fXEigeRsu0x3pdLbhjHy";
+// writeReviewData(uId, image, point,description)
+document.getElementById("reviewButton").addEventListener("click",()=>{
+    let review = document.getElementById("review").value;
+    let reviewStar = Number(document.getElementById("reviewStar").value);
+    let reviewId;
+    Promise.resolve(dbf.writeReviewData(userId, "" , reviewStar , review)).then(value=>{
+        reviewId = value
+        dbf.addEventReview(testEventId, reviewId)
+
+    })
+
+})

@@ -42,7 +42,7 @@ if (currentUser) {
     async function getAvgStar(){
         let boo = false
         let avgStar=0;
-        let eventNumber=0;
+        let reviewNumber=0;
         let reviews = [];
         let eventStar = 0;
         // find all the events the currentUser hosted
@@ -51,21 +51,24 @@ if (currentUser) {
         starSnapshot.forEach((doc)=>{
             // find all the reviews of events
             if(doc.data().reviews.length>0){
-                eventNumber = eventNumber+1;
 
                 reviews=doc.data().reviews;
                 reviews.forEach((review)=>{
+                    reviewNumber = reviewNumber+1;
+
                     let r = getReview(review)
                     .then(r=>{
+                        console.log(doc.data());
                         // get all the points from all the reviews
+                        console.log(r.data());
                         eventStar = eventStar+r.data().point;
-                        console.log(eventStar);
                         boo = true;
                     })
                     .catch(error=>{
                         eventStar = eventStar
                         console.log(error);
                     });
+
                     
                 })
             }
@@ -82,7 +85,9 @@ if (currentUser) {
             } else {
                 if(boo == true){
                     clearInterval(avgInt);
-                    avgStar = eventStar / eventNumber;
+                    console.log(reviewNumber);
+                    console.log(eventStar);
+                    avgStar = eventStar / reviewNumber;
                     star.innerHTML = avgStar;
                     numbersToStars();
                 }
