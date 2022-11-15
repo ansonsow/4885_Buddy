@@ -7,6 +7,7 @@ import '../node_modules/regenerator-runtime/runtime.js'
 /**************************************************************************/
 
 let createAlertPopup, alertPopup, fadeOut, fadeIn, checkDuplicateEvents;
+let createMapPopup, mapPopup;
 let userCoord = [];
 let radius = 5000;
 const circumference = 40075017
@@ -264,7 +265,10 @@ document.querySelector(".reset-search").addEventListener("click",async()=>{
     search_text.value = "";
 
     // reset address field
-    search_address.value = "";
+    // search_address.value = "";
+
+    // reset tomtom map search field
+    locationButton.value = "";
 
     // reset calendar date
     date_picker.value = "";
@@ -344,7 +348,7 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
         let textSearch = search_text.value;
 
         // "postal code / address"
-        let addressSearch = search_address.value;
+        // let addressSearch = search_address.value;
 
         // date of event
         let dateSearch = date_picker.value;
@@ -371,7 +375,7 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
             }
         }
 
-        searchResults.push(textSearch, addressSearch, dateSearch, timeStart, timeEnd, tagSearch);
+        searchResults.push(textSearch, /*addressSearch,*/ dateSearch, timeStart, timeEnd, tagSearch);
         console.log(searchResults)
         if(dateSearch==""){
             
@@ -551,8 +555,6 @@ let zoom = 10;
 
 
 $(document).ready(function(){
-
-
     
     /*-------- ALERT POPUP - create --------*/
     createAlertPopup = function(){
@@ -587,12 +589,24 @@ $(document).ready(function(){
         });
     }
 
-    /*-------- MAP POPUP --------*/
+    /*-------- MAP POPUP - create --------*/
     // add map
     // $(".popup-msg").append("<div id='map'></div>");
     // map();
 
-    let createMapPopup = function(){
+    createMapPopup = function(){
+        let backMap = $(".del-popup:first").clone();
+        backMap.attr("popup-type","map");
+        $(".del-popup h3, .del-popup button", backMap).empty();
+        $("#popup_action_2", backMap).remove();
+        $("body").prepend(backMap);
+
+        // customize your <h3> text
+        $("h3",backMap).text("Select your location:");
+
+        // customize your button 1 text
+        $("#popup_action_1",backMap).text("Confirm");
+
 
         function mapo(){
             mapo = tt.map({
@@ -621,9 +635,7 @@ $(document).ready(function(){
                 key: tomtomApiKey,
                 language: 'en-GB'
             }
-        };
-        
-        
+        };        
 
         // searchBoxPlugin.appendChild(searchBoxHTML)
         // searchbox is the one in popup
@@ -632,27 +644,29 @@ $(document).ready(function(){
             var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
 
             $("#searchbox").prepend(searchBoxHTML);
-
             
             ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
                 moveMap(data.data.result.position.lng,data.data.result.position.lat);
                 userCoord = [data.data.result.position.lng,data.data.result.position.lat];
                 document.getElementById("locationButton").value=data.data.result.address.freeformAddress;
-            }); 
+            });
         }
-       
-
-        $("[popup-type='alert']").fadeIn(popupFadeSpeed);
+        
         let map = document.createElement("div");
-        let searchBoxDiv = document.createElement("div");
-        let radiusInput = document.createElement("input")
-        searchBoxDiv.setAttribute("id","searchbox")
         map.setAttribute("id","map");
-        radiusInput.setAttribute("id","radiusInput");
-        $(".popup-msg").prepend(map);
-        $(".popup-msg").prepend(searchBoxDiv);
-        $(".popup-msg").append(radiusInput);
+        $("[popup-type='map'] .popup-msg").prepend(map);
 
+
+        let searchBoxDiv = document.createElement("div");
+        searchBoxDiv.setAttribute("id","searchbox");
+        $("[popup-type='map'] .popup-msg").prepend(searchBoxDiv);
+
+
+        let radiusInput = document.createElement("input")
+        radiusInput.setAttribute("id","radiusInput");        
+        $("[popup-type='map'] .popup-msg").append(radiusInput);
+
+        // custom radius input
         document.getElementById("radiusInput").addEventListener("keyup",()=>{
             console.log(radius);
             radius = document.getElementById("radiusInput").value*1000;
@@ -667,29 +681,41 @@ $(document).ready(function(){
             }else{
                 moveMap(userCoord[0],userCoord[1])
             }
-        })
-
+        })//end custom radius
 
         searchBox()
         mapo();
+        // $(document).on("click", "#popup_action_1", function(){
+        //     let that = this; // don't touch this line
+        //     $("#map").remove()
+        //     $("#searchbox").remove()
+        //     $("#radiusInput").remove()
 
-        $(".del-popup h3, .del-popup button").empty();
-        $("#popup_action_1").text("back");
-        $(document).on("click", "#popup_action_1", function(){
-            let that = this; // don't touch this line
-            $("#map").remove()
-            $("#searchbox").remove()
-            $("#radiusInput").remove()
+        //     $("[popup-type='alert']").fadeOut(popupFadeSpeed);
+        // });
+    }//end function createMapPopup()
 
-            $("[popup-type='alert']").fadeOut(popupFadeSpeed);
+    createMapPopup()
 
-            // do stuff
+    /*-------- MAP POPUP - RUN --------*/
+
+    mapPopup = function(){
+        // fade in the pop-up
+        $("[popup-type='map']").fadeIn(popupFadeSpeed);
+
+        $(document).on("click", "[popup-type='map'] #popup_action_1", function(){
+            // fade out the pop-up
+            $("[popup-type='map']").fadeOut(popupFadeSpeed);
+
+            // fade out overlays
+            // fadeIn();
+            // $(".cloned-events-container .event-container").css("visibility","visible");
+            // $(".all-events").removeClass("fade-out")
         });
     }
 
     document.getElementById("locationButton").addEventListener("click",()=>{
-
-        createMapPopup()
+        mapPopup()
     })
 
     /*-------- CALENDAR POPUP --------*/
