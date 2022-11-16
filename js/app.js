@@ -498,8 +498,12 @@ export async function minusEventNum(id){
   const db = getFirestore();
   const userRef = doc(db, "events", id);
 
-  const docSnap = await getDoc(userRef);        
-  let numb = (docSnap.data().numOfPeople)-1
+  const docSnap = await getDoc(userRef);
+  let numb;
+  if(docSnap.data().numOfPeople>1){
+    numb = (docSnap.data().numOfPeople)-1
+
+  }        
   
   await updateDoc(userRef, {
     numOfPeople: numb,
