@@ -77,11 +77,11 @@ function result_popup(){
 /**********************************************************/
 
 //Created a function to route the current page to forgot password page
-document.getElementById("changepass").addEventListener('onclick', (e)=>{
-    e.preventDefault();
-    console.log("button is clicked!");
-    setTimeout(()=>{
-        window.location.href="./forgotpassword.html";
-    },1000)
+// document.getElementById("changepass").addEventListener('onclick', (e)=>{
+//     e.preventDefault();
+//     console.log("button is clicked!");
+//     setTimeout(()=>{
+//         window.location.href="./forgotpassword.html";
+//     },1000)
 
-});
+// });

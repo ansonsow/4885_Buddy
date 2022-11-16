@@ -2,7 +2,30 @@ import{logout} from "./app.js";
 import $ from "./jquery.module.js";
 import * as dbf from "./app.js";
 import {storage, auth, db, writeEventData, writeUserData} from './app.js';
-import {sendPasswordResetEmail} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+import {sendPasswordResetEmail, deleteUser} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+
+//------------------ To Delete User Account --------------------------
+
+document.getElementById("delete").addEventListener('click', e=>{
+        e.preventDefault();
+    const user = auth.currentUser;
+
+deleteUser(user).then(() => {
+  alert("User deleted his account!");
+  console.log("User deleted his account!");
+}).catch((error) => {
+    console.log(error);
+});
+
+});
+
+//--------------------------------------------
+
+//Create a function to perform singout operation using Firebase's singOut() method
+document.getElementById("signout").addEventListener('click', (e)=>{
+    e.preventDefault();
+    logout();
+    });
 
 //To send a password reset email to user
 document.getElementById('changepass').addEventListener('click', (e)=>{
@@ -27,6 +50,40 @@ function resetPassword(){
           console.log("User is signed out!");
         }
 }
+
+//-----------For Uploading image------------------------------------
+// document.getElementById("imageupload").addEventListener('click', e => {
+//     e.preventDefault();
+
+//     alert("Button is clicked!");
+
+// });
+
+
+// //------------------------------------------------------------------
+
+// var files = [];
+// var reader =  new FileReader();
+
+// var input = document.getElementById("imageupload");
+// input.type = 'file';
+
+// input.onchange = e => {
+//     files = e.target.files;
+
+//     var extension = GetExtName(files[0]);
+//     var name = GetFileName(files[0]);
+
+//     namebox.value = name;
+//     extlab.innerHTML = extension;
+// }
+
+
+
+
+
+
+
 //--------------------------------------------------------------------------------------------------------------
 //The below code is to provide the user the ability to go back to the app after the action is completed.
 
@@ -47,11 +104,7 @@ function resetPassword(){
 //     });
 //--------------------------------------------------------------------------------------------------------------
 
-//Create a function to perform singout operation using Firebase's singOut() method
-document.getElementById("signout").addEventListener('click', (e)=>{
-    e.preventDefault();
-    logout();
-    });
+
 
 //Create a funtion to remove user's profile from database (when user wants to delete his account)
 // document.getElementsByName('delete').addEventListener('click', (e)=>{
