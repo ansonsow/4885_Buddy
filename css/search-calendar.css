@@ -18,6 +18,7 @@
 [datepicker-display='on'] .input-field,
 [datepicker-display='on'] .search-controls {
     filter:blur(4px);
+    transform:translateZ(0);
 }
 
 .dcalendarpicker .dudp__wrapper {

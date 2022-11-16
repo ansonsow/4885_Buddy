@@ -8,6 +8,12 @@
     --Search-Fields-Font-Size:1.15rem;
     --Search-Fields-Spacing:1.2rem;
 
+    --TomTom-Searchbox-Padding:0.8rem 1.2rem;
+    --TomTom-Search-Icon-Size:calc(var(--Body-Font-Size) * 1.3);
+    --TomTom-Searchbox-Roundness:30px;
+
+    --Map-Roundness:45px;
+
     --Checkbox-Size:20px;
     --Checkbox-Gap:13px;
 
@@ -105,6 +111,61 @@
     }
 
     /*----------- MOCK <INPUT>S -----------*/
+    .field-map {
+        padding-bottom:var(--Search-Fields-Padding);
+        border-bottom:1px solid rgba(var(--White-RGB), 0.5)
+    }
+
+    .iffm-hover-text {
+        color:rgba(var(--White-RGB), 0.6);
+        opacity:0;
+        transition:opacity 0.25s ease-in-out;
+    }
+
+    .field-map:hover .iffm-hover-text {
+        opacity:1;
+    }
+
+    .field-map i {
+        font-size:var(--Search-Fields-Font-Size);
+    }
+
+    /*----------- MAP POPUP -----------*/
+    .tt-search-box-input-container {
+        padding:var(--TomTom-Searchbox-Padding)!important;
+        border-radius:var(--TomTom-Searchbox-Roundness)!important;
+    }
+
+    .tt-search-box-input-container > div:first-child:not([class]) svg {
+        width:var(--TomTom-Search-Icon-Size)!important;
+        height:var(--TomTom-Search-Icon-Size)!important;
+    }
+
+    [popup-type="map"] canvas {
+        border-radius:var(--Map-Roundness)!important;
+    }
+
+    .mapboxgl-ctrl-attrib:before {
+        margin-left:calc(var(--Map-Roundness) * 0.25);
+        font-size:calc(var(--Body-Font-Size) * 0.7);
+    }
+
+    .tt-search-box-close-icon svg {
+        width:calc(var(--TomTom-Search-Icon-Size) * 0.6)!important;
+        height:calc(var(--TomTom-Search-Icon-Size) * 0.6)!important;
+    }
+
+    .tt-search-box-result-list {
+        font-size:calc(var(--Body-Font-Size) - 0.5px)!important;
+    }
+
+    #radiusInput {
+        padding:var(--TomTom-Searchbox-Padding)!important;
+        font-size:calc(var(--Search-Fields-Font-Size) * 0.8)!important;
+    }
+
+    /*****************/
+
     .field-time, .field-category {
         padding-bottom:var(--Search-Fields-Padding);
         border-bottom:1px solid rgba(var(--White-RGB), 0.5);

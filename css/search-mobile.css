@@ -8,6 +8,11 @@
     --Mobile-Search-Fields-Roundness:15px;
     --Mobile-Search-Fields-Spacing:0.6rem;
 
+    --Mobile-TomTom-Searchbox-Padding:0.8rem 1.2rem;
+    --Mobile-TomTom-Search-Icon-Size:calc(var(--Mobile-Body-Font-Size) * 1.3);
+    --Mobile-TomTom-Searchbox-Roundness:30px;
+    --Mobile-Map-Roundness:35px;
+
     --Mobile-Checkbox-Size:24px;
     --Mobile-Checkbox-Gap:14px;
     
@@ -71,7 +76,50 @@
     }
 
     /*----------- MOCK <INPUT>S -----------*/
-    input, .field-time, .field-category {
+    .iffm-hover-text {
+        color:rgba(var(--White-RGB), 0.6);
+    }
+
+    .field-map i {
+        font-size:var(--Mobile-Search-Fields-Font-Size);
+    }
+
+    /*----------- MAP POPUP -----------*/
+    .tt-search-box-input-container {
+        padding:var(--Mobile-TomTom-Searchbox-Padding)!important;
+        border-radius:var(--Mobile-TomTom-Searchbox-Roundness)!important;
+    }
+
+    .tt-search-box-input-container > div:first-child:not([class]) svg {
+        width:var(--Mobile-TomTom-Search-Icon-Size)!important;
+        height:var(--Mobile-TomTom-Search-Icon-Size)!important;
+    }
+
+    .tt-search-box-input {
+        font-size:calc(var(--Mobile-Body-Font-Size) - 0.5px)!important;
+    }
+
+    [popup-type="map"] canvas {
+        border-radius:var(--Mobile-Map-Roundness)!important;
+    }
+
+    .mapboxgl-ctrl-attrib:before {
+        margin-left:calc(var(--Mobile-Map-Roundness) * 0.25);
+        font-size:calc(var(--Mobile-Body-Font-Size) * 0.6);
+    }
+
+    .tt-search-box-close-icon svg {
+        width:calc(var(--Mobile-TomTom-Search-Icon-Size) * 0.6)!important;
+        height:calc(var(--Mobile-TomTom-Search-Icon-Size) * 0.6)!important;
+    }
+
+    .tt-search-box-result-list {
+        font-size:calc(var(--Mobile-Body-Font-Size) - 0.5px)!important;
+    }
+
+    /*****************/
+
+    input, .field-time, .field-category, .field-map {
         padding:var(--Mobile-Search-Fields-Padding);
         border:1px solid rgba(var(--White-RGB), 0.5);
         border-radius:var(--Mobile-Search-Fields-Roundness);
