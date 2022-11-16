@@ -1,4 +1,7 @@
 /* --------------- Top Hero Section -------------- */
+main {
+    margin-top:var(--TopBar-Height)
+}
 
 .home-top-section{
     background-color: var(--Header-BG);
@@ -129,6 +132,7 @@
 
 .carousel-container {
     position:relative;
+    z-index:0;
 }
 
 .home-carousel{

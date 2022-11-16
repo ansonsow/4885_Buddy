@@ -160,6 +160,10 @@ body {
     overflow-x:hidden;
 }
 
+.main-event-cont {
+    margin-top:var(--TopBar-Height)!important;
+}
+
 /*----- Event Text Column (Right) -----*/
 .details-col {
     width:100%;

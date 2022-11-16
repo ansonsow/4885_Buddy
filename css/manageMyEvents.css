@@ -96,7 +96,8 @@ footer {
     .mc-tb {
         display:table-cell;
         vertical-align:middle;
-        padding:var(--Screen-Padding) 0;
+        padding-top:calc(var(--TopBar-Height) + var(--Screen-Padding));
+        padding-bottom:var(--Screen-Padding);
     }
 
     /*---- "My Events" Title ----*/
@@ -304,7 +305,8 @@ footer {
 
     /*---- Main Content ----*/
     .main-content {
-        padding:var(--Mobile-Screen-Padding) 0;
+        padding-top:calc(var(--TopBar-Height) + var(--Mobile-Screen-Padding));
+        padding-bottom:var(--Mobile-Screen-Padding);
     }
 
     /*---- Events Constrainer ----*/
