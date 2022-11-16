@@ -167,11 +167,17 @@ if(currentUser){
         clonedEvent.removeAttribute("hidden");
         clonedEvent.style.visibility = "hidden";
         
-        clonedEvent.addEventListener("click",()=>{
-            localStorage.setItem(targetEventId, id);
-            // console.log(id);
-            console.log(localStorage.getItem(targetEventId));
-            window.location = "../html/eventDetail.html#" + localStorage.getItem(targetEventId);
+        clonedEvent.addEventListener("click",(e)=>{
+            if(e.target == clonedEvent.querySelector(".card-row .reviewButton")){
+                console.log("haha");
+            }else{
+                localStorage.setItem(targetEventId, id);
+                // console.log(id);
+                console.log(localStorage.getItem(targetEventId));
+                window.location = "../html/eventDetail.html#" + localStorage.getItem(targetEventId);
+            }
+
+
         })
     
     
@@ -210,7 +216,17 @@ if(currentUser){
     
         // card-content location
         clonedEvent.querySelector(".card-row .date").innerHTML =  formatDate(doc.dateOfEvent);
-        clonedEvent.querySelector(".card-row .time").innerHTML =  formatTime(doc.dateOfEvent);
+        // clonedEvent.querySelector(".card-row .time").innerHTML =  formatTime(doc.dateOfEvent);
+        
+
+        $('.card-row.reviewButton').on('click', function (ev) { 
+            ev.stopPropagation(); 
+            console.log("haha");
+        }); 
+        // clonedEvent.querySelector(".card-row .reviewButton").addEventListener((e)=>{
+
+        //     console.log("aa");
+        // })
     
     }
     
@@ -580,6 +596,78 @@ if(currentUser){
     
     
     $(document).ready(function(){
+        /*-------- Review POPUP - create --------*/
+
+        let createReviewPopup = function(){
+            let puppet = $(".del-popup:first").clone();
+            puppet.attr("popup-type","review");
+            $(".del-popup h3, .del-popup button", puppet).empty();
+            $("#popup_action_2", puppet).remove();
+            $("body").prepend(puppet);
+    
+            // customize your <h3> text
+            $("h3",puppet).text("Leave a Review");
+            $("h3",puppet).css("margin-bottom","0")
+            
+            $("h3",puppet).after("<div id='smolText'>How was your experience? We'd love to hear from you</div>")
+            // $("#smolText",puppet).css("background-color","red")
+            for(let i=0; i<5; i++){
+                
+                let createEmptyStar = document.createElement("i");
+                createEmptyStar.setAttribute("class", "fa-solid fa-star empty");
+                createEmptyStar.setAttribute("id", i);
+
+                $("#smolText",puppet).after(createEmptyStar)
+            }
+
+            $("#0",puppet).after("<br>")
+
+            // mouse enter
+            $(".fa-solid.fa-star.empty",puppet).hover(function(){
+                console.log($(this).attr("id"))
+                // $(this).removeClass("empty").addClass("fill")
+                let n = Number($(this).attr("id"));
+                for(let i=n;i<5;i++){
+                    $("#"+i,puppet).removeClass("empty").addClass("fill")
+
+                    // $("#"+i,puppet).css("background-color","red")
+                }
+                
+
+            },
+            // mouse leave
+            function(){
+                // alert("haha")
+            })
+
+            
+
+    
+            // customize your button 1 text
+            $("#popup_action_1",puppet).text("Send");
+        }
+    
+        createReviewPopup()
+
+        /*-------- review POPUP - run --------*/
+        let reviewPopup = function(){
+            // fade in the pop-up
+            $("[popup-type='review']").fadeIn(popupFadeSpeed);
+    
+            $(document).on("click", "[popup-type='review'] #popup_action_1", function(){
+                // fade out the pop-up
+                $("[popup-type='review']").fadeOut(popupFadeSpeed);
+    
+                // fade out overlays
+                fadeIn();
+                $(".cloned-events-container .event-container").css("visibility","visible");
+                $(".all-events").removeClass("fade-out")
+            });
+        }
+
+        document.querySelector(".card-row .reviewButton").addEventListener("click", ()=>{
+            reviewPopup()
+        })
         
         /*-------- ALERT POPUP - create --------*/
         createAlertPopup = function(){

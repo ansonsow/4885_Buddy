@@ -67,13 +67,32 @@
 
 
     <style>
-
-        .card-description {
-
-            padding:var(--Events-Container-Width);
-            padding-right:var(--Event-Details-Padding-Right);
+        :root{
+            --reviewButtonPadding:calc(var(--Event-Details-Padding)/3)
         }
 
+        .reviewButton{
+            display: block;
+            width: 100%;
+            border-top: 1px dashed var(--Text-Color);
+            color: var(--Primary);
+            padding-top: var(--reviewButtonPadding);
+            margin-top: var(--reviewButtonPadding);
+        }
+
+        fill {
+            color:var(--Primary);
+        }
+
+        @media(max-width:600px){
+            .card-description {
+                padding:calc(var(--Mobile-Event-Details-Padding)/2);
+                padding-right:calc(var(--Mobile-Event-Details-Padding-Right)/2);
+                max-height:100%;
+            }
+
+
+        }
 
     </style>
 
@@ -202,9 +221,13 @@
                         <div class="date"><!--21st May 2023--></div>
                     </div>
 
-                    <div class="card-row">
+                    <!-- <div class="card-row">
                         <label>Time:</label>
-                        <div class="time"><!--09:00 &ndash; 15:00--></div>
+                        <div class="time"></div>
+                    </div> -->
+
+                    <div class="card-row">
+                        <h3 class="reviewButton">Leave a review</h3>
                     </div>
                 </div><!--end card desc-->
             </div><!--end one event-->
