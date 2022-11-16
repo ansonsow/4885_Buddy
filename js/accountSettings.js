@@ -1,8 +1,8 @@
-import{logout} from "./app.js";
-import $ from "./jquery.module.js";
+import{logout } from "./app.js";
+// import $ from "./jquery.module.js";
 import * as dbf from "./app.js";
 import {storage, auth, db, writeEventData, writeUserData} from './app.js';
-import {sendPasswordResetEmail, deleteUser} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+import {sendPasswordResetEmail, deleteUser,verifyPasswordResetCode, confirmPasswordReset} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
 
 //------------------ To Delete User Account --------------------------
 
@@ -11,13 +11,55 @@ document.getElementById("delete").addEventListener('click', e=>{
     const user = auth.currentUser;
 
 deleteUser(user).then(() => {
-  alert("User deleted his account!");
-  console.log("User deleted his account!");
+  alert("Your account is deleted, See you again later!");
+  console.log("See you again later!");
+  setTimeout(()=>{
+    window.location.href="./signUp.html";
+},1000)
+
 }).catch((error) => {
     console.log(error);
 });
 
 });
+//-------------------------------------------
+
+
+// function handleResetPassword(auth, actionCode, continueUrl, lang) {
+//     // Localize the UI to the selected language as determined by the lang
+//     // parameter.
+  
+//     // Verify the password reset code is valid.
+//     verifyPasswordResetCode(auth, actionCode).then((email) => {
+//       const accountEmail = email;
+  
+//       // TODO: Show the reset screen with the user's email and ask the user for
+//       // the new password.
+//       const newPassword = "...";
+  
+//       // Save the new password.
+//       confirmPasswordReset(auth, actionCode, newPassword).then((resp) => {
+//         // Password reset has been confirmed and new password updated.
+  
+//         // TODO: Display a link back to the app, or sign-in the user directly
+//         // if the page belongs to the same domain as the app:
+//         // auth.signInWithEmailAndPassword(accountEmail, newPassword);
+  
+//         // TODO: If a continue URL is available, display a button which on
+//         // click redirects the user back to the app via continueUrl with
+//         // additional state determined from that URL's parameters.
+//       }).catch((error) => {
+//         // Error occurred during confirmation. The code might have expired or the
+//         // password is too weak.
+//       });
+//     }).catch((error) => {
+//       // Invalid or expired action code. Ask user to try to reset the password
+//       // again.
+//     });
+//   }
+
+
+
 
 //--------------------------------------------
 
@@ -25,12 +67,19 @@ deleteUser(user).then(() => {
 document.getElementById("signout").addEventListener('click', (e)=>{
     e.preventDefault();
     logout();
+    setTimeout(()=>{
+                window.location.href="./login.html";
+            },1000)
     });
 
 //To send a password reset email to user
 document.getElementById('changepass').addEventListener('click', (e)=>{
     e.preventDefault();
     resetPassword();
+    // handleResetPassword('./login.html');
+    setTimeout(()=>{
+        window.location.href="./login.html";
+    },1000)
 });
 
 function resetPassword(){
@@ -41,6 +90,7 @@ function resetPassword(){
           sendPasswordResetEmail(auth, emailaddress) 
           .then(() =>{
               console.log("Password reset link is sent to  : " + auth.currentUser.email);
+
           })
           .catch(error => {
               console.log(error);
@@ -52,12 +102,18 @@ function resetPassword(){
 }
 
 //-----------For Uploading image------------------------------------
-// document.getElementById("imageupload").addEventListener('click', e => {
-//     e.preventDefault();
 
-//     alert("Button is clicked!");
+// var uploaded_image = "";
 
-// });
+// document.getElementById("imageupload").addEventListener('click', () =>{
+    
+//     const reader = new FileReader();
+//     reader.addEventListener('load', ()=>{
+//         // uploaded_image = reader.result;
+//         document.getElementById('picture').innerHTML = reader.result;
+//     });
+//     reader.readAsDataURL(this.files[0]);
+// })
 
 
 // //------------------------------------------------------------------
@@ -77,6 +133,7 @@ function resetPassword(){
 //     namebox.value = name;
 //     extlab.innerHTML = extension;
 // }
+//----------------
 
 
 
@@ -103,15 +160,6 @@ function resetPassword(){
 //       // Error occurred. Inspect error.code.
 //     });
 //--------------------------------------------------------------------------------------------------------------
-
-
-
-//Create a funtion to remove user's profile from database (when user wants to delete his account)
-// document.getElementsByName('delete').addEventListener('click', (e)=>{
-//     e.preventDefault();
-//     alert("Your account is deleated, Thank you!");
-//     console.log("User's accout is removed from Databse");
-// });
 
 
 

@@ -19,6 +19,7 @@
     <script src="../js/global.js" defer></script>
     <script type="module" src="../js/topBar.js" defer></script>
 
+ 
 
     <!-- icon font: fontawesome -->
     <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
@@ -37,6 +38,10 @@
     <!-- <script type="module" src="../js/forgotPassword.js" defer></script> -->
     <!-- <script  src="../js/changePassword.js" defer></script> -->
     <script type="module" src="../js/accountSettings.js" defer></script>
+    <!-- For popupBox  -->
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <div js-include-html="../html/popupBox.html"></div> 
+    <link href="../css/popupBox.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -58,11 +63,15 @@
         <!-- Left -->
         <div class="left-container">
             <!-- Camera and Profile Name -->
-            <div class="profile-container">
-                <button class="camera-wrap" id="imageupload">
+            <div class="profile-container" id="picture">
+                <button class="camera-wrap">
                     <i class="fa-solid fa-camera"></i>
                 </button>
                 <p class="title-name">Mila</hp>
+                <input type="file" name="" id="imageupload" value="">
+            </div>
+            <div id="image">
+
             </div>
 
             <!-- Form Inputs -->
@@ -124,6 +133,7 @@
 
     <!------ FOOTER ------>
     <div js-include-html="../html/footer.html"></div>
+
 
 
 </body>
