@@ -607,7 +607,9 @@ if(currentUser){
     
             // customize your <h3> text
             $("h3",puppet).text("Leave a Review");
-            $("h3",puppet).css("margin-bottom","0")
+            // no-bottom-margin
+            $("h3", puppet).addClass("no-bottom-margin")
+            // $("h3",puppet).css("margin-bottom","0");
             
             $("h3",puppet).after("<div id='smolText'>How was your experience? We'd love to hear from you</div>")
             // $("#smolText",puppet).css("background-color","red")
@@ -624,32 +626,28 @@ if(currentUser){
 
             // mouse enter
             $(".fa-solid.fa-star.empty",puppet).hover(function(){
-                console.log($(this).attr("id"))
+                // console.log($(this).attr("id"))
                 // $(this).removeClass("empty").addClass("fill")
                 let n = Number($(this).attr("id"));
                 for(let i=n;i<5;i++){
-                    // $("#"+i,puppet).removeClass("empty").addClass("fill")
-
                     $("#"+i,puppet).css("color","var(--Primary)")
                 }
-                
-
             },
             // mouse leave
             function(){
                 let n = Number($(this).attr("id"));
                 for(let i=n;i<5;i++){
-                    // $("#"+i,puppet).removeClass("empty").addClass("fill")
-
                     $("#"+i,puppet).css("color","var(--Secondary-Light)")
                 }
-                // alert("haha")
             })
 
+            $("#smolText",puppet).after("<br id='break1'>")
+
+            $("#break1",puppet).after("<h3 class='no-bottom-margin' id=''>Rate the Overview for This Event</h3>")
             
 
     
-            // customize your button 1 text
+            
             $("#popup_action_1",puppet).text("Send");
         }
     

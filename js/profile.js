@@ -38,7 +38,7 @@ if (currentUser) {
     showProfile();
 
 
-    // stars dont know yet
+
     async function getAvgStar(){
         let boo = false
         let avgStar=0;
@@ -58,14 +58,14 @@ if (currentUser) {
 
                     let r = getReview(review)
                     .then(r=>{
-                        console.log(doc.data());
+
                         // get all the points from all the reviews
-                        console.log(r.data());
+                        console.log(r.data().point);
                         eventStar = eventStar+r.data().point;
                         boo = true;
                     })
                     .catch(error=>{
-                        eventStar = eventStar
+
                         console.log(error);
                     });
 
@@ -85,8 +85,8 @@ if (currentUser) {
             } else {
                 if(boo == true){
                     clearInterval(avgInt);
-                    console.log(reviewNumber);
-                    console.log(eventStar);
+                    console.log("number of review "+reviewNumber);
+                    console.log("number of stars "+eventStar);
                     avgStar = eventStar / reviewNumber;
                     star.innerHTML = avgStar;
                     numbersToStars();
