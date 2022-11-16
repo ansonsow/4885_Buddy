@@ -1,9 +1,37 @@
 import {db, addUserEvent, removeUserEvent, addUserFavEvent, removeUserFavEvent, addEventNum, minusEventNum} from "./app.js";
 import * as dbf from "./app.js"; // used to get current user
 import $ from "./jquery.module.js";
-import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import {query, collection, doc, getDocs,getDoc,where,onSnapshot} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 let joinStatus;
+
+let chosenEvent;
+
+
+
+
+
+    // // const unsub = onSnapshot(doc(db, "cities", "SF"), (doc) => {
+    // //     console.log("Current data: ", doc.data());
+    // // });
+    let querySnapshot2;
+    let targetid = localStorage.getItem(targetEventId)
+
+    async function getData(){
+        querySnapshot2 = await getDoc(doc(db, "events", targetid));
+    }
+    getData()
+    let onSnapUpdate = onSnapshot(doc(db,"events",targetid),(doc)=>{
+        getData()
+        // console.log(querySnapshot2.data());
+        console.log(doc.data());
+    })
+    // console.log(querySnapshot2.data());
+    // chosenEvent = querySnapshot2
+
+
+// getEvent()
+
 
 /*----------- INSERT ACTUAL EVENT DETAILS -----------*/
 let allEvents = [];
@@ -29,8 +57,8 @@ querySnapshot.forEach((doc) => {
 });
 
 // show a random event just to see if the details are working/correct
-let randomEvent = Math.floor(Math.random()*allEvents.length);
-let chosenEvent = allEvents[randomEvent];
+
+// let chosenEvent = allEvents[randomEvent];
 
 localStorage.getItem(targetEventId);
 for(let i =0;i<allEvents.length;i++){
@@ -38,6 +66,8 @@ for(let i =0;i<allEvents.length;i++){
         chosenEvent = allEvents[i]
     }
 }
+
+
 
 /********************************************************************** */
 /**************************** EVENT ID ******************************** */
