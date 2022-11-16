@@ -269,6 +269,8 @@ document.querySelector(".reset-search").addEventListener("click",async()=>{
 
     // reset tomtom map search field
     locationButton.value = "";
+    document.querySelector(".iffm-search-by-location").textContent = "Search by location";
+    document.querySelector(".iffm-hover-text").style.display = "inline";
 
     // reset calendar date
     date_picker.value = "";
@@ -708,6 +710,10 @@ $(document).ready(function(){
         $(document).on("click", "[popup-type='map'] #popup_action_1", function(){
             // fade out the pop-up
             $("[popup-type='map']").fadeOut(popupFadeSpeed);
+
+            locationButton.value = $(".tt-search-box-input").val();
+            $(".iffm-search-by-location").text($(".tt-search-box-input").val());
+            $(".iffm-hover-text").hide();
 
             // fade out overlays
             // fadeIn();
