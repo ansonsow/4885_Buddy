@@ -628,15 +628,21 @@ if(currentUser){
                 // $(this).removeClass("empty").addClass("fill")
                 let n = Number($(this).attr("id"));
                 for(let i=n;i<5;i++){
-                    $("#"+i,puppet).removeClass("empty").addClass("fill")
+                    // $("#"+i,puppet).removeClass("empty").addClass("fill")
 
-                    // $("#"+i,puppet).css("background-color","red")
+                    $("#"+i,puppet).css("color","var(--Primary)")
                 }
                 
 
             },
             // mouse leave
             function(){
+                let n = Number($(this).attr("id"));
+                for(let i=n;i<5;i++){
+                    // $("#"+i,puppet).removeClass("empty").addClass("fill")
+
+                    $("#"+i,puppet).css("color","var(--Secondary-Light)")
+                }
                 // alert("haha")
             })
 
