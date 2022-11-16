@@ -18,6 +18,7 @@
     height:100%;
     z-index:10;
     backdrop-filter:blur(6px);
+    transform:translateZ(0)
 }
 
 .popup-bg {

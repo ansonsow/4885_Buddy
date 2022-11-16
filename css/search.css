@@ -52,6 +52,150 @@ input::placeholder, input::-webkit-input-placeholder {
     cursor:pointer;
 }
 
+.field-map {
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    z-index:0;
+}
+
+#locationButton {
+    position:absolute;
+    bottom:0;left:0;
+    width:100%;
+    height:100%;
+    opacity:0;
+    z-index:1;
+}
+
+.iffm-flex {
+    display:flex;
+    align-items:center;
+    font-family:var(--Body-Font)!important;
+    font-weight:500;
+    color:var(--White);
+}
+
+.iffm-hover-text {
+    padding-left:5px;
+    font-weight:400;
+}
+
+.field-map i {
+    color:var(--White);
+}
+
+.mapboxgl-map {
+    margin-top:0.8rem;
+}
+
+.mapboxgl-canvas-container canvas {
+    width:calc(var(--Popup-Box-Width) - (var(--Popup-Box-Padding) * 2))!important;
+    height:calc((var(--Popup-Box-Width) - (var(--Popup-Box-Padding) * 2)) / 4 * 3)!important;
+}
+
+.mapboxgl-ctrl-attrib {
+    position:relative;
+    text-align:left;
+    pointer-events:none;
+}
+
+.mapboxgl-ctrl-attrib:before {
+    content:"\00A9 \2009powered by TomTom";
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    color:rgba(var(--Text-Color-RGB),0.7)
+}
+
+.mapboxgl-ctrl-attrib a {
+    display:none!important;
+}
+
+.tt-search-box {
+    margin-top:0px;
+    background:transparent!important;
+    font-family:var(--Body-Font)!important;
+    color:var(--Text-Color)!important;
+    box-shadow:none!important;
+}
+
+.tt-search-box-input-container {
+    box-shadow:none!important;
+    border-color:rgba(var(--Text-Color-RGB),0.1)!important;
+    background:#fff!important;
+}
+
+/* tomtom searchbox magnifying glass */
+.tt-search-box-input-container > div:first-child:not([class]){
+    line-height:0;
+}
+
+.tt-search-box-input-container > div:first-child:not([class]) svg {
+    fill:var(--Text-Color)!important;
+}
+
+.tt-search-box-input {
+    padding:0!important;
+    padding-left:9px!important;
+}
+
+.tt-search-box-result-list-container {
+    margin-top:calc(0.8rem - 1px);
+    margin-left:-1px;
+    width:calc(100% + 2px);
+    box-shadow:none!important;
+    border-radius:15px!important;
+    clip-path:inset(0% round 14px);
+    border:1px solid rgba(var(--Text-Color-RGB),0.05);
+}
+
+.tt-search-box-input-container:not(.-focused) + .tt-search-box-result-list-container {
+    border:none!important;
+}
+
+.tt-search-box-input, .tt-search-box-result-list, .tt-search-box-result-list-bold {
+    color:var(--Text-Color)!important;
+}
+
+.tt-search-box-input::placeholder, .tt-search-box-input::-webkit-input-placeholder {
+    color:rgba(var(--Text-Color-RGB),0.7)!important;
+}
+
+.tt-search-box-close-icon {
+    fill:rgba(var(--Text-Color-RGB),0.7)!important;
+    line-height:0;
+}
+
+.radiusInputWrap {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:10px auto;
+}
+
+#radiusInput {
+    position:relative;
+    display:block;
+    background:#fff!important;
+    border:1px solid rgba(var(--Text-Color-RGB),0.15);
+    width:25%;
+    border-radius:30px;
+    font-weight:400!important;
+    color:var(--Text-Color)!important;
+    line-height:100%;
+}
+
+.radius-units {
+    padding-left:9px
+}
+
+[popup-type="map"] #popup_action_1 {
+    margin-top:1rem;
+}
+
+/******************************************/
+
 .field-time {
     display:flex;
     align-items:center;

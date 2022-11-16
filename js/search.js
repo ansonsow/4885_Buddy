@@ -602,7 +602,7 @@ $(document).ready(function(){
         $("body").prepend(backMap);
 
         // customize your <h3> text
-        $("h3",backMap).text("Select your location:");
+        $("h3",backMap).remove();
 
         // customize your button 1 text
         $("#popup_action_1",backMap).text("Confirm");
@@ -644,6 +644,7 @@ $(document).ready(function(){
             var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
 
             $("#searchbox").prepend(searchBoxHTML);
+            $(".tt-search-box-input").attr("placeholder","Enter your location...")
             
             ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
                 moveMap(data.data.result.position.lng,data.data.result.position.lat);
@@ -662,9 +663,9 @@ $(document).ready(function(){
         $("[popup-type='map'] .popup-msg").prepend(searchBoxDiv);
 
 
-        let radiusInput = document.createElement("input")
-        radiusInput.setAttribute("id","radiusInput");        
-        $("[popup-type='map'] .popup-msg").append(radiusInput);
+        // let radiusInput = document.createElement("input");
+        // radiusInput.setAttribute("id","radiusInput");
+        $("[popup-type='map'] #popup_action_1").before("<div class='radiusInputWrap'><input id='radiusInput' type='number' min='0'><span class='radius-units'>km</span></div>");
 
         // custom radius input
         document.getElementById("radiusInput").addEventListener("keyup",()=>{
@@ -693,6 +694,7 @@ $(document).ready(function(){
 
         //     $("[popup-type='alert']").fadeOut(popupFadeSpeed);
         // });
+
     }//end function createMapPopup()
 
     createMapPopup()
