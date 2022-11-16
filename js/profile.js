@@ -121,7 +121,7 @@ if (currentUser) {
     let firstHostFlag = false;
     for(let i=0;i<events.length;i++){
         // console.log(events[i].data().hostId);
-        console.log("haha");
+        // console.log("haha");
         if(events[i].data().hostId==currentUserId){
             firstHostFlag = true;
         }
@@ -129,7 +129,7 @@ if (currentUser) {
 
     if(firstHostFlag == true){
         for(let i=0;i<badges.length;i++){
-            console.log("haha");
+            // console.log("haha");
             
             if(badges[i].data().name=="firstHosting"){
                 if(!badges[i].data().userId.includes(currentUserId)){

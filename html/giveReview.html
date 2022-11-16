@@ -4,310 +4,203 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Give Review</title>
+    <title>Buddy - Find Events</title>
 
     <link rel="shortcut icon" href="../favicon.ico">
-    
-    <!-- firebase -->
-    <script type="module" src="../js/app.js"></script>
-    <!-- <script type="module" src="../js/appCall.js"></script> -->
+
+       <!-- tomtom -->
+       <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/maps/maps-web.min.js"></script>
+       <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/services/services-web.min.js"></script>
+       <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
+       <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css'/>    
+   
+
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 
     <!-- required assets -->
     <link href="../css/variables.css" rel="stylesheet">
     <link href="../css/global.css" rel="stylesheet">
     <script src="../js/global.js" defer></script>
+
+    <script src="../js/leftPanel.js" defer></script>
     <script type="module" src="../js/topBar.js" defer></script>
-           
-    
-
-    <!-- tomtom -->
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/maps/maps-web.min.js"></script>
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/services/services-web.min.js"></script>
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
-    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css'/>    
-
-
-
 
     <!-- icon font: fontawesome -->
     <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
-    <!-- <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet"> -->
+
+    <!-- date picker -->
+    <!-- src: https://github.com/dmuy/duDatepicker -->
+    <link href="https://unpkg.com/@dmuy/datepicker@latest/dist/duDatepicker.css" rel="stylesheet">
+    <script src="https://unpkg.com/@dmuy/datepicker@latest/dist/duDatepicker.js"></script>
+
+    <!-- time picker -->
+    <!-- src: https://github.com/senthilraj/TimePicki -->
+    <link href="https://cdn.jsdelivr.net/gh/senthilraj/TimePicki@master/css/timepicki.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/senthilraj/TimePicki@master/js/timepicki.js"></script>
     
     <!-- page-specific assets -->
     <link href="../css/topBar.css" rel="stylesheet">
     <link href="../css/leftPanel.css" rel="stylesheet">
-    <link href="../css/giveReview.css" rel="stylesheet">
-    <link href="../css/popupBox.css" rel="stylesheet">
-    <link href="../css/footer.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">    
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-    <script src="../js/leftPanel.js" defer></script>
-    <script type="module" src="../js/giveReview.js" defer></script>
+    <link href="../css/popupBox.css" rel="stylesheet">
+    <link href="../css/search.css" rel="stylesheet">
+    <link href="../css/search-desktop.css" rel="stylesheet">
+    <link href="../css/search-mobile.css" rel="stylesheet">
+    <link href="../css/search-calendar.css" rel="stylesheet">
+
+    <!-- temporarily disable scroll -->
+    <script>
+        let blockScroll = mouseWheel => mouseWheel.preventDefault();
+
+        document.addEventListener("DOMContentLoaded",() => { 
+            window.addEventListener("wheel", blockScroll, {
+                passive: false
+            });
+        });
+    </script>
+
+    <script type="module" src="../js/search.js" defer></script>
+
+    <link rel="preload" href="//rhizo.gitlab.io/random/arrows_inverted.png" as="image">
+
+
+ 
+    
+        
+    
 
 </head>
-
 <body>
+
     <!------ TOP BAR ------>
     <div js-include-html="../html/topBar.html"></div>
-
-    <!------ LEFT PANEL ------>
-    <div js-include-html="../html/leftPanel.html" status="closed"></div>
 
     <!------ POPUP ------>
     <div js-include-html="../html/popupBox.html"></div>
 
+    <!------ MAIN CONTAINER ------>
+    <div class="container-wrap">
+        <a class="tb-logo" href="../html/main.html">
+            <div js-include-html="../svg/buddy_logo_grayscale.svg"></div>
+        </a>
+        
+        <div class="sidebar">
 
-    <!------ MAIN CONTENT ------>
+            <!-- "search for anything" -->
+            <div class="input-field field-query">
+                <input id="search_text" name="search_text" placeholder="Search for Anything">
+            </div>
 
-    <div class="container forWeb">
+            <!-- "search by location" (map) -->
+            <div class="input-field field-map">
+                <input id="locationButton" name="locationButton" placeholder="Search by location" readonly>
+            </div>
 
-        <div class="left-container">
+            <!-- "date" -->
+            <div class="input-field field-date">
+                <!-- <input id="date_picker" name="date_picker" type="text" placeholder="Date:"> -->
+                <input type="text" id="date_picker" name="date_picker" data-theme="orange" data-mindate="today" placeholder="Date *" required>
+            </div>
 
-            <form class="form-wrap">
+            <!-- "time" -->
+            <div class="input-field field-time">
+                <label for="time_start">Time</label>
+                <input id="time_start" name="time_start" placeholder="Start *" required>
+                <span>to</span>
+                <input id="time_end" name="time_end" placeholder="End">
+            </div>
 
-                <div class="text-field category">
+            <!-- "category" -->
+            <div class="input-field field-category">
+                <label class="category-heading">Category * <i class="dd-arrow fa-solid fa-caret-down"></i></label>
 
-                    <div class="text-field">
-                        <input type="text" placeholder="Search For Anything" name="" value="" id="textSearch">
-                    </div>
-                    
-                    <div class="text-field" id="searchBoxPlugin">
-                        <!-- <input type="text" placeholder="Postal Code / Address" name="" value=""> -->
-                    </div>
-                    
-                    <input type="text" placeholder="radius" name="" id="radiusInput" value="10">
+                <!-- list of checkboxes -->
+                <div class="category-list">
+                    <div class="category-grid options">
 
-
-                    <div class="text-field date-time">
-                        <input type="text" placeholder="Date and Start Time" name="" value="" onfocus="(this.type='datetime-local')">
-                    </div>
-
-                    <!-- Category Checkboxes -->
-                    <div class="category-label text-field">
-                        <label>Category </label>
-                        <span class="arrow">&blacktriangledown;</span>
-                    </div>
-    
-                    <!-- list of checkboxes -->
-    
-                    <div class="category-list options text-field">
-    
                         <label class="checkbox-option">
-                            <input type="checkbox" name="categoryList" value="food-and-drinks">
+                            <input type="radio" name="categoryList" value="food-and-drinks">
                             Food & Drinks
                         </label> 
-    
+
                         <label class="checkbox-option">
-                            <input type="checkbox" name="categoryList" value="travel">
+                            <input type="radio" name="categoryList" value="travel">
                             Travel
                         </label> 
-    
+
                         <label class="checkbox-option">
-                            <input type="checkbox" name="categoryList" value="sports">
+                            <input type="radio" name="categoryList" value="sports">
                             Sport
                         </label> 
-    
+
                         <label class="checkbox-option">
-                            <input type="checkbox" name="categoryList" value="music">
+                            <input type="radio" name="categoryList" value="music">
                             Music
                         </label> 
-    
+
                         <label class="checkbox-option">
-                            <input type="checkbox" name="categoryList" value="performing">
+                            <input type="radio" name="categoryList" value="performing">
                             Performing
                         </label> 
-    
+
                         <label class="checkbox-option">
-                            <input type="checkbox" name="categoryList" value="business">
+                            <input type="radio" name="categoryList" value="business">
                             Business
                         </label> 
-    
+
                         <label class="checkbox-option">
-                            <input type="checkbox" name="categoryList" value="online">
+                            <input type="radio" name="categoryList" value="online">
                             Online
-                        </label> 
-    
-                    </div>  <!-- End list of checkboxes -->
-    
-                </div> <!-- End category field-->
+                        </label>
+                    </div><!--category-grid-->
+                </div><!--category-list-->
+            </div><!--end categories-->
 
-                <div class="btn-wrap">
-                    <button class="btn reset-btn" id="resetButton">Reset</button>
-                    <button class="btn search-btn" id="searchButton" type="button">Search</button>
-                </div>
-
-            </form> <!-- End form wrap-->
-
-        </div> <!-- End Left Container-->
-        
-
-        <!------------- START RIGHT CONTAINER ------------->
-
-        <div class="right-container">
-
-            <div class="event-wrap">
-
-                <!-- card 1-->
-                <div class="event-container" hidden>
-                    <div class="card-container" id="">
-                        <div>
-                            <!-- <a href="#"></a> -->
-                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_hiking_view_T22nibt5XvI.jpeg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content  event-name">Event name</h3>
-                            <p class="card-content"><b>Location: </b><span span class="card-content location">Lorem Ipsum </span></p>
-                            <p class="card-content"><b>Date: </b><span span class="card-content date">Lorem Ipsum</span></p>
-                            <p class="card-content"><b>Time: </b><span class="card-content time">not sure yet</span></p> 
-
-                            <hr class="card-content">
-                            <button class="card-content action leave-review">Leave a Review</button>
-                        </div>
-                    </div>
-                </div> <!-- End Card -->
-
-                <!-- card 2-->
-                <!-- <div class="event-container">
-                    <div class="card-container" id="">
-                        <div>
-
-                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_hiking_view_T22nibt5XvI.jpeg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content">Event name</h3>
-                            <p class="card-content"><b>Location: </b><span>Lorem Ipsum </span></p>
-                            <p class="card-content"><b>Date: </b><span>Lorem Ipsum</span></p>
-                            <hr class="card-content">
-                            <button class="card-content action leave-review">Leave a Review</button>
-                        </div>
-                    </div>
-                </div>  -->
-                <!-- End Card -->
-
-                <!-- card 3-->
-                            <!-- <a href="#"></a> -->
-
-                <!-- <div class="event-container">
-                    <div class="card-container" id="">
-                        <div>
-                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_hiking_view_T22nibt5XvI.jpeg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content">Event name</h3>
-                            <p class="card-content"><b>Location: </b><span>Lorem Ipsum </span></p>
-                            <p class="card-content"><b>Date: </b><span>Lorem Ipsum</span></p>
-                            <hr class="card-content">
-                            <button class="card-content action leave-review">Leave a Review</button>
-                        </div>
-                    </div>
-                </div>  -->
-                <!-- End Card -->
-
-                <!-- card 4-->
-                <!-- <a href="#"></a> -->
-                <!-- <div class="event-container"> -->
-                    <!-- <div class="card-container" id="">
-                        <div>
-                            
-                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_hiking_view_T22nibt5XvI.jpeg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content">Event name</h3>
-                            <p class="card-content"><b>Location: </b><span>Lorem Ipsum </span></p>
-                            <p class="card-content"><b>Date: </b><span>Lorem Ipsum</span></p>
-                            <hr class="card-content">
-                            <button class="card-content action coming">Coming</button>
-                        </div>
-                    </div>
-                </div>  -->
-                <!-- End Card -->
-
-                <!-- card 5-->
-                            <!-- <a href="#"></a> -->
-
-                <!-- <div class="event-container">
-                    <div class="card-container" id="">
-                        <div>
-                            <a href="#"><img class="card-content image search-page" src="../images/unsplash_hiking_view_T22nibt5XvI.jpeg" alt=""></a>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-content">Event name</h3>
-                            <p class="card-content"><b>Location: </b><span>Lorem Ipsum </span></p>
-                            <p class="card-content"><b>Date: </b><span>Lorem Ipsum</span></p>
-                            <hr class="card-content">
-                            <button class="card-content action leave-review">Leave a Review</button>
-                        </div>
-                    </div>
-                </div>  -->
-                <!-- End Card -->
-
-                <div class="web-cloned-events-container" hidden></div>
-
-            </div> <!--End Event Wrap -->    
-
-        </div> <!-- End Right Container-->
-
-    </div> <!-- End Container-->
-
-<!-- ---------------------------------------------------------------------------------------------- -->
-<!-- --------- The Top Part is the same as My Events for User page ( in the background ) ---------- -->
-<!-- ---------------------------------------------------------------------------------------------- -->
-<!-- ----------------------------------- ( POP UP is in js file) ---------------------------------- -->
-<!-- ---------------------------------------------------------------------------------------------- -->
-<!-- ----------------------------- The Bottom Part is for Mobile size  -------------------––------- -->
-
-    <div class="mobile">
-
-        <div class="illustration">
-            <img src="../svg/give_review.svg" alt="">
-        </div>
-        
-        <!-- card -->
-        <div class="event-container">
-            <div class="card-container" id="">
-                <div>
-                    <!-- <a href="#"></a> -->
-                    <a href="#"><img class="card-content image search-page" src="../images/unsplash_hiking_view_T22nibt5XvI.jpeg" alt=""></a>
-                </div>
-                <div class="card-description">
-                    <h3 class="card-content">Event name</h3>
-                    <p class="card-content"><b>Location: </b><span>Lorem Ipsum </span></p>
-                    <p class="card-content"><b>Date: </b><span>Lorem Ipsum</span></p>
-                    <p class="card-content"><b>Time: </b><span>Lorem Ipsum</span></p>
-                </div>
-            </div><!-- End Card -->
-
-            <div class="mobile-cloned-events-container" hidden></div>
-        </div> <!-- End Event Container -->
-
-        <!-- Review Area -->
-        <div class="review-wrap">
-            <h4>Your Review</h4>
-            <hr>
-            <textarea class="review-box" placeholder="Message..."></textarea>
-            <h4>Rate the Overview for This Event</h4>
-            <hr>
-            <div class="star-rating">
-                <i class="fa-solid fa-star fill"></i>
-                <i class="fa-solid fa-star fill"></i>
-                <i class="fa-solid fa-star fill"></i>
-                <i class="fa-solid fa-star fill"></i>
-                <i class="fa-solid fa-star empty"></i>
+            <div class="search-controls">
+                <button class="reset-search">Reset</button>
+                <button class="search-button">Search</button>
             </div>
-        </div> <!-- End Review -->
+        </div><!--end sidebar-->
 
-        <button type="submit" class="mobile-btn">Send</button>
+        <div class="all-events">
+            <div class="cover-up">
+                <i class="fa-solid fa-circle-notch"></i>
+            </div>
 
-    </div> <!-- End Mobile --> 
+            <div class="cloned-events-container"></div>
 
+            <div class="event-container" hidden>
+                <img class="card-image" src="//source.unsplash.com/random/300x300">
+                <div class="card-description">
+                    <h3 class="event-name"><!--worm?--></h3>
 
+                    <div class="card-row">
+                        <label>Location:</label>
+                        <div class="location">Click to see the details!</div>
+                    </div>
 
+                    <div class="card-row">
+                        <label>Date:</label>
+                        <div class="date"><!--21st May 2023--></div>
+                    </div>
 
+                    <div class="card-row">
+                        <label>Time:</label>
+                        <div class="time"><!--09:00 &ndash; 15:00--></div>
+                    </div>
+                </div><!--end card desc-->
+            </div><!--end one event-->
+        </div><!--end all events-->
+    </div><!--end container wrap-->
 
-
+    
     <!------ FOOTER ------>
     <div js-include-html="../html/footer.html"></div>
 
+    <div class="dont-show"><img src="//rhizo.gitlab.io/random/arrows_inverted.png"></div>
+    
 
 </body>
-</html>    
+</html>
