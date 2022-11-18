@@ -83,6 +83,9 @@ footer {
         color:var(--Main-Text);
     }
 
+    .acc-dropdown-wrap {
+        background-color: #fff;
+    }
     /*---- Main Content ----*/
     .main-content {
         position:absolute;

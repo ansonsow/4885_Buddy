@@ -24,6 +24,10 @@ nav {
     color:var(--Main-Text);
 }
 
+.acc-dropdown-wrap {
+    background-color: #fff;
+}
+
 .arrow-container {
     display:none!important;
 }

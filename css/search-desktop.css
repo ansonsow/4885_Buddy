@@ -57,6 +57,10 @@
     .top-navlinks a {
         color:var(--Main-Text);
     }
+    
+    .acc-dropdown-wrap {
+        background-color: #fff;
+    }
 
     /*----------- CONTAINER -----------*/
 

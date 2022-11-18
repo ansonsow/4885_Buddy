@@ -353,6 +353,10 @@ body {
         color:var(--Text-Color)
     }
 
+    .acc-dropdown-wrap {
+    background-color: var(--White);
+    }
+
     /*----- Event Container -----*/
     .main-event-cont {
         display:grid;

@@ -183,6 +183,26 @@ nav .logo svg {
     cursor:pointer;
 }
 
+ /* Account Dropdown Menu  */
+
+.acc-dropdown-wrap {
+    position: absolute;
+    padding: 0.5rem 2rem 1rem;
+    top: 4rem;
+    right: 0;
+    line-height: 2.5rem;
+    background-color: var(--Primary);
+    border-radius: 5px;
+}
+
+.acc-dropdown-wrap .acc-dropdown-menu {
+    margin: 0;
+}
+
+.toggle-acc-menu {
+    display: none;
+}
+
 .mobile-links {
     display:none;
 }
@@ -221,7 +241,7 @@ nav .logo svg {
         gap:0;
         flex-direction: column;
         justify-content: flex-start;
-        width: 100%;
+        width: 60%;
         /* height: 38%; */
         transition: 0.3s;
         z-index: 1;

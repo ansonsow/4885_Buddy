@@ -4,7 +4,7 @@
     --left-content-margin-full: 11rem 6rem 1rem;
     --faq-margin-full: 1.5rem 0 0 0;
     --question-font-size-full: 1.2rem;
-    --more-button-margin-full: 1.5rem 0 2.5rem 18rem;
+    --more-button-margin-full: 1.6rem 0 2.2rem 18rem;
     
     /* ---- Contact Form Full---- */
     --right-container-width-full: 100%;
@@ -64,6 +64,10 @@ nav {
 
 .top-navlinks a {
     color:var(--Main-Text);
+}
+
+.acc-dropdown-wrap {
+    background-color: #fff;
 }
 /*------------------------------------------------*/
 

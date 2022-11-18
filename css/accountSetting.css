@@ -41,6 +41,10 @@ nav {
 .top-navlinks a {
     color:var(--Main-Text);
 }
+
+ .acc-dropdown-wrap {
+    background-color: #fff;
+}
 /* ----------------------------------------- */
 /* Heading Text */
 .main-container {
