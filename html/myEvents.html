@@ -44,12 +44,13 @@
     <link href="../css/leftPanel.css" rel="stylesheet">
     <link href="../css/footer.css" rel="stylesheet">    
 
+
     <link href="../css/popupBox.css" rel="stylesheet">
     <link href="../css/search.css" rel="stylesheet">
     <link href="../css/search-desktop.css" rel="stylesheet">
     <link href="../css/search-mobile.css" rel="stylesheet">
     <link href="../css/search-calendar.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="../css/myEvents.css">
     <!-- temporarily disable scroll -->
     <script>
         let blockScroll = mouseWheel => mouseWheel.preventDefault();
@@ -66,39 +67,7 @@
     <link rel="preload" href="//rhizo.gitlab.io/random/arrows_inverted.png" as="image">
 
 
-    <style>
-        :root{
-            --reviewButtonPadding:calc(var(--Event-Details-Padding)/3)
-        }
 
-        .reviewButton{
-            display: block;
-            width: 100%;
-            border-top: 1px dashed var(--Text-Color);
-            color: var(--Primary);
-            padding-top: var(--reviewButtonPadding);
-            margin-top: var(--reviewButtonPadding);
-        }
-
-        .del-popup i {
-            color:var(--Secondary-Light);
-        }
-
-        .del-popup .no-bottom-margin {
-            margin-bottom: 0;
-        }
-
-        @media(max-width:600px){
-            .card-description {
-                padding:calc(var(--Mobile-Event-Details-Padding)/2);
-                padding-right:calc(var(--Mobile-Event-Details-Padding-Right)/2);
-                max-height:100%;
-            }
-
-
-        }
-
-    </style>
 
         
     
