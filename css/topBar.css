@@ -19,6 +19,11 @@
     /*------ TOP RIGHT LINKS ------*/
     --TopBar-Links-Size:1rem;
     --TopBar-Links-Spacing:5vmin;
+
+    --Dropdown-Fade-Speed:150ms; /* ms only */
+    --Dropdown-Fade-Method:ease-in-out;
+
+    --Dropdown-Corner-Rounding:15px;
 }
 
 header {
@@ -187,20 +192,34 @@ nav .logo svg {
 
 .acc-dropdown-wrap {
     position: absolute;
-    padding: 0.5rem 2rem 1rem;
-    top: 4rem;
+    padding: calc(var(--Dropdown-Corner-Rounding) + 0.5rem) 2rem 1rem;
+    top: 0;
+    margin-top: calc(var(--TopBar-Height) - var(--Dropdown-Corner-Rounding));
     right: 0;
     line-height: 2.5rem;
     background-color: var(--Primary);
-    border-radius: 5px;
+    border-radius: var(--Dropdown-Corner-Rounding);
+    transition:opacity var(--Dropdown-Fade-Speed) var(--Dropdown-Fade-Method);
+}
+
+.toggle-acc-menu {
+    display: none;
 }
 
 .acc-dropdown-wrap .acc-dropdown-menu {
     margin: 0;
 }
 
-.toggle-acc-menu {
-    display: none;
+.acc-dropdown-menu::selection {
+    background:transparent;
+}
+
+.acc-dropdown-menu::-moz-selection {
+    background:transparent;
+}
+
+.acc-dropdown-menu {
+    text-align:center;
 }
 
 .mobile-links {
@@ -237,7 +256,7 @@ nav .logo svg {
         background-color: var(--Primary);
         top:0;
         margin-top:var(--TopBar-Height);
-        left:100vw;
+        left:-60%;
         gap:0;
         flex-direction: column;
         justify-content: flex-start;
