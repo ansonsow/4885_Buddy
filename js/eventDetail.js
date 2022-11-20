@@ -155,7 +155,9 @@ document.querySelector(".event-time").innerHTML = `${eventTimeStart_Hour}:${even
 /********************************************************************** */
 /*********************** EVENT PARTICIPANTS *************************** */
 /********************************************************************** */
-document.querySelector(".event-participants").textContent = `${chosenEvent.currentPPL} of ${chosenEvent.maxPPL}`;
+document.querySelector(".current-event-participants").textContent = `${chosenEvent.currentPPL}`;
+
+document.querySelector(".event-participants").textContent = ` of ${chosenEvent.maxPPL}`;
 
 /********************************************************************** */
 /*************************** EVENT PRICE ****************************** */
@@ -262,11 +264,14 @@ if(currentUser){
         }
 
         joinEvent = function(){
+            document.querySelector(".current-event-participants").textContent= Number(document.querySelector(".current-event-participants").textContent)+1;
             addUserEvent(thisUser.id,chosenEvent.id);
             addEventNum(chosenEvent.id)
         }
 
         leaveEvent = function(){
+            document.querySelector(".current-event-participants").textContent= Number(document.querySelector(".current-event-participants").textContent)-1
+
             removeUserEvent(thisUser.id,chosenEvent.id);
             minusEventNum(chosenEvent.id)
         }
