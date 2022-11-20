@@ -197,7 +197,10 @@ if(currentUser){
             }
         },0);
     
-        clonedEvent.querySelector(".card-image").src = doc.images[0];
+        if(doc.images[0]){
+            clonedEvent.querySelector(".card-image").src = doc.images[0];
+
+        }
         clonedEvent.querySelector(".event-name").innerHTML = doc.name;
     
         async function reverseGeo(l){
@@ -252,9 +255,15 @@ if(currentUser){
     // const querySnapshot2 = await getDoc(doc(db, "events","uGfj5SGWqdBIdFsM7Lie"));
     // console.log(querySnapshot2.data());
     for(let i=0;i<userEvent.length;i++){
-        const eventDoc = await getDoc(doc(db,"events",userEvent[i]));
-        allSearch.push(eventDoc);
-        displayResult(eventDoc.data(),eventDoc.id)
+        const eventDoc = await getDoc(doc(db,"events",userEvent[i])).then(e => {
+            if(e){
+                
+                allSearch.push(e);
+                console.log(e.id);
+                displayResult(e.data(),e.id)
+            }
+        });
+
     }
     // let q = query(collection(db, "events"));
     // const querySnapshot = await getDocs(q);

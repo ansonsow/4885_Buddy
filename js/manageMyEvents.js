@@ -147,8 +147,22 @@ if(currentUser){
 
         
         /*---- 🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️ ----*/
-        popup_action_1.addEventListener("click", () => {
+        popup_action_1.addEventListener("click", async () => {
             let trashEventID = popup_action_1.getAttribute("event-id");
+            let users = query(collection(dbf.db, "users"));
+            const usersSnapShot = await getDocs(users);
+            usersSnapShot.forEach((doc)=>{
+                if(doc.data().events.includes(trashEventID)){
+                    dbf.removeUserEvent(doc.id, trashEventID)
+                }
+            })
+            // let q = query(collection(db, "events"), where("hostId", "==", "testHostId (str, 20)"), where("name","==","testEventname1 (str, 20)"));
+            // const querySnapshot = await getDocs(q);
+            // querySnapshot.forEach((doc) => {
+            //     console.log(doc.id);
+            // });
+
+
             // comment this to NOT delete the event from the database
             dbf.deleteEvent(trashEventID)
         })
