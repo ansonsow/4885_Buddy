@@ -1,4 +1,4 @@
-import {db,auth} from "./app.js"
+import {db,auth,writeReviewData,addEventReview} from "./app.js"
 // import * as mapf from "./tomtom.js"
 import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import '../node_modules/regenerator-runtime/runtime.js'
@@ -616,6 +616,15 @@ if(currentUser){
         console.log(eid);
         console.log(points);
         console.log(text);
+
+        // let review = document.getElementById("review").value;
+        // let reviewStar = Number(document.getElementById("reviewStar").value);
+        let reviewId;
+        Promise.resolve(writeReviewData(currentUserId, "" , points , text)).then(value=>{
+            reviewId = value
+            addEventReview(eid, reviewId)
+
+        })
     }
 
     $(document).ready(function(){
@@ -695,7 +704,7 @@ if(currentUser){
 
             $("#starsContainer",puppet).after("<br><br id='break2'>")
             $("#break2", puppet).after("<div id='desc'>Description</div>")
-            $("#desc", puppet).after("<textarea id='text'></textarea>")
+            $("#desc", puppet).after("<textarea class='reviewDesc' id='reviewContext'></textarea>")
     
             
             $("#popup_action_1",puppet).text("Send");
@@ -712,9 +721,26 @@ if(currentUser){
             $("[popup-type='review']").fadeIn(popupFadeSpeed);
 
 
-    
-            $(document).on("click", "[popup-type='review'] #popup_action_1", function(){
-                console.log("hi i just clicked the send btn");
+            $("[popup-type='review'] #popup_action_1").unbind('click');
+            $("[popup-type='review'] #popup_action_1").click(function(){
+                console.log("ooo");
+                // const text = $(".text").val()
+
+                const text = $("[popup-type='review'] #reviewContext").val()
+
+                // document.getElementById('text').classList.add("HAHAHAHAHHAAH")
+                // const text = document.getElementById('text').value;
+                if(reviewStar&&text){
+                    sendReview(eid,reviewStar,text)
+
+                }
+            })
+            // $(document).on("click", "[popup-type='review'] #popup_action_1", function(){
+            //     console.log("hi i just clicked the send btn");
+                // $('#popup_action_1').unbind('click').click(function() {
+                //     alert("bob");
+                //     //addToCart($(this).attr("id"));
+                // });
                 // // fade out the pop-up
                 // console.log(i);
                 // $("[popup-type='review']").fadeOut(popupFadeSpeed);
@@ -725,7 +751,7 @@ if(currentUser){
                 // fadeIn();
                 // $(".cloned-events-container .event-container").css("visibility","visible");
                 // $(".all-events").removeClass("fade-out")
-            });
+            // });
 
             // cancel button clicked
             $(document).on("click", "[popup-type='review'] #popup_action_2", function(){

@@ -1,4 +1,4 @@
-import {auth,db} from "./app.js"
+import {auth,db, logout} from "./app.js"
 import {query,collection, getDocs} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import $ from "./jquery.module.js";
 import { signOut} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
@@ -9,6 +9,7 @@ import { signOut} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.
 /************ TOP BAR DROPDOWN ************/
 let topBarProfileIcon = document.querySelector("header .account-icon");
 let topBarDropdown = document.querySelector("header .acc-dropdown-wrap");
+let logOutPopup;
 
 let dropdownFadeSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Dropdown-Fade-Speed"));
 
@@ -57,6 +58,7 @@ else {
 
 	signOutLink.addEventListener("click", ()=>{
 		// console.log("hah");
+		logOutPopup();
 	})
 
 	dropdownProfileLink.addEventListener("click", async ()=>{
@@ -101,45 +103,41 @@ else {
 
 	$(document).ready(function(){
 		 // change this to whatever you're binding your popup trigger to
-	
-		$(".sign-out-link").click(function(){
-			console.log("haha");
-			// remove existing <h3> text
-			$(".del-popup h3").empty();
-	
-			// customize your <h3> text
-			$(".del-popup h3").text("Are you sure you want to Log out");
-	
-			// customize your button 1 text
-			$("#popup_action_1").text("Log out");
-	
-			// customize your button 2 text
-			$("#popup_action_2").text("Cancel");
-	
-			// fade in the pop-up
-			$(".del-popup").fadeIn(popupFadeSpeed);
-		})
-		
-		/********************************************************************** */
-		/******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
-		/********************************************************************** */
-	
-		$(document).on("click", "#popup_action_1", function(){
-			let that = this; // don't touch this line
-			signOut(auth);
-			window.location.href="../html/main.html";
+		 let createLogoutPopup = function(){
+            let puppet = $(".del-popup:first").clone();
+            puppet.attr("popup-type","logout");
+            $(".del-popup h3, .del-popup button", puppet).empty();
+            $("body").prepend(puppet);
+    
+            // customize your <h3> text
+            $("h3",puppet).text("Are you sure you want to log out");
+    
+            // customize your button 1 text
+            $("#popup_action_1",puppet).text("Yes");
+            $("#popup_action_2",puppet).text("No");
 
-			// do stuff
-		});
-	
-		/********************************************************************** */
-		/******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
-		/********************************************************************** */
-		$(document).on("click", "#popup_action_2", function(){
-			let that = this; // don't touch this line
-	
-			// fade out the pop-up
-			$(".del-popup").fadeOut(popupFadeSpeed);
-		});
+        }
+		createLogoutPopup()
+
+
+		logOutPopup = function(){
+            // fade in the pop-up
+            $("[popup-type='logout']").fadeIn(popupFadeSpeed);
+    
+            $(document).on("click", "[popup-type='logout'] #popup_action_1", function(){
+                // fade out the pop-up
+				signOut(auth);
+                // $("[popup-type='logout']").fadeOut(popupFadeSpeed);
+				window.location.href="../html/main.html";
+                // fade out overlays
+                fadeIn();
+                $(".cloned-events-container .event-container").css("visibility","visible");
+                $(".all-events").removeClass("fade-out")
+            });
+            $(document).on("click", "[popup-type='logout'] #popup_action_2", function(){
+                $("[popup-type='logout']").fadeOut(popupFadeSpeed);
+				
+			})
+        }
 	})//end ready
 }

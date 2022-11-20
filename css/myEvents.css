@@ -62,7 +62,8 @@
     align-items: center;
     width: var(--reviewTextAreaWidth);
     border: 1px solid var(--reviewTextAreaBorderColor);
-    border-radius: var(--reviewTextAreaBorderRadius)
+    border-radius: var(--reviewTextAreaBorderRadius);
+    padding:var(--reviewTextAreaBorderRadius);
 }
 .del-popup .no-bottom-margin {
     margin-bottom: 0;
