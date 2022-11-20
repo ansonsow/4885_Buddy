@@ -1,5 +1,9 @@
 import {auth,db} from "./app.js"
 import {query,collection, getDocs} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+import $ from "./jquery.module.js";
+import { signOut} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+
 
 
 /************ TOP BAR DROPDOWN ************/
@@ -34,7 +38,6 @@ topBarProfileIcon.addEventListener("click",()=>{
 
 /******** TOP BAR "ACCOUNT" BUTTON GOES TO USER'S PROFILE PAGE ********/
 let currentUser = auth.currentUser;
-let currentUserEmail = currentUser.email;
 
 let dropdownProfileLink = document.querySelector(".account-link");
 let signOutLink = document.querySelector(".sign-out-link");
@@ -44,10 +47,18 @@ let signOutLink = document.querySelector(".sign-out-link");
 if(!currentUser){
 	dropdownProfileLink.style.display = "none";
 	signOutLink.style.display = "none";
+	console.log("not login");
 }
 
 // if user *IS* logged in, make PROFILE link functional
 else {
+	let currentUserEmail = currentUser.email;
+
+
+	signOutLink.addEventListener("click", ()=>{
+		// console.log("hah");
+	})
+
 	dropdownProfileLink.addEventListener("click", async ()=>{
 		let currentUserId;
 		let allUser = [];
@@ -76,4 +87,59 @@ else {
 		}
 
 	})//end click
+
+
+
+
+
+
+
+
+
+
+
+
+	$(document).ready(function(){
+		 // change this to whatever you're binding your popup trigger to
+	
+		$(".sign-out-link").click(function(){
+			console.log("haha");
+			// remove existing <h3> text
+			$(".del-popup h3").empty();
+	
+			// customize your <h3> text
+			$(".del-popup h3").text("Are you sure you want to Log out");
+	
+			// customize your button 1 text
+			$("#popup_action_1").text("Log out");
+	
+			// customize your button 2 text
+			$("#popup_action_2").text("Cancel");
+	
+			// fade in the pop-up
+			$(".del-popup").fadeIn(popupFadeSpeed);
+		})
+		
+		/********************************************************************** */
+		/******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
+		/********************************************************************** */
+	
+		$(document).on("click", "#popup_action_1", function(){
+			let that = this; // don't touch this line
+			signOut(auth);
+			window.location.href="../html/main.html";
+
+			// do stuff
+		});
+	
+		/********************************************************************** */
+		/******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
+		/********************************************************************** */
+		$(document).on("click", "#popup_action_2", function(){
+			let that = this; // don't touch this line
+	
+			// fade out the pop-up
+			$(".del-popup").fadeOut(popupFadeSpeed);
+		});
+	})//end ready
 }
