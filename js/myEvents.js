@@ -603,6 +603,8 @@ if(currentUser){
     let zoom = 10;
     
     
+    // let clickStar = false; /
+    let reviewStar;
     
     $(document).ready(function(){
         /*-------- Review POPUP - create --------*/
@@ -611,7 +613,7 @@ if(currentUser){
             let puppet = $(".del-popup:first").clone();
             puppet.attr("popup-type","review");
             $(".del-popup h3, .del-popup button", puppet).empty();
-            $("#popup_action_2", puppet).remove();
+            $("#popup_action_2", puppet).empty();
             $("body").prepend(puppet);
     
             // customize your <h3> text
@@ -622,52 +624,93 @@ if(currentUser){
             
             $("h3",puppet).after("<div id='smolText'>How was your experience? We'd love to hear from you</div>")
             // $("#smolText",puppet).css("background-color","red")
+            $("#smolText",puppet).after("<div id='starsContainer'></div>")
+
             for(let i=0; i<5; i++){
                 
                 let createEmptyStar = document.createElement("i");
-                createEmptyStar.setAttribute("class", "fa-solid fa-star empty");
+                createEmptyStar.setAttribute("class", "fa-solid fa-star empty star");
                 createEmptyStar.setAttribute("id", i);
 
-                $("#smolText",puppet).after(createEmptyStar)
+                $('#starsContainer',puppet).append(createEmptyStar)
+
+                // $("#smolText",puppet).after(createEmptyStar)
             }
 
-            $("#0",puppet).after("<br>")
+            $("#starsContainer",puppet).after("<br>")
 
-            // mouse enter
-            $(".fa-solid.fa-star.empty",puppet).hover(function(){
-                // console.log($(this).attr("id"))
-                // $(this).removeClass("empty").addClass("fill")
+
+            // hover function
+            $(document.body).on('mouseenter', '.star', function () {
+                // $(this).css('color','var(--Primary)');
                 let n = Number($(this).attr("id"));
-                for(let i=n;i<5;i++){
-                    $("#"+i,puppet).css("color","var(--Primary)")
+                for(let z=0;z<=n;z++){
+                    $("#"+z,puppet).css("color","var(--Primary)")
                 }
-            },
-            // mouse leave
-            function(){
+            }).on('mouseleave', '.star', function () {
+                $(this).css('color',"var(--Secondary-Light)");
                 let n = Number($(this).attr("id"));
-                for(let i=n;i<5;i++){
-                    $("#"+i,puppet).css("color","var(--Secondary-Light)")
+
+                for(let z=0;z<=n;z++){
+                    $("#"+z,puppet).css("color","var(--Secondary-Light)")
+                }
+            });
+            // click function
+            $(".fa-solid.fa-star.empty.star",puppet).click(function(){
+                $(".fa-solid.fa-star.empty.star",puppet).removeClass("star")
+
+                let n = Number($(this).attr("id"));
+                // console.log(n);
+                reviewStar = n+1;
+                console.log(reviewStar);
+
+                for(let i=0;i<=n;i++){
+                    $("#"+i,puppet).css("color","var(--Primary)")
+                    // $("#"+i,puppet).removeClass("star")
+                }
+                for(let j=n+1;j<5;j++){
+                    // console.log(i);
+                    $("#"+j,puppet).css("color","var(--Secondary-Light)")
+
                 }
             })
 
+
             $("#smolText",puppet).after("<br id='break1'>")
 
-            $("#break1",puppet).after("<h3 class='no-bottom-margin' id=''>Rate the Overview for This Event</h3>")
+            $("#break1",puppet).after("<div class='no-bottom-margin' id='rate'>Rate the Overview for This Event</div>")
             
 
+            $("#starsContainer",puppet).after("<br><br id='break2'>")
+            $("#break2", puppet).after("<div id='desc'>Description</div>")
+            $("#desc", puppet).after("<textarea></textarea>")
     
             
             $("#popup_action_1",puppet).text("Send");
+            $("#popup_action_2",puppet).text("Cancel");
+
         }
     
         createReviewPopup()
 
         /*-------- review POPUP - run --------*/
         let reviewPopup = function(){
+
             // fade in the pop-up
             $("[popup-type='review']").fadeIn(popupFadeSpeed);
     
             $(document).on("click", "[popup-type='review'] #popup_action_1", function(){
+                // fade out the pop-up
+                $("[popup-type='review']").fadeOut(popupFadeSpeed);
+    
+                // fade out overlays
+                fadeIn();
+                $(".cloned-events-container .event-container").css("visibility","visible");
+                $(".all-events").removeClass("fade-out")
+            });
+
+            // cancel button clicked
+            $(document).on("click", "[popup-type='review'] #popup_action_2", function(){
                 // fade out the pop-up
                 $("[popup-type='review']").fadeOut(popupFadeSpeed);
     

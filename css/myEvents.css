@@ -1,0 +1,79 @@
+:root{
+    --reviewButtonPadding:calc(var(--Event-Details-Padding)/3);
+    --reviewRateFontSize:calc(var(--H3-Size)*1.15);
+    --reviewRateStarsSize:calc(var(--H3-Size)*1.13);
+    --reviewRateStarsPaddingRight: 11.8px;
+    --reviewDescFontSize:calc(var(--H3-Size)*1.2);
+    --reviewTextAreaBorderColor:#545454;
+    --reviewTextAreaBorderRadius:15px;
+    --Popup-Box-Width:40vw;
+    --reviewTextAreaWidth:calc(var(--Popup-Box-Width) - var(--Popup-Box-Padding)*2)
+
+
+
+    
+}
+
+.reviewButton{
+    display: block;
+    width: 100%;
+    border-top: 1px dashed var(--Text-Color);
+    color: var(--Primary);
+    padding-top: var(--reviewButtonPadding);
+    margin-top: var(--reviewButtonPadding);
+}
+
+.del-popup{
+    align-items: center;
+    text-align: center;
+}
+
+.del-popup h3{
+    text-align: left;
+}
+
+.del-popup div{
+    text-align: left;
+}
+
+
+#starsContainer{
+    text-align: left;
+}
+
+.del-popup i {
+    font-size: var(--reviewRateStarsSize);
+    color:var(--Secondary-Light);
+    padding-right: var(--reviewRateStarsPaddingRight);
+}
+
+.del-popup #rate{
+    font-size: var(--reviewRateFontSize);
+    font-weight: bold;
+}
+
+.del-popup #desc{
+    font-size: var(--reviewDescFontSize);
+    font-weight: bold;
+}
+
+.del-popup textarea{
+    height: 20vh; 
+    align-items: center;
+    width: var(--reviewTextAreaWidth);
+    border: 1px solid var(--reviewTextAreaBorderColor);
+    border-radius: var(--reviewTextAreaBorderRadius)
+}
+.del-popup .no-bottom-margin {
+    margin-bottom: 0;
+}
+
+@media(max-width:600px){
+    .card-description {
+        padding:calc(var(--Mobile-Event-Details-Padding)/2);
+        padding-right:calc(var(--Mobile-Event-Details-Padding-Right)/2);
+        max-height:100%;
+    }
+
+
+}
