@@ -6,7 +6,7 @@ import '../node_modules/regenerator-runtime/runtime.js'
 /**************************************************************************/
 /**************************************************************************/
 
-let createAlertPopup, alertPopup, fadeOut, fadeIn, checkDuplicateEvents;
+let createAlertPopup, alertPopup, fadeOut, fadeIn, checkDuplicateEvents, reviewPopup;
 let createMapPopup, mapPopup;
 let userCoord = [];
 let radius = 5000;
@@ -226,6 +226,10 @@ if(currentUser){
             ev.stopPropagation(); 
             console.log("haha");
         }); 
+
+        clonedEvent.querySelector(".card-row .reviewButton").addEventListener("click", ()=>{
+            reviewPopup(id)
+        })
         // clonedEvent.querySelector(".card-row .reviewButton").addEventListener((e)=>{
 
         //     console.log("aa");
@@ -604,8 +608,16 @@ if(currentUser){
     
     
     // let clickStar = false; /
+
+    
     let reviewStar;
     
+    function sendReview(eid, points, text){
+        console.log(eid);
+        console.log(points);
+        console.log(text);
+    }
+
     $(document).ready(function(){
         /*-------- Review POPUP - create --------*/
 
@@ -683,7 +695,7 @@ if(currentUser){
 
             $("#starsContainer",puppet).after("<br><br id='break2'>")
             $("#break2", puppet).after("<div id='desc'>Description</div>")
-            $("#desc", puppet).after("<textarea></textarea>")
+            $("#desc", puppet).after("<textarea id='text'></textarea>")
     
             
             $("#popup_action_1",puppet).text("Send");
@@ -694,19 +706,25 @@ if(currentUser){
         createReviewPopup()
 
         /*-------- review POPUP - run --------*/
-        let reviewPopup = function(){
-
+        reviewPopup = function(eid){
+            console.log("hi i m in revewipopup");
             // fade in the pop-up
             $("[popup-type='review']").fadeIn(popupFadeSpeed);
+
+
     
             $(document).on("click", "[popup-type='review'] #popup_action_1", function(){
-                // fade out the pop-up
-                $("[popup-type='review']").fadeOut(popupFadeSpeed);
-    
-                // fade out overlays
-                fadeIn();
-                $(".cloned-events-container .event-container").css("visibility","visible");
-                $(".all-events").removeClass("fade-out")
+                console.log("hi i just clicked the send btn");
+                // // fade out the pop-up
+                // console.log(i);
+                // $("[popup-type='review']").fadeOut(popupFadeSpeed);
+                // const text = document.getElementById("text").value;
+                // sendReview(eid,reviewStar,text)
+
+                // // fade out overlays
+                // fadeIn();
+                // $(".cloned-events-container .event-container").css("visibility","visible");
+                // $(".all-events").removeClass("fade-out")
             });
 
             // cancel button clicked
@@ -721,9 +739,7 @@ if(currentUser){
             });
         }
 
-        document.querySelector(".card-row .reviewButton").addEventListener("click", ()=>{
-            reviewPopup()
-        })
+
         
         /*-------- ALERT POPUP - create --------*/
         createAlertPopup = function(){
@@ -750,7 +766,6 @@ if(currentUser){
             $(document).on("click", "[popup-type='alert'] #popup_action_1", function(){
                 // fade out the pop-up
                 $("[popup-type='alert']").fadeOut(popupFadeSpeed);
-    
                 // fade out overlays
                 fadeIn();
                 $(".cloned-events-container .event-container").css("visibility","visible");
