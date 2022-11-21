@@ -64,6 +64,7 @@
     border: 1px solid var(--reviewTextAreaBorderColor);
     border-radius: var(--reviewTextAreaBorderRadius);
     padding:var(--reviewTextAreaBorderRadius);
+    font: var(--Body-Font);
 }
 
 .no-bottom-margin {

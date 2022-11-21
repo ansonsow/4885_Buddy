@@ -252,7 +252,7 @@ h2.badges-title {
 }
 
 #svg{
-    border: 2px solid green;
+    /* border: 2px solid green; */
     /* background-color: green; */
     display:flex;
     align-items:center;

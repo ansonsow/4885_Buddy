@@ -734,6 +734,8 @@ if(currentUser){
                     sendReview(eid,reviewStar,text)
 
                 }
+                $("[popup-type='review']").fadeOut(popupFadeSpeed);
+
             })
             // $(document).on("click", "[popup-type='review'] #popup_action_1", function(){
             //     console.log("hi i just clicked the send btn");

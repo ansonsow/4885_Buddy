@@ -214,7 +214,10 @@ if (currentUser) {
                 if(!badges[i].data().userId.includes(currentUserId)){
                     dbf.addBadgeUser(badges[i].id, currentUserId);
                     popUp("badgePopup" , "https://github.com/ansonsow/4885_Buddy/blob/main/images/badges_01.png?raw=true", "first hosting")
-                    $("[popup-type='badgePopup'] h3").html(`You have obtain the <span class="popup-event-name">hi</span> badge!!`);
+                    $("[popup-type='badgePopup'] h3").html(`You have obtain the <span class="popup-event-name">first host</span> badge!!`);
+                    $("[popup-type='badgePopup'] #popup_action_1").click(function(){
+                        window.location.reload()
+                    })
                 }
             }
         }
@@ -254,7 +257,7 @@ if (currentUser) {
     $("[popup-type='notLogIn'] h3").html(`You are not login`);
     $("[popup-type='notLogIn'] img").remove()
     // $("<div>hihi</div>").insertAfter("[popup-type='notLogIn'] h3")
-    $("<div id='svg'><div js-include-html='../svg/sad_buddy.svg'></div></div>").insertAfter("[popup-type='notLogIn'] h3")
+    $("<div id='svg'><div js-include-html='../svg/spiral_eyes.svg'></div></div>").insertAfter("[popup-type='notLogIn'] h3")
     jsIncludeHTML()
     $(`[popup-type='notLogIn'] #popup_action_1`).text("LogIn");
     $(`[popup-type='notLogIn'] #popup_action_1`).click(function(){
