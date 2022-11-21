@@ -21,6 +21,7 @@ if(typeof(leftPanelExists) != "undefined" && leftPanelExists != null){
 let filesReady;
 
 function jsIncludeHTML() {
+  console.log("jsincludehtml");
   var z, i, elmnt, file, xhttp;
   /*loop through a collection of all HTML elements:*/
   z = document.getElementsByTagName("*");

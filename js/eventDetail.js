@@ -1,6 +1,7 @@
 import {db, addUserEvent, removeUserEvent, addUserFavEvent, removeUserFavEvent, addEventNum, minusEventNum} from "./app.js";
 import * as dbf from "./app.js"; // used to get current user
 import $ from "./jquery.module.js";
+
 import {query, collection, doc, getDocs,getDoc,where,onSnapshot} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 
 let joinStatus;
@@ -80,17 +81,20 @@ if(chosenEvent.reviews.length>0){
         const reviewAuthor = await getDoc(doc(db,"users",reviewContent.data().authorId))
         console.log(reviewAuthor.data());
     
-        let reviewBlock = document.querySelector(".review-block");
-        let clonedReview = reviewBlock.cloneNode(true);
-        clonedReview.removeAttribute("hidden")
-        // clonedReview.style.visibility = "hidden";
-        reviewBlock.after(clonedReview);
-        clonedReview.querySelector(".review-username").innerHTML = reviewAuthor.data().username;
-        clonedReview.querySelector(".review-avatar").src = reviewAuthor.data().pfpURL;
-        // rating
+        if(reviewContent&&reviewAuthor){
+            let reviewBlock = document.querySelector(".review-block");
+            let clonedReview = reviewBlock.cloneNode(true);
+            clonedReview.removeAttribute("hidden")
+            // clonedReview.style.visibility = "hidden";
+            reviewBlock.after(clonedReview);
+            clonedReview.querySelector(".review-username").innerHTML = reviewAuthor.data().username;
+            clonedReview.querySelector(".review-avatar").src = reviewAuthor.data().pfpURL;
+            // rating
+    
+            clonedReview.querySelector(".review-rating").innerHTML = reviewContent.data().point;
+            clonedReview.querySelector(".review-text").innerHTML = reviewContent.data().description;
+        }
 
-        clonedReview.querySelector(".review-rating").src = reviewContent.data().point;
-        clonedReview.querySelector(".review-text").innerHTML = reviewContent.data().description;
 
     }
     console.log("i have reviews");
@@ -257,13 +261,14 @@ reverseGeo(chosenEvent.location)
 let currentUser = dbf.auth.currentUser;
 
 // get email from user authentication
-let currentUserEmail = currentUser.email;
+let currentUserEmail;
 
 let joinEvent;
 let leaveEvent;
 
 // if user IS logged in
 if(currentUser){
+    currentUserEmail = currentUser.email;
 
     let qw = query(collection(dbf.db, "users"), where("email", "==", currentUserEmail));
     let qsz = await getDocs(qw);
