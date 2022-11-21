@@ -4,10 +4,89 @@ import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.
 
 // loader fade-out speed
 let loaderFadeSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Profile-Page-Fade-In-Speed"));
-
+let popUp;
 // get current user
 let currentUser = dbf.auth.currentUser;
-let currentUserEmail = currentUser.email;
+let currentUserEmail;
+
+
+$(document).ready(
+    function(){
+
+
+
+    popUp = (popUpid, img, text) => {
+        console.log(popUpid);
+        console.log(img);
+        console.log(text);
+        let popup_id = popUpid; // change this to a unique name/identifier 🌸
+
+        // don't touch the next 4 lines
+        // (but still copy them!)
+        let clone_popup = $(".del-popup:first").clone();
+        clone_popup.removeAttr("popup-type");
+        clone_popup.attr("popup-type",popup_id);
+        $("body").prepend(clone_popup);
+
+        // remove existing <h3> text
+        $(`[popup-type='${popup_id}'] h3`).empty();
+        // $(".popup-msg").append(`<img src = ${img}>`);
+        // $(".popup-msg img").attr("src",img)
+        $(`<img src = ${img}>`).insertAfter($("h3"));
+        $(`<br>`).insertAfter($("img"));
+        $(`<br>`).insertAfter($("img"));
+
+
+        // $(".popup-msg").append("<br>");
+        // $(".popup-msg").append("<br>");
+        // customize your <h3> text
+        // $(`[popup-type='${popup_id}'] h3`).text(text); // 🌸
+        $(`[popup-type='${popup_id}'] h3`).html(`You have obtain the <span class="popup-event-name">${text}</span> badge!!`);
+
+
+        // customize your button 1 text
+        $(`[popup-type='${popup_id}'] #popup_action_1`).text("YAYY"); // 🌸
+
+
+        // customize your button 2 text
+        $(`[popup-type='${popup_id}'] #popup_action_2`).text("I'm button 2"); // 🌸
+        $("#popup_action_2").attr("hidden",true)
+
+
+        // fade in the pop-up
+        $(`[popup-type='${popup_id}']`).fadeIn(popupFadeSpeed);
+        
+        
+        /********************************************************************** */
+        /******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
+        /********************************************************************** */
+    
+        $(document).on("click", `[popup-type='${popup_id}'] #popup_action_1`, function(){
+            let that = this; // don't touch this line
+            // window.location.reload();
+
+            $(`[popup-type='${popup_id}']`).fadeOut(popupFadeSpeed);
+    
+            // do stuff 🌸
+        });
+    
+        /********************************************************************** */
+        /******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
+        /********************************************************************** */
+        $(document).on("click", `[popup-type='${popup_id}'] #popup_action_2`, function(){
+            let that = this; // don't touch this line
+    
+            // do stuff 🌸
+            // window.location.reload();
+    
+            // fade out the pop-up (if you want)
+            $(`[popup-type='${popup_id}']`).fadeOut(popupFadeSpeed);
+        });
+    }
+
+}
+)//end ready
+
 
 // let targetUser = localStorage.getItem(targetUserId)
 
@@ -134,9 +213,8 @@ if (currentUser) {
             if(badges[i].data().name=="firstHosting"){
                 if(!badges[i].data().userId.includes(currentUserId)){
                     dbf.addBadgeUser(badges[i].id, currentUserId);
-                    // popUp()
-                    popUp("https://github.com/ansonsow/4885_Buddy/blob/main/images/badges_01.png?raw=true", "first hosting")
-
+                    popUp("badgePopup" , "https://github.com/ansonsow/4885_Buddy/blob/main/images/badges_01.png?raw=true", "first hosting")
+                    $("[popup-type='badgePopup'] h3").html(`You have obtain the <span class="popup-event-name">hi</span> badge!!`);
                 }
             }
         }
@@ -154,7 +232,7 @@ if (currentUser) {
     }
 
     giveBadge();
-    // popUp("https://github.com/ansonsow/4885_Buddy/blob/main/images/badges_01.png?raw=true", "first hosting")
+
 
 
 
@@ -165,10 +243,27 @@ if (currentUser) {
     // }
 
 } else {
-    alert("you are not logged in")
-    setTimeout(()=>{
+    // alert("you are not logged in")
+    // setTimeout(()=>{
+    //     window.location.href="./login.html";
+    // },1000)
+    console.log("hihi");
+    // popUp("https://github.com/ansonsow/4885_Buddy/blob/main/images/badges_01.png?raw=true", "first hosting")
+    popUp("notLogIn" , "", "")
+    // <div js-include-html="../svg/HELLO.svg"></div>
+    $("[popup-type='notLogIn'] h3").html(`You are not login`);
+    $("[popup-type='notLogIn'] img").remove()
+    // $("<div>hihi</div>").insertAfter("[popup-type='notLogIn'] h3")
+    $("<div id='svg'><div js-include-html='../svg/sad_buddy.svg'></div></div>").insertAfter("[popup-type='notLogIn'] h3")
+    jsIncludeHTML()
+    $(`[popup-type='notLogIn'] #popup_action_1`).text("LogIn");
+    $(`[popup-type='notLogIn'] #popup_action_1`).click(function(){
         window.location.href="./login.html";
-    },1000)
+    });
+
+
+
+
 }
 
 // document.querySelector(".right-inner").style.height = "0px";
@@ -227,66 +322,81 @@ function numbersToStars(){
 
 
 
-function popUp(img, text){
-    $(document).ready(function(){
-        // let someButton = $(".oddly_specific_class"); // change this to whatever you're binding your popup trigger to
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function popUp(img, text){
+//     $(document).ready(function(){
+//         // let someButton = $(".oddly_specific_class"); // change this to whatever you're binding your popup trigger to
     
 
-            // remove existing <h3> text
-            $(".del-popup h3").empty();
-            $(".popup-msg").append("<img />");
-            $(".popup-msg").append("<br>");
-            $(".popup-msg").append("<br>");
+//             // remove existing <h3> text
+//             $(".del-popup h3").empty();
+//             $(".popup-msg").append("<img />");
+//             $(".popup-msg").append("<br>");
+//             $(".popup-msg").append("<br>");
 
-            // <span class="popup-event-name">${trashEventName}</span>
+//             // <span class="popup-event-name">${trashEventName}</span>
 
-            $(" #popup_action_2").each(function(){
-                $(this).appendTo($(this).parents(".popup-msg"));
-            })
+//             $(" #popup_action_2").each(function(){
+//                 $(this).appendTo($(this).parents(".popup-msg"));
+//             })
         
-            // customize your <h3> text
-            $(".del-popup h3").html(`You have obtain the <span class="popup-event-name">${text}</span> badge!!`);
-            // $(".popup-msg img").src(img)
-            $(".popup-msg img").attr("src",img)
+//             // customize your <h3> text
+//             $(".del-popup h3").html(`You have obtain the <span class="popup-event-name">${text}</span> badge!!`);
+//             // $(".popup-msg img").src(img)
+//             $(".popup-msg img").attr("src",img)
 
-            // var image = $("<img />", { 
+//             // var image = $("<img />", { 
                 
-            //     src: img,
-            //     alt: "badgeimg"
-            // });
-            // image.appendTo($(".del-popup"));
+//             //     src: img,
+//             //     alt: "badgeimg"
+//             // });
+//             // image.appendTo($(".del-popup"));
 
-            // customize your button 1 text
-            $("#popup_action_1").attr("hidden",true)
+//             // customize your button 1 text
+//             $("#popup_action_1").attr("hidden",true)
     
-            // customize your button 2 text
-            $("#popup_action_2").text("close");
+//             // customize your button 2 text
+//             $("#popup_action_2").text("close");
     
-            // fade in the pop-up
-            $(".del-popup").fadeIn(popupFadeSpeed);
+//             // fade in the pop-up
+//             $(".del-popup").fadeIn(popupFadeSpeed);
 
         
-        /********************************************************************** */
-        /******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
-        /********************************************************************** */
+//         /********************************************************************** */
+//         /******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
+//         /********************************************************************** */
     
-        $(document).on("click", "#popup_action_1", function(){
-            let that = this; // don't touch this line
-            console.log("aaa");
+//         $(document).on("click", "#popup_action_1", function(){
+//             let that = this; // don't touch this line
+//             console.log("aaa");
     
-            // do stuff
-        });
+//             // do stuff
+//         });
     
-        /********************************************************************** */
-        /******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
-        /********************************************************************** */
-        $(document).on("click", "#popup_action_2", function(){
-            let that = this; // don't touch this line
-            // giveBadge();
-            console.log("bbb");
-            window.location.reload();
-            // fade out the pop-up
-            $(".del-popup").fadeOut(popupFadeSpeed);
-        });
-    })//end ready
-}
+//         /********************************************************************** */
+//         /******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
+//         /********************************************************************** */
+//         $(document).on("click", "#popup_action_2", function(){
+//             let that = this; // don't touch this line
+//             // giveBadge();
+//             console.log("bbb");
+//             // window.location.reload();
+//             // fade out the pop-up
+//             $(".del-popup").fadeOut(popupFadeSpeed);
+//         });
+//     })//end ready
+// }

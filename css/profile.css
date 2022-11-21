@@ -78,6 +78,10 @@ nav {
     --Badges-Image-Size:7vw;
     --Badges-Spacing:1.5rem;
 
+
+    /* --popUp-Image-Margin:4.5rem; */
+
+
     /*-------------------------------*/
 
     --Mobile-Profile-Sections-Padding:5vmin;
@@ -246,6 +250,26 @@ h2.badges-title {
 .badge-label {
     margin-top:0.6em;
 }
+
+#svg{
+    border: 2px solid green;
+    /* background-color: green; */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+
+    /* display: block;
+    margin: auto;
+    align-items: center; */
+    /* position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%); */
+
 
 /*---------- FOOTER  ----------*/
 /* customized for PROFILE.html */
