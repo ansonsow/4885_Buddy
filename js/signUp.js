@@ -24,21 +24,26 @@ function awaitjQ(){
 
 function signup_popup(){
     $(document).ready(function(){
+        let the_signup_popup = $(".del-popup:first").clone();
+        the_signup_popup.removeAttr("popup-type");
+        the_signup_popup.attr("popup-type","sign-up-message");
+        $("body").prepend(the_signup_popup);
+
         document.getElementById("btnsignup").onclick=async ()=>{
-            $(".popup-msg h3").empty();
-            $("#popup_action_1").text("OK");
-            $("#popup_action_2").hide();
+            $("h3", the_signup_popup).empty();
+            $("#popup_action_1", the_signup_popup).text("OK");
+            $("#popup_action_2", the_signup_popup).hide();
             $("#btnsignup").text("Processing...");
             $("#btnsignup").addClass("push-hovered");
 
             // if password =/= confirmed password
             if(psw.value != pswRepeat.value) {
                 // noteToUser.innerHTML="Password and Confirmed password not the same"
-                $(".popup-msg h3").text("Passwords do not match.");
-                $(".del-popup").fadeIn(popupFadeSpeed);
+                $("h3", the_signup_popup).text("Passwords do not match.");
+                the_signup_popup.fadeIn(popupFadeSpeed);
 
-                $(document).on("click", "#popup_action_1", function(){
-                    $(".del-popup").fadeOut(popupFadeSpeed);
+                $(document).on("click", "[popup-type='sign-up-message'] #popup_action_1", function(){
+                    the_signup_popup.fadeOut(popupFadeSpeed);
                     $("#btnsignup").text("Sign Up");
                     $("#btnsignup").removeClass("push-hovered");
                 });
@@ -57,34 +62,34 @@ function signup_popup(){
                             // alert("successfully signed up")
 
                             // account successfully created
-                            $(".popup-msg h3").html(`Account created.<br>Thank you for joining us, <span>${username.value}</span>!`);
-                            $("#popup_action_1").text("Log In");
-                            $(".del-popup").fadeIn(popupFadeSpeed);
+                            $("h3", the_signup_popup).html(`Account created.<br>Thank you for joining us, <span>${username.value}</span>!`);
+                            $("#popup_action_1", the_signup_popup).text("Log In");
+                            the_signup_popup.fadeIn(popupFadeSpeed);
 
-                            $(document).on("click", "#popup_action_1", function(){
+                            $(document).on("click", "[popup-type='sign-up-message'] #popup_action_1", function(){
                                 window.location.href="./login.html";
                             });
                             
                         } else {
                             // if email already exists
                             if(valStr.indexOf("email-already-in-use") > -1){
-                                $(".popup-msg h3").html("Seems like you've already registered with us.<br>Please log in to continue!");
-                                $("#popup_action_1").text("Log In");
-                                $(".del-popup").fadeIn(popupFadeSpeed)
+                                $("h3", the_signup_popup).html("Seems like you've already registered with us.<br>Please log in to continue!");
+                                $("#popup_action_1", the_signup_popup).text("Log In");
+                                the_signup_popup.fadeIn(popupFadeSpeed)
 
-                                $(document).on("click", "#popup_action_1", function(){
+                                $(document).on("click", "[popup-type='sign-up-message'] #popup_action_1", function(){
                                     window.location.href="./login.html";
                                 });
                             }
 
                             // if password is less than 6 characters
                             else if(valStr.indexOf("weak-password") > -1){
-                                $(".popup-msg h3").text("Your password must be at last 6 characters long.");
-                                $("#popup_action_1").text("OK");
-                                $(".del-popup").fadeIn(popupFadeSpeed);
+                                $("h3", the_signup_popup).text("Your password must be at last 6 characters long.");
+                                $("#popup_action_1", the_signup_popup).text("OK");
+                                the_signup_popup.fadeIn(popupFadeSpeed);
 
-                                $(document).on("click", "#popup_action_1", function(){
-                                    $(".del-popup").fadeOut(popupFadeSpeed);
+                                $(document).on("click", "[popup-type='sign-up-message'] #popup_action_1", function(){
+                                    the_signup_popup.fadeOut(popupFadeSpeed);
                                     $("#btnsignup").text("Sign Up");
                                     $("#btnsignup").removeClass("push-hovered");
                                 });
@@ -93,12 +98,12 @@ function signup_popup(){
                             // other
                             else if(valStr.indexOf("invalid-email") > -1){
                                 // noteToUser.innerHTML = value.substring(' ' + 10);
-                                $(".popup-msg h3").text("Please check your information and try again!");
-                                $("#popup_action_1").text("OK");
-                                $(".del-popup").fadeIn(popupFadeSpeed);
+                                $("h3", the_signup_popup).text("Please check your information and try again!");
+                                $("#popup_action_1", the_signup_popup).text("OK");
+                                the_signup_popup.fadeIn(popupFadeSpeed);
 
-                                $(document).on("click", "#popup_action_1", function(){
-                                    $(".del-popup").fadeOut(popupFadeSpeed);
+                                $(document).on("click", "[popup-type='sign-up-message'] #popup_action_1", function(){
+                                    the_signup_popup.fadeOut(popupFadeSpeed);
                                     $("#btnsignup").text("Sign Up");
                                     $("#btnsignup").removeClass("push-hovered");
                                 });
@@ -111,12 +116,12 @@ function signup_popup(){
                     console.log("error: " + error)                    
                     
                     // other error catching
-                    $(".popup-msg h3").text("We're sorry, please try again!");
-                    $("#popup_action_1").text("OK");
-                    $(".del-popup").fadeIn(popupFadeSpeed);
+                    $("h3", the_signup_popup).text("We're sorry, please try again!");
+                    $("#popup_action_1", the_signup_popup).text("OK");
+                    the_signup_popup.fadeIn(popupFadeSpeed);
 
-                    $(document).on("click", "#popup_action_1", function(){
-                        $(".del-popup").fadeOut(popupFadeSpeed);
+                    $(document).on("click", "[popup-type='sign-up-message'] #popup_action_1", function(){
+                        the_signup_popup.fadeOut(popupFadeSpeed);
                         $("#btnsignup").text("Sign Up");
                         $("#btnsignup").removeClass("push-hovered");
                     });

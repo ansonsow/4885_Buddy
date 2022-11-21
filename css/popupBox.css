@@ -107,7 +107,7 @@
 
 @media(max-width:600px){
     :root {
-        --Popup-Box-Width:80vw;
-        --Popup-Box-Padding:2.6rem;
+        --Popup-Box-Width:80vw!important;
+        --Popup-Box-Padding:2.6rem!important;
     }
 }

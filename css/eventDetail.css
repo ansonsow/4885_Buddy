@@ -491,7 +491,7 @@ body {
     display:none;
 }
 
-#popup_action_1 {
+.popup-msg.congrats-mode #popup_action_1 {
     display:none;
 }
 

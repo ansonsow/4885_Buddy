@@ -321,6 +321,8 @@ if(currentUser){
 }//end if(currentUser)
 
 $(document).ready(function(){
+    $(".del-popup:not([popup-type]):first").attr("popup-type","event-detail");
+    let eventDetailPopup = $("[popup-type='event-detail']");
 
     /********************************************************************** */
     /************* JOIN EVENT BUTTON CLICK (activate popup) *************** */
@@ -328,24 +330,24 @@ $(document).ready(function(){
     $(".join-event").click(function(){
         if(joinStatus == "not joined"){    
             // remove existing <h3> text
-            $(".del-popup h3").empty();
+            $("h3", eventDetailPopup).empty();
 
             // <h3> text
-            $(".del-popup h3").html("Way to go, Buddy!<br><small>We added you to the event list!</small>");
+            $("h3", eventDetailPopup).html("Way to go, Buddy!<br><small>We added you to the event list!</small>");
 
-            $(".popup-msg").addClass("congrats-mode")
+            $(".popup-msg", eventDetailPopup).addClass("congrats-mode")
 
             // button text
-            $("#popup_action_2").text("Dismiss");
+            $("#popup_action_2", eventDetailPopup).text("Dismiss");
 
-            $(".congrats-svg").insertAfter($(".del-popup h3"));
-            $(".congrats-svg").show();
-            $(".congrats-svg svg").css("display","block");
+            $(".congrats-svg").insertAfter($("h3", eventDetailPopup));
+            $(".congrats-svg", eventDetailPopup).show();
+            $(".congrats-svg svg", eventDetailPopup).css("display","block");
             
-            $("#popup_action_1").hide();
+            $("#popup_action_1", eventDetailPopup).hide();
 
             // fade in the pop-up
-            $(".del-popup").fadeIn(popupFadeSpeed);
+            eventDetailPopup.fadeIn(popupFadeSpeed);
 
             // join the event ⭐⭐⭐
             joinEvent();
@@ -355,30 +357,30 @@ $(document).ready(function(){
         
         else {
             // remove existing <h3> text
-            $(".del-popup h3").empty();
+            $("h3", eventDetailPopup).empty();
 
             // <h3> text
-            $(".del-popup h3").html("Are you sure you want to leave this event?");
+            $("h3", eventDetailPopup).text("Are you sure you want to leave this event?");
 
-            $(".popup-msg").addClass("delete-mode");
+            $(".popup-msg", eventDetailPopup).addClass("delete-mode");
 
-            $("#popup_action_1").show();
-            $("#popup_action_1").text("Leave");
-            $("#popup_action_2").text("Cancel");
+            $("#popup_action_1", eventDetailPopup).show();
+            $("#popup_action_1", eventDetailPopup).text("Leave");
+            $("#popup_action_2", eventDetailPopup).text("Cancel");
 
             // fade in the pop-up
-            $(".del-popup").fadeIn(popupFadeSpeed);
+            eventDetailPopup.fadeIn(popupFadeSpeed);
         }
     })
 
     /********************************************************************** */
     /*********** DISMISS POPUP (user just left the event) ***************** */
     /********************************************************************** */
-    $(document).on("click", ".delete-mode #popup_action_1", function(){
+    $(document).on("click", "[popup-type='event-detail'] .delete-mode #popup_action_1", function(){
         let that = this; // don't touch this line
 
         // fade out the pop-up
-        $(".del-popup").fadeOut(popupFadeSpeed);
+        eventDetailPopup.fadeOut(popupFadeSpeed);
 
         // leave the event ⭐⭐⭐
         leaveEvent();
@@ -389,7 +391,7 @@ $(document).ready(function(){
                 $(this).html(`Join the Event`)
             })
 
-            $(".popup-msg").removeClass("delete-mode");
+            $(".popup-msg", eventDetailPopup).removeClass("delete-mode");
         },popupFadeSpeed);
 
         joinStatus = "not joined";
@@ -398,24 +400,24 @@ $(document).ready(function(){
     /********************************************************************** */
     /******** DISMISS CONGRATS POPUP (user just joined the event) ********* */
     /********************************************************************** */
-    $(document).on("click", "#popup_action_2", function(){
+    $(document).on("click", "[popup-type='event-detail'] #popup_action_2", function(){
         let that = this; // don't touch this line
 
         // fade out the pop-up
-        $(".del-popup").fadeOut(popupFadeSpeed);
+        eventDetailPopup.fadeOut(popupFadeSpeed);
 
         // change "JOIN EVENT" button text to "JOINED"
         setTimeout(() => {
             $(".join-event").each(function(){
                 $(this).addClass("joined");
-                if($(".popup-msg").hasClass("delete-mode")){
+                if($(".popup-msg", eventDetailPopup).hasClass("delete-mode")){
                     //
-                } else if($(".popup-msg").hasClass("congrats-mode")){
+                } else if($(".popup-msg", eventDetailPopup).hasClass("congrats-mode")){
                     $(this).html(`Event Joined <i class="fa-solid fa-check"></i>`)
                 }                
             })
 
-            $(".popup-msg").removeClass("congrats-mode delete-mode")
+            $(".popup-msg", eventDetailPopup).removeClass("congrats-mode delete-mode")
         },popupFadeSpeed)
 
         

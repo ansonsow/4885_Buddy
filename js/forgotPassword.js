@@ -25,14 +25,19 @@ function awaitjQ(){
 
 function result_popup(){
     $(document).ready(function(){
-        $("#popup_action_2").hide();
+        let shacoPopup = $(".del-popup:first").clone();
+        shacoPopup.removeAttr("popup-type");
+        shacoPopup.attr("popup-type","forgot-password");
+        $("body").prepend(shacoPopup);
+
+        $("#popup_action_2", shacoPopup).hide();
         
         document.getElementById("reset").onclick=async (e)=>{
             e.preventDefault();
             document.getElementById("reset").textContent = "Processing...";
             document.getElementById("reset").classList.add("push-hovered")
 
-            $(".popup-msg h3").empty();
+            $("h3", shacoPopup).empty();
 
             let email = document.getElementById("email").value;
             // console.log(email);
@@ -40,12 +45,12 @@ function result_popup(){
             sendPasswordResetEmail(dbf.auth, email)
             .then(() => {
                 console.log("Email exists, password reset sent to that email.");
-                $(".popup-msg h3").text("Password reset email sent!");
-                $("#popup_action_1").text("Log In");
-                $(".del-popup").fadeIn(popupFadeSpeed);
+                $("h3", shacoPopup).text("Password reset email sent!");
+                $("#popup_action_1", shacoPopup).text("Log In");
+                shacoPopup.fadeIn(popupFadeSpeed);
                 // document.getElementById("noteToUser").innerHTML = "password reset email sent"
 
-                $(document).on("click", "#popup_action_1", function(){
+                $(document).on("click", "[popup-type='forgot-password'] #popup_action_1", function(){
                     window.location.href="./login.html";
                 });
             })
@@ -55,16 +60,16 @@ function result_popup(){
                 console.log(error.message.substring(' ' + 10));
 
                 if(email.indexOf("@") < 0){
-                    $(".popup-msg h3").html("Please enter a valid email address.");
+                    $("h3", shacoPopup).html("Please enter a valid email address.");
                 } else {
-                    $(".popup-msg h3").html("Email not found.<br>Please try again.");
+                    $("h3", shacoPopup).html("Email not found.<br>Please try again.");
                 }
 
-                $("#popup_action_1").text("OK");
-                $(".del-popup").fadeIn(popupFadeSpeed)
+                $("#popup_action_1", shacoPopup).text("OK");
+                shacoPopup.fadeIn(popupFadeSpeed)
                 // document.getElementById("noteToUser").innerHTML = error.message.substring(' ' + 10);
 
-                $(document).on("click", "#popup_action_1", function(){
+                $(document).on("click", "[popup-type='forgot-password'] #popup_action_1", function(){
                     $(".del-popup").fadeOut(popupFadeSpeed);
                     $("#reset").text("Send");
                     $("#reset").removeClass("push-hovered")

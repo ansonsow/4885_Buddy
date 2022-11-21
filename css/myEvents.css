@@ -23,16 +23,16 @@
     margin-top: var(--reviewButtonPadding);
 }
 
-.del-popup{
+[popup-type="review"]{
     align-items: center;
     text-align: center;
 }
 
-.del-popup h3{
+[popup-type="review"] h3 {
     text-align: left;
 }
 
-.del-popup div{
+[popup-type="review"] div {
     text-align: left;
 }
 
@@ -41,23 +41,23 @@
     text-align: left;
 }
 
-.del-popup i {
+[popup-type="review"] i {
     font-size: var(--reviewRateStarsSize);
     color:var(--Secondary-Light);
     padding-right: var(--reviewRateStarsPaddingRight);
 }
 
-.del-popup #rate{
+[popup-type="review"] #rate{
     font-size: var(--reviewRateFontSize);
     font-weight: bold;
 }
 
-.del-popup #desc{
+[popup-type="review"] #desc{
     font-size: var(--reviewDescFontSize);
     font-weight: bold;
 }
 
-.del-popup textarea{
+[popup-type="review"] textarea{
     height: 20vh; 
     align-items: center;
     width: var(--reviewTextAreaWidth);
@@ -65,7 +65,8 @@
     border-radius: var(--reviewTextAreaBorderRadius);
     padding:var(--reviewTextAreaBorderRadius);
 }
-.del-popup .no-bottom-margin {
+
+.no-bottom-margin {
     margin-bottom: 0;
 }
 
@@ -75,6 +76,4 @@
         padding-right:calc(var(--Mobile-Event-Details-Padding-Right)/2);
         max-height:100%;
     }
-
-
 }

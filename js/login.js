@@ -27,9 +27,14 @@ function awaitjQ(){
 
 function login_success_popup(){
     $(document).ready(function(){
-        $(".del-popup h3").empty();
-        $("#popup_action_1").text("OK");
-        $("#popup_action_2").hide();
+        let prophet = $(".del-popup:first").clone();
+        prophet.removeAttr("popup-type");
+        prophet.attr("popup-type","login-message");
+        $("body").prepend(prophet);
+
+        $("h3", prophet).empty();
+        $("#popup_action_1", prophet).text("OK");
+        $("#popup_action_2", prophet).hide();
 
         document.getElementById("logIn").onclick=async (e)=>{
             e.preventDefault;
@@ -62,15 +67,15 @@ function login_success_popup(){
                     } else {
                         if(typeof yoozaName !== "undefined"){
                             clearInterval(glihp);
-                            $(".popup-msg h3").html(`Login successful.<br>Hello, <span>${yoozaName}</span>!`);
-                            $(".del-popup").fadeIn(popupFadeSpeed)
+                            $("h3", prophet).html(`Login successful.<br>Hello, <span>${yoozaName}</span>!`);
+                            prophet.fadeIn(popupFadeSpeed)
                         }
                     }
                 },0);
 
                 // alert("successfully logged in")
                 
-                $(document).on("click", "#popup_action_1", function(){
+                $(document).on("click", "[popup-type='login-message'] #popup_action_1", function(){
                     window.location.href="../html/main.html";
                 });
             })
@@ -78,17 +83,17 @@ function login_success_popup(){
                 console.log(error.message.substring(' ' + 10));
                 // noteToUser.innerHTML = error.message.substring(' ' + 10);
 
-                $(".popu-msg h3").empty();
-                $(".popup-msg h3").html("Account not found.<br>Please try again.");
+                $("h3", prophet).empty();
+                $("h3", prophet).html("Account not found.<br>Please try again.");
 
-                $("#popup_action_1").text("OK");
+                $("#popup_action_1", prophet).text("OK");
                 
                 setTimeout(() => {
-                    $(".del-popup").fadeIn(popupFadeSpeed);
+                    prophet.fadeIn(popupFadeSpeed);
                 },699)
 
-                $(document).on("click", "#popup_action_1", function(){
-                    $(".del-popup").fadeOut(popupFadeSpeed);
+                $(document).on("click", "[popup-type='login-message'] #popup_action_1", function(){
+                    prophet.fadeOut(popupFadeSpeed);
                     $("#logIn").removeClass("push-hovered");
                     $("#logIn").text("Log In");
                 });
