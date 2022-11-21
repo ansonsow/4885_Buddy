@@ -52,6 +52,7 @@ querySnapshot.forEach((doc) => {
     eventOBJ.location = doc.data().location;
     eventOBJ.price = doc.data().price;
     eventOBJ.host = doc.data().hostId;
+    eventOBJ.reviews = doc.data().reviews
 
     allEvents.push(eventOBJ);
 });
@@ -68,7 +69,36 @@ for(let i =0;i<allEvents.length;i++){
 }
 
 
+console.log(chosenEvent);
+if(chosenEvent.reviews.length>0){
+    for(let i = 0 ; i < chosenEvent.reviews.length;i++){
+        console.log(chosenEvent.reviews[i]);
+        document.querySelector(".reviews-section").removeAttribute("hidden");
+    
+        const reviewContent = await getDoc(doc(db, "reviews", chosenEvent.reviews[i]));
+        console.log(reviewContent.data());
+        const reviewAuthor = await getDoc(doc(db,"users",reviewContent.data().authorId))
+        console.log(reviewAuthor.data());
+    
+        let reviewBlock = document.querySelector(".review-block");
+        let clonedReview = reviewBlock.cloneNode(true);
+        clonedReview.removeAttribute("hidden")
+        // clonedReview.style.visibility = "hidden";
+        reviewBlock.after(clonedReview);
+        clonedReview.querySelector(".review-username").innerHTML = reviewAuthor.data().username;
+        clonedReview.querySelector(".review-avatar").src = reviewAuthor.data().pfpURL;
+        // rating
 
+        clonedReview.querySelector(".review-rating").src = reviewContent.data().point;
+        clonedReview.querySelector(".review-text").innerHTML = reviewContent.data().description;
+
+    }
+    console.log("i have reviews");
+
+
+}else{
+    console.log("i dont have reviews");
+}
 /********************************************************************** */
 /**************************** EVENT ID ******************************** */
 /********************************************************************** */
@@ -506,12 +536,12 @@ let reviewStretchWidth;
 
 $(document).ready(function(){
     // random avatar
-    $(".review-avatar").each(function(e){
-        if(e !== 0){
-            let rando = Math.floor(Math.random() * (420 - 69 + 1) + 69);
-            $(this).attr("src",`//source.unsplash.com/${rando}x${rando}`);
-        }
-    })
+    // $(".review-avatar").each(function(e){
+    //     if(e !== 0){
+    //         let rando = Math.floor(Math.random() * (420 - 69 + 1) + 69);
+    //         $(this).attr("src",`//source.unsplash.com/${rando}x${rando}`);
+    //     }
+    // })
 
     // if multiple slides are NOT needed,
     // hide the slider arrows
