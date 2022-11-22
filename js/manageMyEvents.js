@@ -4,6 +4,15 @@ import {query, collection, doc, getDocs,getDoc,where} from 'https://www.gstatic.
 // import tt from "@tomtom-international/web-sdk-maps";
 
 
+$(document).ready(function(){
+    let manageEventsPopup = $(".del-popup:first").clone();
+    manageEventsPopup.removeAttr("popup-type");
+    manageEventsPopup.attr("popup-type","delete-confirmation");
+    $("body").prepend(manageEventsPopup)
+});
+
+let popupForDelete = document.querySelector("[popup-type='delete-confirmation']");
+
 let currentUser = dbf.auth.currentUser;
 
 
@@ -147,8 +156,9 @@ if(currentUser){
 
         
         /*---- 🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️ ----*/
-        popup_action_1.addEventListener("click", async () => {
-            let trashEventID = popup_action_1.getAttribute("event-id");
+        let popupDeleteButton = popupForDelete.querySelector("#popup_action_1");
+        popupDeleteButton.addEventListener("click", async () => {
+            let trashEventID = popupDeleteButton.getAttribute("event-id");
             let users = query(collection(dbf.db, "users"));
             const usersSnapShot = await getDocs(users);
             usersSnapShot.forEach((doc)=>{
@@ -444,20 +454,20 @@ if(currentUser){
 
             // get TBD event's name
             let trashEventName = $(that).parents(".event-block").find(".event-name").text();
+            
+            $("[popup-type='delete-confirmation']").fadeIn(popupFadeSpeed);
 
-            $(".del-popup").fadeIn(popupFadeSpeed);
-
-            $(".del-popup h3").empty();
-            $(".del-popup h3").html(`Are you sure you want to delete <span class="popup-event-name">${trashEventName}</span>?`);
-            $(".del-popup #popup_action_1").attr("event-id",trashEventID);
+            $("[popup-type='delete-confirmation'] h3").empty();
+            $("[popup-type='delete-confirmation'] h3").html(`Are you sure you want to delete <span class="popup-event-name">${trashEventName}</span>?`);
+            $("[popup-type='delete-confirmation'] #popup_action_1").attr("event-id",trashEventID);
         });
 
         /********************************************************************** */
         /******* CANCEL BUTTON CLICK ****************************************** */
         /********************************************************************** */
-        $(document).on("click", "#popup_action_2", function(){
+        $(document).on("click", "[popup-type='delete-confirmation'] #popup_action_2", function(){
             let that = this;
-            $(".del-popup").fadeOut(popupFadeSpeed);
+            $("[popup-type='delete-confirmation']").fadeOut(popupFadeSpeed);
         });
     
         /********************************************************************** */
@@ -465,11 +475,11 @@ if(currentUser){
         /********************************************************************** */
         let removeCardSpeed = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--Remove-Event-Speed"));
     
-        $(document).on("click", "#popup_action_1", function(){
+        $(document).on("click", "[popup-type='delete-confirmation'] #popup_action_1", function(){
 
             let that = this;
 
-            $(".del-popup").fadeOut(popupFadeSpeed);
+            $("[popup-type='delete-confirmation']").fadeOut(popupFadeSpeed);
 
             let trashEventID = $(that).attr("event-id");
 
@@ -519,8 +529,3 @@ if(currentUser){
         window.location.href="./login.html";
     },1000)
 }
-
-
-
-
-
