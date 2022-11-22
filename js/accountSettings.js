@@ -9,17 +9,18 @@ import {sendPasswordResetEmail, deleteUser,verifyPasswordResetCode, confirmPassw
 document.getElementById("delete").addEventListener('click', e=>{
         e.preventDefault();
     const user = auth.currentUser;
+    
+    
+        deleteUser(user).then(() => {
+        alert("Your account is deleted, See you again later!");
+        console.log("See you again later!");
+        setTimeout(()=>{
+            window.location.href="./signUp.html";
+        },1000)
 
-deleteUser(user).then(() => {
-  alert("Your account is deleted, See you again later!");
-  console.log("See you again later!");
-  setTimeout(()=>{
-    window.location.href="./signUp.html";
-},1000)
-
-}).catch((error) => {
-    console.log(error);
-});
+        }).catch((error) => {
+            console.log(error);
+        });
 
 });
 //-------------------------------------------
@@ -78,6 +79,71 @@ document.getElementById("imageupload").addEventListener('click', () =>{
     });
     reader.readAsDataURL(this.files[0]);
 })
+
+//=============To Update User Profile===============================================================
+
+const firstname = document.getElementById('firstname');
+const secondname = document.getElementById('secondname');
+const username = document.getElementById('username');
+// const photoField = document.getElementById('photo');
+const email = document.getElementsByTagName('email');
+const description = document.getElementById('description');
+
+
+auth.onAuthStateChanged(user => {
+    console.log(user);
+})
+
+const editInformation = () => {
+    const newName = {
+        newDisplayName: username.value,
+        // newPhotoURL: photoField.value
+    };
+    const newEmail = email.value;
+    // const newFirstname = firstname.value;
+    // const newSecondname = secondname.value;
+    // const newDescription = description.value;
+    //Holds all the information about the current signed in user
+    const user = auth.currentUser;
+    changeNameAndPhoto(user, newName);
+
+    //Changes only email
+    if(newEmail) {
+        const credential = createCredential(user);
+        changeEmail(user, credential, newEmail);
+    }
+    
+}
+
+const changeNameAndPhoto = (user, newName) => {
+    // const {newDisplayName, newPhotoURL} = newNameAndPhoto;
+    const {newDisplayName} = newName;
+    //Changes displayName and photoURL properties
+    if(newDisplayName)
+        user.updateProfile({
+            displayName: newDisplayName,
+        })
+        .then(() => {
+            console.log('Profile Updated Successfully !');
+        })
+        .catch(error => {
+            console.error(error);
+        })
+}
+
+const changeEmail = (user, credential, newEmail) => {
+    user.reauthenticateWithCredential(credential)
+    .then(() => {
+        user.updateEmail(newEmail);
+        console.log('Email Updated!');
+    })
+    .catch(error => {
+        console.error(error);
+    })
+}
+
+
+update.addEventListener('click', editInformation);
 
 //--------------------------------------------------------------------------------------------------------------
 //The below code is to provide the user the ability to go back to the app after the action is completed.
