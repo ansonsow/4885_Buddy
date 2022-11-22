@@ -327,7 +327,7 @@ const getTimeEpoch = () => {
 
 // ============================================== add new Event ==============================================
 // dont know how to do date and / photo yet
-export async function writeEventData(name, hostId, price,pfpURL, location, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag, review){
+export async function writeEventData(name, hostId, price,pfpURL, location, dateOfEvent, description, numOfPeople, maxCapacity, eventStatus, tag, review, messageBoard){
   try {
     const docRef = await addDoc(collection(db, "events"), {
     name: name,
@@ -343,6 +343,7 @@ export async function writeEventData(name, hostId, price,pfpURL, location, dateO
     eventStatus: eventStatus,
     tags: tag,
     reviews: review,
+    messageBoard: messageBoard
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {

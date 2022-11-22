@@ -8,8 +8,8 @@ import $ from "./jquery.module.js";
 import '../node_modules/regenerator-runtime/runtime.js'
 
 
-function createEvent(name, currentUserId, price, img , location, formattedDate, desc , number ,capacity, eventStatus , category, []){
-  writeEventData(name, currentUserId, price, img , location, formattedDate, desc, number , capacity, eventStatus , category, [])
+function createEvent(name, currentUserId, price, img , location, formattedDate, desc , number ,capacity, eventStatus , category, [],[]){
+  writeEventData(name, currentUserId, price, img , location, formattedDate, desc, number , capacity, eventStatus , category, [],[])
 }
 
 
