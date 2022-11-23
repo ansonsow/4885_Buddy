@@ -2,7 +2,7 @@ import{logout } from "./app.js";
 // import $ from "./jquery.module.js";
 import * as dbf from "./app.js";
 import {storage, auth, db, writeEventData, writeUserData} from './app.js';
-import {sendPasswordResetEmail, deleteUser,verifyPasswordResetCode, confirmPasswordReset} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+import {sendPasswordResetEmail, deleteUser,verifyPasswordResetCode, confirmPasswordReset, updateProfile, updateEmail} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
 
 //------------------ To Delete User Account --------------------------
 
@@ -82,68 +82,42 @@ document.getElementById("imageupload").addEventListener('click', () =>{
 
 //=============To Update User Profile===============================================================
 
-const firstname = document.getElementById('firstname');
-const secondname = document.getElementById('secondname');
-const username = document.getElementById('username');
-// const photoField = document.getElementById('photo');
-const email = document.getElementsByTagName('email');
-const description = document.getElementById('description');
-
-
-auth.onAuthStateChanged(user => {
-    console.log(user);
-})
-
-const editInformation = () => {
-    const newName = {
-        newDisplayName: username.value,
-        // newPhotoURL: photoField.value
-    };
-    const newEmail = email.value;
-    // const newFirstname = firstname.value;
-    // const newSecondname = secondname.value;
-    // const newDescription = description.value;
-    //Holds all the information about the current signed in user
+document.getElementById('update').addEventListener('click', (e)=>{
+    e.preventDefault();
     const user = auth.currentUser;
-    changeNameAndPhoto(user, newName);
+    const newUsername = document.getElementById('username').value;
+    const newEmail = document.getElementById('email').value;
+    console.log("These are user given values!");
+    console.log("New Username is : " + newUsername);
+    console.log("New Email is : " + newEmail);
 
-    //Changes only email
-    if(newEmail) {
-        const credential = createCredential(user);
-        changeEmail(user, credential, newEmail);
+    if (user !== null){
+        user.providerData.forEach((profile) => {
+            console.log("These are fetched from firebase!");
+            console.log("Sign-in provider : " + profile.providerId);
+            console.log("Provider-specific UID: " + profile.uid);
+            console.log("Old email is : "+ profile.email);
+            console.log("old username is : " + profile.displayName);
+
+        })
     }
-    
-}
-
-const changeNameAndPhoto = (user, newName) => {
-    // const {newDisplayName, newPhotoURL} = newNameAndPhoto;
-    const {newDisplayName} = newName;
-    //Changes displayName and photoURL properties
-    if(newDisplayName)
-        user.updateProfile({
-            displayName: newDisplayName,
-        })
-        .then(() => {
-            console.log('Profile Updated Successfully !');
-        })
-        .catch(error => {
-            console.error(error);
-        })
-}
-
-const changeEmail = (user, credential, newEmail) => {
-    user.reauthenticateWithCredential(credential)
-    .then(() => {
-        user.updateEmail(newEmail);
-        console.log('Email Updated!');
-    })
-    .catch(error => {
-        console.error(error);
-    })
-}
-
-
-update.addEventListener('click', editInformation);
+    updateEmail(user, newEmail).then(() => {
+        console.log("New email updated to databse: " + newEmail);
+      }).catch((error) => {
+        console.log(error);
+      });
+    updateProfile(user, {
+        displayName: newUsername,
+        email : newEmail,
+    }).then(()=>{
+        alert("Profile updated with recent changes!");
+        console.log('Profile Updated!');
+        console.log('New Display Name is:' + displayName);
+        console.log('New Email address is:' + email);
+    }).catch((error)=>{
+        console.log(error);
+    });
+});
 
 //--------------------------------------------------------------------------------------------------------------
 //The below code is to provide the user the ability to go back to the app after the action is completed.
