@@ -41,11 +41,16 @@
     <link href="../css/footer.css" rel="stylesheet">
 
     <script>
-        // if (!navigator.serviceWorker) {
-            
-        // }else{
-        //     navigator.serviceWorker.register('../sw-load.js')
-        // }
+        if ('serviceWorker' in navigator) { //if browser supports Service worker
+        // assuming sw.js is our service worker file in the same directory
+        navigator.serviceWorker.register('../sw-load.js')
+        .then( function (reg) {
+        console.log(`Service Worker Registration`);
+        })
+        .catch( function (error) {
+        console.log(`Service Worker Error (${error})`);
+        });
+        }
 
     </script>
 
