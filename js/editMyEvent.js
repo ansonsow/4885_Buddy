@@ -8,6 +8,8 @@ import {ref, uploadBytes,getDownloadURL} from 'https://www.gstatic.com/firebasej
 let testEventId = "mvSF9RKBBnOPY0kcuQ8R";
 //this page's event id 
 
+let targetEventId;
+
 targetEventId = localStorage.getItem(targetEventId);
 let currentUser = dbf.auth.currentUser;
 let currentUserId;
@@ -337,35 +339,40 @@ if (currentUser) {
 }//end if:currentUser
 
 $(document).ready(function(){
-    nothingsChanged = function(customText){
-        $("#popup_action_2").hide();
-        $(".del-popup h3").html(`Your <span>${customText}</span> is the same.`);
-        $("#popup_action_1").text("OK");
-        $(".del-popup").fadeIn(popupFadeSpeed);
+    let editEventPopup = $(".del-popup:first").clone();
+    editEventPopup.removeAttr("popup-type");
+    editEventPopup.attr("popup-type","editEvent");
+    $("body").prepend(editEventPopup);
 
-        $(document).on("click", "#popup_action_1", function(){
-            $(".del-popup").fadeOut(popupFadeSpeed);
+    nothingsChanged = function(customText){
+        $("[popup-type='editEvent'] #popup_action_2").hide();
+        $("[popup-type='editEvent'] h3").html(`Your <span>${customText}</span> is the same.`);
+        $("[popup-type='editEvent'] #popup_action_1").text("OK");
+        $("[popup-type='editEvent']").fadeIn(popupFadeSpeed);
+
+        $(document).on("click", "[popup-type='editEvent'] #popup_action_1", function(){
+            $("[popup-type='editEvent']").fadeOut(popupFadeSpeed);
         });
     }
 
     cantBeEmpty = function(customTextA, customTextB){
-        $("#popup_action_2").hide();
-        $(".del-popup h3").html(`<span>${customTextA}</span> cannot be ${customTextB}!`);
-        $("#popup_action_1").text("OK");
-        $(".del-popup").fadeIn(popupFadeSpeed);
+        $("[popup-type='editEvent'] #popup_action_2").hide();
+        $("[popup-type='editEvent'] h3").html(`<span>${customTextA}</span> cannot be ${customTextB}!`);
+        $("[popup-type='editEvent'] #popup_action_1").text("OK");
+        $("[popup-type='editEvent']").fadeIn(popupFadeSpeed);
 
-        $(document).on("click", "#popup_action_1", function(){
-            $(".del-popup").fadeOut(popupFadeSpeed);
+        $(document).on("click", "[popup-type='editEvent'] #popup_action_1", function(){
+            $("[popup-type='editEvent']").fadeOut(popupFadeSpeed);
         });
     }
 
     areYouSure = function(customText, whatURL){
-        $(".del-popup h3").html(`Are you sure you want to delete ${customText}?`);
-        $("#popup_action_1").text("Delete");
-        $("#popup_action_2").text("Cancel");
-        $(".del-popup").fadeIn(popupFadeSpeed);
+        $("[popup-type='editEvent'] h3").html(`Are you sure you want to delete ${customText}?`);
+        $("[popup-type='editEvent'] #popup_action_1").text("Delete");
+        $("[popup-type='editEvent'] #popup_action_2").text("Cancel");
+        $("[popup-type='editEvent']").fadeIn(popupFadeSpeed);
 
-        $(document).on("click", "#popup_action_1", function(){
+        $(document).on("click", "#[popup-type='editEvent'] #popup_action_1", function(){
             let that = this;
             removeEventImage(targetEventId,whatURL);
 
@@ -376,18 +383,18 @@ $(document).ready(function(){
             },1000)
         });
 
-        $(document).on("click", "#popup_action_2", function(){
-            $(".del-popup").fadeOut(popupFadeSpeed);
+        $(document).on("click", "[popup-type='editEvent'] #popup_action_2", function(){
+            $("[popup-type='editEvent']").fadeOut(popupFadeSpeed);
         });
     }
 
     saveOK = function(){
-        $("#popup_action_2").hide();
-        $(".del-popup h3").text("Changes saved successfully!");
-        $("#popup_action_1").text("OK");
-        $(".del-popup").fadeIn(popupFadeSpeed);
+        $("[popup-type='editEvent'] #popup_action_2").hide();
+        $("[popup-type='editEvent'] h3").text("Changes saved successfully!");
+        $("[popup-type='editEvent'] #popup_action_1").text("OK");
+        $("[popup-type='editEvent']").fadeIn(popupFadeSpeed);
 
-        $(document).on("click", "#popup_action_1", function(){
+        $(document).on("click", "[popup-type='editEvent'] #popup_action_1", function(){
             location.reload(true);
         });
     }
