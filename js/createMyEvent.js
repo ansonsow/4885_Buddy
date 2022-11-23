@@ -221,7 +221,7 @@ searchBox()
       // }
 
       // setTimeout(() => {
-        createEvent(newEvent.name, currentUserId, newEvent.price, img , newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, []) 
+        createEvent(newEvent.name, currentUserId, newEvent.price, img , newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, [],[]) 
       // }, 500);
 
     }
