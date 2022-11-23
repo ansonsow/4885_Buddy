@@ -1,8 +1,11 @@
-import {db, addUserEvent, removeUserEvent, addUserFavEvent, removeUserFavEvent, addEventNum, minusEventNum} from "./app.js";
+import {db, addUserEvent, removeUserEvent, addUserFavEvent, removeUserFavEvent, addEventNum, minusEventNum, writeQAData} from "./app.js";
 import * as dbf from "./app.js"; // used to get current user
 import $ from "./jquery.module.js";
 
 import {query, collection, doc, getDocs,getDoc,where,onSnapshot} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
+
+
+// writeQAData("question","answer")
 
 let joinStatus;
 
@@ -53,7 +56,8 @@ querySnapshot.forEach((doc) => {
     eventOBJ.location = doc.data().location;
     eventOBJ.price = doc.data().price;
     eventOBJ.host = doc.data().hostId;
-    eventOBJ.reviews = doc.data().reviews
+    eventOBJ.reviews = doc.data().reviews;
+    eventOBJ.messageBoard = doc.data().messageBoard
 
     allEvents.push(eventOBJ);
 });
@@ -70,7 +74,75 @@ for(let i =0;i<allEvents.length;i++){
 }
 
 
+
+
+
+// qa section
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 console.log(chosenEvent);
+
+
+
+
+if(chosenEvent.messageBoard.length>0){
+    for(let i=0;i<chosenEvent.messageBoard.length;i++){
+
+        const qa = await getDoc(doc(db, "messageBoard", chosenEvent.messageBoard[i]));
+        console.log(qa.data());
+
+
+        let qaBlock = document.querySelector(".qa-set");
+        let clonedReview = qaBlock.cloneNode(true);
+        clonedReview.removeAttribute("hidden")
+
+        qaBlock.after(clonedReview);
+        clonedReview.querySelector(".question-text").innerHTML = qa.data().q;
+        clonedReview.querySelector(".answer-text").innerHTML = qa.data().a;
+        // rating
+
+        // clonedReview.querySelector(".review-rating").innerHTML = reviewContent.data().point;
+        // clonedReview.querySelector(".review-text").innerHTML = reviewContent.data().description;
+    }
+}
+
+
 if(chosenEvent.reviews.length>0){
     for(let i = 0 ; i < chosenEvent.reviews.length;i++){
         console.log(chosenEvent.reviews[i]);
