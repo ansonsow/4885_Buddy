@@ -3,16 +3,20 @@ import {storage, auth, db, writeEventData} from './app.js'
 import {query,collection, getDocs} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js'
 import {ref, uploadBytes,getDownloadURL,deleteObject} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js'
 import $ from "./jquery.module.js";
+import '../node_modules/regenerator-runtime/runtime.js';
 
+let successPopup;
 
-import '../node_modules/regenerator-runtime/runtime.js'
-
+$(document).ready(function(){
+	successPopup = $(".del-popup:first").clone();
+	successPopup.removeAttr("popup-type");
+	successPopup.attr("popup-type","success");
+	$("body").prepend(successPopup)
+})
 
 function createEvent(name, currentUserId, price, img , location, formattedDate, desc , number ,capacity, eventStatus , category, [],[]){
   writeEventData(name, currentUserId, price, img , location, formattedDate, desc, number , capacity, eventStatus , category, [],[])
 }
-
-
 
 // if(bool == true){
 // }
@@ -153,25 +157,25 @@ searchBox()
                   clearInterval(load_jQuery);
 
                   // remove existing <h3> text
-                  $(".del-popup h3").empty();
+                  $("[popup-type='success'] h3").empty();
 
                   // customize your <h3> text
-                  $(".del-popup h3").text("Event successfully created!");
+                  $("[popup-type='success'] h3").text("Event successfully created!");
 
                   // customize your button 1 text
-                  $("#popup_action_1").text("Back to home");
+                  $("[popup-type='success'] #popup_action_1").text("Back to home");
 
                   // customize your button 2 text
-                  $("#popup_action_2").text("Check it!");
+                  $("[popup-type='success'] #popup_action_2").text("Check it!");
 
                   // fade in the pop-up
-                  $(".del-popup").fadeIn(popupFadeSpeed);
+                  $("[popup-type='success']").fadeIn(popupFadeSpeed);
                   
                   /********************************************************************** */
                   /******* 1ST BUTTON CLICK [e.g. "OK"] ********************************* */
                   /********************************************************************** */
 
-                  $(document).on("click", "#popup_action_1", function(){
+                  $(document).on("click", "[popup-type='success'] #popup_action_1", function(){
                       let that = this; // don't touch this line
 
                       location.href = '../html/main.html'
@@ -180,7 +184,7 @@ searchBox()
                   /********************************************************************** */
                   /******* 2ND BUTTON CLICK [e.g. "CANCEL"] ***************************** */
                   /********************************************************************** */
-                  $(document).on("click", "#popup_action_2", function(){
+                  $(document).on("click", "[popup-type='success'] #popup_action_2", function(){
                       let that = this; // don't touch this line
 
                       location.href = '../html/manageMyEvents.html'
