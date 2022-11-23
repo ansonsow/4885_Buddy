@@ -18,8 +18,18 @@ let chosenEvent;
     // // const unsub = onSnapshot(doc(db, "cities", "SF"), (doc) => {
     // //     console.log("Current data: ", doc.data());
     // // });
+
+    const url = window.location.href;
+
+
+    console.log(url);
     let querySnapshot2;
-    let targetid = localStorage.getItem(targetEventId)
+    // console.log(targetid);
+    console.log(targetEventId);
+    // targetid = localStorage.getItem(targetEventId)
+    const targetid = url.substring(url.indexOf('#') + 1);
+    console.log(targetid);
+
 
     async function getData(){
         querySnapshot2 = await getDoc(doc(db, "events", targetid));
@@ -32,6 +42,7 @@ let chosenEvent;
     })
     // console.log(querySnapshot2.data());
     // chosenEvent = querySnapshot2
+    console.log(targetid);
 
 
 // getEvent()
@@ -68,7 +79,7 @@ querySnapshot.forEach((doc) => {
 
 localStorage.getItem(targetEventId);
 for(let i =0;i<allEvents.length;i++){
-    if(allEvents[i].id == localStorage.getItem(targetEventId)){
+    if(allEvents[i].id == targetid){
         chosenEvent = allEvents[i]
     }
 }
@@ -78,39 +89,6 @@ for(let i =0;i<allEvents.length;i++){
 
 
 // qa section
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
