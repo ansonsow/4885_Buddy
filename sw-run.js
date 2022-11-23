@@ -19,8 +19,15 @@ const CACHE_NAME = 'offline';
 const OFFLINE_URL = '../html/offline.html';
 
 self.addEventListener('install', (event) => {
+  // console.log("haha i m installed");
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
+    
+    addResourcesToCache([
+      "/",
+      "/index.html",
+
+    ])
     // Setting {cache: 'reload'} in the new request will ensure that the response
     // isn't fulfilled from the HTTP cache; i.e., it will be from the network.
     await cache.add(new Request(OFFLINE_URL, {cache: 'reload'}));
