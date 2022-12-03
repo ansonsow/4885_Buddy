@@ -1,0 +1,14 @@
+{
+    "short_name": "Buddy",
+    "name": "Buddy",
+    "icons":[
+        
+        {"src":"../images/favicon.png",
+         "sizes":"256x256",
+          "type":"image/png"}
+    ],
+    "start_url":"/html/main.html",
+    "display":"standalone",
+    "background_color":"#ff7951"
+    
+}
