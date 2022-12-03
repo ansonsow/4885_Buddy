@@ -16,7 +16,10 @@ Copyright 2015, 2019, 2020, 2021 Google LLC. All Rights Reserved.
 const OFFLINE_VERSION = 1;
 const CACHE_NAME = 'offline';
 // Customize this with a different URL if needed.
-const OFFLINE_URL = '../html/offline.html';
+// const OFFLINE_URL = '../html/offline.html';
+const OFFLINE_URL = '../html/offline_test.html';
+
+
 
 self.addEventListener('install', (event) => {
   // console.log("haha i m installed");
@@ -26,6 +29,8 @@ self.addEventListener('install', (event) => {
     // Setting {cache: 'reload'} in the new request will ensure that the response
     // isn't fulfilled from the HTTP cache; i.e., it will be from the network.
     await cache.add(new Request(OFFLINE_URL, {cache: 'reload'}));
+
+
   })());
   // Force the waiting service worker to become the active service worker.
   self.skipWaiting();
@@ -52,7 +57,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   // We only want to call event.respondWith() if this is a navigation request
   // for an HTML page.
-  console.log(event);
+  // console.log(event);
   if (event.request.mode === 'navigate') {
     event.respondWith((async () => {
       try {
@@ -74,6 +79,7 @@ self.addEventListener('fetch', (event) => {
 
         const cache = await caches.open(CACHE_NAME);
         const cachedResponse = await cache.match(OFFLINE_URL);
+
         return cachedResponse;
       }
     })());

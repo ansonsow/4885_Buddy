@@ -6,11 +6,41 @@ import '../node_modules/regenerator-runtime/runtime.js'
 /**************************************************************************/
 /**************************************************************************/
 
-let createAlertPopup, alertPopup, fadeOut, fadeIn, checkDuplicateEvents;
+let createAlertPopup, alertPopup, fadeOut, fadeIn, checkDuplicateEvents, locationEnabled;
 let createMapPopup, mapPopup;
 let userCoord = [];
 let radius = 5000;
-const circumference = 40075017
+const circumference = 40075017;
+let location = [ -123.1207,49.2827];
+
+
+
+
+
+const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+  
+  function success(pos) {
+    const crd = pos.coords;
+  
+    userCoord = [crd.longitude,crd.latitude]
+    console.log(userCoord);
+    locationEnabled()
+  }
+  
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  
+  navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+
+
+
 
 let loadFadeSpeed = parseInt(getComputedStyle(document.documentElement)
                     .getPropertyValue("--Loading-Fade-Speed"));
@@ -550,7 +580,6 @@ document.querySelector(".search-button").addEventListener("click",async()=>{
 /**************************************************************************/
 /**************************************************************************/
 
-let location = [ -123.1207,49.2827];
 let mapo;
 let zoom = 10;
 
@@ -608,16 +637,6 @@ $(document).ready(function(){
 
         // customize your button 1 text
         $("#popup_action_1",backMap).text("Confirm");
-
-
-        function mapo(){
-            mapo = tt.map({
-                key: tomtomApiKey,
-                container: "map",
-                zoom: zoom,
-                center: location
-            });
-        }
         
         function moveMap(lng,lat){
             location = [lng,lat]
@@ -626,6 +645,22 @@ $(document).ready(function(){
                 zoom: zoom
             })
         }
+
+
+    
+
+
+        function mapo(){
+            
+            mapo = tt.map({
+                key: tomtomApiKey,
+                container: "map",
+                zoom: zoom,
+                center: location
+            });
+        }
+        
+
 
         var options = {
             searchOptions: {
@@ -667,7 +702,7 @@ $(document).ready(function(){
 
         // let radiusInput = document.createElement("input");
         // radiusInput.setAttribute("id","radiusInput");
-        $("[popup-type='map'] #popup_action_1").before("<div class='radiusInputWrap'><input id='radiusInput' type='number' min='0'><span class='radius-units'>km</span></div>");
+        $("[popup-type='map'] #popup_action_1").before("<div class='radiusInputWrap'><input id='radiusInput' type='number' min='0' value='5'><span class='radius-units'>km</span></div>");
 
         // custom radius input
         document.getElementById("radiusInput").addEventListener("keyup",()=>{
@@ -697,9 +732,49 @@ $(document).ready(function(){
         //     $("[popup-type='alert']").fadeOut(popupFadeSpeed);
         // });
 
-    }//end function createMapPopup()
+        locationEnabled = function(){
 
-    createMapPopup()
+            document.getElementById("locationButton").value='aaa'
+            console.log(userCoord);
+            if(userCoord.length!=0){
+                location = userCoord;
+    
+                async function reverseGeo(l){
+                    await tt.services.reverseGeocode({
+                    key: tomtomApiKey,
+                    position: l
+                })
+                .then(result=>{
+    
+                    let address = result.addresses[0].address.freeformAddress;
+
+                    console.log(address);
+                    const locationfield = document.querySelector('.iffm-search-by-location');
+                    locationfield.innerHTML = address;
+                    // locationfield.innerHTML = address;
+
+
+                    // $('#locationButton').val(address)
+
+                    console.log(locationfield);
+    
+    
+                });
+            }
+    
+                reverseGeo(userCoord)
+                moveMap(userCoord[0],userCoord[1])
+            }
+        }
+
+
+    }//end function createMapPopup()
+    setTimeout(() => {
+        createMapPopup()
+      }, "1000")
+
+
+    // createMapPopup()
 
     /*-------- MAP POPUP - RUN --------*/
 

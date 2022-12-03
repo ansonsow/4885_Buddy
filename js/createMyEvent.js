@@ -14,6 +14,28 @@ $(document).ready(function(){
 	$("body").prepend(successPopup)
 })
 
+// const geoOptions = {
+//   enableHighAccuracy: true,
+//   timeout: 5000,
+//   maximumAge: 0
+// };
+
+// function success(pos) {
+//   const crd = pos.coords;
+
+//   userCoord = [crd.longitude,crd.latitude]
+//   console.log(userCoord);
+//   // locationEnabled()
+// }
+
+// function error(err) {
+//   console.warn(`ERROR(${err.code}): ${err.message}`);
+// }
+
+// navigator.geolocation.getCurrentPosition(success, error, geoOptions);
+
+
+
 function createEvent(name, currentUserId, price, img , location, formattedDate, desc , number ,capacity, eventStatus , category, [],[]){
   writeEventData(name, currentUserId, price, img , location, formattedDate, desc, number , capacity, eventStatus , category, [],[])
 }
@@ -193,36 +215,7 @@ searchBox()
           }
       },0);
 
-      // let file = document.getElementById("upload").files;
-      // console.log(file.length);
-      // let bool = false;
-  
-  
-      // for(let i=0;i<file.length;i++){
-      //   let storageRef = ref(storage, currentUserId+Date.now()+file[i].name);
-      //   console.log(storageRef);
-  
-      //   const metadata = {
-      //     contentType: file[i].type,
-      //   };
-  
-      //   await uploadBytes(storageRef,file[i],metadata)
-      //   .then((snapshot)=>{
-      //     console.log(snapshot);
-      //     getDownloadURL(storageRef)
-      //     .then((url)=>{
-      //       img.push(url);
-      //       console.log(img);
-      //       bool = true;
-      //     })
-      //     .catch((error=>{
-      //       console.log(error);
-      //     }))
-      //   })
-      //   .catch((error)=>{
-      //     console.log(error);
-      //   });
-      // }
+
 
       // setTimeout(() => {
         createEvent(newEvent.name, currentUserId, newEvent.price, img , newEvent.location, formattedDate, newEvent.desc, 0, newEvent.number, 1 , newEvent.category, [],[]) 
