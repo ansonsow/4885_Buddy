@@ -684,6 +684,7 @@ $(document).ready(function(){
             $(".tt-search-box-input").attr("placeholder","Enter your location...")
             
             ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
+                console.log(data);
                 moveMap(data.data.result.position.lng,data.data.result.position.lat);
                 userCoord = [data.data.result.position.lng,data.data.result.position.lat];
                 document.getElementById("locationButton").value=data.data.result.address.freeformAddress;
@@ -789,7 +790,13 @@ $(document).ready(function(){
             
 
             locationButton.value = $(".tt-search-box-input").val();
+
+            if($(".tt-search-box-input").val()==''){
+
+            }else{
             $(".iffm-search-by-location").text($(".tt-search-box-input").val());
+
+            }
             $(".iffm-hover-text").hide();
 
             // fade out overlays

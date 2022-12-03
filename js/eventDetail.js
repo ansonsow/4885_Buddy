@@ -532,6 +532,7 @@ function reviewStars(){
     let starCont = document.querySelector(".review-rating");
 
     let howManyStars = Number(starCont.textContent.trim());
+    
     let maxStars = 5;
     let emptyStars = Math.floor(maxStars - howManyStars);
 
