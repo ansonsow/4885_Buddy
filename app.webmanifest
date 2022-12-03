@@ -1,16 +1,17 @@
+
+
 {
     "short_name": "Buddy",
     "name": "Buddy",
-    "icons":[
-        
-        {"src":"./images/favicon.png",
-         "sizes":"256x256",
-          "type":"image/png"}
+    "icons": [
+      {
+        "src": "images/favicon.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      }
     ],
-    "start_url":"/html/main.html",
-    "scope":"/",
-    "display":"standalone",
-    "background_color":"#ff7951",
-    "offline_enabled":true
-    
-}
+    "start_url": "./html/main.html",
+    "display": "fullscreen",
+    "background_color": "#ff7951",
+    "theme_color": "#ff7951"
+  }
