@@ -1,5 +1,7 @@
 # 4885_Buddy
 
+<!--
+
 ### Steps:
 1. If you do not have [GitHub Desktop](https://desktop.github.com/) installed, please go ahead and install that first.
 2. If you already have `4885_Buddy` folder installed, e.g. `User > Documents > GitHub > 4885_Buddy`, please trash it.
@@ -50,15 +52,15 @@ When it's done, hard-refresh `search.html`. If you can see the events, congrats!
 
 ---
 
+-->
+
 ### Credits:
-
-<details>
   
-<summary>Click to view credits...</summary>
-  
-<br>
+**External Resources Used:**
+* date picker widget: [github.com/dmuy/duDatepicker](https://github.com/dmuy/duDatepicker)
+* time picker widget: [github.com/senthilraj/TimePicki](https://github.com/senthilraj/TimePicki)
 
-Images used:  
+**Images used:**  
 [github.com/ansonsow/4885_Buddy/tree/main/images](https://github.com/ansonsow/4885_Buddy/tree/main/images)  
 
 **Slideshow images:**
@@ -75,5 +77,3 @@ Images used:
 
 **Login page:**
 * [unsplash.com/photos/2LhCDvS_7xs](https://unsplash.com/photos/2LhCDvS_7xs)
-  
-</details>
