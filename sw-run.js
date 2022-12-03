@@ -17,7 +17,7 @@ const OFFLINE_VERSION = 1;
 const CACHE_NAME = 'offline';
 // Customize this with a different URL if needed.
 // const OFFLINE_URL = '../html/offline.html';
-const OFFLINE_URL = '../html/offline_test.html';
+const OFFLINE_URL = '../html/offline.html';
 
 
 
