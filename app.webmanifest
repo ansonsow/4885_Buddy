@@ -3,12 +3,14 @@
     "name": "Buddy",
     "icons":[
         
-        {"src":"../images/favicon.png",
+        {"src":"./images/favicon.png",
          "sizes":"256x256",
           "type":"image/png"}
     ],
     "start_url":"/html/main.html",
+    "scope":"/",
     "display":"standalone",
-    "background_color":"#ff7951"
+    "background_color":"#ff7951",
+    "offline_enabled":true
     
 }

@@ -40,21 +40,33 @@
     <link href="../css/topBar.css" rel="stylesheet">
     <link href="../css/footer.css" rel="stylesheet">
 
-    <link rel="manifest" href="./app.webmanifest">
+    <link rel="manifest" href="../app.webmanifest">
 
     <script>
-        if ('serviceWorker' in navigator) { //if browser supports Service worker
-        // assuming sw.js is our service worker file in the same directory
-        navigator.serviceWorker.register('../sw-load.js', {
-            scope:'.'
-        })
-        .then( function (reg) {
-        console.log(`Service Worker Registration`);
-        })
-        .catch( function (error) {
-        console.log(`Service Worker Error (${error})`);
+        // if ('serviceWorker' in navigator) { //if browser supports Service worker
+        // // assuming sw.js is our service worker file in the same directory
+        // navigator.serviceWorker.register('../sw-load.js', {
+        //     scope:'.'
+        // })
+        // .then( function (reg) {
+        // console.log(`Service Worker Registration`);
+        // })
+        // .catch( function (error) {
+        // console.log(`Service Worker Error (${error})`);
+        // });
+        // }
+
+        if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('../sw-run.js', {
+            scope: '/'
+        }).then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
         });
-        }
+    }
 
     </script>
 
