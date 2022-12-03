@@ -7,6 +7,11 @@ let poppet;
 let popupFadeSpeed_;
 
 $(document).ready(function(){
+	// searchbar - when user clicks it, redirect them to the search page
+	// (instead of letting them type anything)
+	$("form.searchbar").click(function(){
+		window.location = "../html/search.html"
+	})
 
 	// if there isn't an existing popup, add it
 	if(!$(".del-popup").length){
@@ -39,7 +44,7 @@ $(document).ready(function(){
 		$("#popup_action_1",poppet).text("Yes");
 		$("#popup_action_2",poppet).text("No");
 	}	
-})
+})//end jquery
 
 /************ TOP BAR DROPDOWN ************/
 let topBarProfileIcon = document.querySelector("header .account-icon");

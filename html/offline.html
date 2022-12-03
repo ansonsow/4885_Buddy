@@ -5,8 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>You are Offline!</title>
+
+    <!-- firebase -->
+    <script type="module" src="../js/app.js" defer></script>
+    <script type="module" src="../js/maindb.js" defer></script>
+
+    <!-- required assets -->
+    <link href="../css/variables.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <script src="../js/global.js" defer></script>
+    <script type="module" src="../js/topBar.js" defer></script>
+
+    <!-- icon font: fontawesome -->
+    <script src="https://kit.fontawesome.com/9b31aab1c4.js" crossorigin="anonymous"></script>
+
+    <!-- page-specific assets -->
+    <link href="../css/topBar.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
 </head>
 <body>
-    hi you are currently offline
+    <!------ TOP BAR ------>
+    <div js-include-html="../html/topBar.html"></div>
+
+    <!------ FOOTER ------>
+    <div js-include-html="../html/footer.html"></div>
 </body>
 </html>
