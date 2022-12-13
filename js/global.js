@@ -73,25 +73,6 @@ function contentLoaded(actionFunc){
   },0);
 }
 
-/*------ WAIT FOR JQUERY TO LOAD ------*/
-function loadjQuery(){
-  let jqDateNow = Date.now();
-  let jqStop = 2500;
-  
-  let load_jQuery = setInterval(() => {
-    if(Date.now() - jqDateNow > jqStop){
-      clearInterval(load_jQuery);
-    } else {
-      if(typeof jQuery !== "undefined"){
-          clearInterval(load_jQuery);
-          jQueryActions();
-      }		
-    }
-  },0);
-}//end loadjQuery
-
-contentLoaded(loadjQuery)
-
 // ---------------------------------------------------
 /* ------------------ Hamburger Menu ----------------*/
 // ---------------------------------------------------

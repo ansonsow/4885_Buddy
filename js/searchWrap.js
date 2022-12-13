@@ -1,5 +1,19 @@
-function jQueryActions(){
-    detectSearchEvents();
+contentLoaded(checkJQJQ)
+
+function checkJQJQ(){
+    let lpDateNow = Date.now();
+    let lpStop = 2500;
+    
+    let jqjqjq = setInterval(() => {
+        if(Date.now() - lpDateNow > lpStop){
+            clearInterval(jqjqjq);
+        } else {
+            if(typeof jQuery !== undefined){
+                clearInterval(jqjqjq);
+                detectSearchEvents();
+            }	
+        }
+    },0);
 }
 
 function detectSearchEvents(){
