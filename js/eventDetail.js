@@ -571,7 +571,12 @@ function cloneReview(clones){
     }
 }
 
-cloneReview(7);
+// cloneReview(7);
+
+// delete hidden reviews
+document.querySelectorAll(".review-block[hidden]").forEach(deleteHiddenRev => {
+    deleteHiddenRev.remove()
+})
 
 //***************************************************************//
 
