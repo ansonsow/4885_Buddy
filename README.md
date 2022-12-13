@@ -60,7 +60,7 @@ When it's done, hard-refresh `search.html`. If you can see the events, congrats!
 in. We offer a refreshing alternative to traditional social events with a myriad of unique
 features.
 
-<sub>This project was created </sub>
+<sub>*Buddy* was created as part of a college project.</sub>
 
 ---
 
