@@ -54,11 +54,37 @@ When it's done, hard-refresh `search.html`. If you can see the events, congrats!
 
 -->
 
-### Credits:
+### ┈┈&ensp; About &ensp;┈┈
+
+> Buddy helps you discover new activities and connects you with people you're interested
+in. We offer a refreshing alternative to traditional social events with a myriad of unique
+features.
+
+<sub>This project was created </sub>
+
+---
+
+### ┈┈&ensp; Installation Requirements &ensp;┈┈
+
+* `4885_Buddy` needs to be downloaded in the `MAMP > htdocs` directory, and run through MAMP's localhost
+* run `npm i` at `4885_Buddy`
+
+---
+
+### ┈┈&ensp; Tools Used &ensp;┈┈
+
+* Google Firebase
+* TomTom API (for geolocation)
+* CSS, HTML, JS, jQuery
+
+---
+
+### ┈┈&ensp; Credits &ensp;┈┈
   
 **External Resources Used:**
 * date picker widget: [github.com/dmuy/duDatepicker](https://github.com/dmuy/duDatepicker)
 * time picker widget: [github.com/senthilraj/TimePicki](https://github.com/senthilraj/TimePicki)
+* auto-add suffix to calendar date: [stackoverflow.com/a/65805333/8144506](https://stackoverflow.com/a/65805333/8144506)
 
 **Images used:**  
 [github.com/ansonsow/4885_Buddy/tree/main/images](https://github.com/ansonsow/4885_Buddy/tree/main/images)  
