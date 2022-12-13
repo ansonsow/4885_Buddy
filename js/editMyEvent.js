@@ -46,10 +46,6 @@ if (currentUser) {
     // get user's EVENTS
     // console.log(userData.events);
 
-    // pick first event (CHANGE LATER, this is just for testing);
-    // targetEventId = userData.events[0];
-    // document.querySelector(".heading").append(`: ${targetEventId}`);
-
     const eventJson = await getDoc(doc(dbf.db, "events", targetEventId));
     eventData = eventJson.data();
     console.log(eventData);

@@ -198,7 +198,7 @@ if(currentUser){
             let categories = ["food", "drinks", "travel", "sports", "music", "performing", "business", "festival", "halloween", "exhibit", "museum", "gallery", "wine", "meeting", "party", "fun", "fair", "circus", "dance", "club", "camp", "camping", "night", "concert", "class", "collaboration", "friday", "climb", "sail", "climing", "sailing", "tent", "friends", "fishing", "surfing", "cycling", "explore", "exploring", "adventure", "forest", "plane", "airline", "airplane", "restaurant"];
 
             /*------ RANDOM UNSPLASH IMAGES ------*/
-            // delete later, just for cloning purposes
+            // just for testing purposes
             for(let i=0; i<howManyPics; i++){
                 let jqc = $(".event-block:first").clone();
                 jqc.removeAttr("hidden");
@@ -242,7 +242,7 @@ if(currentUser){
             let howManyCats = 3;
 
             /*------ RANDOM CAT IMAGES ------*/
-            // delete later, just for cloning purposes
+            // for testing purposes
             for(let i=0; i<howManyCats; i++){
                 let jqc = $(".event-block:first").clone();
                 jqc.removeAttr("hidden");
