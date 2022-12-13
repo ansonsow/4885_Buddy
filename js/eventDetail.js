@@ -529,26 +529,31 @@ let rvContA = document.querySelector(".reviews-cont-a");
 let rvContB = document.querySelector(".reviews-cont-b");
 
 function reviewStars(){
-    let starCont = document.querySelector(".review-rating");
-
-    let howManyStars = Number(starCont.textContent.trim());
-    
+    // let starCont = document.querySelector(".review-rating");
     let maxStars = 5;
-    let emptyStars = Math.floor(maxStars - howManyStars);
 
-    starCont.replaceChildren();
+    document.querySelectorAll(".review-rating:not([hidden])").forEach(uwu => {
+        let howManyStars = Number(uwu.textContent.trim());
+        let emptyStars = Math.floor(maxStars - howManyStars);
+        // alert(howManyStars)
 
-    for(let i=0; i<howManyStars; i++){
-        let createFillStar = document.createElement("i");
-        createFillStar.setAttribute("class", "fa-solid fa-star fill");
-        starCont.prepend(createFillStar);
-    }
+        // alert(`how many stars: ${howManyStars} || total stars ${maxStars}`)
 
-    for(let i=0; i<emptyStars; i++){
-        let createEmptyStar = document.createElement("i");
-        createEmptyStar.setAttribute("class", "fa-solid fa-star empty");
-        starCont.append(createEmptyStar);
-    }
+        uwu.replaceChildren();
+
+        for(let i=0; i<howManyStars; i++){
+            let createFillStar = document.createElement("i");
+            createFillStar.setAttribute("class", "fa-solid fa-star fill");
+            uwu.prepend(createFillStar);
+        }
+    
+        for(let i=0; i<emptyStars; i++){
+            let createEmptyStar = document.createElement("i");
+            createEmptyStar.setAttribute("class", "fa-solid fa-star empty");
+            uwu.append(createEmptyStar);
+        }
+    })
+    
 }
 
 reviewStars()
